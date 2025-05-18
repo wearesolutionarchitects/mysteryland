@@ -64,11 +64,17 @@ find "$GALLERY_ROOT" -mindepth 2 -type d | while read -r img_dir; do
 
     {
       printf "  - file: \"/src/content/gallery/%s/%s/%s\"\n" "$year" "$date" "$fname"
-      printf "    title: \"%s\"\n" "$artist"
-      printf "    caption: \"%s – %s @%s/%s\"\n" "$date" "$artist" "$venue" "$city"
-      printf "    venue: \"%s\"\n" "$venue"
-      printf "    city: \"%s\"\n" "$city"
-      printf "    tour: \"%s\"\n\n" "$tour"
+      printf "\n"
+      printf "  - title: \"%s\"\n" "$artist"
+      printf "\n"
+      printf "  - caption: \"%s – %s @%s/%s\"\n" "$date" "$artist" "$venue" "$city"
+      printf "\n"
+      printf "  -  venue: \"%s\"\n" "$venue"
+      printf "\n"
+      printf "  - city: \"%s\"\n" "$city"
+      printf "\n"
+      printf "  - tour: \"%s\"\n\n" "$tour"
+
     } >> "$mdx_file"
 
     if [ -n "$keywords" ]; then
@@ -92,7 +98,8 @@ find "$GALLERY_ROOT" -mindepth 2 -type d | while read -r img_dir; do
     done
     printf "%s\n" "---"
     printf "\n"
-    printf "Hier folgt der Bericht zum Event am %s …\n" "$date"
+    printf "![$caption]($featured)\n\n"
+    printf "🎤 Konzertbericht:"
   } >> "$mdx_file"
 
 done
