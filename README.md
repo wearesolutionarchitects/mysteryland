@@ -17,7 +17,7 @@ src/
 ├── gallery/                 # Konzertfotos, geordnet nach Jahr und Datum
 │   └── 2025/
 │       └── 05-17/
-│           └── 2025-05-17 20-00-00.jpg
+│           └── 2025-05-17_20-00-00.jpg
 └── pages/                   # Astro-Seiten (Startseite, Navigation, etc.)
     ├── index.astro           # Startseite
     └── concerts.astro        # Konzertübersicht
