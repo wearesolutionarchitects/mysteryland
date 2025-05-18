@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Root-Verzeichnisse
-GALLERY_ROOT="./src/gallery"
+GALLERY_ROOT="./src/content/gallery"
 CONTENT_ROOT="./src/content/concerts"
 
 echo "🔍 Durchsuche $GALLERY_ROOT nach Bildern ..."
