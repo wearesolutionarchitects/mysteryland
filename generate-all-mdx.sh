@@ -10,7 +10,8 @@ echo "# 📓 Event-Übersicht – $(date)" > "$LOG_FILE"
 echo "" >> "$LOG_FILE"
 echo "🔍 Durchsuche $GALLERY_ROOT nach Bildern ..."
 
-find "$GALLERY_ROOT" -mindepth 2 -type d | while read -r img_dir; do
+
+find "$GALLERY_ROOT" -mindepth 2 -type d | sort | while read -r img_dir; do
   year=$(basename "$(dirname "$img_dir")")
   date=$(basename "$img_dir")
   slug="$date"
@@ -121,20 +122,37 @@ find "$GALLERY_ROOT" -mindepth 2 -type d | while read -r img_dir; do
   } >> "$mdx_file"
 
   {
-    echo "## ✅ [$caption]($mdx_file)"
+    # echo "### 📅 $pubDate"
+    # echo ""
+    # echo "### 📍 $venue, $city"
+    # echo ""
+    echo "### ✅ [$caption]($mdx_file)"
     echo ""
-    echo "- 📅 $pubDate"
-    echo "- 🖼️ $fname"
-    echo "- 📍 $venue, $city"
+    # echo "- 🖼️ $fname"
+    
     # Link zum Originalbericht auf fanieng.com im Logfile ergänzen
     if [ -n "$slug_url" ]; then
-      printf " - 🔗 https://fanieng.com/%s/%s/%s/%s\n" "$year" "$month" "$day" "$slug_url"
+      printf "Externer Link 🔗 https://fanieng.com/%s/%s/%s/%s\n" "$year" "$month" "$day" "$slug_url"
     fi
     echo ""
     echo "---"
     echo ""
-  } >> "$LOG_FILE"
+  } >> "temp_log_$year.md"
+
 
 done
+
+# Gruppiere Logs pro Jahr, neueste zuerst, vor der alten Logik
+if ls temp_log_*.md 1> /dev/null 2>&1; then
+  for yfile in $(ls temp_log_*.md | sort -r); do
+    y=$(echo "$yfile" | grep -oE '[0-9]{4}')
+    echo "## 📆 $y" >> "$LOG_FILE"
+    tac "$yfile" >> "$LOG_FILE"
+    echo "" >> "$LOG_FILE"
+    rm "$yfile"
+  done
+else
+  echo "_Keine Events gefunden._" >> "$LOG_FILE"
+fi
 
 echo "✅ Alle index.mdx-Dateien wurden erstellt. Siehe $LOG_FILE"
