@@ -1,4 +1,4 @@
-# 📓 Event-Übersicht – Di 20 Mai 2025 00:38:49 CEST
+# 📓 Event-Übersicht – Di 20 Mai 2025 00:41:14 CEST
 
 ## 📆 2025
 
@@ -60,7 +60,15 @@ Externer Link 🔗 https://fanieng.com/2024/04/05/05-04-2024-depeche-mode-köln-
 
 ---
 
-Externer Link 🔗 https://fanieng.com/2024///---
+Externer Link 🔗 https://fanieng.com/2024/09/12/---
 
 ### ✅ [](./src/content/events/2024/02-01/index.mdx)
+
+## 📆 2023
+
+---
+
+Externer Link 🔗 https://fanieng.com/2023/09/12/12-09-2023-die-ärzte-oberhausen-turbinenhalle
+
+### ✅ [12.09.2023 - die ärzte - Herbst des Lebens @Oberhausen/Turbinenhalle](./src/content/events/2023/10-12/index.mdx)
 
