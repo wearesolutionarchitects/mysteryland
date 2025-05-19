@@ -50,30 +50,30 @@ find "$GALLERY_ROOT" -mindepth 2 -type d | while read -r img_dir; do
     caption=$(exiftool -s -s -s -IPTC:Caption-Abstract "$img")
     keywords=$(exiftool -s -s -s -IPTC:Keywords "$img")
 
-    artist="Unbekannt"
-    city="Unbekannt"
-    venue="Unbekannt"
-    tour=""
+    event=""
+    city=""
+    venue=""
+    artist=""
 
     if [ -n "$caption" ]; then
-      artist=$(echo "$caption" | cut -d'-' -f2 | cut -d'@' -f1 | xargs)
+      event=$(echo "$caption" | cut -d'-' -f2 | cut -d'@' -f1 | xargs)
       city=$(echo "$caption" | grep -o '@[^/]*' | cut -c2-)
       venue=$(echo "$caption" | grep -o '/[^ ]*' | cut -c2-)
-      tour=$(echo "$caption" | cut -d'-' -f3- | sed 's/-w\///' | sed 's/-guest://I' | sed 's/.* - //' | xargs)
+      artist=$(echo "$caption" | cut -d'-' -f3- | sed 's/-w\///' | sed 's/-guest://I' | sed 's/.* - //' | xargs)
     fi
 
     {
       printf "  - file: \"/src/content/gallery/%s/%s/%s\"\n" "$year" "$date" "$fname"
       printf "\n"
-      printf "  - title: \"%s\"\n" "$artist"
+      printf "  - title: \"%s\"\n" "$event"
       printf "\n"
-      printf "  - caption: \"%s – %s @%s/%s\"\n" "$date" "$artist" "$venue" "$city"
+      printf "  - caption: \"%s – %s @%s/%s\"\n" "$date" "$event" "$venue" "$city"
       printf "\n"
-      printf "  -  venue: \"%s\"\n" "$venue"
+      printf "  - venue: \"%s\"\n" "$venue"
       printf "\n"
       printf "  - city: \"%s\"\n" "$city"
       printf "\n"
-      printf "  - tour: \"%s\"\n\n" "$tour"
+      printf "  - artist: \"%s\"\n\n" "$artist"
 
     } >> "$mdx_file"
 
