@@ -1,4 +1,4 @@
-# 📓 Event-Übersicht – Di 20 Mai 2025 00:15:45 CEST
+# 📓 Event-Übersicht – Di 20 Mai 2025 00:19:40 CEST
 
 ## 📆 2025
 
@@ -51,4 +51,10 @@ Externer Link 🔗 https://fanieng.com/2024/07/26/26-07-2024-rammstein-gelsenkir
 Externer Link 🔗 https://fanieng.com/2024/06/23/23-06-2024-23.06.2024-–-lenny-kravitz-hamburg-sporthalle
 
 ### ✅ [23.06.2024 – Lenny Kravitz@Hamburg/Sporthalle](./src/content/events/2024/06-23/index.mdx)
+
+---
+
+Externer Link 🔗 https://fanieng.com/2024/04/05/05-04-2024-depeche-mode-köln-lanxess
+
+### ✅ [05.04.2024 -Depeche Mode - Memento Mori @Köln/LANXESS arena](./src/content/events/2024/04-05/index.mdx)
 
