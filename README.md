@@ -1,4 +1,4 @@
-# 📓 Event-Übersicht – Di 20 Mai 2025 00:07:11 CEST
+# 📓 Event-Übersicht – Di 20 Mai 2025 00:15:45 CEST
 
 ## 📆 2025
 
@@ -39,4 +39,16 @@ Externer Link 🔗 https://fanieng.com/2025/05/17/17-05-2025-holly-johnson-bochu
 Externer Link 🔗 https://fanieng.com/2024/10/12/12-10-2024-nena-bochum-ruhrcongress
 
 ### ✅ [12.10.2024 - Nena@Bochum/RuhrCongress - Sakias Kerner](./src/content/events/2024/10-12/index.mdx)
+
+---
+
+Externer Link 🔗 https://fanieng.com/2024/07/26/26-07-2024-rammstein-gelsenkirchen-veltins-arena
+
+### ✅ [26.07.2024 -Rammstein@Gelsenkirchen/VELTINS-Arena](./src/content/events/2024/07-26/index.mdx)
+
+---
+
+Externer Link 🔗 https://fanieng.com/2024/06/23/23-06-2024-23.06.2024-–-lenny-kravitz-hamburg-sporthalle
+
+### ✅ [23.06.2024 – Lenny Kravitz@Hamburg/Sporthalle](./src/content/events/2024/06-23/index.mdx)
 
