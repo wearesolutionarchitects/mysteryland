@@ -140,7 +140,7 @@ find "$GALLERY_ROOT" -mindepth 2 -type d | while read -r img_dir; do
     printf "%s\n" "---"
     printf "\n"
     printf "![$caption](../../../gallery/%s/%s/%s)\n\n" "$year" "$slug" "$(basename "$featured")"
-    printf "🎤 Konzertbericht:"
+    printf "## 🎤 Konzertbericht:"
   } >> "$mdx_file"
 
 done
