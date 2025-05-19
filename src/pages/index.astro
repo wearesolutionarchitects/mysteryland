@@ -1,0 +1,40 @@
+---
+import BaseHead from '@components/BaseHead.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<!doctype html>
+<html lang="de">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>🎸 Willkommen bei Mysteryland!</h1>
+			<p>
+				Mysteryland ist deine persönliche Fanpage für Live-Musik, Events und Konzertmomente, die im Gedächtnis bleiben.
+			</p>
+			<p>
+				Hier findest du Konzertfotos, Setlisten, Tourdaten und persönliche Eindrücke – alles sorgfältig aufbereitet und dokumentiert mit Liebe zum Detail.
+			</p>
+			<p>
+				Diese Seite basiert auf dem Astro-Framework und nutzt moderne Webtechnologien, um Inhalte strukturiert und performant darzustellen.
+			</p>
+			<ul>
+				<li>Durchstöbere unsere Eventberichte unter <code>src/content/events/</code></li>
+				<li>Gestalte das Layout deiner Eventposts unter <code>src/layouts/eventsPost.astro</code></li>
+				<li>Bearbeite diese Startseite in <code>src/pages/index.astro</code></li>
+				<li>Füge dein Branding im <code>src/components/Header.astro</code> hinzu</li>
+				<li>Bearbeite den Footer unter <code>src/components/Footer.astro</code></li>
+			</ul>
+			<p>
+				Viel Spaß beim Stöbern! Und wenn du mitmachen oder eigene Inhalte beitragen möchtest:  
+				<a href="https://github.com/wearesolutionarchitects">Schau bei GitHub vorbei</a>.
+			</p>
+		</main>
+		<Footer />
+	</body>
+</html>
