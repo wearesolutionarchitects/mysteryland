@@ -1,4 +1,4 @@
-# 📓 Event-Übersicht – Di 20 Mai 2025 00:03:48 CEST
+# 📓 Event-Übersicht – Di 20 Mai 2025 00:07:11 CEST
 
 ## 📆 2025
 
@@ -31,4 +31,12 @@ Externer Link 🔗 https://fanieng.com/2025/06/24/24-06-2025-duran-duran-düssel
 Externer Link 🔗 https://fanieng.com/2025/05/17/17-05-2025-holly-johnson-bochum-ruhrcongress
 
 ### ✅ [17.05.2025 - Holly Johnson@Bochum/RuhrCongress](./src/content/events/2025/05-17/index.mdx)
+
+## 📆 2024
+
+---
+
+Externer Link 🔗 https://fanieng.com/2024/10/12/12-10-2024-nena-bochum-ruhrcongress
+
+### ✅ [12.10.2024 - Nena@Bochum/RuhrCongress - Sakias Kerner](./src/content/events/2024/10-12/index.mdx)
 
