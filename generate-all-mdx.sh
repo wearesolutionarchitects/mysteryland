@@ -100,7 +100,6 @@ find "$GALLERY_ROOT" -mindepth 2 -type d | while read -r img_dir; do
 
   {
     echo "- ✅ [$caption]($mdx_file)"
-    echo "  - 📅 $year"
     echo "  - 📅 $pubDate"
     echo "  - 🖼️ $fname"
     echo "  - 📍 $venue, $city"
