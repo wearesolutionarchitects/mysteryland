@@ -6,6 +6,7 @@ import Footer from '@components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
 import { getCollection } from 'astro:content';
 import FormattedDate from '@components/FormattedDate.astro';
+import { Image } from 'astro:assets';
 
 const posts = (await getCollection('events')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -95,7 +96,7 @@ const posts = (await getCollection('events')).sort(
 						posts.map((post) => (
 							<li>
 								<a href={`/events/${post.id}/`}>
-									<img width={360} height={180} src={post.data.featuredImage} alt="" />
+									<Image src={post.data.featuredImage ?? '/default.jpg'} width={360} height={180} alt={post.data.title} format="webp" />
 									<h4 class="title">{post.data.title}</h4>
 									<p class="date">
 										<FormattedDate date={post.data.pubDate} />

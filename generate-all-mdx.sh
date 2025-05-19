@@ -1,8 +1,13 @@
 #!/bin/bash
+export LANG=de_DE.UTF-8
+export LC_ALL=de_DE.UTF-8
 
 GALLERY_ROOT="./src/content/gallery"
 CONTENT_ROOT="./src/content/events"
+LOG_FILE="./generation-log.md"
 
+echo "# 📓 Generierungslog – $(date)" > "$LOG_FILE"
+echo "" >> "$LOG_FILE"
 echo "🔍 Durchsuche $GALLERY_ROOT nach Bildern ..."
 
 find "$GALLERY_ROOT" -mindepth 2 -type d | while read -r img_dir; do
@@ -21,50 +26,46 @@ find "$GALLERY_ROOT" -mindepth 2 -type d | while read -r img_dir; do
   fi
 
   first_caption=$(exiftool -s -s -s -IPTC:Caption-Abstract "$featured")
-  raw_date=$(echo "$first_caption" | cut -d' ' -f1 | sed 's/\\./-/g')
-  month="${raw_date:3:2}"
-  day="${raw_date:0:2}"
-  date="${month}-${day}"
-  pubDate="20${raw_date:6:2}-${raw_date:3:2}-${raw_date:0:2}"
+  raw_date=$(echo "$first_caption" | grep -oE '^[0-9]{2}\.[0-9]{2}\.[0-9]{2}')
+  if [ -n "$raw_date" ]; then
+    day="${raw_date:0:2}"
+    month="${raw_date:3:2}"
+    pubDate="${year}-${month}-${day}"
+  else
+    pubDate=""
+  fi
 
-  # Fix: img muss vor fname gesetzt werden, fname wird aus img abgeleitet
   img=$(exiftool -DateTimeOriginal -T -d "%Y:%m:%d %H:%M:%S" "$img_dir"/*.jpg 2>/dev/null | \
     paste -d'|' - <(printf "%s\n" "$img_dir"/*.jpg) | \
     sort | head -n 1 | cut -d'|' -f2)
-  fname=$(basename "$img")
 
-  if [ -z "$img" ]; then
+  if [ -z "$img" ] || [ ! -f "$img" ]; then
     echo "⚠️  Kein Bild mit gültigem EXIF-Zeitstempel in $img_dir – übersprungen."
     continue
   fi
 
+  fname=$(basename "$img")
   caption=$(exiftool -s -s -s -IPTC:Caption-Abstract "$img")
   description="Eventbericht"
 
   echo "📝 Erstelle: $mdx_file"
 
   {
-    printf "%s\n" "---"
-    printf "title: \"${caption}\"\n\n"
+    echo "---"
+    printf "title: \"%s\"\n" "$caption"
     printf "description: \"%s\"\n" "$description"
-    printf "\n"
     printf "pubDate: \"%s\"\n" "$pubDate"
-    printf "\n"
-    printf "featuredImage: \"/src/content/gallery/%s/%s/%s\"\n" "$year" "$date" "$(basename "$featured")"
-    printf "\n"
+    printf "featuredImage: \"/src/content/gallery/%s/%s/%s\"\n" "$year" "$date" "$fname"
     printf "slug: \"%s/%s\"\n" "$year" "$slug"
-    printf "\n"
-    printf "gallery:\n"
-    printf "\n"
+    printf "gallery:\n\n"
   } > "$mdx_file"
-
-  all_tags=()
 
   event=""
   city=""
   venue=""
   artist=""
   keywords=$(exiftool -s -s -s -IPTC:Keywords "$img")
+  all_tags=()
 
   if [ -n "$caption" ]; then
     event=$(echo "$caption" | cut -d'-' -f2 | cut -d'@' -f1 | xargs)
@@ -75,12 +76,9 @@ find "$GALLERY_ROOT" -mindepth 2 -type d | while read -r img_dir; do
 
   {
     printf "  - title: \"%s\"\n" "$event"
-    printf "\n"
-    printf "  - venue: \"%s\"\n" "$venue"
-    printf "\n"
-    printf "  - city: \"%s\"\n" "$city"
-    printf "\n"
-    printf "  - artist: \"%s\"\n\n" "$artist"
+    printf "    venue: \"%s\"\n" "$venue"
+    printf "    city: \"%s\"\n" "$city"
+    printf "    artist: \"%s\"\n\n" "$artist"
   } >> "$mdx_file"
 
   if [ -n "$keywords" ]; then
@@ -95,12 +93,20 @@ find "$GALLERY_ROOT" -mindepth 2 -type d | while read -r img_dir; do
 
   {
     printf "tags: [%s]\n" "$(IFS=,; echo "${all_tags[*]}")"
-    printf "%s\n" "---"
-    printf "\n"
-    printf "![$caption](../../../gallery/%s/%s/%s)\n\n" "$year" "$slug" "$(basename "$featured")"
-    printf "## 🎤 Konzertbericht:"
+    echo "---"
+    printf "![$caption](../../../gallery/%s/%s/%s)\n\n" "$year" "$slug" "$fname"
+    printf "# Konzertbericht\n"
   } >> "$mdx_file"
+
+  {
+    echo "- ✅ [$caption]($mdx_file)"
+    echo "  - 📅 $year"
+    echo "  - 📅 $pubDate"
+    echo "  - 🖼️ $fname"
+    echo "  - 📍 $venue, $city"
+    echo ""
+  } >> "$LOG_FILE"
 
 done
 
-echo "✅ Alle index.mdx-Dateien wurden erstellt."
+echo "✅ Alle index.mdx-Dateien wurden erstellt. Siehe $LOG_FILE"
