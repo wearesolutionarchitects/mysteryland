@@ -9,6 +9,15 @@ find "$GALLERY_DIR" -type f \( -iname "*.jpeg" \) | while read -r file; do
   # Ersetze Endung durch .jpg
   newfile="${file%.*}.jpg"
 
+  # Lese Datum und Uhrzeit aus EXIF aus
+  datetime=$(exiftool -d "%Y-%m-%d_%H-%M-%S" -DateTimeOriginal -s -s -s "$file")
+
+  # Wenn Datum auslesbar, setze neuen Dateinamen
+  if [ -n "$datetime" ]; then
+    dir=$(dirname "$file")
+    newfile="$dir/${datetime}.jpg"
+  fi
+
   # Wenn Ziel noch nicht existiert, umbenennen
   if [ ! -f "$newfile" ]; then
     echo "🔁 $file → $newfile"
