@@ -22,14 +22,21 @@ find "$GALLERY_ROOT" -mindepth 2 -type d | while read -r img_dir; do
 
   first_caption=$(exiftool -s -s -s -IPTC:Caption-Abstract "$featured")
   raw_date=$(echo "$first_caption" | cut -d' ' -f1 | sed 's/\\./-/g')
-  date="${raw_date:0:2}.${raw_date:3:2}.20${raw_date:6:2}"
+  month="${raw_date:3:2}"
+  day="${raw_date:0:2}"
+  date="${month}-${day}"
   pubDate="20${raw_date:6:2}-${raw_date:3:2}-${raw_date:0:2}"
+  fname=$(basename "$img")
+  caption=$(exiftool -s -s -s -IPTC:Caption-Abstract "$img")
+  keywords=$(exiftool -s -s -s -IPTC:Keywords "$img")
+  
+
 
   echo "📝 Erstelle: $mdx_file"
 
   {
     printf "%s\n" "---"
-    printf "title: \"Fotobericht vom %s\"\n" "$date"
+    printf "title: \"${caption}\"\n"
     printf "\n"
     printf "description: \"Eine mehrteilige Fotostrecke vom Eventtag %s.\"\n" "$date"
     printf "\n"
@@ -54,10 +61,7 @@ find "$GALLERY_ROOT" -mindepth 2 -type d | while read -r img_dir; do
     continue
   fi
 
-  fname=$(basename "$img")
-  caption=$(exiftool -s -s -s -IPTC:Caption-Abstract "$img")
-  keywords=$(exiftool -s -s -s -IPTC:Keywords "$img")
-
+  
   event=""
   city=""
   venue=""
@@ -89,8 +93,7 @@ find "$GALLERY_ROOT" -mindepth 2 -type d | while read -r img_dir; do
       continue
     fi
     fname=$(basename "$img")
-    caption=$(exiftool -s -s -s -IPTC:Caption-Abstract "$img")
-    keywords=$(exiftool -s -s -s -IPTC:Keywords "$img")
+    
 
     event=""
     city=""
