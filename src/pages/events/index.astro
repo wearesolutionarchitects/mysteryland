@@ -94,7 +94,7 @@ const posts = (await getCollection('events')).sort(
 						posts.map((post) => (
 							<li>
 								<a href={`/events/${post.id}/`}>
-									<img width={720} height={360} src={post.data.featuredImage} alt="" />
+									<img width={360} height={180} src={post.data.featuredImage} alt="" />
 									<h4 class="title">{post.data.title}</h4>
 									<p class="date">
 										<FormattedDate date={post.data.pubDate} />
