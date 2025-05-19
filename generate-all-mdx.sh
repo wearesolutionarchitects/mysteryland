@@ -44,8 +44,8 @@ find "$GALLERY_ROOT" -mindepth 2 -type d | while read -r img_dir; do
 
   {
     printf "%s\n" "---"
-    printf "title: \"${caption}\"\n"
-    printf "description: \"%s\"\n" "$description"
+    printf "title: \"${caption}\"\n\n"
+    printf "description: \"%s\"\n" "$description\""
     printf "\n"
     printf "pubDate: \"%s\"\n" "$pubDate"
     printf "\n"
@@ -106,8 +106,7 @@ find "$GALLERY_ROOT" -mindepth 2 -type d | while read -r img_dir; do
     fi
 
     {
-      printf "  - file: \"/src/content/gallery/%s/%s/%s\"\n" "$year" "$date" "$fname"
-      printf "\n"
+      printf "  - file: \"/src/content/gallery/%s/%s/%s\"\n" "$year" "$date" "$fname" 
       printf "  - title: \"%s\"\n" "$event"
       printf "\n"
       printf "  - caption: \"%s – %s @%s/%s\"\n" "$date" "$event" "$venue" "$city"
