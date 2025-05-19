@@ -1,7 +1,7 @@
 #!/bin/bash
 
 GALLERY_ROOT="./src/content/gallery"
-CONTENT_ROOT="./src/content/concerts"
+CONTENT_ROOT="./src/content/events"
 
 echo "🔍 Durchsuche $GALLERY_ROOT nach Bildern ..."
 

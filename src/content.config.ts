@@ -1,9 +1,9 @@
 import { glob } from 'astro/loaders';
 import { defineCollection, z } from 'astro:content';
 
-const concerts = defineCollection({
-	// Load Markdown and MDX files in the `src/content/concerts/` directory.
-	loader: glob({ base: './src/content/concerts', pattern: '**/*.{md,mdx}' }),
+const events = defineCollection({
+	// Load Markdown and MDX files in the `src/content/events/` directory.
+	loader: glob({ base: './src/content/events', pattern: '**/*.{md,mdx}' }),
 	// Type-check frontmatter using a schema
 	schema: z.object({
 	title: z.string(),
@@ -24,4 +24,4 @@ const concerts = defineCollection({
 }),
 });
 
-export const collections = { concerts };
+export const collections = { events };

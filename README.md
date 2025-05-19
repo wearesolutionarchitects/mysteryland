@@ -10,7 +10,7 @@ Erstellt mit **Markdown**, gepflegt in **Visual Studio Code**, versioniert über
 ```plaintext
 src/
 ├── content/                 # Markdown-Inhalte (Berichte, Setlists)
-│   └── concerts/
+│   └── events/
 │       └── 2025/
 │           └── 05-17-bochum-frankie/
 │               └── index.md
@@ -20,7 +20,7 @@ src/
 │           └── 2025-05-17_20-00-00.jpg
 └── pages/                   # Astro-Seiten (Startseite, Navigation, etc.)
     ├── index.astro           # Startseite
-    └── concerts.astro        # Konzertübersicht
+    └── events.astro        # Konzertübersicht
 ```
 
 ## 📜 Markdown-Inhalte
