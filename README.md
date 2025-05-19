@@ -1,4 +1,4 @@
-# 📓 Event-Übersicht – Di 20 Mai 2025 00:50:45 CEST
+# 📓 Event-Übersicht – Di 20 Mai 2025 00:56:48 CEST
 
 ## 📆 2025
 
@@ -89,4 +89,12 @@ Externer Link 🔗 https://fanieng.com/2023/06/02/02-06-2023-02.06.2023-–-pete
 Externer Link 🔗 https://fanieng.com/2023/05/19/19-05-2023-herbert-grönemeyer-westfalenhalle-
 
 ### ✅ [19.05.2023 - Herbert Grönemeyer@Westfalenhalle](./src/content/events/2023/05-19/index.mdx)
+
+## 📆 2022
+
+---
+
+Externer Link 🔗 https://fanieng.com/2022/12/23/23-12-2022-23.12.2022-broilers-mitsubishielectrichalle-
+
+### ✅ [23.12.2022 Broilers@MitsubishiElectricHalle](./src/content/events/2022/12-23/index.mdx)
 
