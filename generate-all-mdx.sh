@@ -124,19 +124,13 @@ find "$GALLERY_ROOT" -mindepth 2 -type d | while read -r img_dir; do
     for kw in "${kwarr[@]}"; do
       clean_tag=$(echo "$kw" | xargs)
       if [ -n "$clean_tag" ]; then
-        all_tags+=("$clean_tag")
+        all_tags+=("\"$clean_tag\"")
       fi
     done
   fi
 
   {
-    printf "tags:\n"
-    for tag in "${all_tags[@]}"; do
-      clean_tag=$(echo "$tag" | xargs)
-      if [ -n "$clean_tag" ]; then
-        printf "%s\n" "- $clean_tag"
-      fi
-    done
+    printf "tags: [%s]\n" "$(IFS=,; echo "${all_tags[*]}")"
     printf "%s\n" "---"
     printf "\n"
     printf "![$caption](../../../gallery/%s/%s/%s)\n\n" "$year" "$slug" "$(basename "$featured")"
