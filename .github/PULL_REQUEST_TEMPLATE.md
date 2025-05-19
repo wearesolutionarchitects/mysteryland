@@ -1,12 +1,16 @@
-### 📝 Beschreibung
+# Mysteryland.biz Pull Request Template
+
+**Bitte fülle die folgenden Abschnitte aus, um den Pull Request zu erstellen.**
+
+## 📝 Beschreibung
 
 <!-- Beschreibe kurz und prägnant, was in diesem Pull Request umgesetzt wurde -->
 
-### 🔍 Motivation und Kontext
+## 🔍 Motivation und Kontext
 
 <!-- Warum wurde diese Änderung vorgenommen? Gibt es einen Bezug zu einem Issue oder Feature? -->
 
-### ✅ Art der Änderung
+## ✅ Art der Änderung
 
 <!-- Bitte zutreffendes ankreuzen -->
 
@@ -17,21 +21,21 @@
 - [ ] 📚 Dokumentation
 - [ ] 💡 Sonstiges
 
-### 🔄 Geänderte Bereiche
+## 🔄 Geänderte Bereiche
 
 <!-- Liste betroffene Komponenten, Module oder Dateien auf -->
 
-### 🧪 Tests
+## 🧪 Tests
 
 - [ ] Lokale Tests erfolgreich durchgeführt
 - [ ] Bestehende Tests nicht beeinträchtigt
 - [ ] Neue Tests hinzugefügt (falls notwendig)
 
-### 📸 Screenshots (optional)
+## 📸 Screenshots (optional)
 
 <!-- Screenshots oder GIFs zur Veranschaulichung -->
 
-### 📚 Weiterführende Hinweise
+## 📚 Weiterführende Hinweise
 
 <!-- Relevante Links, offene Fragen oder Anmerkungen -->
 
