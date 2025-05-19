@@ -74,11 +74,7 @@ find "$GALLERY_ROOT" -mindepth 2 -type d | while read -r img_dir; do
   fi
 
   {
-    printf "  - file: \"/src/content/gallery/%s/%s/%s\"\n" "$year" "$date" "$fname"
-    printf "\n"
     printf "  - title: \"%s\"\n" "$event"
-    printf "\n"
-    printf "  - caption: \"%s – %s @%s/%s\"\n" "$date" "$event" "$venue" "$city"
     printf "\n"
     printf "  - venue: \"%s\"\n" "$venue"
     printf "\n"
