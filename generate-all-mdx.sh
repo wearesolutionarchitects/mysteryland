@@ -4,9 +4,9 @@ export LC_ALL=de_DE.UTF-8
 
 GALLERY_ROOT="./src/content/gallery"
 CONTENT_ROOT="./src/content/events"
-LOG_FILE="./generation-log.md"
+LOG_FILE="./README.md"
 
-echo "# 📓 Generierungslog – $(date)" > "$LOG_FILE"
+echo "# 📓 Event-Übersicht – $(date)" > "$LOG_FILE"
 echo "" >> "$LOG_FILE"
 echo "🔍 Durchsuche $GALLERY_ROOT nach Bildern ..."
 
@@ -53,10 +53,15 @@ find "$GALLERY_ROOT" -mindepth 2 -type d | while read -r img_dir; do
   {
     echo "---"
     printf "title: \"%s\"\n" "$caption"
+    printf "\n"
     printf "description: \"%s\"\n" "$description"
+    printf "\n"
     printf "pubDate: \"%s\"\n" "$pubDate"
+    printf "\n"
     printf "featuredImage: \"/src/content/gallery/%s/%s/%s\"\n" "$year" "$date" "$fname"
+    printf "\n"
     printf "slug: \"%s/%s\"\n" "$year" "$slug"
+    printf "\n"
     printf "gallery:\n\n"
   } > "$mdx_file"
 
@@ -75,10 +80,10 @@ find "$GALLERY_ROOT" -mindepth 2 -type d | while read -r img_dir; do
   fi
 
   {
-    printf "  - title: \"%s\"\n" "$event"
-    printf "    venue: \"%s\"\n" "$venue"
-    printf "    city: \"%s\"\n" "$city"
-    printf "    artist: \"%s\"\n\n" "$artist"
+    printf " - title: \"%s\"\n" "$event"
+    printf " - venue: \"%s\"\n" "$venue"
+    printf " - city: \"%s\"\n" "$city"
+    printf " - artist: \"%s\"\n\n" "$artist"
   } >> "$mdx_file"
 
   if [ -n "$keywords" ]; then
@@ -94,15 +99,39 @@ find "$GALLERY_ROOT" -mindepth 2 -type d | while read -r img_dir; do
   {
     printf "tags: [%s]\n" "$(IFS=,; echo "${all_tags[*]}")"
     echo "---"
-    printf "![$caption](../../../gallery/%s/%s/%s)\n\n" "$year" "$slug" "$fname"
-    printf "# Konzertbericht\n"
+    # printf "![$caption](../../../gallery/%s/%s/%s)\n\n" "$year" "$slug" "$fname"
+    printf "## Konzertbericht\n"
+    # Link zu fanieng.com, sofern Slug ableitbar
+    # raw_date wurde oben gesetzt, jetzt year, month, day sicherstellen
+    if [ -n "$raw_date" ]; then
+      day="${raw_date:0:2}"
+      month="${raw_date:3:2}"
+      # year ist bereits gesetzt
+    fi
+    # Extrahiere Datum, Künstler, Stadt und Venue
+    event_date=$(echo "$caption" | grep -oE '^[0-9]{2}\.[0-9]{2}\.[0-9]{4}' | sed 's/\./-/g')
+    event_artist=$(echo "$caption" | cut -d'-' -f2 | cut -d'@' -f1 | xargs | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g')
+    event_location=$(echo "$caption" | grep -o '@[^/]*' | cut -c2- | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g')
+    event_venue=$(echo "$caption" | grep -o '/[^ ]*' | cut -c2- | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g')
+
+    slug_url="${event_date}-${event_artist}-${event_location}-${event_venue}"
+    if [ -n "$slug_url" ]; then
+      printf "\n➡️ [Originalbericht auf fanieng.com](https://fanieng.com/%s/%s/%s/%s)\n" "$year" "$month" "$day" "$slug_url"
+    fi
   } >> "$mdx_file"
 
   {
-    echo "- ✅ [$caption]($mdx_file)"
-    echo "  - 📅 $pubDate"
-    echo "  - 🖼️ $fname"
-    echo "  - 📍 $venue, $city"
+    echo "## ✅ [$caption]($mdx_file)"
+    echo ""
+    echo "- 📅 $pubDate"
+    echo "- 🖼️ $fname"
+    echo "- 📍 $venue, $city"
+    # Link zum Originalbericht auf fanieng.com im Logfile ergänzen
+    if [ -n "$slug_url" ]; then
+      printf " - 🔗 https://fanieng.com/%s/%s/%s/%s\n" "$year" "$month" "$day" "$slug_url"
+    fi
+    echo ""
+    echo "---"
     echo ""
   } >> "$LOG_FILE"
 
