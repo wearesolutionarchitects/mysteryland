@@ -1,5 +1,7 @@
-# Pull Request Template
-<!-- Bitte diesen Kommentar entfernen, wenn du mit dem Ausfüllen des Templates beginnst. -->
+
+# Mysteryland.biz Pull Request Template
+
+**Bitte fülle die folgenden Abschnitte aus, um den Pull Request zu erstellen.**
 
 ## 📝 Beschreibung
 
@@ -13,7 +15,7 @@
 
 ---
 
-### ✅ Art der Änderung
+## ✅ Art der Änderung
 
 <!-- Bitte zutreffendes ankreuzen -->
 
