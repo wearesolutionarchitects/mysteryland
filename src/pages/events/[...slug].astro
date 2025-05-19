@@ -1,6 +1,6 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
-import eventsPost from '@layouts/eventPost.astro';
+import EventPost from '@layouts/eventPost.astro';
 import { render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -16,6 +16,6 @@ const post = Astro.props;
 const { Content } = await render(post);
 ---
 
-<eventsPost {...post.data}>
+<EventPost {...post.data}>
 	<Content />
-</eventsPost>
+</EventPost>
