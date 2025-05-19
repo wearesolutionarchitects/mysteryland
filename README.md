@@ -1,4 +1,4 @@
-# 📓 Event-Übersicht – Di 20 Mai 2025 00:19:40 CEST
+# 📓 Event-Übersicht – Di 20 Mai 2025 00:38:49 CEST
 
 ## 📆 2025
 
@@ -57,4 +57,10 @@ Externer Link 🔗 https://fanieng.com/2024/06/23/23-06-2024-23.06.2024-–-lenn
 Externer Link 🔗 https://fanieng.com/2024/04/05/05-04-2024-depeche-mode-köln-lanxess
 
 ### ✅ [05.04.2024 -Depeche Mode - Memento Mori @Köln/LANXESS arena](./src/content/events/2024/04-05/index.mdx)
+
+---
+
+Externer Link 🔗 https://fanieng.com/2024///---
+
+### ✅ [](./src/content/events/2024/02-01/index.mdx)
 
