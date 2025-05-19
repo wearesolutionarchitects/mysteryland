@@ -27,18 +27,25 @@ find "$GALLERY_ROOT" -mindepth 2 -type d | while read -r img_dir; do
   date="${month}-${day}"
   pubDate="20${raw_date:6:2}-${raw_date:3:2}-${raw_date:0:2}"
   fname=$(basename "$img")
-  caption=$(exiftool -s -s -s -IPTC:Caption-Abstract "$img")
-  keywords=$(exiftool -s -s -s -IPTC:Keywords "$img")
   
+  img=$(exiftool -DateTimeOriginal -T -d "%Y:%m:%d %H:%M:%S" "$img_dir"/*.jpg 2>/dev/null | \
+    paste -d'|' - <(printf "%s\n" "$img_dir"/*.jpg) | \
+    sort | head -n 1 | cut -d'|' -f2)
 
+  if [ -z "$img" ]; then
+    echo "⚠️  Kein Bild mit gültigem EXIF-Zeitstempel in $img_dir – übersprungen."
+    continue
+  fi
+
+  caption=$(exiftool -s -s -s -IPTC:Caption-Abstract "$img")
+  description="Fotostrecke zum Event: $caption"
 
   echo "📝 Erstelle: $mdx_file"
 
   {
     printf "%s\n" "---"
     printf "title: \"${caption}\"\n"
-    printf "\n"
-    printf "description: \"Eine mehrteilige Fotostrecke vom Eventtag %s.\"\n" "$date"
+    printf "description: \"%s\"\n" "$description"
     printf "\n"
     printf "pubDate: \"%s\"\n" "$pubDate"
     printf "\n"
@@ -52,20 +59,11 @@ find "$GALLERY_ROOT" -mindepth 2 -type d | while read -r img_dir; do
 
   all_tags=()
 
-  img=$(exiftool -DateTimeOriginal -T -d "%Y:%m:%d %H:%M:%S" "$img_dir"/*.jpg 2>/dev/null | \
-    paste -d'|' - <(printf "%s\n" "$img_dir"/*.jpg) | \
-    sort | head -n 1 | cut -d'|' -f2)
-
-  if [ -z "$img" ]; then
-    echo "⚠️  Kein Bild mit gültigem EXIF-Zeitstempel in $img_dir – übersprungen."
-    continue
-  fi
-
-  
   event=""
   city=""
   venue=""
   artist=""
+  keywords=$(exiftool -s -s -s -IPTC:Keywords "$img")
 
   if [ -n "$caption" ]; then
     event=$(echo "$caption" | cut -d'-' -f2 | cut -d'@' -f1 | xargs)
