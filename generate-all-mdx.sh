@@ -8,7 +8,7 @@ echo "🔍 Durchsuche $GALLERY_ROOT nach Bildern ..."
 find "$GALLERY_ROOT" -mindepth 2 -type d | while read -r img_dir; do
   year=$(basename "$(dirname "$img_dir")")
   date=$(basename "$img_dir")
-  slug="$date-event"
+  slug="$date"
   slug_path="$CONTENT_ROOT/$year/$slug"
   mdx_file="$slug_path/index.mdx"
 
@@ -98,7 +98,7 @@ find "$GALLERY_ROOT" -mindepth 2 -type d | while read -r img_dir; do
     done
     printf "%s\n" "---"
     printf "\n"
-    printf "![$caption](/src/content/gallery/%s/%s/%s)\n\n" "$year" "$slug" "$(basename "$featured")"
+    printf "![$caption](../../../gallery/%s/%s/%s)\n\n" "$year" "$slug" "$(basename "$featured")"
     printf "🎤 Konzertbericht:"
   } >> "$mdx_file"
 
