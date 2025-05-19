@@ -39,7 +39,7 @@ find "$GALLERY_ROOT" -mindepth 2 -type d | while read -r img_dir; do
   fi
 
   caption=$(exiftool -s -s -s -IPTC:Caption-Abstract "$img")
-  description="Fotostrecke zum Event: $caption"
+  description="Eventbericht"
 
   echo "📝 Erstelle: $mdx_file"
 
