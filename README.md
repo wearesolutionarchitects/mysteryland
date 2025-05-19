@@ -1,4 +1,4 @@
-# 📓 Event-Übersicht – Di 20 Mai 2025 00:47:40 CEST
+# 📓 Event-Übersicht – Di 20 Mai 2025 00:50:45 CEST
 
 ## 📆 2025
 
@@ -83,4 +83,10 @@ Externer Link 🔗 https://fanieng.com/2023/06/04/04-06-2023-depeche-mode-düsse
 Externer Link 🔗 https://fanieng.com/2023/06/02/02-06-2023-02.06.2023-–-peter-maffay-gelsenkirchen-amphitheater
 
 ### ✅ [02.06.2023 – Peter Maffay@Gelsenkirchen/Amphitheater](./src/content/events/2023/06-02/index.mdx)
+
+---
+
+Externer Link 🔗 https://fanieng.com/2023/05/19/19-05-2023-herbert-grönemeyer-westfalenhalle-
+
+### ✅ [19.05.2023 - Herbert Grönemeyer@Westfalenhalle](./src/content/events/2023/05-19/index.mdx)
 
