@@ -1,4 +1,4 @@
-# 📓 Event-Übersicht – So 25 Mai 2025 13:47:46 CEST
+# 📓 Event-Übersicht – So 25 Mai 2025 22:24:44 CEST
 
 ![Mysterland](/public/mysteryland.svg)
 
@@ -107,6 +107,12 @@ Externer Link 🔗 https://fanieng.com/2023/05/19/19-05-2023-herbert-grönemeyer
 ### ✅ [19.05.2023 - Herbert Grönemeyer@Westfalenhalle](./src/content/events/2023/05-19/index.mdx)
 
 ## 📆 2022
+
+---
+
+Externer Link 🔗 https://fanieng.com/2022/12/28/28-12-2022-extrabreit-berlin-lido
+
+### ✅ [28.12.2022 - Extrabreit@Berlin/Lido](./src/content/events/2022/12-28/index.mdx)
 
 ---
 
