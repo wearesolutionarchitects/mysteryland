@@ -8,6 +8,8 @@ LOG_FILE="./README.md"
 
 echo "# 📓 Event-Übersicht – $(date)" > "$LOG_FILE"
 echo "" >> "$LOG_FILE"
+echo "![Mysterland](/public/mysteryland.svg)" >> "$LOG_FILE"
+echo "" >> "$LOG_FILE"
 echo "🔍 Durchsuche $GALLERY_ROOT nach Bildern ..."
 
 
