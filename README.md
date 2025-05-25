@@ -1,4 +1,12 @@
-# 📓 Event-Übersicht – Di 20 Mai 2025 00:56:48 CEST
+# 📓 Event-Übersicht – So 25 Mai 2025 13:13:30 CEST
+
+## 📆 2026
+
+---
+
+Externer Link 🔗 https://fanieng.com/2026/07/17/17-07-2026-17.07.2026-die-toten-hosen-köln-rheinergiestadion
+
+### ✅ [17.07.2026 DIe Toten Hosen@Köln/RheinergieStadion](./src/content/events/2026/07-17/index.mdx)
 
 ## 📆 2025
 
@@ -6,7 +14,7 @@
 
 Externer Link 🔗 https://fanieng.com/2025/11/30/30-11-2025-kraftwerk-bochum-ruhrcongress
 
-### ✅ [30.11.2025 - Kraftwerk - @Bochum/RuhrCongress](./src/content/events/2025/11-30/index.mdx)
+### ✅ [30.11.2025 - Kraftwerk @Bochum/RuhrCongress](./src/content/events/2025/11-30/index.mdx)
 
 ---
 
@@ -44,7 +52,7 @@ Externer Link 🔗 https://fanieng.com/2024/10/12/12-10-2024-nena-bochum-ruhrcon
 
 Externer Link 🔗 https://fanieng.com/2024/07/26/26-07-2024-rammstein-gelsenkirchen-veltins-arena
 
-### ✅ [26.07.2024 -Rammstein@Gelsenkirchen/VELTINS-Arena](./src/content/events/2024/07-26/index.mdx)
+### ✅ [26.07.2024 - Rammstein@Gelsenkirchen/VELTINS-Arena](./src/content/events/2024/07-26/index.mdx)
 
 ---
 
@@ -56,21 +64,27 @@ Externer Link 🔗 https://fanieng.com/2024/06/23/23-06-2024-23.06.2024-–-lenn
 
 Externer Link 🔗 https://fanieng.com/2024/04/05/05-04-2024-depeche-mode-köln-lanxess
 
-### ✅ [05.04.2024 -Depeche Mode - Memento Mori @Köln/LANXESS arena](./src/content/events/2024/04-05/index.mdx)
+### ✅ [05.04.2024 - Depeche Mode@Köln/LANXESS arena](./src/content/events/2024/04-05/index.mdx)
 
 ---
 
-Externer Link 🔗 https://fanieng.com/2024/09/12/---
+Externer Link 🔗 https://fanieng.com/2024/02/01/01-02-2024-omd-düsseldorf-mitsubishi
 
-### ✅ [](./src/content/events/2024/02-01/index.mdx)
+### ✅ [01.02.2024 - OMD@Düsseldorf/Mitsubishi Electric HALLE](./src/content/events/2024/02-01/index.mdx)
 
 ## 📆 2023
 
 ---
 
-Externer Link 🔗 https://fanieng.com/2023/09/12/12-09-2023-die-ärzte-oberhausen-turbinenhalle
+Externer Link 🔗 https://fanieng.com/2023/10/12/12-10-2023-die-ärzte-oberhausen-turbinenhalle
 
-### ✅ [12.09.2023 - die ärzte - Herbst des Lebens @Oberhausen/Turbinenhalle](./src/content/events/2023/10-12/index.mdx)
+### ✅ [12.10.2023 - die ärzte@Oberhausen/Turbinenhalle](./src/content/events/2023/10-12/index.mdx)
+
+---
+
+Externer Link 🔗 https://fanieng.com/2023/09/17/17-09-2023-die-ärzte-köln-palladium
+
+### ✅ [17.09.2023 - die ärzte@Köln/Palladium](./src/content/events/2023/09-17/index.mdx)
 
 ---
 
