@@ -2,7 +2,7 @@
 
 GALLERY_DIR="./src/content/gallery"
 
-if [ -z "$1" ]; then echo "❌ Bitte Datum als Argument angeben (z. B. 2026-07-17)"; exit 1; fi
+if [ -z "$1" ]; then echo "❌ Bitte Datum als Argument angeben (z. B. 2026-07-17)"; exit 1; fi
 EVENT_DATE="$1"
 YEAR=${EVENT_DATE:0:4}
 MONTH_DAY=${EVENT_DATE:5:5}
