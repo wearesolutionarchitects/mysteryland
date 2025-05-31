@@ -1,4 +1,6 @@
-# 📆 Event-Übersicht – Sa 31 Mai 2025 13:35:44 CEST
+#![Mysterland](/public/mysteryland.svg)
+
+📆 Event-Übersicht – Sa 31 Mai 2025 13:40:36 CEST
 
 ## 2026
 
