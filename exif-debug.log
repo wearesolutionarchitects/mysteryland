@@ -1,12 +1,84 @@
 # Debug-Log für die EXIF-Auswertung
+Bild: ./src/content/gallery/2022/06-06/2022-06-06_00-00-01.jpg
+Beschreibung: 06.06.2022 - die ärzte@Berlin/Zitadelle Spandau
+Datum: 06.06.2022
+Künstler:in: die ärzte
+Stadt: Berlin
+Veranstaltungsort: Zitadelle Spandau
+Schlagworte: |Ticket|Berlin|Deutschland|BERLIN TOUR MMXXII|Konzert|2022|Zitadelle Spandau|€63.00
+Preis: €63,00
+---
+Bild: ./src/content/gallery/2022/06-07/2022-06-07_20-00-00.jpg
+Beschreibung: 07.06.2022 - Udo Lindenberg@Dortmund/Westfalenhalle
+Datum: 07.06.2022
+Künstler:in: Udo Lindenberg
+Stadt: Dortmund
+Veranstaltungsort: Westfalenhalle
+Schlagworte: |Ticket|€72.95|Deutschland|Westfalenhalle|Konzert|2022|Udo Lindenberg|Dortmund|Udopium Live 2022
+Preis: €72,95
+---
 Bild: ./src/content/gallery/2022/12-23/2022-12-23_19-30-00.jpg
-Beschreibung: 23.12.2022 Broilers@MitsubishiElectricHalle
+Beschreibung: 23.12.2022 - Broilers@MitsubishiElectricHalle
 Datum: 23.12.2022
-Künstler:in: 23.12.2022 Broilers
+Künstler:in: Broilers
 Stadt: MitsubishiElectricHalle
-Veranstaltungsort: 23.12.2022 Broilers@MitsubishiElectricHalle
-Schlagworte: |Ticket|€62.40|Deutschland|Konzert|Broilers|2022|Philipshalle|Düsseldorf
+Veranstaltungsort: 23.12.2022 - Broilers@MitsubishiElectricHalle
+Schlagworte: |Ticket|€62.40|Deutschland|Konzert|Broilers|2022|Philipshalle|Düsseldorf|Mitsubishi Electric Halle
 Preis: €62,40
+---
+Bild: ./src/content/gallery/2022/04-23/2022-04-23_18-30-00.jpg
+Beschreibung: 23.04.2022 - Brings@Hagen/Stadthalle
+Datum: 23.04.2022
+Künstler:in: Brings
+Stadt: Hagen
+Veranstaltungsort: Stadthalle
+Schlagworte: |Ticket|Brings|Deutschland|€35.70|Konzert|2022|Stadthalle|Hagen
+Preis: €35,70
+---
+Bild: ./src/content/gallery/2022/08-28/2022-08-28_17-00-00.jpg
+Beschreibung: 28.08.2022 - die ärzte@Berlin/Flughafen Tempelhof
+Datum: 28.08.2022
+Künstler:in: die ärzte
+Stadt: Berlin
+Veranstaltungsort: Flughafen Tempelhof
+Schlagworte: |Ticket|Berlin|Deutschland|BERLIN TOUR MMXXII|Konzert|2022|€72.00|die ärzte|Flughafen Tempelhof
+Preis: €72,00
+---
+Bild: ./src/content/gallery/2022/07-02/2022-07-02_17-30-01.jpg
+Beschreibung: 22.07.2022 - Die Toten Hosen@Wien/Krieau Open Air - Killed by Live Circumstances
+Datum: 22.07.2022
+Künstler:in: Die Toten Hosen
+Stadt: Wien
+Veranstaltungsort: Krieau Open Air
+Schlagworte: |Ticket|Österreich|€69.00|Wien|Konzert|Die Toten Hosen|2022
+Preis: €69,00
+---
+Bild: ./src/content/gallery/2022/09-16/2022-09-16_20-00-00.jpg
+Beschreibung: 16.09.2022 - Sondaschule@Köln/E-Werk
+Datum: 16.09.2022
+Künstler:in: Sondaschule
+Stadt: Köln
+Veranstaltungsort: 16.09.2022 - Sondaschule@Köln/E-Werk
+Schlagworte: |Ticket|E-Werk|Deutschland|Köln|Konzert|2022|Gute Zeiten Tour 2022|€33.80|Sondaschule
+Preis: €33,80
+---
+Bild: ./src/content/gallery/2022/06-04/2022-06-04_18-30-01.jpg
+Beschreibung: 04.06.2022 - die ärzte@Köln/RHEIN ENERGIE STADION
+Datum: 04.06.2022
+Künstler:in: die ärzte
+Stadt: Köln
+Veranstaltungsort: RHEIN ENERGIE STADION
+Schlagworte: |Ticket|€69.00|Deutschland|Köln|Konzert|2022|die ärzte|Buffalo Bill in Rom Tour
+Preis: €69,00
+---
+Bild: ./src/content/gallery/2022/12-10/2022-12-10_20-30-00.jpg
+Beschreibung: 10.12.2022 - Extrabreit@Hagen/Stadthalle
+Datum: 10.12.2022
+Künstler:in: Extrabreit
+Stadt: Hagen
+Veranstaltungsort: Stadthalle
+Schlagworte: |Ticket|€35.04|Deutschland|Konzert|2022|Stadthalle|Extrabreit|Hagen
+Preis: €35,04
 ---
 Bild: ./src/content/gallery/2025/05-17/2025-05-17_20-00-00.jpg
 Beschreibung: 17.05.2025 - Holly Johnson@Bochum/RuhrCongress
