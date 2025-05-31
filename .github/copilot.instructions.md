@@ -8,6 +8,7 @@ This project follows a structured and modular development approach with a focus 
 - **Performance optimization**: Writing efficient and scalable code.
 - **Code reusability**: Encouraging modular, **KISS (Keep It Simple, Stupid)** and **DRY (Don't Repeat Yourself)** principles.
 - **Security best practices**: Avoiding vulnerabilities in authentication, authorization, and data handling.
+- **CMS-Migration**: WordPress wird schrittweise durch ein modernes, auf Markdown und Astro basierendes System ersetzt.
 
 ---
 
@@ -63,6 +64,7 @@ This project follows a structured and modular development approach with a focus 
 ## Dependencies & Tools
 
 - Framework: **Astro** (with .mdx file support)
+- CMS: **Markdown-basiertes statisches Site-Setup (ersetzt WordPress)**
 - Backend: **Node.js (Express / Astro SSR)**
 - Frontend: **React / CSS**
 - Database: **PostgreSQL / MySQL**
