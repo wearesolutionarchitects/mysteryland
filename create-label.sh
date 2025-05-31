@@ -14,6 +14,13 @@ labels=(
   "foto              | 006b75 | Bildinhalt oder fotografische Besonderheiten"
   "preis             | ff9f1c | Preisangabe in € als EXIF-Tag"
   "memento           | 5319e7 | Erinnerungen oder persönliche Highlights"
+  "depeche_mode      | 1d76db | Kategorie für die Band Depeche Mode"
+  "die_aerzte"       | 1d76db | Kategorie für die Band Die Ärzte"
+  "die_toten_hosen   | 6f42c1 | Kategorie für die Band Die Toten Hosen"
+  "extrabreit        | 6f42c1 | Kategorie für die Band Extrabreit"
+  "fanta_4           | 6f42c1 | Kategorie für die Band Die Fantastischen Vier"
+  "duran_duran       | 6f42c1 | Kategorie für die Band Duran Duran"
+  "guano_apes        | 6f42c1 | Kategorie für die Band Guano Apes"
 )
 
 # Erstelle Labels via GitHub CLI
