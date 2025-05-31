@@ -89,8 +89,17 @@ Veranstaltungsort: 26.07.2024 - Rammstein@Gelsenkirchen/VELTINS-Arena
 Schlagworte: |Ticket|2024|Deutschland|Rammstein|Konzert|Europe Stadium Tour 2024|€117.58|Gelsenkirchen|Arena AufSchalke
 Preis: €117,58
 ---
+Bild: ./src/content/gallery/2023/05-19/2023-05-19_20-00-00.jpg
+Beschreibung: 19.05.2023 - Herbert Grönemeyer@Dortmund/Westfalenhalle
+Datum: 19.05.2023
+Künstler:in: Herbert Grönemeyer
+Stadt: Dortmund
+Veranstaltungsort: Westfalenhalle
+Schlagworte: |Ticket|€74.85|Westfalenhalle|Konzert|Herbert Grönemeyer|Dortmund|2023
+Preis: €74,85
+---
 Bild: ./src/content/gallery/2023/09-07/2023-07-09_19-00-00.jpg
-Beschreibung: 09.07.2023 - Depeche Mode@Berlin/Olympiastadion -Killed by Live Circumstances
+Beschreibung: 09.07.2023 - Depeche Mode@Berlin/Olympiastadion - Killed by Live Circumstances
 Datum: 09.07.2023
 Künstler:in: Depeche Mode
 Stadt: Berlin
@@ -115,6 +124,24 @@ Stadt: Köln
 Veranstaltungsort: Palladium
 Schlagworte: |Ticket|Palladium|Deutschland|Köln|Konzert|€59.00|Herbst des Lebens|die ärzte|2023
 Preis: €59,00
+---
+Bild: ./src/content/gallery/2023/06-02/2023-06-02_20-00-00.jpg
+Beschreibung: 02.06.2023 - Peter Maffay@Gelsenkirchen/Amphitheater
+Datum: 02.06.2023
+Künstler:in: Peter Maffay
+Stadt: Gelsenkirchen
+Veranstaltungsort: Amphitheater
+Schlagworte: |Ticket|€72.45|Deutschland|Konzert|Gelsenkirchen|Amphitheater|2023|Peter Maffay
+Preis: €72,45
+---
+Bild: ./src/content/gallery/2023/06-04/2023-06-04_19-00-00.jpg
+Beschreibung: 04.06.2023 - Depeche Mode@Düsseldorf/MERKUR SPIEL ARENA
+Datum: 04.06.2023
+Künstler:in: Depeche Mode
+Stadt: Düsseldorf
+Veranstaltungsort: MERKUR SPIEL ARENA
+Schlagworte: |Ticket|Depeche Mode|Deutschland|Memento Mori|Konzert|ESPRIT Arena|€148.90|Düsseldorf|2023
+Preis: €148,90
 ---
 Bild: ./src/content/gallery/2026/07-17/2026-07-17_17-30-00.jpg
 Beschreibung: 17.07.2026 - Die Toten Hosen@Köln/RheinergieStadion
