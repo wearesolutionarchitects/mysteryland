@@ -7,9 +7,11 @@ OUTPUT_FILE="exif.md"
 LOG_FILE="exif-debug.log"
 TMP_FILE="$(mktemp)"
 
+find "$GALLERY_ROOT" -type f -iname "*.jpg" -delete
+
 echo "# Debug-Log für EXIF-Auswertung" > "$LOG_FILE"
 
-find "$GALLERY_ROOT" -type f -iname "*.jpg" | while read -r img; do
+while read -r img; do
   caption=$(exiftool -s -s -s -IPTC:Caption-Abstract "$img")
   # Artist: nach erstem '-' und vor '@'
   artist=$(echo "$caption" | cut -d'-' -f2 | cut -d'@' -f1 | xargs)
@@ -30,6 +32,15 @@ find "$GALLERY_ROOT" -type f -iname "*.jpg" | while read -r img; do
     taglist="$taglist|$(echo "$kw" | xargs)"
   done
 
+  price="unbekannt"
+  for kw in "${kwarr[@]}"; do
+    kw_clean=$(echo "$kw" | xargs)
+    if [[ "$kw_clean" =~ ^€[0-9]+(\.[0-9]{2})?$ ]]; then
+      price="$kw_clean"
+      break
+    fi
+  done
+
   # Log-Ausgabe für jedes Bild
   echo "Bild: $img" >> "$LOG_FILE"
   echo "  Caption: $caption" >> "$LOG_FILE"
@@ -37,6 +48,7 @@ find "$GALLERY_ROOT" -type f -iname "*.jpg" | while read -r img; do
   echo "  City:    $city" >> "$LOG_FILE"
   echo "  Venue:   $venue" >> "$LOG_FILE"
   echo "  Tags:    $taglist" >> "$LOG_FILE"
+  echo "  Price:   $price" >> "$LOG_FILE"
   echo "-----------------------------" >> "$LOG_FILE"
 
   # Beispiel: Zähle Ticket pro Artist (wie vorher)
@@ -50,7 +62,7 @@ find "$GALLERY_ROOT" -type f -iname "*.jpg" | while read -r img; do
   if [ $has_ticket -eq 1 ] && [ $has_artist -eq 1 ]; then
     echo "$artist" >> "$TMP_FILE"
   fi
-done
+done < <(find "$GALLERY_ROOT" -type f -iname "*.jpg")
 
 ticket_artist_stats=$(sort "$TMP_FILE" | uniq -c | sort -nr | awk '{print "- "substr($0, index($0,$2))}')
 
