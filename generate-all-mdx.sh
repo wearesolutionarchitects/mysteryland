@@ -132,7 +132,7 @@ find "$GALLERY_ROOT" -mindepth 2 -type d | sort | while read -r img_dir; do
     echo ""
     # echo "- 🖼️ $fname"
     
-    # Link zum Originalbericht auf fanieng.com im Logfile ergänzen
+    # Link zum Originalbericht auf fanieng.com in README.md ergänzen
     if [ -n "$slug_url" ]; then
       printf "Externer Link 🔗 https://fanieng.com/%s/%s/%s/%s\n" "$year" "$month" "$day" "$slug_url"
     fi
