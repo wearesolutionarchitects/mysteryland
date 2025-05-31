@@ -2,6 +2,14 @@
 
 GALLERY_DIR="./src/content/gallery"
 
+if [ -z "$1" ]; then echo "❌ Bitte Datum als Argument angeben (z. B. 2026-07-17)"; exit 1; fi
+EVENT_DATE="$1"
+YEAR=${EVENT_DATE:0:4}
+MONTH_DAY=${EVENT_DATE:5:5}
+TARGET_DIR="$GALLERY_DIR/$YEAR/$MONTH_DAY"
+echo "🧹 Lösche vorhandene Dateien in $TARGET_DIR ..."
+rm -f "$TARGET_DIR"/*.jpg 2>/dev/null
+
 echo "🔍 Suche nach .jpeg-Dateien (alle Schreibweisen) unter $GALLERY_DIR ..."
 
 # Finde .jpeg/.JPEG-Dateien rekursiv
