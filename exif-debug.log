@@ -1,1 +1,37 @@
-# Debug-Log für EXIF-Auswertung
+# Debug-Log für die EXIF-Auswertung
+Bild: ./src/content/gallery/2025/11-30/2025-11-30_19-00-00.jpg
+Beschreibung: 30.11.2025 - Kraftwerk@Bochum/RuhrCongress
+Datum: 30.11.2025
+Künstler:in: Kraftwerk
+Stadt: Bochum
+Veranstaltungsort: RuhrCongress
+Schlagworte: |Ticket|Bochum|Deutschland|€77.40|Konzert|2025|Kraftwerk|RuhrCongress|Multimedia Tour 2025
+Preis: €77,40
+---
+Bild: ./src/content/gallery/2025/07-21/2025-07-21_18-45-00.jpg
+Beschreibung: 21.07.2025 - Robbie Williams@Berlin/Waldbühne - Lottery Winners
+Datum: 21.07.2025
+Künstler:in: Robbie Williams
+Stadt: Berlin
+Veranstaltungsort: Waldbühne
+Schlagworte: |Ticket|Berlin|Deutschland|Robbie Williams|Konzert|2025|Lottery Winners|€167.24|Live 2025
+Preis: €167,24
+---
+Bild: ./src/content/gallery/2025/07-26/2025-07-26_13-30-00.jpg
+Beschreibung: 26.07.2025 - BOBfest@Mönchengladbach/SparkassenPark - Alice Cooper | Danko Jones | H-BLOCKX | The New Roses | Thundermother | Ugly Kid Joe
+Datum: 26.07.2025
+Künstler:in: BOBfest
+Stadt: Mönchengladbach
+Veranstaltungsort: SparkassenPark
+Schlagworte: |H-BLOCKX|Thundermother|Ticket|Deutschland|2025|Alice Cooper|The New Roses|Danko Jones|BOBfest|Festival|Mönchengladbach|SparkassenPark|€96.50|Ugly Kid Joe
+Preis: €96,50
+---
+Bild: ./src/content/gallery/2026/07-17/2026-07-17_17-30-00.jpg
+Beschreibung: 17.07.2026 - Die Toten Hosen@Köln/RheinergieStadion
+Datum: 17.07.2026
+Künstler:in: Die Toten Hosen
+Stadt: Köln
+Veranstaltungsort: RheinergieStadion
+Schlagworte: |Ticket|RheinEnergieStadion|Deutschland|€89.00|Konzert|Die Toten Hosen|Trink aus! Wir müssen gehen Tour|2026|Köln
+Preis: €89,00
+---

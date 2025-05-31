@@ -3,16 +3,14 @@ export LANG=de_DE.UTF-8
 export LC_ALL=de_DE.UTF-8
 
 GALLERY_ROOT="./src/content/gallery"
-OUTPUT_FILE="exif.md"
 LOG_FILE="exif-debug.log"
 TMP_FILE="$(mktemp)"
 
-find "$GALLERY_ROOT" -type f -iname "*.jpg" -delete
+echo "# Debug-Log für die EXIF-Auswertung" > "$LOG_FILE"
 
-echo "# Debug-Log für EXIF-Auswertung" > "$LOG_FILE"
-
-while read -r img; do
+find "$GALLERY_ROOT" -type f -iname "*.jpg" | while read -r img; do
   caption=$(exiftool -s -s -s -IPTC:Caption-Abstract "$img")
+  date=$(echo "$caption" | grep -oE '[0-9]{2}\.[0-9]{2}\.[0-9]{4}' || echo "unbekannt")
   # Artist: nach erstem '-' und vor '@'
   artist=$(echo "$caption" | cut -d'-' -f2 | cut -d'@' -f1 | xargs)
   # City: nach '@' und vor '/'
@@ -21,6 +19,8 @@ while read -r img; do
   [ -z "$city" ] && city="unbekannt"
   # Venue: nach @ bis zum nächsten - oder Leerzeichen
   venue=$(echo "$caption" | sed -E 's#.*/([^/-][^/-]*)( -.*)?$#\1#' | xargs)
+
+  date=$(echo "$caption" | grep -oE '[0-9]{2}\.[0-9]{2}\.[0-9]{4}' || echo "unbekannt")
 
   keywords=$(exiftool -s -s -s -IPTC:Keywords "$img")
   [ -z "$keywords" ] && keywords="(keine Tags)"
@@ -37,42 +37,19 @@ while read -r img; do
     kw_clean=$(echo "$kw" | xargs)
     if [[ "$kw_clean" =~ ^€[0-9]+(\.[0-9]{2})?$ ]]; then
       price="$kw_clean"
+      price=$(echo "$kw_clean" | sed 's/\./,/')
       break
     fi
   done
 
   # Log-Ausgabe für jedes Bild
   echo "Bild: $img" >> "$LOG_FILE"
-  echo "  Caption: $caption" >> "$LOG_FILE"
-  echo "  Artist:  $artist" >> "$LOG_FILE"
-  echo "  City:    $city" >> "$LOG_FILE"
-  echo "  Venue:   $venue" >> "$LOG_FILE"
-  echo "  Tags:    $taglist" >> "$LOG_FILE"
-  echo "  Price:   $price" >> "$LOG_FILE"
-  echo "-----------------------------" >> "$LOG_FILE"
-
-  # Beispiel: Zähle Ticket pro Artist (wie vorher)
-  has_ticket=0
-  has_artist=0
-  for kw in "${kwarr[@]}"; do
-    kw_clean=$(echo "$kw" | xargs)
-    [ "$kw_clean" = "Ticket" ] && has_ticket=1
-    [ "$kw_clean" = "$artist" ] && has_artist=1
-  done
-  if [ $has_ticket -eq 1 ] && [ $has_artist -eq 1 ]; then
-    echo "$artist" >> "$TMP_FILE"
-  fi
-done < <(find "$GALLERY_ROOT" -type f -iname "*.jpg")
-
-ticket_artist_stats=$(sort "$TMP_FILE" | uniq -c | sort -nr | awk '{print "- "substr($0, index($0,$2))}')
-
-{
-  echo "# EXIF-Tag Statistik"
-  echo ""
-  echo "## Statistik: Ticket pro Artist"
-  echo "$ticket_artist_stats"
-  echo ""
-  echo "✅ EXIF-Statistik wurde in $OUTPUT_FILE geschrieben."
-} > "$OUTPUT_FILE"
-
-rm "$TMP_FILE"
+  echo "Beschreibung: $caption" >> "$LOG_FILE"
+  echo "Datum: $date" >> "$LOG_FILE"
+  echo "Künstler:in: $artist" >> "$LOG_FILE"
+  echo "Stadt: $city" >> "$LOG_FILE"
+  echo "Veranstaltungsort: $venue" >> "$LOG_FILE"
+  echo "Schlagworte: $taglist" >> "$LOG_FILE"
+  echo "Preis: $price" >> "$LOG_FILE"
+  echo "---" >> "$LOG_FILE"
+done
