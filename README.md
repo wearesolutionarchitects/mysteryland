@@ -2,7 +2,7 @@
 
 ![Mysterland](/public/mysteryland.png)
 
-📆 Event-Übersicht – So  1 Jun 2025 15:30:29 CEST
+📆 Event-Übersicht – So  1 Jun 2025 16:06:54 CEST
 
 ## 2026
 
@@ -198,6 +198,14 @@
 
 ---
 
+## 1986
+
+### 🎸 [22.11.1986 – Peter’s Pop Show@Dortmund/Westfalenhalle](./src/content/events/1986/11-22/index.mdx)
+
+[Externer Link 🔗](https://fanieng.com/1986/11-22/22-11-1986-22.11.1986-–-peter’s-pop-show-dortmund-westfalenhalle)
+
+---
+
 ## 1979
 
 ### 🎸 [29.09.1979 - Extrabreit @Hagen/Wilhelmsplatz](./src/content/events/1979/09-29/index.mdx)
@@ -205,3 +213,4 @@
 [Externer Link 🔗](https://fanieng.com/1979/09-29/29-09-1979-extrabreit-hagen-wilhelmsplatz)
 
 ---
+
