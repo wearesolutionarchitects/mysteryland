@@ -14,6 +14,7 @@ replace_umlauts() {
 }
 
 echo "# Mysterland.biz Repository" > "$LOG_FILE"
+echo "" >> "$LOG_FILE"
 echo "![Mysterland](/public/mysteryland.png)" >> "$LOG_FILE"
 echo "" >> "$LOG_FILE"
 echo "📆 Event-Übersicht – $(date)" >> "$LOG_FILE"

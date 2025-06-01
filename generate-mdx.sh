@@ -2,9 +2,18 @@
 export LANG=de_DE.UTF-8
 export LC_ALL=de_DE.UTF-8
 
+if [[ -z "$1" || ! "$1" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]]; then
+  echo "❌ Bitte gib ein gültiges Datum im Format JJJJ-MM-TT an, z. B.: 1979-09-29"
+  exit 1
+fi
+
+FILTER_DATE="$1"
+
+year=$(echo "$FILTER_DATE" | cut -d'-' -f1)
+daymonth=$(echo "$FILTER_DATE" | cut -d'-' -f2-)
 GALLERY_ROOT="./src/content/gallery"
+img_dir="$GALLERY_ROOT/$year/$daymonth"
 CONTENT_ROOT="./src/content/events"
-LOG_FILE="./README.md"
 
 replace_umlauts() {
   echo "$1" | sed \
@@ -13,13 +22,12 @@ replace_umlauts() {
     -e 's/ß/ss/g'
 }
 
-echo "#![Mysterland](/public/mysteryland.svg)" > "$LOG_FILE"
-echo "" >> "$LOG_FILE"
-echo "📆 Event-Übersicht – $(date)" >> "$LOG_FILE"
-echo "" >> "$LOG_FILE"
+if [ ! -d "$img_dir" ]; then
+  echo "❌ Kein Verzeichnis gefunden für $img_dir"
+  exit 1
+fi
 
-last_year=""
-find "$GALLERY_ROOT" -mindepth 2 -type d | sort -r | while read -r img_dir; do
+last_year="$year"
   year=$(basename "$(dirname "$img_dir")")
   date=$(basename "$img_dir")
   slug="$date"
@@ -31,9 +39,13 @@ find "$GALLERY_ROOT" -mindepth 2 -type d | sort -r | while read -r img_dir; do
   [ -z "$featured" ] && continue
 
   caption=$(exiftool -s -s -s -IPTC:Caption-Abstract "$featured")
+  [ -z "$caption" ] && caption="Unbenanntes Event"
   img=$(exiftool -DateTimeOriginal -T -d "%Y:%m:%d %H:%M:%S" "$img_dir"/*.jpg 2>/dev/null | \
     paste -d'|' - <(printf "%s\n" "$img_dir"/*.jpg) | sort | head -n 1 | cut -d'|' -f2)
-  [ -z "$img" ] || [ ! -f "$img" ] && continue
+  if [ -z "$img" ] || [ ! -f "$img" ]; then
+    echo "⚠️  Kein gültiges Bild für Event am $FILTER_DATE gefunden"
+    continue
+  fi
 
   fname=$(basename "$img")
   description="Eventbericht"
@@ -45,25 +57,13 @@ find "$GALLERY_ROOT" -mindepth 2 -type d | sort -r | while read -r img_dir; do
   event_artist=$(replace_umlauts "$event_artist")
   event_location=$(replace_umlauts "$event_location")
   event_venue=$(replace_umlauts "$event_venue")
-  slug_url="${event_date}-${event_artist}-${event_location}-${event_venue}"
+  slug_parts=("$event_date" "$event_artist" "$event_location" "$event_venue")
+  slug_url=$(IFS=-; echo "${slug_parts[*]}" | sed 's/--*/-/g' | sed 's/-$//')
 
   # Jahr als Überschrift 2. Ordnung nur einmal pro Jahr
   if [ "$year" != "$last_year" ]; then
-    echo "## $year" >> "$LOG_FILE"
-    echo "" >> "$LOG_FILE"
     last_year="$year"
   fi
-
-  mdx_link="### 🎸 [$caption]($mdx_file)"
-  external_link="[Externer Link 🔗](https://fanieng.com/$year/$date/$slug_url)"
-  separator="---"
-
-  echo "$mdx_link" >> "$LOG_FILE"
-  echo "" >> "$LOG_FILE"
-  echo "$external_link" >> "$LOG_FILE"
-  echo "" >> "$LOG_FILE"
-  echo "$separator" >> "$LOG_FILE"
-  echo "" >> "$LOG_FILE"
 
   # MDX-Datei erzeugen
   title="title: \"$caption\""
@@ -71,7 +71,6 @@ find "$GALLERY_ROOT" -mindepth 2 -type d | sort -r | while read -r img_dir; do
   pubdate_line="pubDate: \"$event_date\""
   featured_image="featuredImage: \"/src/content/gallery/$year/$date/$fname\""
   slug_line="slug: \"$year/$slug\""
-  gallery="gallery:"
   keywords=$(exiftool -s -s -s -IPTC:Keywords "$img")
   all_tags=()
   if [ -n "$keywords" ]; then
@@ -87,11 +86,11 @@ find "$GALLERY_ROOT" -mindepth 2 -type d | sort -r | while read -r img_dir; do
   city=$(echo "$caption" | grep -o '@[^/]*' | cut -c2-)
   venue=$(echo "$caption" | grep -o '/[^ ]*' | cut -c2-)
   artist=$(echo "$caption" | cut -d'-' -f3- | sed 's/-w\///' | sed 's/-guest://I' | sed 's/.* - //' | xargs)
-  event_block=" - title: \"$event\"
- - venue: \"$venue\"
- - city: \"$city\"
- - artist: \"$artist\"
-"
+  gallery="gallery:
+    - title: \"$event\"
+      venue: \"$venue\"
+      city: \"$city\"
+      artist: \"$artist\""
 
   {
     echo "---"
@@ -107,14 +106,11 @@ find "$GALLERY_ROOT" -mindepth 2 -type d | sort -r | while read -r img_dir; do
     echo ""
     echo "$gallery"
     echo ""
-    echo "$event_block"
-    echo ""
     echo "$tags_line"
     echo "---"
+    echo ""
     echo "## Konzertbericht"
     [ -n "$slug_url" ] && echo "➡️ [Originalbericht auf fanieng.com](https://fanieng.com/$year/$date/$slug_url)"
   } > "$mdx_file"
 
-done
-
-echo "✅ Alle index.mdx-Dateien wurden erstellt. Siehe $LOG_FILE"
+  echo "✅ Datei erstellt: $mdx_file"
