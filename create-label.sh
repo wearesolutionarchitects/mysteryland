@@ -52,6 +52,7 @@ labels=(
     "guano_apes                 | 6f42c1 | Kategorie für die Band Guano Apes"
     "hagen                      | 0e8a16 | Veranstaltungsorte in Hagen"
     "hamburg                    | 0e8a16 | Veranstaltungsorte in Hamburg"
+    "handwerker_promotion       | 6f42c1 | Kategorie für die Handwerker-Promotion"
     "holly_johnson              | 6f42c1 | Kategorie für den Künstler Holly Johnson"
     "iss_dome                   | 0e8a16 | Veranstaltungen im ISS Dome in Düsseldorf"
     "jahr                       | cfd3d7 | Jahr der Veranstaltung für chronologische Filter"
