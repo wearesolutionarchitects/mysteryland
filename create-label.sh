@@ -95,6 +95,7 @@ labels=(
     "omd                        | 6f42c1 | Kategorie für die Band OMD (Orchestral Manoeuvres in the Dark)"
     "rammstein                  | 6f42c1 | Kategorie für die Band Rammstein"
     "rhein_energie_stadion      | 0e8a16 | Veranstaltungen im RheinEnergieStadion"
+    "robbie_zieger              | 6f42c1 | Kategorie für den Künstler & Erfinder Robbie Zieger"
     "simple_minds               | 6f42c1 | Kategorie für die Band Simple Minds"
     "sondaschule                | 6f42c1 | Kategorie für die Band Sondaschule"
     "so_36                      | 0e8a16 | Veranstaltungen im SO36"
