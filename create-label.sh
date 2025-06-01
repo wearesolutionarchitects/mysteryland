@@ -4,6 +4,7 @@ REPO="wearesolutionarchitects/mysteryland"
 
 # Labels: name | color | description
 labels=(
+    "1live                      | 6f42c1 | Kategorie für den Radiosender & Konzertveranstalter 1LIVE"
     "abwaerts                   | 6f42c1 | Kategorie für die Band Abwärts"
     "ac_dc                      | 6f42c1 | Kategorie für die Band AC/DC"
     "amphitheater               | 0e8a16 | Veranstaltungsorte in einem Amphitheater"
