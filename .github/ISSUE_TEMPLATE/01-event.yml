@@ -6,7 +6,7 @@ assignees:
   - hfanieng
 body:
   - type: input
-    id: event
+    id: event_date
     attributes:
       label: 📆 Datum des Events
       description: Verwende das Format JJJJ-MM-TT
