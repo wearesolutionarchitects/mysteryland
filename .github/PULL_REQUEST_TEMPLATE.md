@@ -19,6 +19,7 @@
 
 <!-- Bitte zutreffendes ankreuzen -->
 
+- [ ] 🆕 Neuer Content
 - [ ] 🐞 Bugfix
 - [ ] ✨ Neue Funktion
 - [ ] 🔁 Refactoring
