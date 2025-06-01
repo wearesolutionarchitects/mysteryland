@@ -73,6 +73,7 @@ labels=(
     "markthalle                 | 0e8a16 | Veranstaltungen in der Markthalle Hamburg"
     "mercedes_benz_arena        | 0e8a16 | Veranstaltungen in der Mercedes-Benz Arena"
     "merkur_spiel_arena         | 0e8a16 | Veranstaltungen in der Merkur Spiel-Arena"
+    "milli_vanilli              | 6f42c1 | Kategorie für die Band Milli Vanilli"
     "mitsubishi_electric_halle  | 0e8a16 | Veranstaltungen in der Mitsubishi Electric Halle"
     "metallica                  | 6f42c1 | Kategorie für die Band Metallica"
     "memento                    | 5319e7 | Erinnerungen oder persönliche Highlights"
