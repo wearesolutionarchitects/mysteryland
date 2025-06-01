@@ -2,7 +2,7 @@
 
 ![Mysterland](/public/mysteryland.png)
 
-📆 Event-Übersicht – So  1 Jun 2025 16:06:54 CEST
+📆 Event-Übersicht – So  1 Jun 2025 16:10:03 CEST
 
 ## 2026
 
