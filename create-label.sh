@@ -21,7 +21,7 @@ labels=(
     "broilers                   | 6f42c1 | Kategorie für die Band Broilers"
     "campino                    | 6f42c1 | Kategorie für den Künstler Campino"
     "the_cure                   | 6f42c1 | Kategorie für die Band The Cure"
-    "dancin_mashine             | 6f42c1 | Kategorie für die Band Dancin' Machine"
+    "dancin_machine             | 6f42c1 | Kategorie für die Band Dancin' Machine"
     "depeche_mode               | 1d76db | Kategorie für die Band Depeche Mode"
     "deutschland                | 0e8a16 | Veranstaltungsorte in Deutschland"
     "die_beatsteaks             | 6f42c1 | Kategorie für die Band Die Beatsteaks"
