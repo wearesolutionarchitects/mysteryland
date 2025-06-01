@@ -50,7 +50,7 @@ last_year="$year"
   fname=$(basename "$img")
   description="Eventbericht"
 
-  event_date=$(echo "$caption" | grep -oE '^[0-9]{2}\.[0-9]{2}\.[0-9]{4}' | sed 's/\./-/g')
+  event_date=$(echo "$caption" | grep -oE '^[0-9]{2}\.[0-9]{2}\.[0-9]{4}' | awk -F. '{print $3"-"$2"-"$1}')
   event_artist=$(echo "$caption" | cut -d'-' -f2 | cut -d'@' -f1 | xargs | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g')
   event_location=$(echo "$caption" | grep -o '@[^/]*' | cut -c2- | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g')
   event_venue=$(echo "$caption" | grep -o '/[^ ]*' | cut -c2- | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g')
@@ -109,7 +109,10 @@ last_year="$year"
     echo "$tags_line"
     echo "---"
     echo ""
-    echo "## Konzertbericht"
+    echo "![Featured Image](/src/content/gallery/$year/$date/$fname)"
+    echo ""
+    echo "## Eventbericht"
+    echo ""
     [ -n "$slug_url" ] && echo "➡️ [Originalbericht auf fanieng.com](https://fanieng.com/$year/$date/$slug_url)"
   } > "$mdx_file"
 
