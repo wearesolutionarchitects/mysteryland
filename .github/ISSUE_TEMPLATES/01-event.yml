@@ -1,5 +1,3 @@
-
-
 name: 📅 Neues Event erfassen
 description: Erstelle einen neuen Event-Eintrag für mysteryland.biz
 title: "YYYY-MM-DD – Künstler:in@Ort/Location"
@@ -8,7 +6,7 @@ assignees:
   - hfanieng
 body:
   - type: input
-    id: event_date
+    id: event
     attributes:
       label: 📆 Datum des Events
       description: Verwende das Format JJJJ-MM-TT
