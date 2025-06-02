@@ -131,6 +131,7 @@ labels=(
     "witten                     | 0e8a16 | Veranstaltungsorte in Witten"
     "werk_stadt                 | 0e8a16 | Veranstaltungen in der Werk*stadt"
     "westerland                 | 0e8a16 | Veranstaltungen in Westerland auf Sylt"
+    "westernhagen               | 6f42c1 | Kategorie für den Künstler Westernhagen"
     "westfalenhalle             | 0e8a16 | Veranstaltungen in der Westfalenhalle Dortmund"
     "westfalenhalle_2           | 0e8a16 | Veranstaltungen in der Westfalenhalle 2 Dortmund"
     "westfalenhalle_4           | 0e8a16 | Veranstaltungen in der Westfalenhalle 4 Dortmund"
