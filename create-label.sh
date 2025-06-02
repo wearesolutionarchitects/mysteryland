@@ -36,6 +36,7 @@ labels=(
     "erasure                    | 6f42c1 | Kategorie für die Band Erasure"
     "essen                      | 0e8a16 | Veranstaltungsorte in Essen"
     "event                      | f9d0c4 | Inhalte & Metadaten zu Konzerten und Festivals"
+    "exilia                     | 6f42c1 | Kategorie für die Band Exilia"
     "extrabreit                 | 6f42c1 | Kategorie für die Band Extrabreit"
     "fanta_4                    | 6f42c1 | Kategorie für die Band Die Fantastischen Vier"
     "farin_urlaub               | 6f42c1 | Kategorie für den Künstler Farin Urlaub"
