@@ -37,7 +37,7 @@ SANITIZED_SLUG=$(echo "$TITLE" | \
 # GitHub-Issue erstellen und URL erfassen
 ISSUE_URL=$(gh issue create \
   --repo "$REPO" \
-  --title "📝 $TITLE ($DATE)" \
+  --title "$SANITIZED_SLUG" \
   --body "**Auszug:** $EXCERPT
 
 🔗 [Original-Beitrag ansehen]($LINK)
