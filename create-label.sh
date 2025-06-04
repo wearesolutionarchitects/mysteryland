@@ -151,5 +151,4 @@ for label in "${labels[@]}"; do
   desc=$(echo "$desc" | xargs)
   echo "▶️ Erstelle Label: $name"
   echo "➡️  Name: '$name' | Color: '$color' | Desc: '$desc'"
-  gh label create "$name" --repo "$REPO" --color "$color" --description "$desc"
-done
+  gh label create "$name" --repo "$REPO" --color "$color" --description "$desc
