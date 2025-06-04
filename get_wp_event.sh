@@ -53,13 +53,13 @@ ISSUE_ID=$(gh issue view "$ISSUE_NUMBER" --repo "$REPO" --json id | jq -r '.id')
 echo "✅ Issue erstellt: $ISSUE_URL"
 
 # Projekt-ID für V2-Projekt `mysteryland` holen
-PROJECT_ID=$(gh project list --owner wearesolutionarchitects --format json | jq -r '.[] | select(.title == "@mysteryland") | .id')
+# PROJECT_ID=$(gh project list --owner wearesolutionarchitects --format json | jq -r '.[] | select(.title == "@mysteryland") | .id')
 
-if [[ -z "$PROJECT_ID" ]]; then
-  echo "❌ Projekt 'mysteryland' nicht gefunden."
-  exit 1
-fi
+# if [[ -z "$PROJECT_ID" ]]; then
+#   echo "❌ Projekt 'mysteryland' nicht gefunden."
+#   exit 1
+# fi
 
 # Issue dem Projekt hinzufügen
-echo "➕ Füge Issue zu Projekt hinzu..."
-gh project item-add --project "$PROJECT_ID" --content-id "$ISSUE_ID"
+# echo "➕ Füge Issue zu Projekt hinzu..."
+# gh project item-add --project "$PROJECT_ID" --content-id "$ISSUE_ID"
