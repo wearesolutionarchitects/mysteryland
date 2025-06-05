@@ -4,7 +4,7 @@ YEAR="$1"
 REPO="wearesolutionarchitects/mysteryland"
 CATEGORY_ID=1
 PER_PAGE=100
-PAGE=2
+PAGE=1
 
 if [[ -z "$YEAR" ]]; then
   echo "❌ Bitte gib ein Jahr an, z. B.: ./import_konzerte_by_year.sh 1994"
