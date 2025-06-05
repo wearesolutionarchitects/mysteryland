@@ -42,7 +42,7 @@ while :; do
     echo "➕ Erstelle Issue für $SLUG..."
     ISSUE_URL=$(gh issue create \
       --repo "$REPO" \
-      --title "📝 $TITLE ($DATE)" \
+      --title "$TITLE" \
       --body "**Auszug:** $EXCERPT
 
 🔗 [Original-Beitrag ansehen]($LINK)
