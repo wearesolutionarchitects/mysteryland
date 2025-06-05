@@ -2,7 +2,7 @@
 import { glob } from 'astro/loaders';
 import { defineCollection, z } from 'astro:content';
 
-const docs = defineCollection({
+const eventsCollection = defineCollection({
 	// Load Markdown and MDX files in the `src/content/events/` directory.
 	loader: glob({ base: './src/content/docs', pattern: '**/*.{md,mdx}' }),
 	// Type-check frontmatter using a schema
@@ -17,4 +17,4 @@ const docs = defineCollection({
 }),
 });
 
-export const collections = { docs };
+export const collections = { docs:eventsCollection };
