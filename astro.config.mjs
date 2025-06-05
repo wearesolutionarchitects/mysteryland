@@ -28,7 +28,7 @@ export default defineConfig({
                 {icon: 'youtube', label: 'youtube', href: 'http://www.youtube.com/@mysterylanddotbiz'}
             ],
             logo: {
-                src: './src/assets/logo.png'
+                src: './src/assets/mysteryland.png'
             },
             sidebar: eventSidebar // <-- Bugfix: eventSidebar ist bereits ein Array, Spread ist nicht nötig
         })
