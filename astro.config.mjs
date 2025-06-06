@@ -36,7 +36,8 @@ export default defineConfig({
                 {icon: 'youtube', label: 'youtube', href: 'http://www.youtube.com/@mysterylanddotbiz'}
             ],
             logo: {
-                src: './src/assets/mysteryland.png'
+                src: './src/assets/mysteryland.png',
+                replacesTitle: true,
             },
             sidebar: [
             {
@@ -50,6 +51,21 @@ export default defineConfig({
                 collapsed: true,
             autogenerate: { directory: 'events/2025' },
             },
+            {
+                label: '2024',
+                collapsed: false,
+            autogenerate: { directory: 'events/2024' },
+            },
+            {
+                label: '2023',
+                collapsed: false,
+            autogenerate: { directory: 'events/2023' },
+            },
+            {
+                label: '2022',
+                collapsed: false,
+            autogenerate: { directory: 'events/2022' },
+            }
     ],
         })
     ],
