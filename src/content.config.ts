@@ -7,7 +7,7 @@ const docsCollection = defineCollection({
         extend: z.object({
             // Add a new fields to the schema.
             title: z.string(),
-            artist: z.string().optional(),
+            tags: z.array(z.string()).optional(),
             city: z.string().optional(),
             venue: z.string().optional(),
             conuntry: z.string().optional(),
