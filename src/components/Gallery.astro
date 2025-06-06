@@ -1,0 +1,53 @@
+---
+// src/components/Gallery.astro
+const { images = [] } = Astro.props;
+---
+
+<style>
+@import url('https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css');
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.gallery img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  transition: transform 0.2s ease;
+  cursor: zoom-in;
+}
+.gallery img:hover {
+  transform: scale(1.02);
+}
+</style>
+
+<script is:inline>
+  import GLightbox from 'glightbox';
+  import 'glightbox/dist/js/glightbox.min.js';
+
+  if (typeof window !== 'undefined') {
+    setTimeout(() => {
+      GLightbox({
+        selector: '.glightbox',
+        touchNavigation: true,
+        loop: true,
+        zoomable: true,
+        autoplayVideos: true,
+        openEffect: 'zoom',
+        closeEffect: 'fade',
+        slideEffect: 'slide'
+      });
+    }, 100);
+  }
+</script>
+
+<div class="gallery">
+  {images.map((img) => (
+    <a href={img.src} class="glightbox" data-gallery="gallery" data-title={img.alt || ''}>
+      <img src={img.src} alt={img.alt || ''} loading="lazy" />
+    </a>
+  ))}
+</div>
