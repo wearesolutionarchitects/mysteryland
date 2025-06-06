@@ -3,7 +3,6 @@ import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import starlight from '@astrojs/starlight';
-// import eventSidebar from './src/generated/event-sidebar.json' assert { type: 'json' };
 import path from 'path';
 import astroExpressiveCode from 'astro-expressive-code';
 import { ion } from "starlight-ion-theme";
