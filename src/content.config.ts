@@ -1,20 +1,17 @@
-// src/constent.config.ts
-import { glob } from 'astro/loaders';
+// src/content.config.ts
 import { defineCollection, z } from 'astro:content';
+import { docsSchema } from '@astrojs/starlight/schema';
 
-const eventsCollection = defineCollection({
-	// Load Markdown and MDX files in the `src/content/events/` directory.
-	loader: glob({ base: './src/content/docs', pattern: '**/*.{md,mdx}' }),
-	// Type-check frontmatter using a schema
-	schema: z.object({
-	title: z.string(),
-    description: z.string(),
-    pubDate: z.coerce.date(),
-    updatedDate: z.coerce.date().optional(),
-    tags: z.array(z.string()).optional(),
-    featuredImage: z.string().optional(),
-    
-}),
+const docsCollection = defineCollection({
+    schema: docsSchema({
+        extend: z.object({
+            // Add a new fields to the schema.
+            title: z.string(),
+            description: z.string().optional(),
+            pubDate: z.date().optional(),
+            updatedDate: z.date().optional(),
+        }),
+    }),
 });
 
-export const collections = { docs:eventsCollection };
+export const collections = { docs: docsCollection };

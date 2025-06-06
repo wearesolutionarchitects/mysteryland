@@ -3,9 +3,10 @@ import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import starlight from '@astrojs/starlight';
-import eventSidebar from './src/generated/event-sidebar.json' assert { type: 'json' };
+// import eventSidebar from './src/generated/event-sidebar.json' assert { type: 'json' };
 import path from 'path';
 import astroExpressiveCode from 'astro-expressive-code';
+import { ion } from "starlight-ion-theme";
 
 // https://astro.build/config
 export default defineConfig({
@@ -15,11 +16,18 @@ export default defineConfig({
         mdx(),
         sitemap(),
         starlight({
+            plugins: [
+                ion()             
+            ],
             head: [
                 { tag: 'meta', attrs: { name: 'description', content: 'Konzertberichte, Bilder und Setlists' } },
                 { tag: 'meta', attrs: { name: 'viewport', content: 'width=device-width, initial-scale=1' } }
             ],
             title: "Mysteryland",
+            customCss: [
+                // Relative path to your custom CSS file
+                './src/styles/custom.css',
+            ],
             social: [
                 {icon: 'github', label:'github', href: 'https://github.com/wearesolutionarchitects'},
                 {icon: 'discord', label:'discord', href: 'https://discord.gg/GEdQ3xg6t6'},
@@ -30,7 +38,19 @@ export default defineConfig({
             logo: {
                 src: './src/assets/mysteryland.png'
             },
-            sidebar: eventSidebar // <-- Bugfix: eventSidebar ist bereits ein Array, Spread ist nicht nötig
+            sidebar: [
+            {
+                label: '2026',
+                collapsed: true,
+            // Autogenerate a group of links for the 'constellations' directory.
+            autogenerate: { directory: 'events/2026' },
+            },
+            {
+                label: '2025',
+                collapsed: true,
+            autogenerate: { directory: 'events/2025' },
+            },
+    ],
         })
     ],
     vite: {
