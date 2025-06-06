@@ -12,6 +12,7 @@ const docsCollection = defineCollection({
             venue: z.string().optional(),
             conuntry: z.string().optional(),
             description: z.string().optional(),
+            price: z.number().optional(),
             pubDate: z.date().optional(),
             updatedDate: z.date().optional(),
         }),
