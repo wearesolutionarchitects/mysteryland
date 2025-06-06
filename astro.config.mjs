@@ -16,9 +16,7 @@ export default defineConfig({
         sitemap(),
         starlight({ 
             title: "Mysteryland",            
-            plugins: [
-                ion()             
-            ],
+            
             head: [
                 { tag: 'meta', attrs: { name: 'description', content: 'Konzertberichte, Bilder und Setlists' } },
                 { tag: 'meta', attrs: { name: 'viewport', content: 'width=device-width, initial-scale=1' } }
@@ -43,28 +41,28 @@ export default defineConfig({
             sidebar: [
             {
                 label: '2026',
-                collapsed: true,
+                collapsed: false,
             // Autogenerate a group of links for the 'constellations' directory.
             autogenerate: { directory: 'events/2026' },
             },
             {
                 label: '2025',
-                collapsed: true,
+                collapsed: false,
             autogenerate: { directory: 'events/2025' },
             },
             {
                 label: '2024',
-                collapsed: false,
+                collapsed: true,
             autogenerate: { directory: 'events/2024' },
             },
             {
                 label: '2023',
-                collapsed: false,
+                collapsed: true,
             autogenerate: { directory: 'events/2023' },
             },
             {
                 label: '2022',
-                collapsed: false,
+                collapsed: true,
             autogenerate: { directory: 'events/2022' },
             }
     ],
