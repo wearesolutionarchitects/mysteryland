@@ -15,7 +15,8 @@ export default defineConfig({
         astroExpressiveCode(),
         mdx(),
         sitemap(),
-        starlight({
+        starlight({ 
+            title: "Mysteryland",            
             plugins: [
                 ion()             
             ],
@@ -23,7 +24,6 @@ export default defineConfig({
                 { tag: 'meta', attrs: { name: 'description', content: 'Konzertberichte, Bilder und Setlists' } },
                 { tag: 'meta', attrs: { name: 'viewport', content: 'width=device-width, initial-scale=1' } }
             ],
-            title: "Mysteryland",
             customCss: [
                 // Relative path to your custom CSS file
                 './src/styles/custom.css',
@@ -33,7 +33,9 @@ export default defineConfig({
                 {icon: 'discord', label:'discord', href: 'https://discord.gg/GEdQ3xg6t6'},
                 {icon: 'linkedin', label: 'linkedin', href: 'https://www.linkedin.com/in/hfanieng/'},
                 {icon: 'twitch', label: 'twitch', href: 'https://www.twitch.tv/mysteryland1909'},
-                {icon: 'youtube', label: 'youtube', href: 'http://www.youtube.com/@mysterylanddotbiz'}
+                {icon: 'youtube', label: 'youtube', href: 'http://www.youtube.com/@mysterylanddotbiz'},
+                {icon: 'instagram', label: 'instagram', href: 'https://www.instagram.com/heikofanieng/'},
+                {icon: 'facebook', label: 'facebook', href: 'https://www.facebook.com/Mysteryland1909'},
             ],
             logo: {
                 src: './src/assets/mysteryland.png',
