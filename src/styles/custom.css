@@ -26,3 +26,12 @@
 	--sl-color-gray-6: #636366;
 	--sl-color-black: #ffffff;
 }
+.starlight-logo img {
+  width: 200px !important;
+  height: auto !important;
+}
+
+.starlight-search {
+  display: flex !important;
+  justify-content: center !important;
+}
