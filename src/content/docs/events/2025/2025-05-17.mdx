@@ -14,6 +14,7 @@ city: "Bochum"
 tags: ["Ticket","Bochum","Deutschland","Konzert","2025","RuhrCongress","Holly Johnson"]
 ---
 import { Card } from '@astrojs/starlight/components';
+import { LinkCard } from '@astrojs/starlight/components';
 
 ## Ticket
 
@@ -44,4 +45,7 @@ Mit einer Mischung aus Klassikern und neuen Hits begeisterte Johnson das Publiku
 - The Power of Love
 </Card>
 
-➡️ [Mehr auf fanieng.com](https://fanieng.com/2025/05-17/2025-05-17-holly-johnson-bochum-ruhrcongress/)
+<LinkCard
+    title="Mehr Informationen"
+    href="https://fanieng.com/2025/05-17/2025-05-17-holly-johnson-bochum-ruhrcongress/"
+/>
