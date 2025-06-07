@@ -1,0 +1,90 @@
+# Chronologie
+
+- 17.05.2025 - Holly Johnson @Bochum/RuhrCongress
+- 12.10.2024 - Nena@Bochum/RuhrCongress
+- 26.07.2024 - Rammstein@Gelsenkirchen/VELTINS-Arena
+- 23.06.2024 - Lenny Kravitz@Hamburg/Sporthalle
+- 05.04.2024 - Depeche Mode@Köln/LANXESS arena
+- 01.02.2024 - OMD@Düsseldorf/Mitsubishi Electric HALLE
+- 12.10.2023 - die ärzte@Oberhausen/Turbinenhalle
+- 17.09.2023 - die ärzte@Köln/Palladium
+- 04.06.2023 - Depeche Mode@Düsseldorf/MERKUR SPIEL ARENA
+- 02.06.2023 - Peter Maffay@Gelsenkirchen/Amphitheater
+- 28.12.2022 - Extrabreit @Berlin/Lido
+- 23.12.2022 - Broilers@Düsseldorf/Mitsubishi-Electric-HALLE
+- 10.12.2022 - Extrabreit@Hagen/Stadthalle
+- 16.09.2022 - Sondaschule@Köln/E-Werk
+- 28.08.2022 - die ärzte@Berlin/Flughafen Tempelhof
+- 25.06.2022 - Die Toten Hosen@Düsseldorf/Merkur-Spiel-Arena
+- 07.06.2022 - Udo Lindenberg -  Udopium @Dortmund/Westfalenhalle
+- 06.06.2022 - die ärzte@Berlin/Zitadelle Spandau
+- 04.06.2022 - die ärzte@Köln/RheinEnergieStadion
+- 23.04.2022 - Brings @Hagen/Stadthalle
+- 04.08.2021 - CAMPINO@Dortmund/Westfalenpark
+- 07.12.2019 - Extrabreit@Hagen/Stadthalle
+- 12.07.2019 - Udo Lindenberg@Dortmund/Westfalenhalle
+- 22.06.2019 - Rammstein@Berlin/Olympiastadion
+- 07.06.2019 - Brings@Hagen/Stadthalle
+- 29.03.2019 - BELA B FELSENHEIMER SCHARNOW IST ÜBER(ALL) @Essen/Zeche Carl
+- 27.03.2019 - Herbert Grönemeyer@Dortmund/Westfalenhalle
+- 24.11.2018 - Mind2Mode@Hagen/Stadthalle
+- 15.11.2018 - Abwärts@Berlin/SO 36
+- 25.06.2018 - Lenny Kravitz@Köln/Lanxess-Arena
+- 19.01.2018 - Depeche Mode@Berlin/Mercedes-Benz Arena
+- 26.12.2017 - Die Toten Hosen@Dortmund/Westfalenhalle
+- 16.12.2017 - Broilers@Dortmund/Westfalenhalle
+- 08.12.2017 - Extrabreit@Hagen/Stadthalle
+- 12.07.2015 - AC/DC@Gelsenkirchen/VELTINS-Arena
+- 11.06.2015 - Farin Urlaub Racing Team@Düsseldorf/Mitsubishi Electric Halle
+- 18.11.2014 - Billy Idol@Düsseldorf/Mitsubishi Electric Halle
+- 11.10.2014 – Farin Urlaub Racing Team@KlagenFURT/Wörthersehalle
+- 03.07.2013 - Depeche Mode@Düsseldorf/Esprit Arena
+- 27.12.2012 – Die Toten Hosen@Dortmund/Westfalenhalle
+- 07.11.2012 - die ärzte@Düsseldorf/ISS-Dome
+- 19.08.2012 - die ärzte - Das Ende ist noch nicht vorbei @Berlin/Waldbühne
+- 25.05.2012 – die ärzte@Oberhausen/König-Pilsener-Arena
+- 06.12.2011 - Rammstein@Düsseldorf/ISS-Dome
+- 05.06.2011 - Herbert Grönemeyer@Berlin/Olympiastadion
+- 29.04.2011 - Laternen Joe@Osterholz-Scharmbeck/Stadthalle
+- 07.02. bis 12.02.2011 - Spanien/Lanzarote
+- 27.11.2010 - NOKIA Night of the Proms@Köln/Lanxess-Arena
+- 24.04.2010 - Abwärts@Hagen/Kulturzentrum Pelmke
+- 27.02.2010 - Depeche Mode@Düsseldorf/LTU-Arena
+- 30.11.2009 - Rammstein@Köln/Lanxess-Arena
+- 11.07.2009 - Farin Urlaub Racing Team@Berlin/Wulheide
+- 17.06.2009 - die ärzte@Hamburg/Sporthalle
+- 16.05.2009 - Farin Urlaub Racing Team@Bochum/RuhrCongress
+- 08.12.2008 - Die Toten Hosen@Dortmund/Westfalenhalle
+- 21.11.2008 - Farin Urlaub Racing Team@Köln/Palladium
+- 11.07.2008 - die ärzte@Berlin/Wulheide
+- 24.02.2008 - Verschiedene Künstler:innen@Köln/Musical Dome
+- 16.11.2007 - die ärzte@Dortmund/Westfalenhalle
+- 27.06.2007 - Genesis@Düsseldorf/LTU-Arena
+- 20.06.2007 - Herbert Grönemeyer@Köln/RheinEnergieStadion
+- 25.05.2007 - Die fantastischen Vier@Hagen/Stadthalle
+- 31.12.2006 - die ärzte@Köln/RheinEnergieStadion
+- 11.11.2006 - Farin Urlaub Racing Team@Düsseldorf/Philipshalle
+- 08.06.2006 - Simple Minds@Gelsenkirchen/Glückaufkampfbahn
+- 20.01.2006 - Depeche Mode@Düsseldorf/LTU-Arena
+- 07.07.2005 - U2@Berlin/Olympiastadion
+- 18.06.2005 - Die Toten Hosen@Dortmund/Westfalenhalle
+- 20.05.2005 - Farin Urlaub Racing Team@Köln/Palladium
+- 11.12.2004 - Rammstein@Dortmund/Westfalenhalle
+- 08.08.2004 - die ärzte@Berlin/Waldbühne
+- 10.07.2004 - Lenny Kravitz@Köln/Lanxess-Arena
+- 28.06.2004 - die ärzte@Köln/Tanzbrunnen
+- 10.06.2004 - Metallica@Gelsenkirchen/VELTINS-Arena
+- 05.06.2004 - die ärzte@Dortmund/Westfalenhalle
+- 04.06.2004 - die ärzte@Düsseldorf/Philipshalle
+- 18.05.2004 - Oomph!@Dortmund/Westfalenhalle 2
+- 25.05.2004 - die ärzte@Köln/Palladium
+- 14.12.2003 - die ärzte@Oberhausen/König-Pilsener-Arena
+- 13.12.2003 - die ärzte@Oberhausen/König-Pilsener-Arena
+- 14.11.2003 - Dave Gahan@Düsseldorf/Philipshalle
+- 12.10.2003 - Bela B & Jochen Malmsheimer@Witten/Werkstadt
+- 02.07.2003 - Dave Gahan@Hamburg/Stadtpark
+- 29.04.2003 - Guano Apes@Oberhausen/Turbinenhalle
+- 04.03.2003 - Nackt unter Kannibalen@Krefeld/Kulturfabrik - die ärzte
+- 15.11.2002 - Herbert Grönemeyer@Köln/Lanxess-Arena
+- 13.11.2002 - Bryan Adams@Frankfurt/Festhalle
+- 01.10.2002 - Farin Urlaub Racing Team@Düsseldorf/Tor 3
