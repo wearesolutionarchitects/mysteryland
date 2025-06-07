@@ -1,6 +1,6 @@
 name: 📅 Konzertbericht erfassen
 description: Neues Konzert-Event für mysteryland.biz anlegen
-title: "YYYY-MM-DD – Künstler:in@Ort/Location"
+title: "Künstler:in"
 labels: [event]
 assignees:
   - hfanieng
