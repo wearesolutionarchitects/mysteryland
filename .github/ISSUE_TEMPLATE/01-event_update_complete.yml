@@ -1,74 +1,31 @@
-name: 📅 Konzertbericht erfassen
-description: Neues Konzert-Event für mysteryland.biz anlegen
+name: 📅 Neues Event erfassen
+description: Erstelle einen neuen Event-Eintrag für mysteryland.biz
 title: "Künstler:in"
-labels: [event]
-assignees:
+labels: 
+  - event
+assignees: 
   - hfanieng
 body:
-  - type: input
-    id: title
-    attributes:
-      label: 🎤 Künstler:in
-      placeholder: Peter Maffay, Die Ärzte, etc.
-
-  - type: input
-    id: pubdate
-    attributes:
-      label: 📅 Datum
-      placeholder: "2026-07-17"
-
-  - type: input
-    id: city
-    attributes:
-      label: 📍 Stadt
-      placeholder: Köln
-
-  - type: input
-    id: venue
-    attributes:
-      label: 🏟️ Venue
-      placeholder: RheinEnergieStadion
-
-  - type: input
-    id: price
-    attributes:
-      label: 💶 Preis
-      placeholder: 89.00
-
-  - type: input
-    id: asin
-    attributes:
-      label: 🔗 Amazon ASIN (optional)
-      placeholder: B099BYDLLT
-
   - type: textarea
-    id: setlist
+    id: description
     attributes:
-      label: 🎶 Setlist
-      description: Eine Zeile pro Song (optional)
-      placeholder: 01. Liedname
-
-  - type: textarea
-    id: review
-    attributes:
-      label: 📝 Konzertbericht
-      placeholder: Eindrücke, Gastauftritte, Atmosphäre, Besonderheiten
+      label: 📝 Beschreibung
+      description: Optionaler Freitext zum Event
+      placeholder: Beschreibung, besondere Eindrücke, etc.
 
   - type: input
     id: tags
     attributes:
       label: 🏷️ Tags
-      description: Kommagetrennte Begriffe für Auswertung
-      placeholder: deutschland, konzert, köln, 2026
+      description: Kommagetrennte Schlagworte für Labels und Auswertung
+      placeholder: deutschland, festival, extrabreit
 
   - type: checkboxes
-    id: media
+    id: files
     attributes:
       label: 📎 Medien vorhanden?
+      description: Gibt es bereits Medien (Fotos, Tickets etc.)?
       options:
-        - label: 🎫 Ticket
-          value: ticket
-        - label: 📷 Fotos
-          value: fotos
-        - label: 🎥 Video
-          value: video
+        - label: Ja, als Datei vorhanden
+        - label: Ja, wird nachgereicht
+        - label: Nein
