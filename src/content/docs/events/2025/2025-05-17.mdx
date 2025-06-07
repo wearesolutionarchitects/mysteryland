@@ -16,6 +16,8 @@ city: "Bochum"
 
 price: 70.00
 
+asin: "B08GG2RKD4"
+
 tags: ["Ticket","Bochum","Deutschland","Konzert","2025","RuhrCongress","Holly Johnson"]
 ---
 import { Card } from '@astrojs/starlight/components';
@@ -41,24 +43,30 @@ import { LinkCard } from '@astrojs/starlight/components';
 - Der Abend war ein unvergessliches Erlebnis, das die Fans in eine musikalische Reise entführte.   
 - Mit einer Mischung aus Klassikern und neuen Hits begeisterte Johnson das Publikum und sorgte für eine ausgelassene Stimmung.
 
-<Card title="Setlist" icon="list-format">
+<Card title="Album" icon="seti:audio">
+  <a href="https://www.amazon.de/dp/B08GG2RKD4?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+    <img src="https://m.media-amazon.com/images/I/71A+qqcytRL._SL1200_.jpg" alt="Holly Johnson/Frankie goes to Hollywod - Welcome to the Pleasuredome (Amazon)" width="300" />
+  </a>
+</Card>
 
-- Welcome to the Pleasuredome
-- Black Night White Light
-- Rage Hard
-- Happy Hi!
-- Wish (the Lads Were Here)
-- Americanos
-- Atomic City
-- Heaven's Here
-- Love Train
-- Penny Arcade
-- Watching the Wildlife
-- Born to Run
-- War
-- Two Tribes
-- Relax
-- The Power of Love
+
+<Card title="Setlist" icon="list-format">
+01. Welcome to the Pleasuredome  
+02. Black Night White Light  
+03. Rage Hard  
+04. Happy Hi!  
+05. Wish (the Lads Were Here)  
+06. Americanos  
+07. Atomic City  
+08. Heaven's Here  
+09. Love Train  
+10. Penny Arcade  
+11. Watching the Wildlife  
+12. Born to Run  
+13. War  
+14. Two Tribes  
+15. Relax  
+16. The Power of Love  
 </Card>
 
 <LinkCard
