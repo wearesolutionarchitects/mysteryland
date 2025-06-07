@@ -67,5 +67,8 @@ body:
       label: 📎 Medien vorhanden?
       options:
         - label: 🎫 Ticket
+          value: ticket
         - label: 📷 Fotos
+          value: fotos
         - label: 🎥 Video
+          value: video
