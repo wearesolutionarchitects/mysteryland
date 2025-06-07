@@ -19,7 +19,8 @@ export default defineConfig({
             
             head: [
                 { tag: 'meta', attrs: { name: 'description', content: 'Konzertberichte, Bilder und Setlists' } },
-                { tag: 'meta', attrs: { name: 'viewport', content: 'width=device-width, initial-scale=1' } }
+                { tag: 'meta', attrs: { name: 'viewport', content: 'width=device-width, initial-scale=1' } },
+                { tag: 'script', attrs: { async: true, defer: true, 'data-website-id': '76cfab5c-bdba-4584-a2f7-1c030b088c66', src: 'https://analytics.mysteryland.biz/script.js' } },
             ],
             customCss: [
                 // Relative path to your custom CSS file
