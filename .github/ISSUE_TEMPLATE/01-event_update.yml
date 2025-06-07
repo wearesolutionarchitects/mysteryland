@@ -1,0 +1,31 @@
+name: 📅 Neues Event erfassen
+description: Erstelle einen neuen Event-Eintrag für mysteryland.biz
+title: "Künstler:in"
+labels: 
+  - event
+assignees: 
+  - hfanieng
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: 📝 Beschreibung
+      description: Optionaler Freitext zum Event
+      placeholder: Beschreibung, besondere Eindrücke, etc.
+
+  - type: input
+    id: tags
+    attributes:
+      label: 🏷️ Tags
+      description: Kommagetrennte Schlagworte für Labels und Auswertung
+      placeholder: deutschland, festival, extrabreit
+
+  - type: checkboxes
+    id: files
+    attributes:
+      label: 📎 Medien vorhanden?
+      description: Gibt es bereits Medien (Fotos, Tickets etc.)?
+      options:
+        - label: Ja, als Datei vorhanden
+        - label: Ja, wird nachgereicht
+        - label: Nein
