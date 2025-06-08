@@ -13,20 +13,16 @@ TARGET_DIR="./src/content/gallery/$YEAR/$EVENT"
 FIRST_IMG=$(find "$TARGET_DIR" -iname "*.jpg" | head -n 1)
 echo "📍 Ermittele GPS aus: $FIRST_IMG"
 
-LAT=$(exiftool -s3 -GPSLatitude "$FIRST_IMG")
-LON=$(exiftool -s3 -GPSLongitude "$FIRST_IMG")
-
-# Geodaten vereinfachen
-LAT_NUM=$(echo "$LAT" | awk '{print $1}')
-LON_NUM=$(echo "$LON" | awk '{print $1}')
+LAT=$(exiftool -s3 -n -GPSLatitude "$FIRST_IMG")
+LON=$(exiftool -s3 -n -GPSLongitude "$FIRST_IMG")
 
 # Reverse Geocoding über Nominatim
-RESPONSE=$(curl -s "https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=$LAT_NUM&lon=$LON_NUM")
+RESPONSE=$(curl -s "https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=$LAT&lon=$LON")
 
 CITY=$(echo "$RESPONSE" | jq -r '.address.city // .address.town // .address.village // empty')
 STATE=$(echo "$RESPONSE" | jq -r '.address.state // empty')
 COUNTRY=$(echo "$RESPONSE" | jq -r '.address.country // empty')
-COUNTRY_CODE=$(echo "$RESPONSE" | jq -r '.address.country_code // empty' | tr 'a-z' 'A-Z')
+COUNTRY_CODE=$(echo "$RESPONSE" | jq -r '.address.country // empty')
 
 echo "📅 Ort automatisch erkannt: $CITY, $STATE, $COUNTRY ($COUNTRY_CODE)"
 
@@ -54,10 +50,15 @@ tags: ["$YEAR", "$CITY", "$ARTIST", "Konzert"]
 ---
 EOF
 
-  # XMP-Daten ergänzen
+  # IPTC- und XMP-Daten ergänzen
   exiftool -overwrite_original \
     -XMP:Subject="$ARTIST" \
     -XMP:Event="$TITLE" \
+    -IPTC:City="$CITY" \
+    -IPTC:Province-State="$STATE" \
+    -IPTC:Country-PrimaryLocationName="$COUNTRY" \
+    -IPTC:Country-PrimaryLocationCode="Deutschland" \
+    -IPTC:Keywords="$ARTIST,$YEAR,$CITY,Konzert" \
     "$FILE"
 done
 
