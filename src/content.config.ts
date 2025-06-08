@@ -19,4 +19,23 @@ const docsCollection = defineCollection({
     }),
 });
 
-export const collections = { docs: docsCollection };
+const galleryCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    datetime: z.string(),
+    filename: z.string(),
+    city: z.string().optional(),
+    state: z.string().optional(),
+    country: z.string().optional(),
+    countryCode: z.string().optional(),
+    artist: z.string().optional(),
+    event: z.string().optional(),
+    tags: z.array(z.string()).optional()
+  })
+});
+
+export const collections = {
+  docs: docsCollection,
+  gallery: galleryCollection
+};
