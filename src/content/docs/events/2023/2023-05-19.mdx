@@ -20,8 +20,7 @@ asin: "B0CNJS3MC9"
 tags: ["€74.85","Ticket","Deutschland","Konzert","Dortmund","Herbert Grönemeyer","2023"]
 ---
 
-import { Card } from '@astrojs/starlight/components';
-import { LinkCard } from '@astrojs/starlight/components';
+import { LinkCard, Card, CardGrid } from '@astrojs/starlight/components';
 
 ## 🎫 Ticket
 
@@ -33,6 +32,25 @@ import { LinkCard } from '@astrojs/starlight/components';
 📍 Stadt: Dortmund
 🏟️ Venue: Westfalenhalle    
 💶 Preis: 74,85 €  
+
+<CardGrid>
+  <Card title="20:47" icon="image">
+    <img
+      src="../../../gallery/2023/05-19/2023-05-19_20-47-16.jpg"
+      alt="Herbert Grönemeyer um 20:47"
+      width="300"
+      loading="lazy"
+    />
+  </Card>
+  <Card title="20:51" icon="image">
+    <img
+      src="../../../gallery/2023/05-19/2023-05-19_20-51-35.jpg"
+      alt="Herbert Grönemeyer um 20:51"
+      width="300"
+      loading="lazy"
+    />
+  </Card>
+</CardGrid>
 
 ## 🎤 Konzertbericht
 
@@ -91,5 +109,6 @@ Die Atmosphäre in der Westfalenhalle war elektrisierend, und Grönemeyer versta
 
 <LinkCard
     title="Mehr Informationen"
-    href=""
+    href="https://fanieng.com/2023/05/19/2023-05-2019-herbert-gronemeyer-dortmund-westfalenhalle/"
 />
+
