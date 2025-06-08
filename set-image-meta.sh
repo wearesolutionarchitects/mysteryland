@@ -46,7 +46,7 @@ country: "$COUNTRY"
 countryCode: "$COUNTRY_CODE"
 artist: "$ARTIST"
 event: "$TITLE"
-tags: ["$YEAR", "$CITY", "$ARTIST", "Konzert"]
+tags: ["$YEAR", "$CITY", "$ARTIST", "$EVENT", Konzert, "Deutschland"]
 ---
 EOF
 
