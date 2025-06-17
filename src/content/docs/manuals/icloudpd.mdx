@@ -14,66 +14,316 @@ import { LinkCard } from '@astrojs/starlight/components';
 
 `icloudpd` (iCloud Photo Downloader) bietet eine Vielzahl von Parametern zur flexiblen Steuerung des Downloads aus der iCloud Fotobibliothek. Hier sind alle relevanten Optionen beschrieben:
 
-### Authentifizierung und Cookies
+## Referenz der Parameter
 
-- `--username`, `-u`: Apple-ID (E-Mail-Adresse), mit der auf die iCloud zugegriffen wird.
-- `--password`, `-p`: Passwort oder App-spezifisches Passwort (empfohlen).
-- `--auth-only`: Nur Authentifizierung durchführen, keine Fotos herunterladen.
-- `--cookie-directory`: Verzeichnis für gespeicherte Login-Cookies (default: `~/.pyicloud`).
+Dies ist eine Liste aller Optionen, die für die Kommandozeilenschnittstelle (CLI) von `icloudpd` verfügbar sind.
 
-### Download-Ziel und -Struktur
+### (until-found-parameter)=
+`--until-found X`
+    
+:   Überprüft die neuesten bis zu den ältesten Objekte darauf, ob sie lokal vorhanden sind. Fehlen sie lokal, werden sie heruntergeladen. Der Vorgang stoppt, sobald X aufeinanderfolgende Überprüfungen ein lokales mit dem entfernten Objekt abgleichen.
 
-- `--directory`, `-d`: Zielverzeichnis für den Download.
-- `--folder-structure`: Legt die Ordnerstruktur nach Datum fest, z. B. `{:%Y/%m/%d}`.
-- `--album`, `-a`: Beschränkt den Download auf ein bestimmtes Album.
-- `--library`: Auswahl einer anderen Fotomediathek (default: "Personal Library").
+    Diese Option ist eine nützliche Optimierung für inkrementelle Updates: Nur ein kleiner Teil (X) des lokalen Speichers wird erneut auf Vorhandensein überprüft, was lokale IO spart. Allerdings werden dadurch keine „Lücken“ im lokalen Speicher gefüllt oder erkannt.
 
-### Download-Optionen
+    ```{note}
+    Die Überprüfung erfolgt nach dem Hinzufügedatum in iCloud, nicht nach dem Aufnahme-/Erstellungsdatum.
+    ```
 
-- `--size`: Größe der zu ladenden Fotos (`original`, `medium`, `thumb`, etc.).
-- `--live-photo-size`: Größe der Live Photo Videos.
-- `--skip-videos`: Keine Videos herunterladen.
-- `--skip-live-photos`: Keine Live Photos herunterladen.
-- `--xmp-sidecar`: Exportiert zusätzliche XMP-Metadaten.
-- `--force-size`: Erzwingt die angegebene Bildgröße, lädt kein `original` als Fallback.
-- `--set-exif-datetime`: Setzt das EXIF-Datum aus Dateidatum, falls nicht vorhanden.
+### (recent-parameter)=
+`--recent X`
+    
+:   Überprüft die X zuletzt hinzugefügten Objekte auf lokale Kopien. Fehlende werden heruntergeladen.
 
-### Selektiver Download
+    Diese Option ist vor allem beim Testen und Experimentieren mit Parametern nützlich, um die Downloadmenge zu begrenzen.
 
-- `--recent`: Anzahl der letzten Fotos, die geladen werden sollen.
-- `--until-found`: Stoppt, sobald eine Anzahl bereits vorhandener Bilder erreicht ist.
-- `--skip-created-before`: Überspringt Dateien, die vor einem bestimmten Datum erstellt wurden.
+    ```{note}
+    Die Überprüfung erfolgt nach dem Hinzufügedatum in iCloud, nicht nach dem Aufnahme-/Erstellungsdatum.
+    ```
 
-### Automatisierung
+### (album-parameter)=
+`--album X`
+    
+:   Gibt an, welches Album heruntergeladen werden soll.
 
-- `--watch-with-interval`: Führt regelmäßige Downloads im Intervall (Sekunden) durch.
-- `--auto-delete`: Löscht Bilder, die in der iCloud als gelöscht markiert sind.
-- `--delete-after-download`: Löscht heruntergeladene Bilder aus der iCloud.
-- `--dry-run`: Zeigt nur an, was heruntergeladen würde – kein echter Download.
+    Wird kein Album angegeben, wird die gesamte Sammlung betrachtet.
 
-### Dateiverwaltung
+    ```{note}
+    Es kann immer nur ein Album heruntergeladen werden.
+    ```    
 
-- `--only-print-filenames`: Listet nur geplante Downloads auf.
-- `--file-match-policy`: Steuerung der Duplikatbehandlung (`name-size-dedup-with-suffix`, `name-id7`).
-- `--live-photo-mov-filename-policy`: Steuerung der Dateinamen von Live-Video-Dateien (`suffix`, `original`).
-- `--align-raw`: Steuerung der RAW-Dateiverarbeitung (`original`, `alternative`, `as-is`).
+### (list-albums-parameter)=
+`--list-albums`
+    
+:   Listet alle verfügbaren Alben auf.
 
-### Logging & Debugging
+### (library-parameter)=
+`--library X`
+    
+:   Gibt an, welche Bibliothek verwendet werden soll.
 
-- `--log-level`: Steuerung der Logausgabe (`debug`, `info`, `error`).
-- `--no-progress-bar`: Fortschrittsanzeige deaktivieren.
-- `--version`: Zeigt die aktuelle Version.
-- `--help`, `-h`: Zeigt die Hilfe an.
+    Standard: „Persönliche Bibliothek“.
 
-### Zwei-Faktor-Authentifizierung & MFA
+    ```{note}
+    Es kann immer nur eine Bibliothek verwendet werden.
+    ```    
 
-- `--mfa-provider`: Art der Eingabe für 2FA (`console`, `webui`).
-- `--notification-script`: Script bei ablaufender 2FA ausführen.
+### (list-libraries-parameter)=
+`--list-libraries`
+    
+:   Listet alle für das Konto verfügbaren Bibliotheken auf.
 
-### Sonstiges
+### (watch-with-interval-parameter)=
+`--watch-with-interval X`
+    
+:   Führt `icloudpd` dauerhaft aus und prüft in regelmäßigen Abständen (in Sekunden, z. B. 3600 für 1 Stunde) auf Änderungen in iCloud.
 
-- `--keep-unicode-in-filenames`: Unicode-Zeichen in Dateinamen behalten.
-- `--use-os-locale`: Datumsformat basierend auf Betriebssystemregion.
-- `--keep-icloud-recent-days`: Löscht Dateien aus iCloud, die älter als X Tage sind.
+    Ein zu kurzes Intervall kann zu Drosselung durch Apple führen, auch wenn bisher keine Fälle bekannt sind.
 
-**Tipp:** Für einfache tägliche Synchronisation ohne Interaktion empfiehlt sich der Einsatz eines App-Passworts und das Speichern der Cookies im Standardverzeichnis `~/.pyicloud`.
+### (version-parameter)=
+`--version`
+    
+:   Zeigt die aktuelle Version sowie Commit-Hash und das Erstellungsdatum dieser Version an.
+
+    ```{note}
+    Wenn `--use-os-locale` vor `--version` angegeben wurde, wird das Datum im OS-Format ausgegeben.
+    ```    
+
+### (use-os-locale-parameter)=
+`--use-os-locale`
+    
+:   Weist `icloudpd` an, die Betriebssystem-Lokalisierung zu verwenden. Standardmäßig wird US-Englisch genutzt.
+
+    ```{seealso}
+    Siehe Abschnitt [Dateibenennung](naming) für das beeinflusste Verhalten.
+    ```    
+
+### (dry-run-parameter)=
+`--dry-run`
+    
+:   Nimmt keine Änderungen am lokalen oder iCloud-Speicher vor.
+
+    Die Authentifizierung wird durchgeführt und entfernte Dateien werden mit lokalen verglichen. Unterschiede werden gemeldet, aber kein Download durchgeführt.
+
+    Diese Option ist nützlich zum Testen neuer Parameter.
+
+### (domain-parameter)=
+`--domain X`
+    
+:   Der Zugriff auf Apple-Server ist aus Festlandchina blockiert. Alternativ kann die interne .cn-Domain angegeben werden, damit `icloudpd` aus China funktioniert.
+
+    Standard ist „.com“. „.cn“ ist die einzige weitere Option.
+
+### (password-parameter)=
+`--password X`
+    
+:   Gibt das iCloud-Passwort für die Authentifizierung an.
+
+    ```{note}
+    Die Übergabe von Zugangsdaten über die Kommandozeile ist unsicher, da sie protokolliert oder anderweitig ausgelesen werden können. Nutze besser andere [Passwortanbieter](authentication).
+    ``` 
+
+### (directory-parameter)=
+`--directory X`
+    
+:   Legt den Wurzelordner fest, in dem die [Ordnerstruktur](naming) beginnt und Dateien gespeichert werden.
+
+### (file-match-policy-parameter)=
+`--file-match-policy X`
+    
+:   Legt den Algorithmus (die Richtlinie) zum Abgleich von entfernten und lokalen Dateien fest.
+
+    ```{seealso}
+    Siehe [Dateibenennung und Duplikaterkennung](naming)
+    ``` 
+
+### (username-parameter)=
+`--username X`
+    
+:   Gibt die AppleID (E-Mail-Adresse) für die iCloud-Authentifizierung an.
+
+### (auth-only-parameter)=
+`--auth-only`
+    
+:   Führt nur die Authentifizierung durch, speichert die Ergebnisse (Tokens/Cookies) und beendet sich dann ohne weitere Verarbeitung.
+
+### (cookie-directory-parameter)=
+`--cookie-directory X`
+    
+:   Legt den Ordner für die Speicherung der Authentifizierungsdaten (Cookies/Tokens) fest. Standard ist `~/.pyicloud`.
+
+### (size-parameter)=
+`--size X`
+    
+:   Legt die Größe der herunterzuladenden Objekte fest.
+
+    ```{seealso}
+    Siehe [Asset-Größen](size)
+    ```
+
+### (force-size-parameter)=
+`--force-size`
+    
+:   Lädt nur die angeforderte Größe herunter. Andernfalls wird die Originalgröße heruntergeladen, falls die gewünschte Größe fehlt.
+
+    ```{seealso}
+    [`--size` Parameter](size-parameter)
+    ```
+
+### (live-photo-size-parameter)=
+`--live-photo-size X`
+    
+:   Legt die Größe der Live-Foto-Objekte fest.
+
+### (skip-videos-parameter)=
+`--skip-videos`
+    
+:   Videos werden nicht verarbeitet.
+
+### (skip-live-photos-parameter)=
+`--skip-live-photos`
+    
+:   Live-Fotos werden nicht verarbeitet.
+
+### (auto-delete-parameter)=
+`--auto-delete`
+    
+:   Lokal werden Objekte gelöscht, die in iCloud gelöscht wurden (bzw. in „Zuletzt gelöscht“ verschoben wurden).
+
+    ```{seealso}
+    Siehe [Betriebsmodi](mode)
+    ```
+
+### (delete-after-download-parameter)=
+`--delete-after-download`
+    
+:   Nach dem lokalen Download werden die Objekte in iCloud gelöscht (bzw. in „Zuletzt gelöscht“ verschoben). Veraltet, nutze stattdessen [`--keep-icloud-recent-days`](keep-icloud-recent-days-parameter).
+
+    ```{note}
+    Wurden entfernte Objekte nicht heruntergeladen (z. B. weil sie schon lokal vorhanden waren), werden sie NICHT in iCloud gelöscht.
+    ```
+
+    ```{versionadded} 1.21.0
+    ```
+
+    ```{deprecated} 1.26.0
+    ```
+
+### (keep-icloud-recent-days-parameter)=
+`--keep-icloud-recent-days X`
+    
+:   Löscht Objekte in iCloud, nachdem sie heruntergeladen oder lokal bestätigt wurden, außer denen, die innerhalb der angegebenen Tage aufgenommen wurden. Bei 0 werden alle Fotos aus iCloud gelöscht.
+
+:   Werden Filter wie [`--skip-videos`](skip-videos-parameter) verwendet, werden davon ausgeschlossene Objekte nicht aus iCloud gelöscht.
+
+:   Das Alter wird anhand des Aufnahme-/Erstellungsdatums berechnet, wie von iCloud gemeldet. Beispiel: Ein Objekt von 2000, das 2024 zu iCloud hinzugefügt wurde, ist 2025 dann 25 Jahre alt. Dieser Zeitstempel wird auch für die Ordnerstruktur verwendet.
+
+:   Wird der Parameter nicht angegeben, wird nichts aus iCloud gelöscht.
+
+    ```{versionadded} 1.26.0
+    ```
+
+    ```{seealso}
+    Siehe [Betriebsmodi](mode)
+
+    Siehe [Ordnerstruktur](folder_structure)
+    ```
+
+### (only-print-filenames-parameter)=
+`--only-print-filenames`
+    
+:   Es werden keine Dateien heruntergeladen, sondern nur die Dateipfade ausgegeben (keine weiteren Informationen).
+
+    ```{seealso}
+    [`--dry-run` Parameter](dry-run-parameter)
+    ```
+
+### (folder-structure-parameter)=
+`--folder-structure X`
+    
+:   Legt das Benennungsschema für Unterordner fest.
+
+    ```{seealso}
+    Siehe Details im Abschnitt [Ordnerstruktur](naming).
+    ```
+
+### (set-exif-datetime-parameter)=
+`--set-exif-datetime`
+    
+:   Aktualisiert das EXIF-Datum/-Uhrzeit des Bildes mit dem Aufnahme-/Erstellungsdatum, sofern noch kein EXIF vorhanden ist.
+
+### (no-progress-bar-parameter)=
+`--no-progress-bar`
+    
+:   Unterdrückt die Fortschrittsanzeige. Nützlich beim Umleiten der Ausgabe in eine Datei.
+
+### (keep-unicode-in-filenames-parameter)=
+`--keep-unicode-in-filenames`
+    
+:   Unicode-Zeichen werden in Dateinamen beibehalten. Andernfalls werden sie entfernt (Standard).
+
+### (live-photo-mov-filename-policy-parameter)=
+`--live-photo-mov-filename-policy X`
+    
+:   Legt das Benennungsschema für den Videoteil von Live-Fotos fest.
+
+    ```{seealso}
+    Siehe Details im Abschnitt [Live Photo](naming).
+    ```
+
+### (align-raw-parameter)=
+`--align-raw X`
+    
+:   Legt die Behandlung von RAW+JPEG-Objekten fest.
+
+    ```{seealso}
+    Siehe Details im Abschnitt [RAW+JPEG](raw).
+    ```
+
+### (password-provider-parameter)=
+`--password-provider X`
+    
+:   Legt fest, wie das Passwort für die iCloud-Authentifizierung abgefragt wird.
+
+    ```{seealso}
+    Siehe Details im Abschnitt [Passwortanbieter](authentication).
+    ```
+### (mfa-provider-parameter)=
+`--mfa-provider X`
+    
+:   Legt fest, wie der Code für die Zwei-Faktor-Authentifizierung (MFA) abgefragt wird.
+
+    ```{seealso}
+    Siehe Details im Abschnitt [MFA-Anbieter](authentication).
+    ```
+
+### (xmp-sidecar-parameter)=
+`--xmp-sidecar`
+
+:   Exportiert zusätzliche Daten als XMP-Sidecar-Dateien (Standard: kein Export).
+
+### (smtp-parameter)=
+`--smtp-username X`, `--smtp-password X`, `--smtp-host X`, `--smtp-port X`, `--smtp-no-tls`
+    
+:   Einstellungen für SMTP-Benachrichtigungen bei abgelaufener/benötigter Authentifizierung.
+
+### (notification-email-parameter)=
+`--notification-email X`, `--notification-email-from X`
+    
+:   Einstellungen für die E-Mail-Benachrichtigungsadresse.
+
+### (notification-script-parameter)=
+`--notification-script X`
+    
+:   Skript, das bei abgelaufener MFA zur Benachrichtigung ausgeführt wird.
+
+### (skip-created-before-parameter)=
+`--skip-created-before`
+
+:   Verarbeitet keine Objekte, die vor dem angegebenen Zeitstempel erstellt wurden. Zeitstempel im ISO-Format, z. B. 2025-06-01, oder als Intervall ab jetzt, z. B. 5d. Ohne Zeitzone wird die lokale Zeitzone verwendet.
+
+    ```{versionadded} 1.28.0
+    ```
+
+    ```{note}
+    Das Datum ist das Erstellungsdatum, nicht das Hinzufügedatum in iCloud.
+    ```
