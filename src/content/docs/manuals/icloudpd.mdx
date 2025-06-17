@@ -1,0 +1,79 @@
+---
+title: "iCloud Photo Downloader"
+
+description: "iCloudPD - iCloud Photo Downloader"
+
+pubDate: 2025-06-17
+
+tags: ["icloudpd", "python", "github"]
+---
+import { Card } from '@astrojs/starlight/components';
+import { LinkCard } from '@astrojs/starlight/components';
+
+## Übersicht der Parameter von icloudpd
+
+`icloudpd` (iCloud Photo Downloader) bietet eine Vielzahl von Parametern zur flexiblen Steuerung des Downloads aus der iCloud Fotobibliothek. Hier sind alle relevanten Optionen beschrieben:
+
+### Authentifizierung und Cookies
+
+- `--username`, `-u`: Apple-ID (E-Mail-Adresse), mit der auf die iCloud zugegriffen wird.
+- `--password`, `-p`: Passwort oder App-spezifisches Passwort (empfohlen).
+- `--auth-only`: Nur Authentifizierung durchführen, keine Fotos herunterladen.
+- `--cookie-directory`: Verzeichnis für gespeicherte Login-Cookies (default: `~/.pyicloud`).
+
+### Download-Ziel und -Struktur
+
+- `--directory`, `-d`: Zielverzeichnis für den Download.
+- `--folder-structure`: Legt die Ordnerstruktur nach Datum fest, z. B. `{:%Y/%m/%d}`.
+- `--album`, `-a`: Beschränkt den Download auf ein bestimmtes Album.
+- `--library`: Auswahl einer anderen Fotomediathek (default: "Personal Library").
+
+### Download-Optionen
+
+- `--size`: Größe der zu ladenden Fotos (`original`, `medium`, `thumb`, etc.).
+- `--live-photo-size`: Größe der Live Photo Videos.
+- `--skip-videos`: Keine Videos herunterladen.
+- `--skip-live-photos`: Keine Live Photos herunterladen.
+- `--xmp-sidecar`: Exportiert zusätzliche XMP-Metadaten.
+- `--force-size`: Erzwingt die angegebene Bildgröße, lädt kein `original` als Fallback.
+- `--set-exif-datetime`: Setzt das EXIF-Datum aus Dateidatum, falls nicht vorhanden.
+
+### Selektiver Download
+
+- `--recent`: Anzahl der letzten Fotos, die geladen werden sollen.
+- `--until-found`: Stoppt, sobald eine Anzahl bereits vorhandener Bilder erreicht ist.
+- `--skip-created-before`: Überspringt Dateien, die vor einem bestimmten Datum erstellt wurden.
+
+### Automatisierung
+
+- `--watch-with-interval`: Führt regelmäßige Downloads im Intervall (Sekunden) durch.
+- `--auto-delete`: Löscht Bilder, die in der iCloud als gelöscht markiert sind.
+- `--delete-after-download`: Löscht heruntergeladene Bilder aus der iCloud.
+- `--dry-run`: Zeigt nur an, was heruntergeladen würde – kein echter Download.
+
+### Dateiverwaltung
+
+- `--only-print-filenames`: Listet nur geplante Downloads auf.
+- `--file-match-policy`: Steuerung der Duplikatbehandlung (`name-size-dedup-with-suffix`, `name-id7`).
+- `--live-photo-mov-filename-policy`: Steuerung der Dateinamen von Live-Video-Dateien (`suffix`, `original`).
+- `--align-raw`: Steuerung der RAW-Dateiverarbeitung (`original`, `alternative`, `as-is`).
+
+### Logging & Debugging
+
+- `--log-level`: Steuerung der Logausgabe (`debug`, `info`, `error`).
+- `--no-progress-bar`: Fortschrittsanzeige deaktivieren.
+- `--version`: Zeigt die aktuelle Version.
+- `--help`, `-h`: Zeigt die Hilfe an.
+
+### Zwei-Faktor-Authentifizierung & MFA
+
+- `--mfa-provider`: Art der Eingabe für 2FA (`console`, `webui`).
+- `--notification-script`: Script bei ablaufender 2FA ausführen.
+
+### Sonstiges
+
+- `--keep-unicode-in-filenames`: Unicode-Zeichen in Dateinamen behalten.
+- `--use-os-locale`: Datumsformat basierend auf Betriebssystemregion.
+- `--keep-icloud-recent-days`: Löscht Dateien aus iCloud, die älter als X Tage sind.
+
+**Tipp:** Für einfache tägliche Synchronisation ohne Interaktion empfiehlt sich der Einsatz eines App-Passworts und das Speichern der Cookies im Standardverzeichnis `~/.pyicloud`.
