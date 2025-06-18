@@ -22,7 +22,7 @@ DIR="/Volumes/Sandisk/Fotos/$YEAR/$MONTH/$DAY"
 echo "📂 Ziel-Verzeichnis: $DIR"
 
 echo "🧠 Benenne Bilder nach EXIF-Datum ..."
-find "$DIR" -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.heic' -o -iname '*.png' \) -exec exiftool \
+find "$DIR" -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.heic' -o -iname '*.png' \) ! -name '._*' ! -name '.DS_Store' -exec exiftool \
   "-FileName<CreateDate" -d "%Y-%m-%d_%H-%M-%S%%-c.%%e" {} +
 
 echo "✅ Fertig! Bilder jetzt in: $DIR"
@@ -33,13 +33,13 @@ find "$GALLERY_ROOT" -type f -iname "*.jpg" | while read -r img; do
   caption=$(exiftool -s -s -s -IPTC:Caption-Abstract "$img")
   date=$(echo "$caption" | grep -oE '[0-9]{2}\.[0-9]{2}\.[0-9]{4}' || echo "unbekannt")
   # Artist: nach erstem '-' und vor '@'
-  artist=$(echo "$caption" | cut -d'-' -f2 | cut -d'@' -f1 | xargs)
+  artist=$(echo "$caption" | cut -d'-' -f2 | cut -d'@' -f1 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
   # City: nach '@' und vor '/'
-  city=$(echo "$caption" | grep -o '@[^/]*' | cut -c2- | xargs)
+  city=$(echo "$caption" | grep -o '@[^/]*' | cut -c2- | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
   [ -z "$artist" ] && artist="unbekannt"
   [ -z "$city" ] && city="unbekannt"
   # Venue: nach @ bis zum nächsten - oder Leerzeichen
-  venue=$(echo "$caption" | sed -E 's#.*/([^/-][^/-]*)( -.*)?$#\1#' | xargs)
+  venue=$(echo "$caption" | sed -E 's#.*/([^/-][^/-]*)( -.*)?$#\1#' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
 
   date=$(echo "$caption" | grep -oE '[0-9]{2}\.[0-9]{2}\.[0-9]{4}' || echo "unbekannt")
 
@@ -50,12 +50,12 @@ find "$GALLERY_ROOT" -type f -iname "*.jpg" | while read -r img; do
   IFS=',' read -ra kwarr <<< "$keywords"
   taglist=""
   for kw in "${kwarr[@]}"; do
-    taglist="$taglist|$(echo "$kw" | xargs)"
+    taglist="$taglist|$(echo "$kw" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"
   done
 
   price="unbekannt"
   for kw in "${kwarr[@]}"; do
-    kw_clean=$(echo "$kw" | xargs)
+    kw_clean=$(echo "$kw" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
     if [[ "$kw_clean" =~ ^€[0-9]+(\.[0-9]{2})?$ ]]; then
       price="$kw_clean"
       price=$(echo "$kw_clean" | sed 's/\./,/')
