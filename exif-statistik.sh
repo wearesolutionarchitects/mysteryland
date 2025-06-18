@@ -4,7 +4,7 @@
 export LANG=de_DE.UTF-8
 export LC_ALL=de_DE.UTF-8
 
-GALLERY_ROOT="./src/content/gallery"
+GALLERY_ROOT="/Volumes/Sandisk/Fotos"
 LOG_FILE="exif-debug.log"
 TMP_FILE="$(mktemp)"
 
@@ -29,7 +29,8 @@ echo "✅ Fertig! Bilder jetzt in: $DIR"
 
 echo "# Debug-Log für die EXIF-Auswertung" > "$LOG_FILE"
 
-find "$GALLERY_ROOT" -type f -iname "*.jpg" | while read -r img; do
+find "$DIR" -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.heic' -o -iname '*.png' \) ! -name '._*' ! -name '.DS_Store' | while read -r img; do
+  echo "📝 Schreibe Metadaten für $img" >> "$LOG_FILE"
   caption=$(exiftool -s -s -s -IPTC:Caption-Abstract "$img")
   date=$(echo "$caption" | grep -oE '[0-9]{2}\.[0-9]{2}\.[0-9]{4}' || echo "unbekannt")
   # Artist: nach erstem '-' und vor '@'
