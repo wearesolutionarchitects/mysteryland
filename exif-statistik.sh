@@ -1,10 +1,31 @@
 #!/bin/bash
+# Aufruf: ./exif-statistik.sh YYYY-MM-DD
+# Beispiel: ./exif-statistik.sh 2025-06-15
 export LANG=de_DE.UTF-8
 export LC_ALL=de_DE.UTF-8
 
 GALLERY_ROOT="./src/content/gallery"
 LOG_FILE="exif-debug.log"
 TMP_FILE="$(mktemp)"
+
+# ==== Neue Logik für Bilder-Umbenennung nach EXIF-Datum ====
+if [[ -z "$1" || ! "$1" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]]; then
+  echo "❌ Bitte gib ein gültiges Datum im Format JJJJ-MM-TT an, z. B.: 1979-09-29"
+  exit 1
+fi
+
+ALBUM_DATE="$1"
+YEAR=$(echo "$ALBUM_DATE" | cut -d- -f1)
+MONTH=$(echo "$ALBUM_DATE" | cut -d- -f2)
+DAY=$(echo "$ALBUM_DATE" | cut -d- -f3)
+DIR="/Volumes/Sandisk/Fotos/$YEAR/$MONTH/$DAY"
+echo "📂 Ziel-Verzeichnis: $DIR"
+
+echo "🧠 Benenne Bilder nach EXIF-Datum ..."
+find "$DIR" -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.heic' -o -iname '*.png' \) -exec exiftool \
+  "-FileName<CreateDate" -d "%Y-%m-%d_%H-%M-%S%%-c.%%e" {} +
+
+echo "✅ Fertig! Bilder jetzt in: $DIR"
 
 echo "# Debug-Log für die EXIF-Auswertung" > "$LOG_FILE"
 
