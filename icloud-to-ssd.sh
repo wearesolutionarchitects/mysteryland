@@ -20,7 +20,7 @@ echo "📂 Ziel-Verzeichnis: $DIR"
 
 # 🔄 EXIF-basierte Umbenennung der Bilddateien
 echo "🧠 Benenne Bilder nach EXIF-Datum ..."
-find "$DIR" -type f -iname '*.jpg' -exec exiftool \
-  "-FileName<CreateDate" -d "%Y-%m-%d_%H-%M-%S%%-c.%%e" {} \;
+find "$DIR" -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.heic' -o -iname '*.png' \) -exec exiftool \
+  "-FileName<CreateDate" -d "%Y-%m-%d_%H-%M-%S%%-c.%%e" {} +
 
 echo "✅ Fertig! Bilder jetzt in: $DIR"
