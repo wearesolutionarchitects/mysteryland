@@ -4,7 +4,7 @@
 export LANG=de_DE.UTF-8
 export LC_ALL=de_DE.UTF-8
 
-GALLERY_ROOT="src/content/gallery"
+GALLERY_ROOT="/Volumes/Sandisk/Fotos"
 LOG_FILE="exif-debug.log"
 TMP_FILE="$(mktemp)"
 
@@ -18,18 +18,24 @@ ALBUM_DATE="$1"
 YEAR=$(echo "$ALBUM_DATE" | cut -d- -f1)
 MONTH=$(echo "$ALBUM_DATE" | cut -d- -f2)
 DAY=$(echo "$ALBUM_DATE" | cut -d- -f3)
-DIR="$GALLERY_ROOT/$YEAR/$MONTH/$DAY"
+DIR="/Volumes/Sandisk/Fotos/$YEAR/$MONTH/$DAY"
 echo "📂 Ziel-Verzeichnis: $DIR"
 
+echo "🔄 Wandle .jpeg in .jpg um ..."
+find "$DIR" -type f -iname '*.jpeg' | while read -r img; do
+  new_img="${img%.jpeg}.jpg"
+  convert "$img" "$new_img" && rm "$img"
+done
+
 echo "🧠 Benenne Bilder nach EXIF-Datum ..."
-find "$DIR" -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.heic' -o -iname '*.png' \) ! -name '._*' ! -name '.DS_Store' -exec exiftool \
+find "$DIR" -type f \( -iname '*.jpg' -o -iname '*.heic' -o -iname '*.png' \) ! -name '._*' ! -name '.DS_Store' -exec exiftool \
   "-FileName<CreateDate" -d "%Y-%m-%d_%H-%M-%S%%-c.%%e" {} +
 
 echo "✅ Fertig! Bilder jetzt in: $DIR"
 
 echo "# Debug-Log für die EXIF-Auswertung" > "$LOG_FILE"
 
-find "$DIR" -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.heic' -o -iname '*.png' \) ! -name '._*' ! -name '.DS_Store' | while read -r img; do
+find "$DIR" -type f \( -iname '*.jpg' -o -iname '*.heic' -o -iname '*.png' \) ! -name '._*' ! -name '.DS_Store' | while read -r img; do
   echo "📝 Schreibe Metadaten für $img" >> "$LOG_FILE"
   caption=$(exiftool -s -s -s -IPTC:Caption-Abstract "$img")
   date=$(echo "$caption" | grep -oE '[0-9]{2}\.[0-9]{2}\.[0-9]{4}' || echo "unbekannt")
