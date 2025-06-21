@@ -1,13 +1,17 @@
 #!/bin/bash
 
-# Parameter: Jahr, Event, Künstler, Eventtitel
-YEAR=$1           # z. B. 2023
-EVENT=$2          # z. B. 05-19
-ARTIST=$3         # z. B. "Herbert Grönemeyer"
-TITLE=$4          # z. B. "Tour 2023"
+# Parameter: Datum (YYYY-MM-DD), Künstler, Eventtitel
+DATE=$1          # z. B. 2023-06-24
+ARTIST=$2        # z. B. "Herbert Grönemeyer"
+TITLE=$3         # z. B. "Tour 2023"
+
+# Datum aufteilen
+YEAR=$(echo "$DATE" | cut -d '-' -f 1)
+MONTH=$(echo "$DATE" | cut -d '-' -f 2)
+DAY=$(echo "$DATE" | cut -d '-' -f 3)
 
 # Zielverzeichnis der Content Collection
-TARGET_DIR="./src/content/gallery/$YEAR/$EVENT"
+TARGET_DIR="./src/content/gallery/$YEAR/$MONTH/$DAY"
 
 # Erstes Bild zur GPS-Ermittlung auswählen
 FIRST_IMG=$(find "$TARGET_DIR" -iname "*.jpg" | head -n 1)
@@ -62,4 +66,4 @@ EOF
     "$FILE"
 done
 
-echo "✅ Markdown-Dateien mit Geo- & Eventdaten erzeugt unter $TARGET_DIR"
+echo "✅ Markdown-Dateien mit Geo- & Eventdaten erzeugt unter $TARGET_DIR ($YEAR-$MONTH-$DAY)"
