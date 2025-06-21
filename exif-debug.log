@@ -1,36 +1,16 @@
 # Debug-Log für die EXIF-Auswertung
-📝 Schreibe Metadaten für ./src/content/gallery/2020/12/01/2020-12-01 20-00-01.jpg
-Bild: ./src/content/gallery/2020/12/01/2020-12-01 20-00-01.jpg
-Beschreibung: 
-Datum: unbekannt
-Künstler:in: unbekannt
-Stadt: unbekannt
-Veranstaltungsort: 
-Schlagworte: |Ticket|Deutschland|Konzert|Wesfalenhalle|die ärzte|in the ä tonight|Dortmund|2020
-Preis: unbekannt
+📝 Schreibe Metadaten für ./src/content/gallery/2020/06/20/2020-06-20_20-00-00.jpg
+Bild: ./src/content/gallery/2020/06/20/2020-06-20_20-00-00.jpg
+Beschreibung: 20.06.2020 - Die Toten Hosen@Düsseldorf/ISS Dome - Killed by Corona Virus
+Datum: 20.06.2020
+Künstler:in: Die Toten Hosen
+Stadt: Düsseldorf
+Veranstaltungsort: ISS Dome
+Schlagworte: |Ticket|€59.00|Deutschland|Konzert|Die Toten Hosen|ISS-Dome|Düsseldorf|2020|Alles ohne Strom
+Preis: €59,00
 ---
-📝 Schreibe Metadaten für ./src/content/gallery/2020/12/01/2020-12-01 20-00-02.jpg
-Bild: ./src/content/gallery/2020/12/01/2020-12-01 20-00-02.jpg
-Beschreibung: 
-Datum: unbekannt
-Künstler:in: unbekannt
-Stadt: unbekannt
-Veranstaltungsort: 
-Schlagworte: |Ticket|Deutschland|Konzert|Wesfalenhalle|die ärzte|in the ä tonight|Dortmund|2020
-Preis: unbekannt
----
-📝 Schreibe Metadaten für ./src/content/gallery/2020/12/01/2020-12-01 20-20-00.jpg
-Bild: ./src/content/gallery/2020/12/01/2020-12-01 20-20-00.jpg
-Beschreibung: 
-Datum: unbekannt
-Künstler:in: unbekannt
-Stadt: unbekannt
-Veranstaltungsort: 
-Schlagworte: |(keine Tags)
-Preis: unbekannt
----
-📝 Schreibe Metadaten für ./src/content/gallery/2020/12/01/2020-12-01 20-20-01.jpg
-Bild: ./src/content/gallery/2020/12/01/2020-12-01 20-20-01.jpg
+📝 Schreibe Metadaten für ./src/content/gallery/2020/06/20/2020-06-20_20-00-01.jpg
+Bild: ./src/content/gallery/2020/06/20/2020-06-20_20-00-01.jpg
 Beschreibung: 
 Datum: unbekannt
 Künstler:in: unbekannt
