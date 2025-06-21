@@ -4,13 +4,13 @@
 export LANG=de_DE.UTF-8
 export LC_ALL=de_DE.UTF-8
 
-GALLERY_ROOT="/Volumes/Sandisk/Fotos"
+GALLERY_ROOT="./src/content/gallery"
 LOG_FILE="exif-debug.log"
 TMP_FILE="$(mktemp)"
 
 # ==== Neue Logik für Bilder-Umbenennung nach EXIF-Datum ====
 if [[ -z "$1" || ! "$1" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]]; then
-  echo "❌ Bitte gib ein gültiges Datum im Format JJJJ-MM-TT an, z. B.: 1979-09-29"
+  echo "❌ Bitte gib ein gültiges Datum im Format JJJJ-MM-TT an, z. B.: 1979-09-29"
   exit 1
 fi
 
@@ -18,7 +18,7 @@ ALBUM_DATE="$1"
 YEAR=$(echo "$ALBUM_DATE" | cut -d- -f1)
 MONTH=$(echo "$ALBUM_DATE" | cut -d- -f2)
 DAY=$(echo "$ALBUM_DATE" | cut -d- -f3)
-DIR="/Volumes/Sandisk/Fotos/$YEAR/$MONTH/$DAY"
+DIR="$GALLERY_ROOT/$YEAR/$MONTH/$DAY"
 echo "📂 Ziel-Verzeichnis: $DIR"
 
 echo "🔄 Wandle .jpeg in .jpg um ..."
