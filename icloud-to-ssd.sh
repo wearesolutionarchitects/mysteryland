@@ -7,5 +7,5 @@ icloudpd \
   --username "heiko@fanieng.com" \
   --directory "/Volumes/Sandisk/Fotos" \
   --folder-structure "{:%Y/%m/%d}" \
-  --recent "1" \
+  --recent "5" \
   --set-exif-datetime
