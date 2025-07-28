@@ -18,12 +18,15 @@ asin: "B08HQ8MT53"
 tags: ["0,00 €", "Extrabreit","Deutschland","WBT 2022","Konzert","Lido","Berlin","2022"]
 ---
 
-import { Card } from '@astrojs/starlight/components';
-import { LinkCard } from '@astrojs/starlight/components';
+import { LinkCard, Card, CardGrid } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
+import imgTicketFront from '../../../gallery/2022/12/28/2022-12-28_20-37-13.jpg';
 
 ## 🎫 Ticket
 
-![Ticket](../../../gallery/2022/12/28/2022-12-28_20-37-13.jpg)
+<Card title="Vorderseite" icon="image">
+    <Image src={imgTicketFront} alt="Ticket Vorderseite" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
+</Card>
 
 ## 📌 Details
 📅 Datum: 28.12.2022  
@@ -42,14 +45,20 @@ Die Band feierte wie immer auf der Weihnachts-Blitz-Tournee ihr über 40-jährig
 
 Das Konzert war ein tolles Erlebnis, die Stimmung im Lido war super und die Band hat eine gute Show abgeliefert.
 
-<Card title="Album" icon="seti:audio">
+## 💿 Album
+
+<Card title="Auf Ex!" icon="seti:audio">
   <a href="https://www.amazon.de/dp/B08HQ8MT53?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
     <img src="https://m.media-amazon.com/images/I/61HtVwP+jaL._SL1200_.jpg" alt="Extrabreit - Auf Ex! (Amazon)" width="300" />
   </a>
 </Card>
 
-<Card title="Setlist" icon="list-format">
-Aktuell ist noch keine Setlist verfügbar. Ich werde diese nachreichen, sobald sie online ist.
+## 🎶 Setlist
+
+<Card title="Songs" icon="list-format">
+01. ...
+02. ...
+03. ...
 </Card>
 
 <LinkCard
