@@ -1,7 +1,7 @@
 ---
-title: "BOBfest"
+title: "BOB!Fest"
 
-description: "Eventbericht über das BOBfest im SparkassenPark Mönchengladbach am 26.07.2025 mit Alice Cooper, Danko Jones, H-BLOCKX, The New Roses, Thundermother und Ugly Kid Joe."
+description: "Eventbericht über das BOB!Fest im SparkassenPark Mönchengladbach am 26.07.2025 mit Alice Cooper, Danko Jones, H-BLOCKX, The New Roses, Thundermother und Ugly Kid Joe."
 
 pubDate: 2025-07-26
 
@@ -17,14 +17,26 @@ artist: ["Alice Cooper", "Danko Jones", "H-BLOCKX", "The New Roses", "Thundermot
 
 tags: ["H-BLOCKX","Thundermother","Ticket","Deutschland","2025","Alice Cooper","The New Roses","Danko Jones","BOBfest","Festival","Mönchengladbach","SparkassenPark","Ugly Kid Joe"]
 ---
-import { Card } from '@astrojs/starlight/components';
-import { LinkCard } from '@astrojs/starlight/components';
+import { LinkCard, Card, CardGrid } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
+import img1414 from '../../../gallery/2025/07/26/2025-07-26_14-14-16.jpg';
+import img1553 from '../../../gallery/2025/07/26/2025-07-26_15-53-47.jpg';
+import img1622 from '../../../gallery/2025/07/26/2025-07-26_16-22-58.jpg';
+import img1741 from '../../../gallery/2025/07/26/2025-07-26_17-41-59.jpg';
+import img1859 from '../../../gallery/2025/07/26/2025-07-26_18-59-20.jpg';
+import img2035 from '../../../gallery/2025/07/26/2025-07-26_20-35-08.jpg';
 
-## Ticket
+## 🪧 Plakat
 
-![Ticket](../../../gallery/2025/07/26/2025-07-26_20-00-00.jpg)
+![Plakat](../../../gallery/2025/07/26/2025-07-26_00-00-00.jpg)
 
-## Details
+---
+
+## 🎫 Ticket
+
+![Ticket](../../../gallery/2025/07/26/2025-07-26_13-30-00.jpg)
+
+## 📌 Details
 
 📅 Datum: 26.07.2025  
 🇩🇪 Land: Deutschland  
@@ -32,12 +44,92 @@ import { LinkCard } from '@astrojs/starlight/components';
 🏟️ Venue: SparkassenPark  
 💶 Preis: 96,50 €
 
-## Konzertbericht
+## 📷 Fotos
 
-<Card title="Setlist" icon="list-format">
+<CardGrid>
+  <Card title="Thundermother" icon="image">
+    <Image src={img1414} alt="Thundermother" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
+  </Card>
+  <Card title="The New Roses" icon="image">
+    <Image src={img1553} alt="The New Roses" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
+  </Card>
+  <Card title="Ugly Kid Joe" icon="image">
+    <Image src={img1622} alt="Ugly Kid Joe" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
+  </Card>
+  <Card title="H-BLOCKX" icon="image">
+    <Image src={img1741} alt="H-BLOCKX" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
+  </Card>
+  <Card title="Danko Jones" icon="image">
+    <Image src={img1859} alt="Danko Jones" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
+  </Card>
+  <Card title="Alice Cooper" icon="image">
+    <Image src={img2035} alt="Alice Cooper" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
+  </Card>
+</CardGrid>
+
+
+## 🎤 Konzertbericht
+
+Am 26.07.2025 fand im SparkassenPark Mönchengladbach das BOB!Fest statt, ein Festival mit einer beeindruckenden Besetzung.
+
+Headliner war [Alice Cooper](https://alicecooper.com), unterstützt von [Thundermother](https://thundermother.com), [The New Roses](https://thenewroses.com), [H-BLOCKX](https://www.facebook.com/HBLOCKXofficial/), [Danko Jones](https://dankojones.com) und [Ugly Kid Joe](https://www.facebook.com/uglykidjoetheband/?locale=de_DE).
+
+
+## 🎶 Setlists
+
+<Card title="Alice Cooper" icon="list-format">
+01. Lock Me Up
+02. Welcome to the Show
+03. No More Mr. Nice Guy
+04. I'm Eighteen
+05. Under My Wheels
+06. Bed of Nails
+07. Be My Lover
+08. Lost in America
+09. He's Back (The Man Behind the Mask)
+10. Hey Stoopid
+11. Drum Solo
+12. Welcome to My Nightmare
+13. Cold Ethyl
+14. Go to Hell
+15. Poison
+16. The Black Widow
+17. Guitar Solo
+18. Black Widow Jam
+19. Ballad of Dwight Fry
+20. Killer / I Love the Dead
+21. School's Out
+22. Paranoid
+23. Feed My Frankenstein
 </Card>
+
+## 💿 Alben
+
+<CardGrid>
+    <Card title="Dirty & Devine" icon="seti:audio">
+        <a href="https://www.amazon.de/dp/B0DGH26MHC?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+            <img src="https://m.media-amazon.com/images/I/71cUGj1Q8ZL._SL1208_.jpg" alt="Thundermother - Dirty & Devine (Amazon)" width="300" />
+        </a>
+    </Card>
+    <Card title="Attracted to Danger" icon="seti:audio">
+        <a href="https://www.amazon.de/dp/B0D9JS7DTS?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+            <img src="https://m.media-amazon.com/images/I/81twT1SFzDL._SL1500_.jpg" alt="The New Roses - Attracted to Danger (Amazon)" width="300" />
+        </a>
+    </Card>
+    <Card title="Leo Rising" icon="seti:audio">
+        <a href="https://www.amazon.de/dp/B0FDB1Q5D3?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+            <img src="https://m.media-amazon.com/images/I/81v3bJaQIiL._SL1500_.jpg" alt="Danko Jones - Leo Rising (Amazon)" width="300" />
+        </a>
+    </Card>
+    <Card title="The Revenge of Alice Cooper" icon="seti:audio">
+        <a href="https://www.amazon.de/dp/B0F59NJ3FM?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+            <img src="https://m.media-amazon.com/images/I/51Uxy8ykZ4L._SL1000_.jpg" alt="Alice Cooper - The Revenge of Alice Cooper (Amazon)" width="300" />
+        </a>
+    </Card>
+</CardGrid>
+
 
 <LinkCard
     title="Mehr Informationen"
-    href=""
+    href="https://fanieng.com/2025/07/26/bobfest-moenchengladbach-sparkassenpark/"
 />
