@@ -14,6 +14,7 @@
     "script:content:generate-mdx": "node src/scripts/content/generate-mdx.mjs",
     "script:content:generate-readme": "node src/scripts/content/generate-readme.mjs",
     "script:wp:get-event": "node src/scripts/wp/get-wp-event.mjs",
+    "script:wp:export-inventory": "node src/scripts/wp/export-inventory.mjs",
     "script:wp:import-year": "node src/scripts/wp/import-event-year.mjs",
     "script:wp:titel": "node src/scripts/wp/titel-wp.mjs",
     "script:github:create-labels": "node src/scripts/github/create-label.mjs",

@@ -6,10 +6,11 @@ loadEnv();
 
 const filterDate = process.argv[2];
 ensureDateArg(filterDate, 'Please provide date as YYYY-MM-DD, e.g. 1979-09-29');
+const forceWrite = process.argv.includes('--force');
 
 const [year, month, day] = filterDate.split('-');
 const galleryRoot = process.env.GALLERY_ROOT || './src/content/gallery';
-const imgDir = path.join(galleryRoot, year, `${month}-${day}`);
+const imgDir = path.join(galleryRoot, year, month, day);
 const contentRoot = './src/content/docs/events';
 
 if (!fs.existsSync(imgDir)) {
@@ -20,6 +21,11 @@ if (!fs.existsSync(imgDir)) {
 const mdxYearPath = path.join(contentRoot, year);
 const mdxFile = path.join(mdxYearPath, `${filterDate}.mdx`);
 fs.mkdirSync(mdxYearPath, { recursive: true });
+
+if (fs.existsSync(mdxFile) && !forceWrite) {
+  console.error(`File already exists: ${mdxFile}. Use --force to overwrite.`);
+  process.exit(1);
+}
 
 const jpgFiles = fs.readdirSync(imgDir)
   .filter((name) => /\.jpg$/i.test(name))
@@ -43,34 +49,42 @@ const tags = keywordsRaw
   ? keywordsRaw.split(',').map((k) => k.trim()).filter(Boolean).map((k) => `"${k}"`).join(',')
   : '';
 
-const slugUrl = parsed.slugUrl || `${year}-${month}-${day}`;
+const slugUrl = parsed.eventDate && parsed.slugUrl ? parsed.slugUrl : `${year}-${month}-${day}`;
+const importPath = `../../../gallery/${year}/${month}/${day}/${fileName}`;
+
+function yamlString(value) {
+  return JSON.stringify(value || '');
+}
 
 const mdx = [
   '---',
-  `title: "${caption}"`,
+  `title: ${yamlString(parsed.artist || caption)}`,
   '',
   'description: "Eventbericht"',
   '',
   `pubDate: "${eventDate}"`,
   '',
-  `featuredImage: "/src/content/gallery/${year}/${month}-${day}/${fileName}"`,
+  'country: ""',
   '',
-  `slug: "${year}/${month}-${day}"`,
+  `city: ${yamlString(parsed.city)}`,
   '',
-  'gallery:',
-  `  - title: "${parsed.event || ''}"`,
-  `    venue: "${parsed.venue || ''}"`,
-  `    city: "${parsed.city || ''}"`,
-  `    artist: "${parsed.artist || ''}"`,
+  `venue: ${yamlString(parsed.venue)}`,
+  '',
+  `artist: [${yamlString(parsed.artist || caption)}]`,
+  '',
+  `tour: ${yamlString(parsed.event)}`,
   '',
   `tags: [${tags}]`,
   '---',
   '',
-  `![Featured Image](/src/content/gallery/${year}/${month}-${day}/${fileName})`,
+  "import { Image } from 'astro:assets';",
+  `import featuredImage from '${importPath}';`,
+  '',
+  '<Image src={featuredImage} alt="Featured Image" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />',
   '',
   '## Eventbericht',
   '',
-  `➡️ [Originalbericht auf fanieng.com](https://fanieng.com/${year}/${month}-${day}/${slugUrl})`,
+  `[Originalbericht auf fanieng.com](https://fanieng.com/${year}/${month}/${day}/${slugUrl})`,
   '',
 ].join('\n');
 

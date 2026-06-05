@@ -13,8 +13,6 @@ const docsCollection = defineCollection({
       city: z.string().optional(),
       venue: z.string().optional(),
       country: z.string().optional(),
-      contry: z.string().optional(),
-      counrty: z.string().optional(),
       tour: z.string().optional(),
       artist: z.array(z.string()).optional(),
       asin: z.union([z.string(), z.array(z.string())]).optional(),

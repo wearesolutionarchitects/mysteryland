@@ -6,6 +6,7 @@ loadEnv();
 
 const galleryRoot = process.env.GALLERY_ROOT || './src/content/gallery';
 const logFile = './README.md';
+const contentRoot = './src/content/docs/events';
 
 const allDirs = walkDirs(galleryRoot, 1)
   .filter((dir) => fs.readdirSync(dir).some((name) => /\.jpg$/i.test(name)))
@@ -21,10 +22,11 @@ lines.push(`📆 Event-Übersicht – ${new Date().toLocaleString('de-DE', { dat
 lines.push('');
 
 let lastYear = '';
+let skipped = 0;
 
 for (const imgDir of allDirs) {
-  const rel = imgDir.replace(`${galleryRoot}/`, '');
-  const parts = rel.split('/');
+  const rel = path.relative(galleryRoot, imgDir);
+  const parts = rel.split(path.sep);
   if (parts.length < 2) continue;
 
   const year = parts[0];
@@ -43,7 +45,14 @@ for (const imgDir of allDirs) {
 
   const eventDate = meta.eventDate || `${year}-${date}`;
   const [y, m, d] = eventDate.split('-');
-  const externalSlug = meta.slugUrl || `${d || '01'}-${m || '01'}-${y || year}`;
+  const externalSlug = meta.eventDate && meta.slugUrl ? meta.slugUrl : `${year}-${date}`;
+  const mdxFile = path.join(contentRoot, year, `${year}-${date}.mdx`);
+  const mdxLink = `./${mdxFile}`;
+
+  if (!fs.existsSync(mdxFile)) {
+    skipped += 1;
+    continue;
+  }
 
   if (year !== lastYear) {
     lines.push(`## ${year}`);
@@ -51,13 +60,13 @@ for (const imgDir of allDirs) {
     lastYear = year;
   }
 
-  lines.push(`### 🎸 [${caption}](./src/content/docs/events/${year}/${year}-${date}.mdx)`);
+  lines.push(`### 🎸 [${caption}](${mdxLink})`);
   lines.push('');
-  lines.push(`[Externer Link 🔗](https://fanieng.com/${year}/${date}/${externalSlug})`);
+  lines.push(`[Externer Link 🔗](https://fanieng.com/${y || year}/${m || parts[1]}/${d || parts[2]}/${externalSlug})`);
   lines.push('');
   lines.push('---');
   lines.push('');
 }
 
 fs.writeFileSync(logFile, `${lines.join('\n')}\n`, 'utf8');
-console.log('README.md updated');
+console.log(`README.md updated${skipped ? `, skipped ${skipped} gallery dirs without MDX` : ''}`);
