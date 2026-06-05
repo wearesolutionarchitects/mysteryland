@@ -30,7 +30,7 @@ const lat = runCapture('exiftool', ['-s3', '-n', '-GPSLatitude', firstImg]);
 const lon = runCapture('exiftool', ['-s3', '-n', '-GPSLongitude', firstImg]);
 
 const reverseUrl = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lon)}`;
-const response = await fetch(reverseUrl, { headers: { 'User-Agent': process.env.ICLOUD_USERNAME || 'mysteryland-script' } });
+const response = await fetch(reverseUrl, { headers: { 'User-Agent': process.env.SCRIPT_USER_AGENT || 'mysteryland-script' } });
 const json = await response.json();
 
 const address = json.address || {};

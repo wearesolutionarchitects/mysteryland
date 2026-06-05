@@ -8,7 +8,7 @@ const albumDate = process.argv[2];
 ensureDateArg(albumDate, 'Please provide date as YYYY-MM-DD, e.g. 1979-09-29');
 
 const [year, month, day] = albumDate.split('-');
-const galleryRoot = process.env.ICLOUD_DIRECTORY || '/Volumes/Sandisk/Fotos';
+const galleryRoot = process.env.MEDIA_SOURCE_ROOT || '/Volumes/Sandisk/Fotos';
 const dir = path.join(galleryRoot, year, month, day);
 const logFile = path.resolve(process.cwd(), 'exif-debug.log');
 

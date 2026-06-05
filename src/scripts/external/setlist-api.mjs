@@ -4,7 +4,7 @@ loadEnv();
 
 const setlistId = process.argv[2];
 const apiKey = process.env.SETLIST_API_KEY || '';
-const userAgent = process.env.ICLOUD_USERNAME || 'heiko@fanieng.com';
+const userAgent = process.env.SETLIST_USER_AGENT || 'heiko@fanieng.com';
 
 if (!setlistId) {
   console.error('Usage: npm run script:external:setlist -- <setlist-id>');
