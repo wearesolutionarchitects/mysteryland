@@ -1,26 +1,32 @@
 // src/content.config.ts
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { glob } from 'astro/loaders';
+import * as z from 'astro/zod';
+import { docsLoader } from '@astrojs/starlight/loaders';
 import { docsSchema } from '@astrojs/starlight/schema';
 
 const docsCollection = defineCollection({
-    schema: docsSchema({
-        extend: z.object({
-            // Add a new fields to the schema.
-            title: z.string(),
-            tags: z.array(z.string()).optional(),
-            city: z.string().optional(),
-            venue: z.string().optional(),
-            conuntry: z.string().optional(),
-            description: z.string().optional(),
-            price: z.number().optional(),
-            pubDate: z.date().optional(),
-            updatedDate: z.date().optional(),
-        }),
+  loader: docsLoader(),
+  schema: docsSchema({
+    extend: z.object({
+      tags: z.array(z.string()).optional(),
+      city: z.string().optional(),
+      venue: z.string().optional(),
+      country: z.string().optional(),
+      contry: z.string().optional(),
+      counrty: z.string().optional(),
+      tour: z.string().optional(),
+      artist: z.array(z.string()).optional(),
+      asin: z.union([z.string(), z.array(z.string())]).optional(),
+      price: z.coerce.number().optional(),
+      pubDate: z.coerce.date().optional(),
+      updatedDate: z.coerce.date().optional(),
     }),
+  }),
 });
 
 const galleryCollection = defineCollection({
-  type: 'content',
+  loader: glob({ base: './src/content/gallery', pattern: '**/*.md' }),
   schema: z.object({
     title: z.string(),
     datetime: z.string(),

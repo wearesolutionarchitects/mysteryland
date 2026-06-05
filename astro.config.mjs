@@ -5,7 +5,6 @@ import sitemap from '@astrojs/sitemap';
 import starlight from '@astrojs/starlight';
 import path from 'path';
 import astroExpressiveCode from 'astro-expressive-code';
-import { ion } from "starlight-ion-theme";
 
 // https://astro.build/config
 export default defineConfig({
@@ -43,31 +42,40 @@ export default defineConfig({
             {
                 label: '2026',
                 collapsed: false,
-            // Autogenerate a group of links for the 'constellations' directory.
-            autogenerate: { directory: 'events/2026' },
+                items: [
+                    { autogenerate: { directory: 'events/2026' } },
+                ],
             },
             {
                 label: '2025',
                 collapsed: false,
-            autogenerate: { directory: 'events/2025' },
+                items: [
+                    { autogenerate: { directory: 'events/2025' } },
+                ],
             },
             {
                 label: '2024',
                 collapsed: true,
-            autogenerate: { directory: 'events/2024' },
+                items: [
+                    { autogenerate: { directory: 'events/2024' } },
+                ],
             },
             {
                 label: '2023',
                 collapsed: true,
-            autogenerate: { directory: 'events/2023' },
+                items: [
+                    { autogenerate: { directory: 'events/2023' } },
+                ],
             },
             {
                 label: '2022',
                 collapsed: true,
-            autogenerate: { directory: 'events/2022' },
+                items: [
+                    { autogenerate: { directory: 'events/2022' } },
+                ],
             }
     ],
-        })
+        }),
     ],
     vite: {
         resolve: {

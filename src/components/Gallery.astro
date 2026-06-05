@@ -1,6 +1,11 @@
 ---
 // src/components/Gallery.astro
-const { images = [] } = Astro.props;
+interface GalleryImage {
+  src: string;
+  alt?: string;
+}
+
+const { images = [] } = Astro.props as { images?: GalleryImage[] };
 ---
 
 <style>
