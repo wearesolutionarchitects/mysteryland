@@ -25,9 +25,9 @@ Dies ist eine Liste aller Optionen, die für die Kommandozeilenschnittstelle (CL
 
     Diese Option ist eine nützliche Optimierung für inkrementelle Updates: Nur ein kleiner Teil (X) des lokalen Speichers wird erneut auf Vorhandensein überprüft, was lokale IO spart. Allerdings werden dadurch keine „Lücken“ im lokalen Speicher gefüllt oder erkannt.
 
-    ```{note}
+    :::note
     Die Überprüfung erfolgt nach dem Hinzufügedatum in iCloud, nicht nach dem Aufnahme-/Erstellungsdatum.
-    ```
+    :::
 
 ### (recent-parameter)=
 `--recent X`
@@ -36,9 +36,9 @@ Dies ist eine Liste aller Optionen, die für die Kommandozeilenschnittstelle (CL
 
     Diese Option ist vor allem beim Testen und Experimentieren mit Parametern nützlich, um die Downloadmenge zu begrenzen.
 
-    ```{note}
+    :::note
     Die Überprüfung erfolgt nach dem Hinzufügedatum in iCloud, nicht nach dem Aufnahme-/Erstellungsdatum.
-    ```
+    :::
 
 ### (album-parameter)=
 `--album X`
@@ -47,9 +47,9 @@ Dies ist eine Liste aller Optionen, die für die Kommandozeilenschnittstelle (CL
 
     Wird kein Album angegeben, wird die gesamte Sammlung betrachtet.
 
-    ```{note}
+    :::note
     Es kann immer nur ein Album heruntergeladen werden.
-    ```    
+    :::
 
 ### (list-albums-parameter)=
 `--list-albums`
@@ -63,9 +63,9 @@ Dies ist eine Liste aller Optionen, die für die Kommandozeilenschnittstelle (CL
 
     Standard: „Persönliche Bibliothek“.
 
-    ```{note}
+    :::note
     Es kann immer nur eine Bibliothek verwendet werden.
-    ```    
+    :::
 
 ### (list-libraries-parameter)=
 `--list-libraries`
@@ -84,18 +84,18 @@ Dies ist eine Liste aller Optionen, die für die Kommandozeilenschnittstelle (CL
     
 :   Zeigt die aktuelle Version sowie Commit-Hash und das Erstellungsdatum dieser Version an.
 
-    ```{note}
+    :::note
     Wenn `--use-os-locale` vor `--version` angegeben wurde, wird das Datum im OS-Format ausgegeben.
-    ```    
+    :::
 
 ### (use-os-locale-parameter)=
 `--use-os-locale`
     
 :   Weist `icloudpd` an, die Betriebssystem-Lokalisierung zu verwenden. Standardmäßig wird US-Englisch genutzt.
 
-    ```{seealso}
+    :::tip
     Siehe Abschnitt [Dateibenennung](naming) für das beeinflusste Verhalten.
-    ```    
+    :::
 
 ### (dry-run-parameter)=
 `--dry-run`
@@ -118,9 +118,9 @@ Dies ist eine Liste aller Optionen, die für die Kommandozeilenschnittstelle (CL
     
 :   Gibt das iCloud-Passwort für die Authentifizierung an.
 
-    ```{note}
+    :::caution
     Die Übergabe von Zugangsdaten über die Kommandozeile ist unsicher, da sie protokolliert oder anderweitig ausgelesen werden können. Nutze besser andere [Passwortanbieter](authentication).
-    ``` 
+    :::
 
 ### (directory-parameter)=
 `--directory X`
@@ -132,9 +132,9 @@ Dies ist eine Liste aller Optionen, die für die Kommandozeilenschnittstelle (CL
     
 :   Legt den Algorithmus (die Richtlinie) zum Abgleich von entfernten und lokalen Dateien fest.
 
-    ```{seealso}
+    :::tip
     Siehe [Dateibenennung und Duplikaterkennung](naming)
-    ``` 
+    :::
 
 ### (username-parameter)=
 `--username X`
@@ -156,18 +156,18 @@ Dies ist eine Liste aller Optionen, die für die Kommandozeilenschnittstelle (CL
     
 :   Legt die Größe der herunterzuladenden Objekte fest.
 
-    ```{seealso}
+    :::tip
     Siehe [Asset-Größen](size)
-    ```
+    :::
 
 ### (force-size-parameter)=
 `--force-size`
     
 :   Lädt nur die angeforderte Größe herunter. Andernfalls wird die Originalgröße heruntergeladen, falls die gewünschte Größe fehlt.
 
-    ```{seealso}
+    :::tip
     [`--size` Parameter](size-parameter)
-    ```
+    :::
 
 ### (live-photo-size-parameter)=
 `--live-photo-size X`
@@ -189,24 +189,22 @@ Dies ist eine Liste aller Optionen, die für die Kommandozeilenschnittstelle (CL
     
 :   Lokal werden Objekte gelöscht, die in iCloud gelöscht wurden (bzw. in „Zuletzt gelöscht“ verschoben wurden).
 
-    ```{seealso}
+    :::tip
     Siehe [Betriebsmodi](mode)
-    ```
+    :::
 
 ### (delete-after-download-parameter)=
 `--delete-after-download`
     
 :   Nach dem lokalen Download werden die Objekte in iCloud gelöscht (bzw. in „Zuletzt gelöscht“ verschoben). Veraltet, nutze stattdessen [`--keep-icloud-recent-days`](keep-icloud-recent-days-parameter).
 
-    ```{note}
+    :::note
     Wurden entfernte Objekte nicht heruntergeladen (z. B. weil sie schon lokal vorhanden waren), werden sie NICHT in iCloud gelöscht.
-    ```
+    :::
 
-    ```{versionadded} 1.21.0
-    ```
+    Version: hinzugefügt in `1.21.0`.
 
-    ```{deprecated} 1.26.0
-    ```
+    Veraltet seit `1.26.0`.
 
 ### (keep-icloud-recent-days-parameter)=
 `--keep-icloud-recent-days X`
@@ -219,32 +217,31 @@ Dies ist eine Liste aller Optionen, die für die Kommandozeilenschnittstelle (CL
 
 :   Wird der Parameter nicht angegeben, wird nichts aus iCloud gelöscht.
 
-    ```{versionadded} 1.26.0
-    ```
+    Version: hinzugefügt in `1.26.0`.
 
-    ```{seealso}
+    :::tip
     Siehe [Betriebsmodi](mode)
 
     Siehe [Ordnerstruktur](folder_structure)
-    ```
+    :::
 
 ### (only-print-filenames-parameter)=
 `--only-print-filenames`
     
 :   Es werden keine Dateien heruntergeladen, sondern nur die Dateipfade ausgegeben (keine weiteren Informationen).
 
-    ```{seealso}
+    :::tip
     [`--dry-run` Parameter](dry-run-parameter)
-    ```
+    :::
 
 ### (folder-structure-parameter)=
 `--folder-structure X`
     
 :   Legt das Benennungsschema für Unterordner fest.
 
-    ```{seealso}
+    :::tip
     Siehe Details im Abschnitt [Ordnerstruktur](naming).
-    ```
+    :::
 
 ### (set-exif-datetime-parameter)=
 `--set-exif-datetime`
@@ -266,35 +263,35 @@ Dies ist eine Liste aller Optionen, die für die Kommandozeilenschnittstelle (CL
     
 :   Legt das Benennungsschema für den Videoteil von Live-Fotos fest.
 
-    ```{seealso}
+    :::tip
     Siehe Details im Abschnitt [Live Photo](naming).
-    ```
+    :::
 
 ### (align-raw-parameter)=
 `--align-raw X`
     
 :   Legt die Behandlung von RAW+JPEG-Objekten fest.
 
-    ```{seealso}
+    :::tip
     Siehe Details im Abschnitt [RAW+JPEG](raw).
-    ```
+    :::
 
 ### (password-provider-parameter)=
 `--password-provider X`
     
 :   Legt fest, wie das Passwort für die iCloud-Authentifizierung abgefragt wird.
 
-    ```{seealso}
+    :::tip
     Siehe Details im Abschnitt [Passwortanbieter](authentication).
-    ```
+    :::
 ### (mfa-provider-parameter)=
 `--mfa-provider X`
     
 :   Legt fest, wie der Code für die Zwei-Faktor-Authentifizierung (MFA) abgefragt wird.
 
-    ```{seealso}
+    :::tip
     Siehe Details im Abschnitt [MFA-Anbieter](authentication).
-    ```
+    :::
 
 ### (xmp-sidecar-parameter)=
 `--xmp-sidecar`
@@ -321,9 +318,8 @@ Dies ist eine Liste aller Optionen, die für die Kommandozeilenschnittstelle (CL
 
 :   Verarbeitet keine Objekte, die vor dem angegebenen Zeitstempel erstellt wurden. Zeitstempel im ISO-Format, z. B. 2025-06-01, oder als Intervall ab jetzt, z. B. 5d. Ohne Zeitzone wird die lokale Zeitzone verwendet.
 
-    ```{versionadded} 1.28.0
-    ```
+    Version: hinzugefügt in `1.28.0`.
 
-    ```{note}
+    :::note
     Das Datum ist das Erstellungsdatum, nicht das Hinzufügedatum in iCloud.
-    ```
+    :::
