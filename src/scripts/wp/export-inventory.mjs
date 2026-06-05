@@ -20,26 +20,46 @@ const fields = [
   'categories',
   'tags',
   'featured_media',
-  '_embedded',
 ].join(',');
 
-async function fetchPage(page) {
-  const url = new URL('/wp-json/wp/v2/posts', wpBaseUrl);
-  url.searchParams.set('per_page', String(perPage));
-  url.searchParams.set('page', String(page));
-  url.searchParams.set('_embed', 'wp:term,wp:featuredmedia');
-  url.searchParams.set('_fields', fields);
-
+async function fetchJson(url) {
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error(`WordPress request failed: ${response.status} ${response.statusText}`);
   }
 
   return {
-    posts: await response.json(),
+    json: await response.json(),
     total: Number(response.headers.get('x-wp-total') || 0),
     totalPages: Number(response.headers.get('x-wp-totalpages') || 0),
   };
+}
+
+async function fetchPage(page) {
+  const url = new URL('/wp-json/wp/v2/posts', wpBaseUrl);
+  url.searchParams.set('per_page', String(perPage));
+  url.searchParams.set('page', String(page));
+  url.searchParams.set('_fields', fields);
+
+  const result = await fetchJson(url);
+  return { posts: result.json, total: result.total, totalPages: result.totalPages };
+}
+
+async function fetchByIds(route, ids, fieldsValue) {
+  const uniqueIds = [...new Set(ids.filter(Boolean))];
+  const entries = [];
+
+  for (let index = 0; index < uniqueIds.length; index += 100) {
+    const chunk = uniqueIds.slice(index, index + 100);
+    const url = new URL(`/wp-json/wp/v2/${route}`, wpBaseUrl);
+    url.searchParams.set('per_page', String(chunk.length));
+    url.searchParams.set('include', chunk.join(','));
+    url.searchParams.set('_fields', fieldsValue);
+    const result = await fetchJson(url);
+    entries.push(...result.json);
+  }
+
+  return Object.fromEntries(entries.map((entry) => [String(entry.id), entry]));
 }
 
 const firstPage = await fetchPage(1);
@@ -50,12 +70,25 @@ for (let page = 2; page <= firstPage.totalPages; page += 1) {
   posts.push(...result.posts);
 }
 
+const tagMap = await fetchByIds('tags', posts.flatMap((post) => post.tags || []), 'id,name,slug');
+const categoryMap = await fetchByIds('categories', posts.flatMap((post) => post.categories || []), 'id,name,slug');
+const mediaMap = await fetchByIds(
+  'media',
+  posts.map((post) => post.featured_media),
+  'id,date,slug,source_url,alt_text,caption,media_details'
+);
+
 const inventory = {
   source: wpBaseUrl,
   generatedAt: new Date().toISOString(),
   total: firstPage.total,
   totalPages: firstPage.totalPages,
   count: posts.length,
+  taxonomies: {
+    tags: tagMap,
+    categories: categoryMap,
+  },
+  media: mediaMap,
   posts,
 };
 
