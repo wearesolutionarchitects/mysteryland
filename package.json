@@ -6,7 +6,19 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "script:media:exif-rename": "node src/scripts/media/exif-rename.mjs",
+    "script:media:exif-statistik": "node src/scripts/media/exif-statistik.mjs",
+    "script:media:generate-jpg": "node src/scripts/media/generate-jpg.mjs",
+    "script:media:set-image-meta": "node src/scripts/media/set-image-meta.mjs",
+    "script:content:generate-mdx": "node src/scripts/content/generate-mdx.mjs",
+    "script:content:generate-readme": "node src/scripts/content/generate-readme.mjs",
+    "script:wp:get-event": "node src/scripts/wp/get-wp-event.mjs",
+    "script:wp:import-year": "node src/scripts/wp/import-event-year.mjs",
+    "script:wp:titel": "node src/scripts/wp/titel-wp.mjs",
+    "script:github:create-labels": "node src/scripts/github/create-label.mjs",
+    "script:sync:icloud": "node src/scripts/sync/icloud-to-ssd.mjs",
+    "script:external:setlist": "node src/scripts/external/setlist-api.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.1",

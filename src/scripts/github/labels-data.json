@@ -1,0 +1,687 @@
+[
+  {
+    "name": "1live",
+    "color": "6f42c1",
+    "description": "Kategorie für den Radiosender & Konzertveranstalter 1LIVE"
+  },
+  {
+    "name": "abwaerts",
+    "color": "6f42c1",
+    "description": "Kategorie für die Band Abwärts"
+  },
+  {
+    "name": "ac_dc",
+    "color": "6f42c1",
+    "description": "Kategorie für die Band AC/DC"
+  },
+  {
+    "name": "amphitheater",
+    "color": "0e8a16",
+    "description": "Veranstaltungsorte in einem Amphitheater"
+  },
+  {
+    "name": "arena_oberhausen",
+    "color": "0e8a16",
+    "description": "Veranstaltungsorte in der Arena Oberhausen"
+  },
+  {
+    "name": "bryan_adams",
+    "color": "6f42c1",
+    "description": "Kategorie für den Künstler Bryan Adams"
+  },
+  {
+    "name": "die_aerzte",
+    "color": "1d76db",
+    "description": "Kategorie für die Band die ärzte - aus Berlin"
+  },
+  {
+    "name": "artist",
+    "color": "fbca04",
+    "description": "Künstler:innen und Bands im Fokus der Galerie"
+  },
+  {
+    "name": "bela_b",
+    "color": "6f42c1",
+    "description": "Kategorie für den Künstler Bela B"
+  },
+  {
+    "name": "berlin",
+    "color": "0e8a16",
+    "description": "Veranstaltungsorte in Berlin"
+  },
+  {
+    "name": "bielefeld",
+    "color": "0e8a16",
+    "description": "Veranstaltungsorte in Bielefeld"
+  },
+  {
+    "name": "billy_idol",
+    "color": "6f42c1",
+    "description": "Kategorie für den Künstler Billy Idol"
+  },
+  {
+    "name": "bochum",
+    "color": "0e8a16",
+    "description": "Veranstaltungsorte in Bochum"
+  },
+  {
+    "name": "brigitte_nielsen",
+    "color": "6f42c1",
+    "description": "Kategorie für die Künstlerin Brigitte Nielsen"
+  },
+  {
+    "name": "brings",
+    "color": "6f42c1",
+    "description": "Kategorie für die Band Brings"
+  },
+  {
+    "name": "broilers",
+    "color": "6f42c1",
+    "description": "Kategorie für die Band Broilers"
+  },
+  {
+    "name": "campino",
+    "color": "6f42c1",
+    "description": "Kategorie für den Künstler Campino"
+  },
+  {
+    "name": "combichrist",
+    "color": "6f42c1",
+    "description": "Kategorie für die Band Combichrist"
+  },
+  {
+    "name": "concert_team_duesseldorf",
+    "color": "6f42c1",
+    "description": "Kategorie für das Konzertteam Düsseldorf"
+  },
+  {
+    "name": "the_cure",
+    "color": "6f42c1",
+    "description": "Kategorie für die Band The Cure"
+  },
+  {
+    "name": "dancin_machine",
+    "color": "6f42c1",
+    "description": "Kategorie für die Band Dancin' Machine"
+  },
+  {
+    "name": "dbe_koeln",
+    "color": "6f42c1",
+    "description": "Kategorie für das Konzertteam DBE Köln"
+  },
+  {
+    "name": "depeche_mode",
+    "color": "1d76db",
+    "description": "Kategorie für die Band Depeche Mode"
+  },
+  {
+    "name": "deutschland",
+    "color": "0e8a16",
+    "description": "Veranstaltungsorte in Deutschland"
+  },
+  {
+    "name": "die_beatsteaks",
+    "color": "6f42c1",
+    "description": "Kategorie für die Band Die Beatsteaks"
+  },
+  {
+    "name": "die_toten_hosen",
+    "color": "6f42c1",
+    "description": "Kategorie für die Band Die Toten Hosen"
+  },
+  {
+    "name": "dortmund",
+    "color": "0e8a16",
+    "description": "Veranstaltungsorte in Dortmund"
+  },
+  {
+    "name": "duesseldorf",
+    "color": "0e8a16",
+    "description": "Veranstaltungsorte in Düsseldorf"
+  },
+  {
+    "name": "duran_duran",
+    "color": "6f42c1",
+    "description": "Kategorie für die Band Duran Duran"
+  },
+  {
+    "name": "e_werk",
+    "color": "0e8a16",
+    "description": "Veranstaltungen im E-Werk"
+  },
+  {
+    "name": "erasure",
+    "color": "6f42c1",
+    "description": "Kategorie für die Band Erasure"
+  },
+  {
+    "name": "essen",
+    "color": "0e8a16",
+    "description": "Veranstaltungsorte in Essen"
+  },
+  {
+    "name": "event",
+    "color": "f9d0c4",
+    "description": "Inhalte & Metadaten zu Konzerten und Festivals"
+  },
+  {
+    "name": "exilia",
+    "color": "6f42c1",
+    "description": "Kategorie für die Band Exilia"
+  },
+  {
+    "name": "extrabreit",
+    "color": "6f42c1",
+    "description": "Kategorie für die Band Extrabreit"
+  },
+  {
+    "name": "fanta_4",
+    "color": "6f42c1",
+    "description": "Kategorie für die Band Die Fantastischen Vier"
+  },
+  {
+    "name": "farin_urlaub",
+    "color": "6f42c1",
+    "description": "Kategorie für den Künstler Farin Urlaub"
+  },
+  {
+    "name": "frankfurt",
+    "color": "0e8a16",
+    "description": "Veranstaltungsorte in Frankfurt am Main"
+  },
+  {
+    "name": "festival",
+    "color": "6f42c1",
+    "description": "Kategorie für Festivals und Großveranstaltungen"
+  },
+  {
+    "name": "festhalle",
+    "color": "0e8a16",
+    "description": "Veranstaltungen in der Festhalle Frankfurt"
+  },
+  {
+    "name": "flughafen_halle_401",
+    "color": "0e8a16",
+    "description": "Veranstaltungen im Flughafen Halle 401"
+  },
+  {
+    "name": "flughafen_tempelhof",
+    "color": "0e8a16",
+    "description": "Veranstaltungen im Flughafen Tempelhof"
+  },
+  {
+    "name": "furt",
+    "color": "6f42c1",
+    "description": "Kategorie für die Band FURT (Farin Urlaub Racing Team)"
+  },
+  {
+    "name": "fury_in_the_slaughterhouse",
+    "color": "6f42c1",
+    "description": "Kategorie für die Band Fury in the Slaughterhouse"
+  },
+  {
+    "name": "foto",
+    "color": "006b75",
+    "description": "Bildinhalt oder fotografische Besonderheiten"
+  },
+  {
+    "name": "dave_gahan",
+    "color": "6f42c1",
+    "description": "Kategorie für den Künstler Dave Gahan"
+  },
+  {
+    "name": "genesis",
+    "color": "6f42c1",
+    "description": "Kategorie für die Band Genesis"
+  },
+  {
+    "name": "gelsenkirchen",
+    "color": "0e8a16",
+    "description": "Veranstaltungsorte in Gelsenkirchen"
+  },
+  {
+    "name": "glueckaufkampfbahn",
+    "color": "0e8a16",
+    "description": "Veranstaltungen auf der Glückaufkampfbahn"
+  },
+  {
+    "name": "groenemeyer",
+    "color": "6f42c1",
+    "description": "Kategorie für den Künstler Herbert Grönemeyer"
+  },
+  {
+    "name": "guano_apes",
+    "color": "6f42c1",
+    "description": "Kategorie für die Band Guano Apes"
+  },
+  {
+    "name": "hagen",
+    "color": "0e8a16",
+    "description": "Veranstaltungsorte in Hagen"
+  },
+  {
+    "name": "hamburg",
+    "color": "0e8a16",
+    "description": "Veranstaltungsorte in Hamburg"
+  },
+  {
+    "name": "handwerker_promotion",
+    "color": "6f42c1",
+    "description": "Kategorie für die Konzertagentur Handwerker-Promotion"
+  },
+  {
+    "name": "holly_johnson",
+    "color": "6f42c1",
+    "description": "Kategorie für den Künstler Holly Johnson"
+  },
+  {
+    "name": "iss_dome",
+    "color": "0e8a16",
+    "description": "Veranstaltungen im ISS Dome in Düsseldorf"
+  },
+  {
+    "name": "jahr",
+    "color": "cfd3d7",
+    "description": "Jahr der Veranstaltung für chronologische Filter"
+  },
+  {
+    "name": "koeln",
+    "color": "0e8a16",
+    "description": "Veranstaltungsorte in Köln"
+  },
+  {
+    "name": "koenig_pilsener_arena",
+    "color": "0e8a16",
+    "description": "Veranstaltungen in der König-Pilsener-Arena"
+  },
+  {
+    "name": "konzert",
+    "color": "6f42c1",
+    "description": "Kategorie für Konzerte und Live-Auftritte"
+  },
+  {
+    "name": "kkt",
+    "color": "6f42c1",
+    "description": "Kategorie für die Konzertagentur KKT"
+  },
+  {
+    "name": "kool_and_the_gang",
+    "color": "6f42c1",
+    "description": "Kategorie für die Band Kool & The Gang"
+  },
+  {
+    "name": "krefeld",
+    "color": "0e8a16",
+    "description": "Veranstaltungsorte in Krefeld"
+  },
+  {
+    "name": "kulturfabrik",
+    "color": "0e8a16",
+    "description": "Veranstaltungen in der Kulturfabrik"
+  },
+  {
+    "name": "kulturzentrum_pelmke",
+    "color": "0e8a16",
+    "description": "Veranstaltungen im Kulturzentrum PELMKE"
+  },
+  {
+    "name": "land",
+    "color": "0e8a16",
+    "description": "Veranstaltungsorte nach Land sortiert"
+  },
+  {
+    "name": "lanxess_arena",
+    "color": "0e8a16",
+    "description": "Veranstaltungen in der Lanxess Arena Köln"
+  },
+  {
+    "name": "laternen_joe",
+    "color": "6f42c1",
+    "description": "Kategorie für die Band Laternen-Joe (die ärzte)"
+  },
+  {
+    "name": "lenny_kravitz",
+    "color": "6f42c1",
+    "description": "Kategorie für den Künstler Lenny Kravitz"
+  },
+  {
+    "name": "lido",
+    "color": "0e8a16",
+    "description": "Veranstaltungen im Lido"
+  },
+  {
+    "name": "loft_concerts",
+    "color": "6f42c1",
+    "description": "Kategorie für die Konzertagentur Loft Concerts"
+  },
+  {
+    "name": "ltu_arena",
+    "color": "0e8a16",
+    "description": "Veranstaltungen in der LTU arena"
+  },
+  {
+    "name": "mama_concerts",
+    "color": "6f42c1",
+    "description": "Kategorie für die Konzertagentur Mama Concerts"
+  },
+  {
+    "name": "markthalle",
+    "color": "0e8a16",
+    "description": "Veranstaltungen in der Markthalle Hamburg"
+  },
+  {
+    "name": "mct_konzertagentur",
+    "color": "6f42c1",
+    "description": "Kategorie für die MCT Konzertagentur"
+  },
+  {
+    "name": "mercedes_benz_arena",
+    "color": "0e8a16",
+    "description": "Veranstaltungen in der Mercedes-Benz Arena"
+  },
+  {
+    "name": "merkur_spiel_arena",
+    "color": "0e8a16",
+    "description": "Veranstaltungen in der Merkur Spiel-Arena"
+  },
+  {
+    "name": "milli_vanilli",
+    "color": "6f42c1",
+    "description": "Kategorie für die Band Milli Vanilli"
+  },
+  {
+    "name": "mitsubishi_electric_halle",
+    "color": "0e8a16",
+    "description": "Veranstaltungen in der Mitsubishi Electric Halle"
+  },
+  {
+    "name": "metallica",
+    "color": "6f42c1",
+    "description": "Kategorie für die Band Metallica"
+  },
+  {
+    "name": "memento",
+    "color": "5319e7",
+    "description": "Erinnerungen oder persönliche Highlights"
+  },
+  {
+    "name": "muengersdorfer_stadion",
+    "color": "0e8a16",
+    "description": "Veranstaltungen im Müngersdorfer Stadion"
+  },
+  {
+    "name": "musical_dome",
+    "color": "0e8a16",
+    "description": "Veranstaltungen im Musical Dome Köln"
+  },
+  {
+    "name": "musikzirkus",
+    "color": "0e8a16",
+    "description": "Veranstaltungen im Musikzirkus"
+  },
+  {
+    "name": "nena",
+    "color": "6f42c1",
+    "description": "Kategorie für die Künstlerin Nena"
+  },
+  {
+    "name": "nackt_unter_kannibalen",
+    "color": "6f42c1",
+    "description": "Kategorie für die Band Nackt unter Kannibalen"
+  },
+  {
+    "name": "night_of_the_proms",
+    "color": "6f42c1",
+    "description": "Kategorie für die Veranstaltung Night of the Proms"
+  },
+  {
+    "name": "oberhausen",
+    "color": "0e8a16",
+    "description": "Veranstaltungsorte in Oberhausen"
+  },
+  {
+    "name": "olympiastadion",
+    "color": "0e8a16",
+    "description": "Veranstaltungen im Olympiastadion Berlin"
+  },
+  {
+    "name": "oomph",
+    "color": "6f42c1",
+    "description": "Kategorie für die Band Oomph!"
+  },
+  {
+    "name": "osterholz_scharmbeck",
+    "color": "0e8a16",
+    "description": "Veranstaltungsorte in Osterholz-Scharmbeck"
+  },
+  {
+    "name": "palladium",
+    "color": "0e8a16",
+    "description": "Veranstaltungen im Palladium"
+  },
+  {
+    "name": "pc_69",
+    "color": "0e8a16",
+    "description": "Veranstaltungen im PC 69"
+  },
+  {
+    "name": "perrish_toppano",
+    "color": "6f42c1",
+    "description": "Kategorie für die Band Perrish & Toppano"
+  },
+  {
+    "name": "peter_maffay",
+    "color": "6f42c1",
+    "description": "Kategorie für den Künstler Peter Maffay"
+  },
+  {
+    "name": "peters_pop_show",
+    "color": "6f42c1",
+    "description": "Kategorie für die Peters Pop Show"
+  },
+  {
+    "name": "philipshalle",
+    "color": "0e8a16",
+    "description": "Veranstaltungen in der Philipshalle"
+  },
+  {
+    "name": "preis",
+    "color": "ff9f1c",
+    "description": "Preisangabe in € für das Event"
+  },
+  {
+    "name": "prime_entertainment",
+    "color": "6f42c1",
+    "description": "Kategorie für die Konzertagentur Prime Entertainment"
+  },
+  {
+    "name": "omd",
+    "color": "6f42c1",
+    "description": "Kategorie für die Band OMD (Orchestral Manoeuvres in the Dark)"
+  },
+  {
+    "name": "rammstein",
+    "color": "6f42c1",
+    "description": "Kategorie für die Band Rammstein"
+  },
+  {
+    "name": "rhein_energie_stadion",
+    "color": "0e8a16",
+    "description": "Veranstaltungen im RheinEnergieStadion"
+  },
+  {
+    "name": "robbie_zieger",
+    "color": "6f42c1",
+    "description": "Kategorie für den Künstler & Erfinder Robbie Zieger"
+  },
+  {
+    "name": "simple_minds",
+    "color": "6f42c1",
+    "description": "Kategorie für die Band Simple Minds"
+  },
+  {
+    "name": "slipknot",
+    "color": "6f42c1",
+    "description": "Kategorie für die Band Slipknot"
+  },
+  {
+    "name": "sondaschule",
+    "color": "6f42c1",
+    "description": "Kategorie für die Band Sondaschule"
+  },
+  {
+    "name": "so_36",
+    "color": "0e8a16",
+    "description": "Veranstaltungen im SO36"
+  },
+  {
+    "name": "sporthalle",
+    "color": "0e8a16",
+    "description": "Veranstaltungen in der Sporthalle"
+  },
+  {
+    "name": "stadt",
+    "color": "0e8a16",
+    "description": "Veranstaltungsorte nach Stadt sortiert"
+  },
+  {
+    "name": "stadthalle",
+    "color": "0e8a16",
+    "description": "Veranstaltungen in der Stadthalle"
+  },
+  {
+    "name": "stadtpark",
+    "color": "0e8a16",
+    "description": "Veranstaltungen im Stadtpark"
+  },
+  {
+    "name": "sylt",
+    "color": "0e8a16",
+    "description": "Veranstaltungen auf Sylt"
+  },
+  {
+    "name": "tanzbrunnen",
+    "color": "0e8a16",
+    "description": "Veranstaltungen im Tanzbrunnen Köln"
+  },
+  {
+    "name": "ticket",
+    "color": "d73a4a",
+    "description": "Das Ticket für den Event oder das Festival"
+  },
+  {
+    "name": "tor_3",
+    "color": "6f42c1",
+    "description": "Veranstaltungen im Tor 3 in Düsseldorf"
+  },
+  {
+    "name": "tour",
+    "color": "b60205",
+    "description": "Tournee oder Festival-Zugehörigkeit"
+  },
+  {
+    "name": "turbinenhalle",
+    "color": "0e8a16",
+    "description": "Veranstaltungen in der Turbinenhalle"
+  },
+  {
+    "name": "u2",
+    "color": "6f42c1",
+    "description": "Kategorie für die Band U2"
+  },
+  {
+    "name": "udo_lindenberg",
+    "color": "6f42c1",
+    "description": "Kategorie für den Künstler Udo Lindenberg"
+  },
+  {
+    "name": "unheilig",
+    "color": "6f42c1",
+    "description": "Kategorie für den Künstler Unheilig (der Graf)"
+  },
+  {
+    "name": "unna",
+    "color": "0e8a16",
+    "description": "Veranstaltungsorte in Unna"
+  },
+  {
+    "name": "veltins_arena",
+    "color": "0e8a16",
+    "description": "Veranstaltungen in der Veltins-Arena"
+  },
+  {
+    "name": "venue",
+    "color": "0366d6",
+    "description": "Detaillierte Informationen zur Event-Location"
+  },
+  {
+    "name": "wilhelmsplatz",
+    "color": "0e8a16",
+    "description": "Veranstaltungen am Wilhelmsplatz"
+  },
+  {
+    "name": "witten",
+    "color": "0e8a16",
+    "description": "Veranstaltungsorte in Witten"
+  },
+  {
+    "name": "werk_stadt",
+    "color": "0e8a16",
+    "description": "Veranstaltungen in der Werk*stadt"
+  },
+  {
+    "name": "westerland",
+    "color": "0e8a16",
+    "description": "Veranstaltungen in Westerland auf Sylt"
+  },
+  {
+    "name": "westernhagen",
+    "color": "6f42c1",
+    "description": "Kategorie für den Künstler Westernhagen"
+  },
+  {
+    "name": "westfalenhalle",
+    "color": "0e8a16",
+    "description": "Veranstaltungen in der Westfalenhalle Dortmund"
+  },
+  {
+    "name": "westfalenhalle_2",
+    "color": "0e8a16",
+    "description": "Veranstaltungen in der Westfalenhalle 2 Dortmund"
+  },
+  {
+    "name": "westfalenhalle_4",
+    "color": "0e8a16",
+    "description": "Veranstaltungen in der Westfalenhalle 4 Dortmund"
+  },
+  {
+    "name": "westfalenpark",
+    "color": "0e8a16",
+    "description": "Veranstaltungen im Westfalenpark Dortmund"
+  },
+  {
+    "name": "we_will_rock_you",
+    "color": "6f42c1",
+    "description": "Kategorie für das Musical We Will Rock You"
+  },
+  {
+    "name": "wulheide",
+    "color": "0e8a16",
+    "description": "Veranstaltungen in der Wulheide"
+  },
+  {
+    "name": "xanten",
+    "color": "0e8a16",
+    "description": "Veranstaltungsorte in Xanten"
+  },
+  {
+    "name": "zeche_carl",
+    "color": "0e8a16",
+    "description": "Veranstaltungen in der Zeche Carl"
+  },
+  {
+    "name": "zdf",
+    "color": "6f42c1",
+    "description": "Kategorie für den Veranstalter ZDF (Zweites Deutsches Fernsehen)"
+  }
+]
