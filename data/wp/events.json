@@ -1,6 +1,6 @@
 {
   "source": "https://fanieng.com",
-  "generatedAt": "2026-06-05T11:54:14.163Z",
+  "generatedAt": "2026-06-05T11:57:50.108Z",
   "count": 142,
   "events": [
     {
@@ -14,7 +14,9 @@
       "eventDate": "2026-06-03",
       "title": "03.06.2026 - Linkin Park@Hamburg/Volksparkstadion",
       "artist": [
-        "Linkin Park"
+        "Linkin Park",
+        "Clipse",
+        "Phantogram"
       ],
       "city": "Hamburg",
       "venue": "Volksparkstadion",
@@ -49,10 +51,8 @@
           "Ticket",
           "Linkin Park",
           "Konzert",
-          "Clipse",
           "Volksparkstadion",
           "€111.00",
-          "Phantogram",
           "Live Nation"
         ]
       },
@@ -193,7 +193,8 @@
       "eventDate": "2025-06-24",
       "title": "24.06.2025 - Duran Duran@Düsseldorf/PSD BANK DOME",
       "artist": [
-        "Duran Duran"
+        "Duran Duran",
+        "Düsseldorf"
       ],
       "city": "Düsseldorf",
       "venue": "PSD BANK DOME",
@@ -227,8 +228,7 @@
           "Konzert",
           "Duran Duran",
           "2025",
-          "PSD Bank Dome",
-          "Düsseldorf"
+          "PSD Bank Dome"
         ]
       },
       "repo": {
@@ -305,7 +305,8 @@
       "eventDate": "2024-10-12",
       "title": "12.10.2024 - Nena@Bochum/RuhrCongress",
       "artist": [
-        "Nena"
+        "Nena",
+        "Wir gehören zusammen"
       ],
       "city": "Bochum",
       "venue": "RuhrCongress",
@@ -341,7 +342,6 @@
           "Deutschland",
           "2024",
           "Konzert",
-          "Wir gehören zusammen",
           "Nena",
           "RuhrCongress"
         ]
@@ -363,7 +363,8 @@
       "eventDate": "2024-07-26",
       "title": "26.07.2024 - Rammstein@Gelsenkirchen/VELTINS-Arena",
       "artist": [
-        "Rammstein"
+        "Rammstein",
+        "Arena AufSchalke"
       ],
       "city": "Gelsenkirchen",
       "venue": "VELTINS-Arena",
@@ -399,8 +400,7 @@
           "Rammstein",
           "Konzert",
           "Europe Stadium Tour 2024",
-          "Gelsenkirchen",
-          "Arena AufSchalke"
+          "Gelsenkirchen"
         ]
       },
       "repo": {
@@ -420,7 +420,8 @@
       "eventDate": "2024-06-23",
       "title": "23.06.2024 – Lenny Kravitz@Hamburg/Sporthalle",
       "artist": [
-        "23.06.2024 – Lenny Kravitz@Hamburg/Sporthalle"
+        "23.06.2024 – Lenny Kravitz@Hamburg/Sporthalle",
+        "BlueElectricLight"
       ],
       "country": "Deutschland",
       "price": 91.2,
@@ -454,7 +455,6 @@
           "Hamburg",
           "Konzert",
           "2024",
-          "BlueElectricLight",
           "Sporthalle"
         ]
       },
@@ -475,7 +475,9 @@
       "eventDate": "2024-04-05",
       "title": "05.04.2024 - Depeche Mode@Köln/LANXESS arena",
       "artist": [
-        "Depeche Mode"
+        "Depeche Mode",
+        "Köln",
+        "Memento Mori"
       ],
       "city": "Köln",
       "venue": "LANXESS arena",
@@ -507,9 +509,7 @@
           "Ticket",
           "Depeche Mode",
           "Deutschland",
-          "Köln",
           "Konzert",
-          "Memento Mori",
           "2024",
           "LANXESS arena"
         ]
@@ -586,7 +586,9 @@
       "eventDate": "2023-10-12",
       "title": "12.10.2023 - die ärzte@Oberhausen/Turbinenhalle",
       "artist": [
-        "die ärzte"
+        "die ärzte",
+        "Herbst des Lebens",
+        "die ärzte"
       ],
       "city": "Oberhausen",
       "venue": "Turbinenhalle",
@@ -621,8 +623,6 @@
           "Deutschland",
           "Turbinenhalle",
           "Konzert",
-          "Herbst des Lebens",
-          "die ärzte",
           "Oberhausen",
           "2023"
         ]
@@ -798,7 +798,8 @@
       "eventDate": "2023-05-19",
       "title": "19.05.2023 - Herbert Grönemeyer@Dortmund/Westfalenhalle",
       "artist": [
-        "Herbert Grönemeyer"
+        "Herbert Grönemeyer",
+        "Herbert Grönemeyer"
       ],
       "city": "Dortmund",
       "venue": "Westfalenhalle",
@@ -832,7 +833,6 @@
           "€74.85",
           "Westfalenhalle",
           "Konzert",
-          "Herbert Grönemeyer",
           "Dortmund",
           "2023"
         ]
@@ -854,7 +854,8 @@
       "eventDate": "2023-04-01",
       "title": "01.04.2023 - Abwärts@Berlin/SO 36",
       "artist": [
-        "Abwärts"
+        "Abwärts",
+        "Abwärts,2023,Berlin,Konzert"
       ],
       "city": "Berlin",
       "venue": "SO 36",
@@ -883,9 +884,7 @@
         "width": 2293,
         "height": 1570,
         "file": "2025/06/2024-04-01_21-00-00.jpg",
-        "keywords": [
-          "Abwärts,2023,Berlin,Konzert"
-        ]
+        "keywords": []
       },
       "repo": {
         "path": "src/content/docs/events/2023/2023-04-01.mdx",
@@ -904,7 +903,8 @@
       "eventDate": "2022-12-28",
       "title": "28.12.2022 - Extrabreit @Berlin/Lido",
       "artist": [
-        "Extrabreit"
+        "Extrabreit",
+        "Foto"
       ],
       "city": "Berlin",
       "venue": "Lido",
@@ -937,7 +937,6 @@
           "Deutschland",
           "Konzert",
           "2022",
-          "Foto",
           "Extrabreit",
           "Lido"
         ]
@@ -959,7 +958,9 @@
       "eventDate": "2022-12-23",
       "title": "23.12.2022 - Broilers@Düsseldorf/Mitsubishi-Electric-HALLE",
       "artist": [
-        "Broilers"
+        "Broilers",
+        "Philipshalle",
+        "Düsseldorf"
       ],
       "city": "Düsseldorf",
       "venue": "Mitsubishi-Electric-HALLE",
@@ -993,9 +994,7 @@
           "Deutschland",
           "Konzert",
           "Broilers",
-          "2022",
-          "Philipshalle",
-          "Düsseldorf"
+          "2022"
         ]
       },
       "repo": {
@@ -1071,7 +1070,8 @@
       "eventDate": "2022-09-16",
       "title": "16.09.2022 - Sondaschule@Köln/E-Werk",
       "artist": [
-        "Sondaschule"
+        "Sondaschule",
+        "Köln"
       ],
       "city": "Köln",
       "venue": "E-Werk",
@@ -1105,7 +1105,6 @@
           "Ticket",
           "E-Werk",
           "Deutschland",
-          "Köln",
           "Konzert",
           "2022",
           "Sondaschule"
@@ -1128,7 +1127,8 @@
       "eventDate": "2022-08-28",
       "title": "28.08.2022 - die ärzte@Berlin/Flughafen Tempelhof",
       "artist": [
-        "die ärzte"
+        "die ärzte",
+        "die ärzte"
       ],
       "city": "Berlin",
       "venue": "Flughafen Tempelhof",
@@ -1162,7 +1162,6 @@
           "BERLIN TOUR MMXXII",
           "Konzert",
           "2022",
-          "die ärzte",
           "Flughafen Tempelhof"
         ]
       },
@@ -1183,7 +1182,9 @@
       "eventDate": "2022-06-25",
       "title": "25.06.2022 - Die Toten Hosen@Düsseldorf/Merkur-Spiel-Arena",
       "artist": [
-        "Die Toten Hosen"
+        "Die Toten Hosen",
+        "Alles aus Liebe - 40 Jahre Die Toten Hosen",
+        "Düsseldorf"
       ],
       "city": "Düsseldorf",
       "venue": "Merkur-Spiel-Arena",
@@ -1220,11 +1221,9 @@
         "keywords": [
           "Ticket",
           "Deutschland",
-          "Alles aus Liebe - 40 Jahre Die Toten Hosen",
           "Konzert",
           "Die Toten Hosen",
-          "2022",
-          "Düsseldorf"
+          "2022"
         ]
       },
       "repo": {
@@ -1244,7 +1243,8 @@
       "eventDate": "2022-06-07",
       "title": "07.06.2022 - Udo Lindenberg@Dortmund/Westfalenhalle",
       "artist": [
-        "Udo Lindenberg"
+        "Udo Lindenberg",
+        "Udopiom Live 2022"
       ],
       "city": "Dortmund",
       "venue": "Westfalenhalle",
@@ -1280,8 +1280,7 @@
           "2022",
           "Ticket",
           "Deutschland",
-          "Udo Lindenberg",
-          "Udopiom Live 2022"
+          "Udo Lindenberg"
         ]
       },
       "repo": {
@@ -1357,7 +1356,8 @@
       "eventDate": "2022-06-04",
       "title": "04.06.2022 - die ärzte@Köln/RheinEnergieStadion",
       "artist": [
-        "die ärzte"
+        "die ärzte",
+        "Ticket,Deutschland,Köln,Konzert,2022,die ärzte,Buffalo Bill in Rom Tour,RheinEnergieStadion"
       ],
       "city": "Köln",
       "venue": "RheinEnergieStadion",
@@ -1385,9 +1385,7 @@
         "width": 1175,
         "height": 2322,
         "file": "2022/07/2022-06-04-18-30-01.jpg",
-        "keywords": [
-          "Ticket,Deutschland,Köln,Konzert,2022,die ärzte,Buffalo Bill in Rom Tour,RheinEnergieStadion"
-        ]
+        "keywords": []
       },
       "repo": {
         "path": "src/content/docs/events/2022/2022-06-04.mdx",
@@ -1460,7 +1458,8 @@
       "eventDate": "2021-08-24",
       "title": "20.08. bis 24.08.2021 - Urlaub @Zandvoort/Niederlande",
       "artist": [
-        "20.08. bis 24.08.2021 - Urlaub @Zandvoort/Niederlande"
+        "20.08. bis 24.08.2021 - Urlaub @Zandvoort/Niederlande",
+        "Urlaub"
       ],
       "price": null,
       "tags": [
@@ -1483,7 +1482,6 @@
         "file": "2022/07/2021-08-23-13-25-13-scaled.jpeg",
         "keywords": [
           "Zandvoort",
-          "Urlaub",
           "Niederlande",
           "2021"
         ]
@@ -1505,7 +1503,8 @@
       "eventDate": "2021-08-04",
       "title": "04.08.2021 - CAMPINO@Dortmund/Westfalenpark",
       "artist": [
-        "CAMPINO"
+        "CAMPINO",
+        "Hope Street"
       ],
       "city": "Dortmund",
       "venue": "Westfalenpark",
@@ -1540,8 +1539,7 @@
           "Westfalenpark",
           "Konzert",
           "Campino",
-          "Dortmund",
-          "Hope Street"
+          "Dortmund"
         ]
       },
       "repo": {
@@ -1561,7 +1559,9 @@
       "eventDate": "2019-12-07",
       "title": "07.12.2019 - Extrabreit@Hagen/Stadthalle",
       "artist": [
-        "Extrabreit"
+        "Extrabreit",
+        "Extraxbreit",
+        "Stadthalle Hagen"
       ],
       "city": "Hagen",
       "venue": "Stadthalle",
@@ -1592,10 +1592,8 @@
         "keywords": [
           "2019",
           "Deutschland",
-          "Extraxbreit",
           "Hagen",
           "Konzert",
-          "Stadthalle Hagen",
           "Ticket"
         ]
       },
@@ -1616,7 +1614,9 @@
       "eventDate": "2019-10-11",
       "title": "27.09. bis 11.10.2019 - Spanien/Mallorca/Porto Cristo",
       "artist": [
-        "27.09. bis 11.10.2019 - Spanien/Mallorca/Porto Cristo"
+        "27.09. bis 11.10.2019 - Spanien/Mallorca/Porto Cristo",
+        "Urlaub",
+        "Cala Mendia"
       ],
       "price": null,
       "tags": [
@@ -1643,8 +1643,6 @@
           "Mallorca",
           "Spanien",
           "Porto Cristo",
-          "Urlaub",
-          "Cala Mendia",
           "2019"
         ]
       },
@@ -1814,7 +1812,9 @@
       "eventDate": "2019-05-24",
       "title": "17.05. bis 24.05. 2019 - Spanien/Mallorca/Porto Cristo",
       "artist": [
-        "17.05. bis 24.05. 2019 - Spanien/Mallorca/Porto Cristo"
+        "17.05. bis 24.05. 2019 - Spanien/Mallorca/Porto Cristo",
+        "Urlaub",
+        "Cala Mendia"
       ],
       "price": null,
       "tags": [
@@ -1841,8 +1841,6 @@
           "Mallorca",
           "Spanien",
           "Porto Cristo",
-          "Urlaub",
-          "Cala Mendia",
           "2019"
         ]
       },
@@ -1909,7 +1907,9 @@
       "eventDate": "2019-03-27",
       "title": "27.03.2019 - Herbert Grönemeyer@Dortmund/Westfalenhalle",
       "artist": [
-        "Herbert Grönemeyer"
+        "Herbert Grönemeyer",
+        "Tumult",
+        "Herbert Grönemeyer"
       ],
       "city": "Dortmund",
       "venue": "Westfalenhalle",
@@ -1939,12 +1939,10 @@
         "file": "2022/07/2019-03-27-20-00-00.jpg",
         "keywords": [
           "Ticket",
-          "Tumult",
           "Deutschland",
           "Westfalenhalle",
           "Konzert",
           "2019",
-          "Herbert Grönemeyer",
           "Dortmund"
         ]
       },
@@ -2059,7 +2057,8 @@
       "eventDate": "2018-11-02",
       "title": "22.10. bis 02.11.2018 - Spanien/Mallorca/Porto Cristo",
       "artist": [
-        "22.10. bis 02.11.2018 - Spanien/Mallorca/Porto Cristo"
+        "22.10. bis 02.11.2018 - Spanien/Mallorca/Porto Cristo",
+        "Urlaub"
       ],
       "price": null,
       "tags": [
@@ -2085,7 +2084,6 @@
         "keywords": [
           "Spanien",
           "Porto Cristo",
-          "Urlaub",
           "2018",
           "Mallorca"
         ]
@@ -2107,7 +2105,9 @@
       "eventDate": "2018-06-25",
       "title": "25.06.2018 - Lenny Kravitz@Köln/Lanxess-Arena",
       "artist": [
-        "Lenny Kravitz"
+        "Lenny Kravitz",
+        "Köln",
+        "LANXESS arena"
       ],
       "city": "Köln",
       "venue": "Lanxess-Arena",
@@ -2137,8 +2137,6 @@
         "keywords": [
           "2018",
           "Deutschland",
-          "Köln",
-          "LANXESS arena",
           "Lenny Kravitz",
           "Ticket"
         ]
@@ -2160,7 +2158,9 @@
       "eventDate": "2018-06-21",
       "title": "16.06. bis 21.06.2018 – Spanien/Mallorca/Porto Cristo",
       "artist": [
-        "16.06. bis 21.06.2018 – Spanien/Mallorca/Porto Cristo"
+        "16.06. bis 21.06.2018 – Spanien/Mallorca/Porto Cristo",
+        "Urlaub",
+        "Alcudia"
       ],
       "price": null,
       "tags": [
@@ -2185,9 +2185,7 @@
         "file": "2022/07/2018-06-19-13-27-20-scaled.jpeg",
         "keywords": [
           "Spanien",
-          "Urlaub",
           "2018",
-          "Alcudia",
           "Mallorca"
         ]
       },
@@ -2255,7 +2253,8 @@
       "eventDate": "2017-12-26",
       "title": "26.12.2017 - Die Toten Hosen@Dortmund/Westfalenhalle",
       "artist": [
-        "Die Toten Hosen"
+        "Die Toten Hosen",
+        "Westafalenhalle"
       ],
       "city": "Dortmund",
       "venue": "Westfalenhalle",
@@ -2288,8 +2287,7 @@
           "Deutschland",
           "Die Toten Hosen",
           "Dortmund",
-          "Ticket",
-          "Westafalenhalle"
+          "Ticket"
         ]
       },
       "repo": {
@@ -2347,7 +2345,8 @@
       "eventDate": "2017-12-08",
       "title": "08.12.2017 - Extrabreit@Hagen/Stadthalle",
       "artist": [
-        "Extrabreit"
+        "Extrabreit",
+        "Extraxbreit"
       ],
       "city": "Hagen",
       "venue": "Stadthalle",
@@ -2378,7 +2377,6 @@
         "keywords": [
           "2017",
           "Deutschland",
-          "Extraxbreit",
           "Hagen",
           "Konzert",
           "Stadthalle",
@@ -2589,7 +2587,8 @@
       "eventDate": "2015-07-12",
       "title": "12.07.2015 - AC/DC@Gelsenkirchen/VELTINS-Arena",
       "artist": [
-        "AC/DC"
+        "AC/DC",
+        "Arena AufSchalke"
       ],
       "city": "Gelsenkirchen",
       "venue": "VELTINS-Arena",
@@ -2624,8 +2623,7 @@
           "2015",
           "Konzert",
           "AC/DC",
-          "Gelsenkirchen",
-          "Arena AufSchalke"
+          "Gelsenkirchen"
         ]
       },
       "repo": {
@@ -2645,7 +2643,9 @@
       "eventDate": "2015-06-11",
       "title": "11.06.2015 - Farin Urlaub Racing Team@Düsseldorf/Mitsubishi Electric Halle",
       "artist": [
-        "Farin Urlaub Racing Team"
+        "Farin Urlaub Racing Team",
+        "Philipshalle",
+        "Düsseldorf"
       ],
       "city": "Düsseldorf",
       "venue": "Mitsubishi Electric Halle",
@@ -2679,9 +2679,7 @@
           "Deutschland",
           "Farin Urlaub Racing Team",
           "Konzert",
-          "2015",
-          "Philipshalle",
-          "Düsseldorf"
+          "2015"
         ]
       },
       "repo": {
@@ -2701,7 +2699,9 @@
       "eventDate": "2014-11-18",
       "title": "18.11.2014 - Billy Idol@Düsseldorf/Mitsubishi Electric Halle",
       "artist": [
-        "Billy Idol"
+        "Billy Idol",
+        "Düsseldorf",
+        "Philipshalle"
       ],
       "city": "Düsseldorf",
       "venue": "Mitsubishi Electric Halle",
@@ -2731,9 +2731,7 @@
         "keywords": [
           "Konzert",
           "Billy Idol",
-          "Düsseldorf",
-          "2014",
-          "Philipshalle"
+          "2014"
         ]
       },
       "repo": {
@@ -2753,7 +2751,9 @@
       "eventDate": "2014-10-11",
       "title": "11.10.2014 – Farin Urlaub Racing Team@KlagenFURT/Wörtherseehalle",
       "artist": [
-        "11.10.2014 – Farin Urlaub Racing Team@KlagenFURT/Wörtherseehalle"
+        "11.10.2014 – Farin Urlaub Racing Team@KlagenFURT/Wörtherseehalle",
+        "Österreich",
+        "Wörtherseehalle"
       ],
       "price": 34,
       "tags": [
@@ -2782,8 +2782,6 @@
           "Farin Urlaub Racing Team",
           "Klagenfurt",
           "Konzert",
-          "Österreich",
-          "Wörtherseehalle",
           "2014",
           "Ticket"
         ]
@@ -2853,7 +2851,8 @@
       "eventDate": "2013-08-30",
       "title": "22.08. bis 30.08.2013 - Portugal - Madeira/Funchal",
       "artist": [
-        "22.08. bis 30.08.2013 - Portugal - Madeira/Funchal"
+        "22.08. bis 30.08.2013 - Portugal - Madeira/Funchal",
+        "Reise, 2013, Portugal, Madeira"
       ],
       "price": null,
       "tags": [
@@ -2875,9 +2874,7 @@
         "width": 1944,
         "height": 1296,
         "file": "2022/07/2013-08-28-13-40-55.jpg",
-        "keywords": [
-          "Reise, 2013, Portugal, Madeira"
-        ]
+        "keywords": []
       },
       "repo": {
         "path": "src/content/docs/events/2013/2013-08-30.mdx",
@@ -2896,7 +2893,8 @@
       "eventDate": "2013-07-03",
       "title": "03.07.2013 - Depeche Mode@Düsseldorf/Esprit Arena",
       "artist": [
-        "Depeche Mode"
+        "Depeche Mode",
+        "Düsseldorf"
       ],
       "city": "Düsseldorf",
       "venue": "Esprit Arena",
@@ -2931,8 +2929,7 @@
           "Deutschland",
           "Esprit-Arena",
           "Konzert",
-          "2013",
-          "Düsseldorf"
+          "2013"
         ]
       },
       "repo": {
@@ -3003,7 +3000,9 @@
       "eventDate": "2012-11-07",
       "title": "07.11.2012 - die ärzte@Düsseldorf/ISS-Dome",
       "artist": [
-        "die ärzte"
+        "die ärzte",
+        "die ärzte",
+        "Düsseldorf"
       ],
       "city": "Düsseldorf",
       "venue": "ISS-Dome",
@@ -3033,8 +3032,6 @@
         "height": 1107,
         "file": "2022/07/2012-11-07-17-30-01.jpg",
         "keywords": [
-          "die ärzte",
-          "Düsseldorf",
           "ISS-Dome",
           "Ticket",
           "Deutschland",
@@ -3105,7 +3102,9 @@
       "eventDate": "2012-08-19",
       "title": "19.08.2012 - die ärzte@Berlin/Waldbühne",
       "artist": [
-        "die ärzte"
+        "die ärzte",
+        "die ärzte",
+        "Waldbühne"
       ],
       "city": "Berlin",
       "venue": "Waldbühne",
@@ -3136,9 +3135,7 @@
         "file": "2022/07/2012-08-19-18-30-01.jpg",
         "keywords": [
           "Berlin",
-          "die ärzte",
-          "Ticket",
-          "Waldbühne"
+          "Ticket"
         ]
       },
       "repo": {
@@ -3204,7 +3201,9 @@
       "eventDate": "2012-05-25",
       "title": "25.05.2012 – die ärzte@Oberhausen/König-Pilsener-Arena",
       "artist": [
-        "25.05.2012 – die ärzte@Oberhausen/König-Pilsener-Arena"
+        "25.05.2012 – die ärzte@Oberhausen/König-Pilsener-Arena",
+        "die ärzte",
+        "König-Pilsener-ARENA"
       ],
       "country": "Deutschland",
       "price": 39.9,
@@ -3232,8 +3231,6 @@
         "height": 972,
         "file": "2022/07/2012-05-25-19-30-00.jpg",
         "keywords": [
-          "die ärzte",
-          "König-Pilsener-ARENA",
           "Oberhausen",
           "Ticket",
           "Deutschland",
@@ -3257,7 +3254,8 @@
       "eventDate": "2011-12-06",
       "title": "06.12.2011 - Rammstein@Düsseldorf/ISS-Dome",
       "artist": [
-        "Rammstein"
+        "Rammstein",
+        "Düsseldorf"
       ],
       "city": "Düsseldorf",
       "venue": "ISS-Dome",
@@ -3287,7 +3285,6 @@
         "height": 2485,
         "file": "2022/07/2011-12-06-18-00-01.jpg",
         "keywords": [
-          "Düsseldorf",
           "ISS-Dome",
           "Rammstein",
           "Ticket",
@@ -3313,7 +3310,8 @@
       "eventDate": "2011-09-22",
       "title": "10.09. bis 21.09.2011 - Spanien/Dénia",
       "artist": [
-        "10.09. bis 21.09.2011 - Spanien/Dénia"
+        "10.09. bis 21.09.2011 - Spanien/Dénia",
+        "Denia"
       ],
       "price": null,
       "tags": [
@@ -3339,7 +3337,6 @@
         "keywords": [
           "2011",
           "Spanien",
-          "Denia",
           "Reise"
         ]
       },
@@ -3360,7 +3357,8 @@
       "eventDate": "2011-06-05",
       "title": "05.06.2011 - Herbert Grönemeyer@Berlin/Olympiastadion",
       "artist": [
-        "Herbert Grönemeyer"
+        "Herbert Grönemeyer",
+        "Herbert Grönemeyer"
       ],
       "city": "Berlin",
       "venue": "Olympiastadion",
@@ -3391,7 +3389,6 @@
         "keywords": [
           "Konzert",
           "Berlin",
-          "Herbert Grönemeyer",
           "2011",
           "Olympiastadion",
           "Deutschland",
@@ -3415,7 +3412,8 @@
       "eventDate": "2011-04-29",
       "title": "29.04.2011 - Laternen Joe@Osterholz-Scharmbeck/Stadthalle",
       "artist": [
-        "Laternen Joe"
+        "Laternen Joe",
+        "Laternen-Joe"
       ],
       "city": "Osterholz-Scharmbeck",
       "venue": "Stadthalle",
@@ -3446,7 +3444,6 @@
         "file": "2022/07/2011-04-29-18-30-00.jpeg",
         "keywords": [
           "Stadthalle",
-          "Laternen-Joe",
           "2011",
           "Osterholz-Scharmbeck",
           "Ticket",
@@ -3572,7 +3569,10 @@
       "eventDate": "2010-11-27",
       "title": "27.11.2010 - NOKIA Night of the Proms@Köln/Lanxess-Arena",
       "artist": [
-        "NOKIA Night of the Proms"
+        "NOKIA Night of the Proms",
+        "Diverse Interpreten",
+        "Köln",
+        "Lanxess Arena"
       ],
       "city": "Köln",
       "venue": "Lanxess-Arena",
@@ -3605,9 +3605,6 @@
         "height": 961,
         "file": "2022/07/2010-11-27-20-00-00.jpg",
         "keywords": [
-          "Diverse Interpreten",
-          "Köln",
-          "Lanxess Arena",
           "Ticket",
           "Deutschland",
           "2010"
@@ -3630,7 +3627,9 @@
       "eventDate": "2010-10-31",
       "title": "30.10. bis 31.10.2010 - Deutschland/Rothenburg ob der Tauber",
       "artist": [
-        "30.10. bis 31.10.2010 - Deutschland/Rothenburg ob der Tauber"
+        "30.10. bis 31.10.2010 - Deutschland/Rothenburg ob der Tauber",
+        "Urlaub",
+        "Bayern"
       ],
       "country": "Deutschland",
       "price": null,
@@ -3655,8 +3654,6 @@
         "keywords": [
           "Rothenburg ob der Tauber",
           "2010",
-          "Urlaub",
-          "Bayern",
           "Deutschland"
         ]
       },
@@ -3677,7 +3674,8 @@
       "eventDate": "2010-04-24",
       "title": "24.04.2010 - Abwärts@Hagen/Kulturzentrum Pelmke",
       "artist": [
-        "Abwärts"
+        "Abwärts",
+        "Abwaerts"
       ],
       "city": "Hagen",
       "venue": "Kulturzentrum Pelmke",
@@ -3706,7 +3704,6 @@
         "height": 871,
         "file": "2022/07/2010-04-24-20-00-00.jpg",
         "keywords": [
-          "Abwaerts",
           "Hagen",
           "Kulturzentrum Pelmke",
           "Ticket"
@@ -3729,7 +3726,9 @@
       "eventDate": "2010-02-27",
       "title": "27.02.2010 - Depeche Mode@Düsseldorf/LTU-Arena",
       "artist": [
-        "Depeche Mode"
+        "Depeche Mode",
+        "Düsseldorf",
+        "ESPRIT Arena"
       ],
       "city": "Düsseldorf",
       "venue": "LTU-Arena",
@@ -3759,8 +3758,6 @@
         "file": "2022/07/2010-02-27-19-30-00.jpg",
         "keywords": [
           "Depeche Mode",
-          "Düsseldorf",
-          "ESPRIT Arena",
           "Ticket",
           "2010",
           "Deutschland"
@@ -3829,7 +3826,9 @@
       "eventDate": "2009-11-30",
       "title": "30.11.2009 - Rammstein@Köln/Lanxess-Arena",
       "artist": [
-        "Rammstein"
+        "Rammstein",
+        "Lanxess Arena",
+        "Köln"
       ],
       "city": "Köln",
       "venue": "Lanxess-Arena",
@@ -3863,8 +3862,6 @@
         "keywords": [
           "2009",
           "Ticket",
-          "Lanxess Arena",
-          "Köln",
           "Rammstein",
           "Deutschland"
         ]
@@ -3942,7 +3939,8 @@
       "eventDate": "2009-06-17",
       "title": "17.06.2009 - die ärzte@Hamburg/Sporthalle",
       "artist": [
-        "die ärzte"
+        "die ärzte",
+        "die ärzte"
       ],
       "city": "Hamburg",
       "venue": "Sporthalle",
@@ -3971,7 +3969,6 @@
         "height": 1280,
         "file": "2022/07/2009-06-17-18-30-00.jpg",
         "keywords": [
-          "die ärzte",
           "Hamburg",
           "Sporthalle",
           "Ticket",
@@ -4152,7 +4149,9 @@
       "eventDate": "2008-11-21",
       "title": "21.11.2008 - Farin Urlaub Racing Team@Köln/Palladium",
       "artist": [
-        "Farin Urlaub Racing Team"
+        "Farin Urlaub Racing Team",
+        "Köln",
+        "2009"
       ],
       "city": "Köln",
       "venue": "Palladium",
@@ -4183,10 +4182,8 @@
         "file": "2022/07/2008-11-21-20-00-00.jpg",
         "keywords": [
           "Farin Urlaub Racing Team",
-          "Köln",
           "Palladium",
           "Ticket",
-          "2009",
           "Konzert",
           "Deutschland"
         ]
@@ -4255,7 +4252,9 @@
       "eventDate": "2008-07-11",
       "title": "11.07.2008 - die ärzte@Berlin/Wulheide",
       "artist": [
-        "die ärzte"
+        "die ärzte",
+        "2011",
+        "die ärzte"
       ],
       "city": "Berlin",
       "venue": "Wulheide",
@@ -4290,10 +4289,8 @@
           "Ticket",
           "Berlin",
           "Deutschland",
-          "2011",
           "Konzert",
-          "Wulheide",
-          "die ärzte"
+          "Wulheide"
         ]
       },
       "repo": {
@@ -4350,7 +4347,8 @@
       "eventDate": "2007-11-16",
       "title": "16.11.2007 - die ärzte@Dortmund/Westfalenhalle",
       "artist": [
-        "die ärzte"
+        "die ärzte",
+        "die ärzte"
       ],
       "city": "Dortmund",
       "venue": "Westfalenhalle",
@@ -4381,7 +4379,6 @@
         "height": 1280,
         "file": "2022/07/2007-11-16-20-00-01.jpg",
         "keywords": [
-          "die ärzte",
           "Dortmund",
           "Ticket",
           "Westfalenhalle"
@@ -4451,7 +4448,9 @@
       "eventDate": "2007-06-27",
       "title": "27.06.2007 - Genesis@Düsseldorf/LTU-Arena",
       "artist": [
-        "Genesis"
+        "Genesis",
+        "Düsseldorf",
+        "ESPRIT Arena"
       ],
       "city": "Düsseldorf",
       "venue": "LTU-Arena",
@@ -4480,8 +4479,6 @@
         "height": 239,
         "file": "2022/07/2007-06-27-19-00-00.jpg",
         "keywords": [
-          "Düsseldorf",
-          "ESPRIT Arena",
           "Genesis",
           "Ticket"
         ]
@@ -4503,7 +4500,9 @@
       "eventDate": "2007-06-20",
       "title": "20.06.2007 - Herbert Grönemeyer@Köln/RheinEnergieStadion",
       "artist": [
-        "Herbert Grönemeyer"
+        "Herbert Grönemeyer",
+        "Herbert Grönemeyer",
+        "Köln"
       ],
       "city": "Köln",
       "venue": "RheinEnergieStadion",
@@ -4534,8 +4533,6 @@
         "height": 407,
         "file": "2022/07/2007-06-20-19-00-00.jpg",
         "keywords": [
-          "Herbert Grönemeyer",
-          "Köln",
           "RheinEnergieStadion",
           "Ticket",
           "2007",
@@ -4613,7 +4610,9 @@
       "eventDate": "2006-12-31",
       "title": "31.12.2006 - die ärzte@Köln/RheinEnergieStadion",
       "artist": [
-        "die ärzte"
+        "die ärzte",
+        "die ärzte",
+        "Köln"
       ],
       "city": "Köln",
       "venue": "RheinEnergieStadion",
@@ -4645,8 +4644,6 @@
         "height": 766,
         "file": "2022/07/2006-12-31-23-47-55.jpg",
         "keywords": [
-          "die ärzte",
-          "Köln",
           "RheinEnergieStadion",
           "Deutschland",
           "Konzert",
@@ -4672,7 +4669,8 @@
       "eventDate": "2006-11-11",
       "title": "11.11.2006 - Farin Urlaub Racing Team@Düsseldorf/Philipshalle",
       "artist": [
-        "Farin Urlaub Racing Team"
+        "Farin Urlaub Racing Team",
+        "Düsseldorf"
       ],
       "city": "Düsseldorf",
       "venue": "Philipshalle",
@@ -4703,7 +4701,6 @@
         "height": 768,
         "file": "2022/07/2006-11-11-21-15-56.jpg",
         "keywords": [
-          "Düsseldorf",
           "Farin Urlaub Racing Team",
           "Philipshalle",
           "2006",
@@ -4728,7 +4725,8 @@
       "eventDate": "2006-06-08",
       "title": "08.06.2006 - Simple Minds@Gelsenkirchen/Glückaufkampfbahn",
       "artist": [
-        "Simple Minds"
+        "Simple Minds",
+        "Glückaufkampfbahn"
       ],
       "city": "Gelsenkirchen",
       "venue": "Glückaufkampfbahn",
@@ -4762,7 +4760,6 @@
           "Simple Minds",
           "Konzert",
           "2006",
-          "Glückaufkampfbahn",
           "Gelsenkirchen"
         ]
       },
@@ -4783,7 +4780,9 @@
       "eventDate": "2006-01-20",
       "title": "20.01.2006 - Depeche Mode@Düsseldorf/LTU-Arena",
       "artist": [
-        "Depeche Mode"
+        "Depeche Mode",
+        "Düsseldorf",
+        "ESPRIT Arena"
       ],
       "city": "Düsseldorf",
       "venue": "LTU-Arena",
@@ -4815,8 +4814,6 @@
         "file": "2022/07/2006-01-20-21-35-14.jpg",
         "keywords": [
           "Depeche Mode",
-          "Düsseldorf",
-          "ESPRIT Arena",
           "2006",
           "Deutschland",
           "Konzert"
@@ -4949,7 +4946,8 @@
       "eventDate": "2005-05-20",
       "title": "20.05.2005 - Farin Urlaub Racing Team@Köln/Palladium",
       "artist": [
-        "Farin Urlaub Racing Team"
+        "Farin Urlaub Racing Team",
+        "Köln"
       ],
       "city": "Köln",
       "venue": "Palladium",
@@ -4981,7 +4979,6 @@
         "file": "2022/07/2005-05-20-20-39-51.jpg",
         "keywords": [
           "Farin Urlaub Racing Team",
-          "Köln",
           "Palladium"
         ]
       },
@@ -5058,7 +5055,9 @@
       "eventDate": "2004-08-08",
       "title": "08.08.2004 - die ärzte@Berlin/Waldbühne",
       "artist": [
-        "die ärzte"
+        "die ärzte",
+        "die ärzte",
+        "Waldbühne"
       ],
       "city": "Berlin",
       "venue": "Waldbühne",
@@ -5091,9 +5090,7 @@
         "keywords": [
           "Konzert",
           "Berlin",
-          "die ärzte",
           "2004",
-          "Waldbühne",
           "Deutschland"
         ]
       },
@@ -5114,7 +5111,9 @@
       "eventDate": "2004-07-10",
       "title": "10.07.2004 - Lenny Kravitz@Köln/Lanxess-Arena",
       "artist": [
-        "Lenny Kravitz"
+        "Lenny Kravitz",
+        "Lanxess Arena",
+        "Köln"
       ],
       "city": "Köln",
       "venue": "Lanxess-Arena",
@@ -5146,8 +5145,6 @@
         "keywords": [
           "Konzert",
           "Lenny Kravitz",
-          "Lanxess Arena",
-          "Köln",
           "2004",
           "Deutschland"
         ]
@@ -5169,7 +5166,9 @@
       "eventDate": "2004-06-28",
       "title": "28.06.2004 - die ärzte@Köln/Tanzbrunnen",
       "artist": [
-        "die ärzte"
+        "die ärzte",
+        "die ärzte",
+        "Köln"
       ],
       "city": "Köln",
       "venue": "Tanzbrunnen",
@@ -5200,8 +5199,6 @@
         "height": 507,
         "file": "2022/07/2004-06-28-19-54-01.jpg",
         "keywords": [
-          "die ärzte",
-          "Köln",
           "Konzert",
           "Tanzbrunnen",
           "2004",
@@ -5225,7 +5222,8 @@
       "eventDate": "2004-06-10",
       "title": "10.06.2004 - Metallica@Gelsenkirchen/VELTINS-Arena",
       "artist": [
-        "Metallica"
+        "Metallica",
+        "Arena AufSchalke"
       ],
       "city": "Gelsenkirchen",
       "venue": "VELTINS-Arena",
@@ -5262,7 +5260,6 @@
           "Deutschland",
           "Konzert",
           "Gelsenkirchen",
-          "Arena AufSchalke",
           "2004"
         ]
       },
@@ -5283,7 +5280,8 @@
       "eventDate": "2004-06-05",
       "title": "05.06.2004 - die ärzte@Dortmund/Westfalenhalle",
       "artist": [
-        "die ärzte"
+        "die ärzte",
+        "die ärzte"
       ],
       "city": "Dortmund",
       "venue": "Westfalenhalle",
@@ -5314,7 +5312,6 @@
         "height": 303,
         "file": "2022/07/2004-06-05-20-00-00.jpg",
         "keywords": [
-          "die ärzte",
           "Dortmund",
           "Ticket",
           "Westfalenhalle",
@@ -5340,7 +5337,9 @@
       "eventDate": "2004-06-04",
       "title": "04.06.2004 - die ärzte@Düsseldorf/Philipshalle",
       "artist": [
-        "die ärzte"
+        "die ärzte",
+        "die ärzte",
+        "Düsseldorf"
       ],
       "city": "Düsseldorf",
       "venue": "Philipshalle",
@@ -5371,8 +5370,6 @@
         "height": 305,
         "file": "2022/07/2004-06-04-20-00-00.jpg",
         "keywords": [
-          "die ärzte",
-          "Düsseldorf",
           "Philipshalle",
           "Ticket",
           "2004",
@@ -5455,7 +5452,9 @@
       "eventDate": "2004-05-25",
       "title": "25.05.2004 - die ärzte@Köln/Palladium",
       "artist": [
-        "die ärzte"
+        "die ärzte",
+        "Köln",
+        "die ärzte"
       ],
       "city": "Köln",
       "venue": "Palladium",
@@ -5489,9 +5488,7 @@
           "Ticket",
           "Palladium",
           "Deutschland",
-          "Köln",
           "Konzert",
-          "die ärzte",
           "2004"
         ]
       },
@@ -5512,7 +5509,9 @@
       "eventDate": "2003-12-14",
       "title": "14.12.2003 - die ärzte@Oberhausen/König-Pilsener-Arena",
       "artist": [
-        "die ärzte"
+        "die ärzte",
+        "die ärzte",
+        "König-Pilsener-ARENA"
       ],
       "city": "Oberhausen",
       "venue": "König-Pilsener-Arena",
@@ -5543,8 +5542,6 @@
         "height": 312,
         "file": "2022/07/2003-12-14-20-00-00.jpg",
         "keywords": [
-          "die ärzte",
-          "König-Pilsener-ARENA",
           "Oberhausen",
           "Ticket",
           "2003",
@@ -5569,7 +5566,8 @@
       "eventDate": "2003-12-13",
       "title": "13.12.2003 - die ärzte@Oberhausen/König-Pilsener-Arena",
       "artist": [
-        "die ärzte"
+        "die ärzte",
+        "die ärzte,König-Pilsener-ARENA,Oberhausen,Ticket,2003,Deutschland,Konzert"
       ],
       "city": "Oberhausen",
       "venue": "König-Pilsener-Arena",
@@ -5598,9 +5596,7 @@
         "width": 2010,
         "height": 949,
         "file": "2022/07/2003-12-13-20-00-00.jpg",
-        "keywords": [
-          "die ärzte,König-Pilsener-ARENA,Oberhausen,Ticket,2003,Deutschland,Konzert"
-        ]
+        "keywords": []
       },
       "repo": {
         "path": "src/content/docs/events/2003/2003-12-13.mdx",
@@ -5619,7 +5615,8 @@
       "eventDate": "2003-11-14",
       "title": "14.11.2003 - Dave Gahan@Düsseldorf/Philipshalle",
       "artist": [
-        "Dave Gahan"
+        "Dave Gahan",
+        "Düsseldorf"
       ],
       "city": "Düsseldorf",
       "venue": "Philipshalle",
@@ -5651,7 +5648,6 @@
         "file": "2022/07/2003-11-14-20-00-00.jpg",
         "keywords": [
           "Dave Gahan",
-          "Düsseldorf",
           "Philipshalle",
           "Ticket"
         ]
@@ -5673,7 +5669,8 @@
       "eventDate": "2003-10-12",
       "title": "12.10.2003 - Bela B & Jochen Malmsheimer@Witten/Werkstadt",
       "artist": [
-        "Bela B & Jochen Malmsheimer"
+        "Bela B & Jochen Malmsheimer",
+        "Bela B,Jochen Malmsheimer,Konzert,Werkstadt,Witten,2003,Deutschland"
       ],
       "city": "Witten",
       "venue": "Werkstadt",
@@ -5701,9 +5698,7 @@
         "width": 1024,
         "height": 768,
         "file": "2022/07/2003-10-12-21-38-59.jpg",
-        "keywords": [
-          "Bela B,Jochen Malmsheimer,Konzert,Werkstadt,Witten,2003,Deutschland"
-        ]
+        "keywords": []
       },
       "repo": {
         "path": "src/content/docs/events/2003/2003-10-12.mdx",
@@ -5831,7 +5826,8 @@
       "eventDate": "2003-03-04",
       "title": "04.03.2003 - Nackt unter Kannibalen@Krefeld/Kulturfabrik - die ärzte",
       "artist": [
-        "Nackt unter Kannibalen"
+        "Nackt unter Kannibalen",
+        "die ärzte"
       ],
       "city": "Krefeld",
       "venue": "Kulturfabrik - die ärzte",
@@ -5867,7 +5863,6 @@
           "Deutschland",
           "Konzert",
           "2003",
-          "die ärzte",
           "Krefeld",
           "Nackt unter Kannibalen",
           "Kulturfabrik"
@@ -5890,7 +5885,10 @@
       "eventDate": "2002-11-15",
       "title": "15.11.2002 - Herbert Grönemeyer@Köln/Lanxess-Arena",
       "artist": [
-        "Herbert Grönemeyer"
+        "Herbert Grönemeyer",
+        "Köln",
+        "Herbert Grönemeyer",
+        "Lanxess Arena"
       ],
       "city": "Köln",
       "venue": "Lanxess-Arena",
@@ -5923,11 +5921,8 @@
         "keywords": [
           "Ticket",
           "Deutschland",
-          "Köln",
           "Konzert",
-          "2002",
-          "Herbert Grönemeyer",
-          "Lanxess Arena"
+          "2002"
         ]
       },
       "repo": {
@@ -6003,7 +5998,8 @@
       "eventDate": "2002-10-01",
       "title": "01.10.2002 - Farin Urlaub Racing Team@Düsseldorf/Tor 3",
       "artist": [
-        "Farin Urlaub Racing Team"
+        "Farin Urlaub Racing Team",
+        "Düsseldorf"
       ],
       "city": "Düsseldorf",
       "venue": "Tor 3",
@@ -6038,8 +6034,7 @@
           "Farin Urlaub Racing Team",
           "Konzert",
           "2002",
-          "Tor 3",
-          "Düsseldorf"
+          "Tor 3"
         ]
       },
       "repo": {
@@ -6059,7 +6054,8 @@
       "eventDate": "2002-06-15",
       "title": "15.06.2002 - Lenny Kravitz @Oberhausen/König-Pilsener-Arena",
       "artist": [
-        "Lenny Kravitz"
+        "Lenny Kravitz",
+        "König-Pilsener-ARENA"
       ],
       "city": "Oberhausen",
       "venue": "König-Pilsener-Arena",
@@ -6094,7 +6090,6 @@
           "Deutschland",
           "2002",
           "Konzert",
-          "König-Pilsener-ARENA",
           "Oberhausen"
         ]
       },
@@ -6226,7 +6221,9 @@
       "eventDate": "2001-09-27",
       "title": "27.09.2001 - Depeche Mode@Köln/Lanxess-Arena",
       "artist": [
-        "Depeche Mode"
+        "Depeche Mode",
+        "Köln",
+        "Lanxess Arena"
       ],
       "city": "Köln",
       "venue": "Lanxess-Arena",
@@ -6258,9 +6255,7 @@
           "Ticket",
           "Depeche Mode",
           "Deutschland",
-          "Köln",
           "Konzert",
-          "Lanxess Arena",
           "2001"
         ]
       },
@@ -6281,7 +6276,9 @@
       "eventDate": "2001-09-08",
       "title": "08.09.2001 - die ärzte@Westerland/Flughafen, Halle 401",
       "artist": [
-        "die ärzte"
+        "die ärzte",
+        "die ärzte",
+        "Flughafen  Halle 401"
       ],
       "city": "Westerland",
       "venue": "Flughafen, Halle 401",
@@ -6313,10 +6310,8 @@
         "file": "2022/07/2001-09-08-20-00-02.jpg",
         "keywords": [
           "Konzert",
-          "die ärzte",
           "2001",
           "Westerland",
-          "Flughafen  Halle 401",
           "Deutschland"
         ]
       },
@@ -6337,7 +6332,8 @@
       "eventDate": "2001-07-08",
       "title": "08.07.2001 - AC/DC@Köln/Müngersdorfer Stadion",
       "artist": [
-        "AC/DC"
+        "AC/DC",
+        "Müngersdorfer Stadion"
       ],
       "city": "Köln",
       "venue": "Müngersdorfer Stadion",
@@ -6369,7 +6365,6 @@
         "file": "2022/07/2001-07-08-16-30-00.jpeg",
         "keywords": [
           "Konzert",
-          "Müngersdorfer Stadion",
           "AC/DC",
           "2001",
           "Ticket",
@@ -6393,7 +6388,9 @@
       "eventDate": "2001-06-20",
       "title": "20.06.2001 - die ärzte@Düsseldorf/Philipshalle",
       "artist": [
-        "die ärzte"
+        "die ärzte",
+        "die ärzte",
+        "Düsseldorf"
       ],
       "city": "Düsseldorf",
       "venue": "Philipshalle",
@@ -6427,8 +6424,6 @@
           "Deutschland",
           "Konzert",
           "Philipshalle",
-          "die ärzte",
-          "Düsseldorf",
           "2001"
         ]
       },
@@ -6449,7 +6444,8 @@
       "eventDate": "2000-04-28",
       "title": "28.04.2000 - The Cure@Oberhausen/Arena",
       "artist": [
-        "The Cure"
+        "The Cure",
+        "König-Pilsener-ARENA"
       ],
       "city": "Oberhausen",
       "venue": "Arena",
@@ -6482,7 +6478,6 @@
           "Ticket",
           "Deutschland",
           "Konzert",
-          "König-Pilsener-ARENA",
           "Oberhausen",
           "2000",
           "The Cure"
@@ -6618,7 +6613,8 @@
       "eventDate": "1998-09-03",
       "title": "03.09.1998 - die ärzte@Xanten/Amphitheater",
       "artist": [
-        "die ärzte"
+        "die ärzte",
+        "die ärzte"
       ],
       "city": "Xanten",
       "venue": "Amphitheater",
@@ -6654,7 +6650,6 @@
           "Deutschland",
           "Xanten",
           "Konzert",
-          "die ärzte",
           "Amphitheater"
         ]
       },
@@ -6786,7 +6781,8 @@
       "eventDate": "1995-10-01",
       "title": "01.10.1995 - die ärzte@Unna/Stadthalle",
       "artist": [
-        "die ärzte"
+        "die ärzte",
+        "die ärzte"
       ],
       "city": "Unna",
       "venue": "Stadthalle",
@@ -6820,8 +6816,7 @@
           "Deutschland",
           "Konzert",
           "Unna",
-          "Stadthalle",
-          "die ärzte"
+          "Stadthalle"
         ]
       },
       "repo": {
@@ -6896,7 +6891,8 @@
       "eventDate": "1994-03-28",
       "title": "28.03.1994 - Herbert Grönemeyer@Dortmund/Westfalenhalle",
       "artist": [
-        "Herbert Grönemeyer"
+        "Herbert Grönemeyer",
+        "Herbert Grönemeyer"
       ],
       "city": "Dortmund",
       "venue": "Westfalenhalle",
@@ -6928,7 +6924,6 @@
           "Deutschland",
           "Westfalenhalle",
           "Konzert",
-          "Herbert Grönemeyer",
           "Dortmund",
           "1994"
         ]
@@ -6950,7 +6945,8 @@
       "eventDate": "1994-03-16",
       "title": "16.03.1994 - die ärzte@Bielefeld/PC 69",
       "artist": [
-        "die ärzte"
+        "die ärzte",
+        "die ärzte"
       ],
       "city": "Bielefeld",
       "venue": "PC 69",
@@ -6982,7 +6978,6 @@
           "Deutschland",
           "PC 69",
           "Konzert",
-          "die ärzte",
           "1994",
           "Bielefeld"
         ]
@@ -7004,7 +6999,8 @@
       "eventDate": "1993-11-20",
       "title": "20.11.1993 - ZDF Pop Show@Dortmund/Westfalenhalle",
       "artist": [
-        "ZDF Pop Show"
+        "ZDF Pop Show",
+        "Robbie"
       ],
       "city": "Dortmund",
       "venue": "Westfalenhalle",
@@ -7057,7 +7053,6 @@
         "file": "2022/07/1993-11-20-19-00-00-1.jpeg",
         "keywords": [
           "Ticket",
-          "Robbie",
           "Deutschland",
           "Westfalenhalle",
           "Konzert",
@@ -7139,7 +7134,8 @@
       "eventDate": "1992-11-14",
       "title": "14.11.1992 - Peter's Pop Show@Dortmund/Westfalenhalle",
       "artist": [
-        "Peter's Pop Show"
+        "Peter's Pop Show",
+        "Robbie"
       ],
       "city": "Dortmund",
       "venue": "Westfalenhalle",
@@ -7193,7 +7189,6 @@
         "file": "2022/07/1992-11-14-19-00-00-1.jpeg",
         "keywords": [
           "Ticket",
-          "Robbie",
           "Deutschland",
           "Westfalenhalle",
           "Konzert",
@@ -7219,7 +7214,8 @@
       "eventDate": "1992-09-21",
       "title": "21.09.1992 - Marius Müller-Westernhagen @Dortmund/Westfalenhalle",
       "artist": [
-        "Marius Müller-Westernhagen"
+        "Marius Müller-Westernhagen",
+        "Westernhagen"
       ],
       "city": "Dortmund",
       "venue": "Westfalenhalle",
@@ -7253,8 +7249,7 @@
           "Westfalenhalle",
           "Konzert",
           "1992",
-          "Dortmund",
-          "Westernhagen"
+          "Dortmund"
         ]
       },
       "repo": {
@@ -7467,7 +7462,8 @@
       "eventDate": "1988-07-03",
       "title": "03.07.1988 - die ärzte@Hagen/Stadthalle",
       "artist": [
-        "die ärzte"
+        "die ärzte",
+        "die ärzte"
       ],
       "city": "Hagen",
       "venue": "Stadthalle",
@@ -7499,7 +7495,6 @@
           "Deutschland",
           "Konzert",
           "Stadthalle",
-          "die ärzte",
           "Hagen",
           "1988"
         ]
@@ -7604,7 +7599,11 @@
       "eventDate": "1986-11-22",
       "title": "22.11.1986 – Peter’s Pop Show @Dortmund/Westfalenhalle",
       "artist": [
-        "22.11.1986 – Peter’s Pop Show @Dortmund/Westfalenhalle"
+        "22.11.1986 – Peter’s Pop Show @Dortmund/Westfalenhalle",
+        "Peter's Pop Show",
+        "Backstage-Ticket",
+        "Robbie",
+        "1987"
       ],
       "country": "Deutschland",
       "price": 0,
@@ -7664,14 +7663,10 @@
         "height": 1123,
         "file": "2022/07/1986-11-22-20-00-00.jpeg",
         "keywords": [
-          "Peter's Pop Show",
-          "Backstage-Ticket",
           "Deutschland",
           "Westfalenhalle",
           "Konzert",
-          "Robbie",
           "Verschiedene Künstler:innen",
-          "1987",
           "Dortmund"
         ]
       },

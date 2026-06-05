@@ -52,6 +52,29 @@ function getPrice(tags) {
   return Number(priceTag.replace('€', '').replace(',', '.'));
 }
 
+function uniqueValues(values) {
+  return [...new Set(values.map((value) => decodeHtml(String(value || '')).trim()).filter(Boolean))];
+}
+
+function comparable(value) {
+  return String(value || '').toLocaleLowerCase('de-DE').trim();
+}
+
+const genericMediaKeywords = new Set(['konzert', 'ticket', 'live nation']);
+
+function getMediaKeywords(media) {
+  return uniqueValues(media?.media_details?.image_meta?.keywords || []);
+}
+
+function getAdditionalArtists(mediaKeywords, eventValues) {
+  const ignoredKeywords = new Set([
+    ...eventValues.flatMap((value) => (Array.isArray(value) ? value : [value])).map(comparable),
+    ...[...genericMediaKeywords],
+  ]);
+
+  return mediaKeywords.filter((keyword) => !ignoredKeywords.has(comparable(keyword)) && !/^€\d/.test(keyword));
+}
+
 function withoutEmpty(value) {
   if (Array.isArray(value)) return value.filter(Boolean);
   return value || undefined;
@@ -71,6 +94,19 @@ const events = inventory.posts.map((post) => {
   const categoryNames = (post.categories || []).map((id) => categoryMap[String(id)]?.name).filter(Boolean);
   const media = mediaMap[String(post.featured_media)] || null;
   const repoPath = year ? `src/content/docs/events/${year}/${eventDate}.mdx` : '';
+  const mediaKeywords = getMediaKeywords(media);
+  const additionalArtists = getAdditionalArtists(mediaKeywords, [
+    parsed.artist,
+    parsed.tour,
+    parsed.city,
+    parsed.venue,
+    year,
+    'Deutschland',
+    tagNames,
+    categoryNames,
+  ]);
+  const artist = uniqueValues([parsed.artist, ...additionalArtists]);
+  const featuredMediaKeywords = mediaKeywords.filter((keyword) => !additionalArtists.includes(keyword));
 
   return {
     wp: {
@@ -82,7 +118,7 @@ const events = inventory.posts.map((post) => {
     },
     eventDate,
     title,
-    artist: withoutEmpty([parsed.artist]),
+    artist: withoutEmpty(artist),
     tour: withoutEmpty(parsed.tour),
     city: withoutEmpty(parsed.city),
     venue: withoutEmpty(parsed.venue),
@@ -101,7 +137,7 @@ const events = inventory.posts.map((post) => {
           width: media.media_details?.width,
           height: media.media_details?.height,
           file: media.media_details?.file,
-          keywords: media.media_details?.image_meta?.keywords || [],
+          keywords: featuredMediaKeywords,
         }
       : null,
     repo: {
