@@ -1,10 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { loadEnv, stripHtml } from '../lib/core.mjs';
+import { loadEnv } from '../lib/core.mjs';
 
 loadEnv();
 
 const postId = process.argv[2];
+const forceWrite = process.argv.includes('--force');
 const wpBaseUrl = process.env.WP_BASE_URL || 'https://fanieng.com';
 
 if (!postId || !/^\d+$/.test(postId)) {
@@ -97,8 +98,16 @@ const tags = unique([...tagNames.filter((tag) => tag !== priceTag), tour, 'Konze
 const targetFile = path.join('src/content/docs/events', year, `${eventDate}.mdx`);
 
 if (fs.existsSync(targetFile)) {
-  console.error(`Event already exists: ${targetFile}`);
-  process.exit(1);
+  if (!forceWrite) {
+    console.error(`Event already exists: ${targetFile}. Use --force to overwrite.`);
+    process.exit(1);
+  }
+
+  const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+  const backupFile = path.join('.backups/events', year, `${eventDate}-${timestamp}.mdx.bak`);
+  fs.mkdirSync(path.dirname(backupFile), { recursive: true });
+  fs.copyFileSync(targetFile, backupFile);
+  console.log(`Backup created: ${backupFile}`);
 }
 
 const description = `${artist}${tour ? ` mit ${tour}` : ''} am ${eventDate}${city ? ` in ${city}` : ''}${venue ? `, ${venue}` : ''}.`;
@@ -119,14 +128,9 @@ const frontmatter = [
   '---',
 ];
 
-const excerpt = decodeHtml(stripHtml(post.excerpt?.rendered || ''));
 const body = [
   '',
-  `## ${tour || artist}`,
-  '',
-  excerpt || `${artist}${venue ? ` im ${venue}` : ''}${city ? ` in ${city}` : ''}.`,
-  '',
-  '## Eventdaten',
+  '## Details',
   '',
   `- Datum: ${eventDate}`,
   `- Künstler: ${artist}`,
@@ -134,6 +138,18 @@ const body = [
   ...(city ? [`- Ort: ${city}`] : []),
   ...(venue ? [`- Venue: ${venue}`] : []),
   ...(price !== null ? [`- Preis: ${price.toFixed(2).replace('.', ',')} €`] : []),
+  '',
+  '## Bilder',
+  '',
+  '## Konzertbericht',
+  '',
+  '## Pressebericht',
+  '',
+  '## Album',
+  '',
+  '## Setlist',
+  '',
+  '## Mehr Informationen',
   '',
   `[Originalbeitrag auf fanieng.com](${post.link})`,
   '',

@@ -36,6 +36,14 @@ Das Skript:
 - bindet noch keine Bilder und keine Setlist ein,
 - bricht ab, wenn die Eventdatei bereits existiert.
 
+Eine bestehende Eventdatei kann bewusst neu erzeugt werden:
+
+```bash
+npm run event:wp -- 611 --force
+```
+
+Vor dem Ueberschreiben wird die bisherige Datei mit Zeitstempel unter `.backups/events/YYYY/` gesichert. Der Backup-Ordner liegt ausserhalb des Astro-Contents und wird von Git ignoriert.
+
 ## 2. Setlist holen
 
 ```bash

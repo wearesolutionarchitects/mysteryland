@@ -42,7 +42,7 @@ export default defineConfig({
             },
             {
                 label: '2025',
-                collapsed: false,
+                collapsed: true,
                 items: [
                     { autogenerate: { directory: 'events/2025' } },
                 ],
@@ -66,6 +66,13 @@ export default defineConfig({
                 collapsed: true,
                 items: [
                     { autogenerate: { directory: 'events/2022' } },
+                ],
+            },
+            {
+                label: '2021',
+                collapsed: true,
+                items: [
+                    { autogenerate: { directory: 'events/2021' } },
                 ],
             }
     ],
