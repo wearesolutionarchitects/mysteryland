@@ -9,6 +9,10 @@ loadEnv();
 
 const eventDate = process.argv[2];
 const galleryRoot = process.env.GALLERY_ROOT || './src/content/gallery';
+const creator = 'Heiko Fanieng';
+const creatorJobTitle = 'Fachinformatiker:in Anwendungsentwicklung | Regulatory Affairs Manager | SAP Consultant';
+const creatorJobTitleIptc = 'Developer & Regulatory Affairs';
+const creatorContact = 'heiko@fanieng.com';
 
 ensureDateArg(eventDate, 'Usage: npm run event:media -- <YYYY-MM-DD>');
 
@@ -35,6 +39,78 @@ function readFrontmatter(file) {
 
 function yamlString(value) {
   return JSON.stringify(String(value || ''));
+}
+
+function stringList(value) {
+  const values = Array.isArray(value) ? value : String(value || '').split(',');
+  return [...new Set(values
+    .map((item) => String(item || '').trim())
+    .filter(Boolean))];
+}
+
+function eventCategory(tags) {
+  const normalizedTags = new Set(tags.map((tag) => tag.toLocaleLowerCase('de-DE')));
+  if (normalizedTags.has('festival')) return { code: 'FES', label: 'Festival' };
+  return { code: 'KON', label: 'Konzert' };
+}
+
+function eventHeadline(date, event) {
+  const [year, month, day] = date.split('-');
+  return `${day}.${month}.${year} - ${event.artist}@${event.city}/${event.venue}`;
+}
+
+function writeIptcMetadata(file, metadata) {
+  if (metadata.keywords.length) {
+    runCapture('exiftool', [
+      '-overwrite_original',
+      '-IPTC:Keywords=',
+      file,
+    ]);
+  }
+
+  const args = [
+    '-overwrite_original',
+    '-charset',
+    'IPTC=UTF8',
+    '-IPTC:CodedCharacterSet=UTF8',
+  ];
+
+  if (metadata.keywords.length) {
+    args.push(...metadata.keywords.map((keyword) => `-IPTC:Keywords+=${keyword}`));
+  }
+
+  if (metadata.caption) args.push(`-IPTC:Caption-Abstract=${metadata.caption}`);
+
+  args.push(`-IPTC:ObjectName=${metadata.headline}`);
+  args.push(`-XMP-dc:Title=${metadata.headline}`);
+  args.push(`-IPTC:Headline=${metadata.headline}`);
+  args.push(`-XMP-photoshop:Headline=${metadata.headline}`);
+  args.push(`-IPTC:Category=${metadata.category.code}`);
+  args.push(`-XMP-photoshop:Category=${metadata.category.code}`);
+  args.push(`-IPTC:SupplementalCategories=${metadata.category.label}`);
+  args.push(`-XMP-photoshop:SupplementalCategories=${metadata.category.label}`);
+  args.push(`-IPTC:City=${metadata.city}`);
+  args.push(`-IPTC:Sub-location=${metadata.venue}`);
+  args.push(`-IPTC:Country-PrimaryLocationName=${metadata.country}`);
+  args.push(`-XMP-iptcExt:LocationShownCity=${metadata.city}`);
+  args.push(`-XMP-iptcExt:LocationShownSublocation=${metadata.venue}`);
+  args.push(`-XMP-iptcExt:LocationShownCountryName=${metadata.country}`);
+
+  if (metadata.isOwnPhoto) {
+    const copyright = `(C) ${metadata.year} | mysteryland.biz | fanieng.com`;
+    args.push(`-IPTC:By-line=${creator}`);
+    args.push(`-XMP-dc:Creator=${creator}`);
+    args.push(`-IPTC:By-lineTitle=${creatorJobTitleIptc}`);
+    args.push(`-XMP-photoshop:AuthorsPosition=${creatorJobTitle}`);
+    args.push(`-IPTC:CopyrightNotice=${copyright}`);
+    args.push(`-XMP-dc:Rights=${copyright}`);
+    args.push(`-IPTC:Contact=${creatorContact}`);
+    args.push(`-XMP-iptcCore:CreatorWorkEmail=${creatorContact}`);
+    args.push(`-IPTC:Writer-Editor=${creator}`);
+    args.push(`-XMP-photoshop:CaptionWriter=${creator}`);
+  }
+
+  runCapture('exiftool', [...args, file]);
 }
 
 function timestamp(meta) {
@@ -68,6 +144,8 @@ if (!fs.existsSync(galleryDir)) {
 }
 
 const event = readFrontmatter(eventFile);
+const category = eventCategory(event.tags);
+const headline = eventHeadline(eventDate, event);
 const imageFiles = fs.readdirSync(galleryDir)
   .filter((name) => /\.(jpe?g)$/i.test(name))
   .sort()
@@ -83,7 +161,9 @@ const metadata = JSON.parse(runCapture('exiftool', [
   '-DateTimeOriginal',
   '-CreateDate',
   '-IPTC:Keywords',
+  '-XMP-dc:Subject',
   '-IPTC:Caption-Abstract',
+  '-XMP-dc:Description',
   ...imageFiles,
 ]));
 
@@ -111,9 +191,25 @@ for (const meta of metadata) {
     console.log(`${path.basename(originalFile)} -> ${path.basename(targetFile)}`);
   }
 
-  const keywords = (Array.isArray(meta.Keywords) ? meta.Keywords : String(meta.Keywords || '').split(','))
-    .map((keyword) => String(keyword || '').trim())
-    .filter(Boolean);
+  const iptcKeywords = stringList(meta.Keywords);
+  const xmpKeywords = stringList(meta.Subject);
+  const keywords = iptcKeywords.length ? iptcKeywords : xmpKeywords;
+  const iptcCaption = String(meta['Caption-Abstract'] || '').trim();
+  const xmpCaption = String(meta.Description || '').trim();
+  const isOwnPhoto = keywords.some((keyword) => keyword.toLocaleLowerCase('de-DE') === 'foto');
+
+  writeIptcMetadata(targetFile, {
+    keywords,
+    caption: iptcCaption || xmpCaption,
+    headline,
+    category,
+    isOwnPhoto,
+    year,
+    city: event.city,
+    venue: event.venue,
+    country: event.country,
+  });
+  console.log(`IPTC updated: ${path.basename(targetFile)}`);
 
   if (!keywords.length) {
     console.error(`Missing keywords: ${targetFile}`);

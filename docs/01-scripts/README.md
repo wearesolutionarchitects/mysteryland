@@ -87,9 +87,15 @@ npm run event:media -- 2021-08-04
 Das Skript:
 
 - benennt JPG/JPEG-Dateien anhand des EXIF-Aufnahmedatums um,
+- übernimmt Apple-Photos-Schlagwörter und Beschreibungen aus XMP nach IPTC, falls IPTC-Felder fehlen,
+- ergänzt Titel, Überschrift, Eventkategorie und Ort aus der Event-MDX,
+- ergänzt bei Bildern mit dem Schlagwort `Foto` Ersteller, Beruf, Kontakt und Urheberrechtsvermerk,
 - prüft Eventdatum und vorhandene Schlagwörter,
 - meldet fehlende zentrale Event-Schlagwörter,
 - erzeugt die zur Galerie gehörenden Markdown-Sidecars.
+
+Das alte IPTC-Feld `Category` erlaubt nur drei Zeichen. Das Skript verwendet deshalb `KON` oder `FES` und schreibt `Konzert` beziehungsweise `Festival` zusätzlich vollständig nach `SupplementalCategories`.
+Auch `By-lineTitle` ist im alten IPTC-Standard auf 32 Bytes begrenzt. Dort steht deshalb `Fachinformatiker:in Entwicklung`; der vollständige Beruf wird parallel im modernen XMP-Feld `AuthorsPosition` gespeichert.
 
 Fehlende EXIF-Daten oder komplett fehlende Schlagwörter führen zu einem Fehler. Bestehende Bilddateien werden nicht überschrieben.
 
