@@ -35,3 +35,10 @@
   display: flex !important;
   justify-content: center !important;
 }
+
+@media (min-width: 72rem) {
+  :root {
+    --sl-sidebar-width: 16rem;
+    --sl-content-width: 52rem;
+  }
+}
