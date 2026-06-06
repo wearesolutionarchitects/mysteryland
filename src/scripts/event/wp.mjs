@@ -1,3 +1,6 @@
+// src/scripts/event/wp.mjs
+// Imports one WordPress concert post and creates its MDX event scaffold.
+// Existing MDX files are only replaced with --force after creating a local backup.
 import fs from 'node:fs';
 import path from 'node:path';
 import { loadEnv } from '../lib/core.mjs';
@@ -130,6 +133,8 @@ const frontmatter = [
 
 const body = [
   '',
+  "import { LinkCard } from '@astrojs/starlight/components';",
+  '',
   '## Details',
   '',
   `- Datum: ${eventDate}`,
@@ -149,9 +154,10 @@ const body = [
   '',
   '## Setlist',
   '',
-  '## Mehr Informationen',
-  '',
-  `[Originalbeitrag auf fanieng.com](${post.link})`,
+  '<LinkCard',
+  '  title="Mehr Informationen"',
+  `  href=${JSON.stringify(post.link)}`,
+  '/>',
   '',
 ];
 

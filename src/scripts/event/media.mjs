@@ -1,3 +1,6 @@
+// src/scripts/event/media.mjs
+// Renames exported event images from EXIF dates and checks their metadata.
+// Creates the gallery Markdown sidecars without modifying the event MDX.
 import fs from 'node:fs';
 import path from 'node:path';
 import { ensureDateArg, loadEnv, runCapture } from '../lib/core.mjs';

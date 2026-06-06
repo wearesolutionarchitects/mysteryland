@@ -1,3 +1,6 @@
+// src/scripts/event/setlist.mjs
+// Finds the setlist.fm entry for an existing event MDX by event date.
+// Prints a Markdown setlist for manual insertion without changing the event file.
 import fs from 'node:fs';
 import path from 'node:path';
 import { ensureDateArg, loadEnv } from '../lib/core.mjs';
