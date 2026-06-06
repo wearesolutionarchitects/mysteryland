@@ -7,19 +7,11 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "script:media:exif-rename": "node src/scripts/media/exif-rename.mjs",
-    "script:media:exif-statistik": "node src/scripts/media/exif-statistik.mjs",
-    "script:media:generate-jpg": "node src/scripts/media/generate-jpg.mjs",
-    "script:media:set-image-meta": "node src/scripts/media/set-image-meta.mjs",
-    "script:content:generate-mdx": "node src/scripts/content/generate-mdx.mjs",
+    "event:wp": "node src/scripts/event/wp.mjs",
+    "event:setlist": "node src/scripts/event/setlist.mjs",
+    "event:media": "node src/scripts/event/media.mjs",
     "script:content:generate-readme": "node src/scripts/content/generate-readme.mjs",
-    "script:wp:get-event": "node src/scripts/wp/get-wp-event.mjs",
-    "script:wp:export-inventory": "node src/scripts/wp/export-inventory.mjs",
-    "script:wp:map-inventory": "node src/scripts/wp/map-inventory.mjs",
-    "script:wp:import-year": "node src/scripts/wp/import-event-year.mjs",
-    "script:wp:titel": "node src/scripts/wp/titel-wp.mjs",
-    "script:github:create-labels": "node src/scripts/github/create-label.mjs",
-    "script:external:setlist": "node src/scripts/external/setlist-api.mjs"
+    "script:github:create-labels": "node src/scripts/github/create-label.mjs"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.18",

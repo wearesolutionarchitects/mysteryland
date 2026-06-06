@@ -88,17 +88,6 @@ export function walkDirs(root, minDepth = 0, depth = 0) {
   return out;
 }
 
-export function walkFiles(root) {
-  const out = [];
-  if (!fs.existsSync(root)) return out;
-  for (const entry of fs.readdirSync(root, { withFileTypes: true })) {
-    const full = path.join(root, entry.name);
-    if (entry.isDirectory()) out.push(...walkFiles(full));
-    else out.push(full);
-  }
-  return out;
-}
-
 export function parseCaption(captionRaw = '') {
   const caption = captionRaw.trim();
   const dateMatch = caption.match(/^(\d{2})\.(\d{2})\.(\d{4})/);
