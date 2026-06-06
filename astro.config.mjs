@@ -8,7 +8,13 @@ export default defineConfig({
     site: 'https://mysteryland.biz',
     integrations: [
         starlight({ 
-            title: "Mysteryland",            
+            title: "Mysteryland",   
+            locales: {
+                root: {
+                    label: 'Deutsch',
+                    lang: 'de',
+                    },
+            },         
             
             head: [
                 { tag: 'meta', attrs: { name: 'description', content: 'Konzertberichte, Bilder und Setlists' } },
@@ -73,6 +79,13 @@ export default defineConfig({
                 collapsed: true,
                 items: [
                     { autogenerate: { directory: 'events/2021' } },
+                ],
+            },
+            {
+                label: '2019',
+                collapsed: true,
+                items: [
+                    { autogenerate: { directory: 'events/2019' } },
                 ],
             }
     ],
