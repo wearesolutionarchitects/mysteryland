@@ -21,8 +21,9 @@ asin: "B0FHSYHX88"
 
 tags: ["Ticket","Merkur Spiel-Arena","Deutschland", "Düsseldorf", "Konzert","Robbie Williams","Britpop Tour","2026"]
 ---
-import { LinkCard, Card, CardGrid } from '@astrojs/starlight/components';
+import { LinkCard, Card } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
+import Gallery from '@components/Gallery.astro';
 import img0000 from '../../../gallery/2026/06/05/2026-06-05_00-00-00.jpg';
 import img1930 from '../../../gallery/2026/06/05/2026-06-05_19-30-00.jpg';
 import img2040 from '../../../gallery/2026/06/05/2026-06-05_20-40-55.jpg';
@@ -53,23 +54,15 @@ import img2130 from '../../../gallery/2026/06/05/2026-06-05_21-30-13.jpg';
 
 ## Fotos
 
-<CardGrid>
-    <Card title="20:40" icon="image">
-        <Image src={img2040} alt="20:40" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-    </Card>
-    <Card title="20:41" icon="image">
-        <Image src={img2041} alt="20:41" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-    </Card>
-    <Card title="20:43" icon="image">
-        <Image src={img2043} alt="20:43" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-    </Card>
-    <Card title="21:00" icon="image">
-        <Image src={img2100} alt="21:00" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-    </Card>
-    <Card title="21:30" icon="image">
-        <Image src={img2130} alt="21:30" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-    </Card>
-</CardGrid>
+<Gallery
+    images={[
+        { src: img2040, alt: 'Robbie Williams auf der Bühne in Düsseldorf', title: '20:40' },
+        { src: img2041, alt: 'Robbie Williams während der Britpop Tour', title: '20:41' },
+        { src: img2043, alt: 'Bühnenansicht beim Robbie-Williams-Konzert', title: '20:43' },
+        { src: img2100, alt: 'Robbie Williams live in der Merkur Spiel-Arena', title: '21:00' },
+        { src: img2130, alt: 'Robbie Williams bei seinem Konzert in Düsseldorf', title: '21:30' },
+    ]}
+/>
 
 ## Album
 
@@ -108,6 +101,5 @@ import img2130 from '../../../gallery/2026/06/05/2026-06-05_21-30-13.jpg';
     title="Mehr Informationen"
     href="https://fanieng.com/2026/06/05/robbie-williams-duesseldorf-merkur-spiel-arena/"
 />
-
 
 
