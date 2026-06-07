@@ -79,6 +79,8 @@ if (!/^\d{4}-\d{2}-\d{2}$/.test(eventDate)) {
   process.exit(1);
 }
 
+const [eventYear, eventMonth, eventDay] = eventDate.split('-');
+const displayDate = `${eventDay}.${eventMonth}.${eventYear}`;
 const terms = (post._embedded?.['wp:term'] || []).flat();
 const tagNames = unique(terms.filter((term) => term.taxonomy === 'post_tag').map((term) => term.name));
 const categories = unique(terms.filter((term) => term.taxonomy === 'category').map((term) => term.name));
@@ -113,7 +115,7 @@ if (fs.existsSync(targetFile)) {
   console.log(`Backup created: ${backupFile}`);
 }
 
-const description = `${artist}${tour ? ` mit ${tour}` : ''} am ${eventDate}${city ? ` in ${city}` : ''}${venue ? `, ${venue}` : ''}.`;
+const description = `${artist}${tour ? ` mit ${tour}` : ''} am ${displayDate}${city ? ` in ${city}` : ''}${venue ? `, ${venue}` : ''}.`;
 const frontmatter = [
   '---',
   `title: ${yamlString(artist)}`,
@@ -137,7 +139,7 @@ const body = [
   '',
   '## Details',
   '',
-  `📅 Datum: ${eventDate}  `,
+  `📅 Datum: ${displayDate}  `,
 `🇩🇪 Land: ${country}  `,
 `📍 Stadt: ${city}  `,
 `🏟️ Venue: ${venue}  `,
