@@ -1,16 +1,20 @@
 ---
 // src/components/Gallery.astro
+import { Image, type LocalImageProps } from 'astro:assets';
+import 'glightbox/dist/css/glightbox.min.css';
+
+type ImportedImage = Exclude<LocalImageProps['src'], Promise<unknown>>;
+
 interface GalleryImage {
-  src: string;
-  alt?: string;
+  src: ImportedImage;
+  alt: string;
+  title?: string;
 }
 
 const { images = [] } = Astro.props as { images?: GalleryImage[] };
 ---
 
 <style>
-@import url('https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css');
-
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -29,30 +33,29 @@ const { images = [] } = Astro.props as { images?: GalleryImage[] };
 }
 </style>
 
-<script is:inline>
+<script>
   import GLightbox from 'glightbox';
-  import 'glightbox/dist/js/glightbox.min.js';
 
-  if (typeof window !== 'undefined') {
-    setTimeout(() => {
-      GLightbox({
-        selector: '.glightbox',
-        touchNavigation: true,
-        loop: true,
-        zoomable: true,
-        autoplayVideos: true,
-        openEffect: 'zoom',
-        closeEffect: 'fade',
-        slideEffect: 'slide'
-      });
-    }, 100);
-  }
+  GLightbox({
+    selector: '.glightbox',
+    touchNavigation: true,
+    loop: true,
+    zoomable: true,
+    openEffect: 'zoom',
+    closeEffect: 'fade',
+    slideEffect: 'slide'
+  });
 </script>
 
 <div class="gallery">
   {images.map((img) => (
-    <a href={img.src} class="glightbox" data-gallery="gallery" data-title={img.alt || ''}>
-      <img src={img.src} alt={img.alt || ''} loading="lazy" />
+    <a href={img.src.src} class="glightbox" data-gallery="gallery" data-title={img.title || img.alt}>
+      <Image
+        src={img.src}
+        alt={img.alt}
+        widths={[300, 600, 900]}
+        sizes="(max-width: 600px) 100vw, 600px"
+      />
     </a>
   ))}
 </div>

@@ -23,13 +23,21 @@ tags: ["Ticket","Merkur Spiel-Arena","Deutschland", "Düsseldorf", "Konzert","Ro
 ---
 import { LinkCard, Card, CardGrid } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
+import img0000 from '../../../gallery/2026/06/05/2026-06-05_00-00-00.jpg';
 import img1930 from '../../../gallery/2026/06/05/2026-06-05_19-30-00.jpg';
 import img2040 from '../../../gallery/2026/06/05/2026-06-05_20-40-55.jpg';
 import img2041 from '../../../gallery/2026/06/05/2026-06-05_20-41-34.jpg';
+import img2043 from '../../../gallery/2026/06/05/2026-06-05_20-43-00.jpg';
+import img2100 from '../../../gallery/2026/06/05/2026-06-05_21-00-11.jpg';
+import img2130 from '../../../gallery/2026/06/05/2026-06-05_21-30-13.jpg';
+
 
 ## Britpop Tour 2026
 
-...
+<Card title="Plakat" icon="seti:ticket">
+    <Image src={img0000} alt="Plakat" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />   
+</Card>
+
 
 ## Ticket / Venue / Preis
 
@@ -43,18 +51,25 @@ import img2041 from '../../../gallery/2026/06/05/2026-06-05_20-41-34.jpg';
 🏟️ Venue: Merkur Spiel-Arena   
 💶 Preis: 199,50 €  
 
-## 📷 Fotos
+## Fotos
 
 <CardGrid>
-  <Card title="20:40" icon="image">
-    <Image src={img2040} alt="20:40" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-  </Card>
-  <Card title="20:41" icon="image">
-    <Image src={img2041} alt="20:41" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-  </Card>
+    <Card title="20:40" icon="image">
+        <Image src={img2040} alt="20:40" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
+    </Card>
+    <Card title="20:41" icon="image">
+        <Image src={img2041} alt="20:41" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
+    </Card>
+    <Card title="20:43" icon="image">
+        <Image src={img2043} alt="20:43" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
+    </Card>
+    <Card title="21:00" icon="image">
+        <Image src={img2100} alt="21:00" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
+    </Card>
+    <Card title="21:30" icon="image">
+        <Image src={img2130} alt="21:30" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
+    </Card>
 </CardGrid>
-
-## Konzertbericht
 
 ## Album
 
