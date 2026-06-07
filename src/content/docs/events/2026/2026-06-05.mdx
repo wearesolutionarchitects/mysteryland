@@ -17,12 +17,15 @@ venue: "Merkur Spiel-Arena"
 
 price: 111.00
 
-asin: "B0F2NCSF75"
+asin: "B0FHSYHX88"
 
 tags: ["Ticket","Merkur Spiel-Arena","Deutschland", "Düsseldorf", "Konzert","Robbie Williams","Britpop Tour","2026"]
 ---
-import { Card } from '@astrojs/starlight/components';
-import { LinkCard } from '@astrojs/starlight/components';
+import { LinkCard, Card, CardGrid } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
+import img1930 from '../../../gallery/2026/06/05/2026-06-05_19-30-00.jpg';
+import img2040 from '../../../gallery/2026/06/05/2026-06-05_20-40-55.jpg';
+import img2041 from '../../../gallery/2026/06/05/2026-06-05_20-41-34.jpg';
 
 ## Britpop Tour 2026
 
@@ -30,7 +33,9 @@ import { LinkCard } from '@astrojs/starlight/components';
 
 ## Ticket / Venue / Preis
 
-![Ticket](../../../gallery/2026/06/05/2026-06-05_19-30-00.jpg)
+<Card title="Ticket" icon="seti:ticket">
+    <Image src={img1930} alt="Ticket" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />   
+</Card>
 
 📅 Datum: 05.06.2026  
 🇩🇪 Land: Deutschland  
@@ -38,17 +43,50 @@ import { LinkCard } from '@astrojs/starlight/components';
 🏟️ Venue: Merkur Spiel-Arena   
 💶 Preis: 199,50 €  
 
-## Bilder
+## 📷 Fotos
+
+<CardGrid>
+  <Card title="20:40" icon="image">
+    <Image src={img2040} alt="20:40" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
+  </Card>
+  <Card title="20:41" icon="image">
+    <Image src={img2041} alt="20:41" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
+  </Card>
+</CardGrid>
 
 ## Konzertbericht
 
-<Card title="Album" icon="seti:audio">
-    <a href="https://www.amazon.de/dp/B0F2NCSF75?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-        <img src="https://m.media-amazon.com/images/I/81PHduFSQ7L._SL1500_.jpg" alt="Robbie Williams - Britpop Tour (Amazon)" width="300" />
+## Album
+
+<Card title="Britpop" icon="seti:audio">
+    <a href="https://www.amazon.de/dp/B0FHSYHX88?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+        <img src="https://m.media-amazon.com/images/I/71mz8Yz985L._SL1500_.jpg" alt="Robbie Williams - Britpop" width="300" />
     </a>
 </Card>
 
 <Card title="Setlist" icon="list-format">
+    <ol>
+        <li>Rocket</li>
+        <li>Let Me Entertain You</li>
+        <li>Song 2 / Seven Nation Army / Livin' on a Prayer</li>
+        <li>Monsoon</li>
+        <li>Rock DJ</li>
+        <li>Love My Life</li>
+        <li>Strong</li>
+        <li>The Road to Mandalay</li>
+        <li>Supreme</li>
+        <li>Better Man / Sexed Up / Candy</li>
+        <li>Relight My Fire</li>
+        <li>Something Beautiful</li>
+        <li>Millennium</li>
+        <li>Theme From New York, New York</li>
+        <li>Come Undone</li>
+        <li>Kids</li>
+        <li>She's the One</li>
+        <li>My Way</li>
+        <li>Feel</li>
+        <li>Angels</li>
+    </ol>
 </Card>
 
 <LinkCard
