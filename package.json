@@ -3,10 +3,11 @@
   "type": "module",
   "version": "1.0.0",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro",
+    "dev": "NODE_OPTIONS=--disable-warning=ExperimentalWarning astro dev",
+    "build": "NODE_OPTIONS=--disable-warning=ExperimentalWarning astro build",
+    "preview": "NODE_OPTIONS=--disable-warning=ExperimentalWarning astro preview",
+    "astro": "NODE_OPTIONS=--disable-warning=ExperimentalWarning astro",
+    "postinstall": "patch-package",
     "event:wp": "node src/scripts/event/wp.mjs",
     "event:setlist": "node src/scripts/event/setlist.mjs",
     "event:media": "node src/scripts/event/media.mjs",
@@ -16,13 +17,13 @@
   "dependencies": {
     "@astrojs/rss": "^4.0.18",
     "@astrojs/starlight": "^0.39.3",
-    "astro": "6.3.1",
+    "astro": "^6.4.4",
     "glightbox": "^3.3.1",
-    "sharp": "^0.34.1",
-    "starlight-ion-theme": "^2.4.0"
+    "sharp": "^0.34.1"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
+    "patch-package": "^8.0.1",
     "typescript": "^6.0.3"
   }
 }
