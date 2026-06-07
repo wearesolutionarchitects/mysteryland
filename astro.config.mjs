@@ -94,6 +94,13 @@ export default defineConfig({
                 items: [
                     { autogenerate: { directory: 'events/2018' } },
                 ],
+            },
+            {
+                label: '2017',
+                collapsed: true,
+                items: [
+                    { autogenerate: { directory: 'events/2017' } },
+                ],
             }
     ],
         }),
