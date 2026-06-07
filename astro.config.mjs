@@ -25,6 +25,9 @@ export default defineConfig({
                 // Relative path to your custom CSS file
                 './src/styles/custom.css',
             ],
+            components: {
+                ThemeProvider: './src/components/ThemeProvider.astro',
+            },
             social: [
                 {icon: 'github', label:'github', href: 'https://github.com/wearesolutionarchitects'},
                 {icon: 'discord', label:'discord', href: 'https://discord.gg/GEdQ3xg6t6'},

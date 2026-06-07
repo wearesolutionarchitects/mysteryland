@@ -25,6 +25,7 @@ import { LinkCard, Card } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
 import Gallery from '@components/Gallery.astro';
 import img0000 from '../../../gallery/2026/06/05/2026-06-05_00-00-00.jpg';
+import img0000Dark from '../../../gallery/2026/06/05/2026-06-05_00-00-00-dark.jpg';
 import img1930 from '../../../gallery/2026/06/05/2026-06-05_19-30-00.jpg';
 import img2040 from '../../../gallery/2026/06/05/2026-06-05_20-40-55.jpg';
 import img2041 from '../../../gallery/2026/06/05/2026-06-05_20-41-34.jpg';
@@ -48,7 +49,7 @@ import img2130 from '../../../gallery/2026/06/05/2026-06-05_21-30-13.jpg';
 
 <Gallery
     images={[
-        { src: img0000, alt: 'Plakat', title: 'Plakat' },
+        { src: img0000, thumbnail: img0000Dark, alt: 'Plakat', title: 'Plakat' },
         { src: img1930, alt: 'Ticket', title: 'Ticket' },
         { src: img2040, alt: 'Robbie Williams auf der Bühne in Düsseldorf', title: '20:40' },
         { src: img2041, alt: 'Robbie Williams während der Britpop Tour', title: '20:41' },
@@ -95,5 +96,4 @@ import img2130 from '../../../gallery/2026/06/05/2026-06-05_21-30-13.jpg';
     title="Mehr Informationen"
     href="https://fanieng.com/2026/06/05/robbie-williams-duesseldorf-merkur-spiel-arena/"
 />
-
 
