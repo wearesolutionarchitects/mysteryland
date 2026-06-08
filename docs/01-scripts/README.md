@@ -5,7 +5,7 @@ Der normale Workflow besteht aus drei kleinen Skripten. Jedes Skript hat genau e
 ## Voraussetzungen
 
 - Node.js und npm
-- `exiftool` für den Medien-Schritt
+- `exiftool` für den Medien-Schritt (`brew install exiftool` unter macOS)
 - `.env` mit `SETLIST_API_KEY`
 
 Optionale Konfiguration:
@@ -13,6 +13,7 @@ Optionale Konfiguration:
 ```dotenv
 WP_BASE_URL=https://fanieng.com
 GALLERY_ROOT=./src/content/gallery
+EXIFTOOL_PATH=/opt/homebrew/bin/exiftool
 SETLIST_USER_AGENT=heiko@fanieng.com
 ```
 

@@ -9,12 +9,33 @@ loadEnv();
 
 const eventDate = process.argv[2];
 const galleryRoot = process.env.GALLERY_ROOT || './src/content/gallery';
+const exiftool =
+  process.env.EXIFTOOL_PATH ||
+  ['/opt/homebrew/bin/exiftool', '/usr/local/bin/exiftool'].find((candidate) =>
+    fs.existsSync(candidate),
+  ) ||
+  'exiftool';
 const creator = 'Heiko Fanieng';
 const creatorJobTitle = 'Fachinformatiker:in Anwendungsentwicklung | Regulatory Affairs Manager | SAP Consultant';
 const creatorJobTitleIptc = 'Developer & Regulatory Affairs';
 const creatorContact = 'heiko@fanieng.com';
 
 ensureDateArg(eventDate, 'Usage: npm run event:media -- <YYYY-MM-DD>');
+
+function ensureExiftool() {
+  try {
+    runCapture(exiftool, ['-ver']);
+  } catch (error) {
+    if (error?.code !== 'ENOENT') throw error;
+
+    console.error([
+      'ExifTool wurde nicht gefunden.',
+      'Installiere es unter macOS mit: brew install exiftool',
+      'Alternativ kannst du EXIFTOOL_PATH in deiner .env-Datei setzen.',
+    ].join('\n'));
+    process.exit(1);
+  }
+}
 
 function readFrontmatter(file) {
   const content = fs.readFileSync(file, 'utf8');
@@ -61,7 +82,7 @@ function eventHeadline(date, event) {
 
 function writeIptcMetadata(file, metadata) {
   if (metadata.keywords.length) {
-    runCapture('exiftool', [
+    runCapture(exiftool, [
       '-overwrite_original',
       '-IPTC:Keywords=',
       file,
@@ -110,7 +131,7 @@ function writeIptcMetadata(file, metadata) {
     args.push(`-XMP-photoshop:CaptionWriter=${creator}`);
   }
 
-  runCapture('exiftool', [...args, file]);
+  runCapture(exiftool, [...args, file]);
 }
 
 function timestamp(meta) {
@@ -156,7 +177,9 @@ if (!imageFiles.length) {
   process.exit(1);
 }
 
-const metadata = JSON.parse(runCapture('exiftool', [
+ensureExiftool();
+
+const metadata = JSON.parse(runCapture(exiftool, [
   '-j',
   '-DateTimeOriginal',
   '-CreateDate',
