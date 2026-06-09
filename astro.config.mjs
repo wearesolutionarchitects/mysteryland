@@ -8,11 +8,6 @@ import path from 'path';
 export default defineConfig({
     site: 'https://mysteryland.biz',
     integrations: [
-        icon({
-            include: {
-                lucide: ['*'],
-            },
-        }),
         starlight({ 
             title: "Mysteryland",   
             locales: {
@@ -112,6 +107,11 @@ export default defineConfig({
                 ],
             }
     ],
+        }),
+        icon({
+            include: {
+                lucide: ['*'],
+            },
         }),
     ],
     vite: {
