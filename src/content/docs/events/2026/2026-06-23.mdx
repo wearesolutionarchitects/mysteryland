@@ -25,6 +25,7 @@ import { LinkCard, Card } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
 import EventFacts from '@components/EventFacts.astro';
 import Gallery from '@components/Gallery.astro';
+import img1930 from '../../../gallery/2026/06/23/2026-06-23_19-30-00.jpg';
 
 <EventFacts
     facts={[
@@ -39,9 +40,15 @@ import Gallery from '@components/Gallery.astro';
     ]}
 />
 
+
+Def Leppard befindet sich derzeit auf ihrer „2026 World Tour“, die eine Sommer-Arenatour durch Großbritannien und Europa mit den Special Guests Extreme umfasst. Teil der Tour ist ein mit Spannung erwartetes Einzelkonzert in Deutschland in der Westfalenhalle in Dortmund.
 ## Galerie
 
-...
+<Gallery
+    images={[
+        { src: img1930, alt: 'Ticket', title: 'Ticket' },
+    ]}
+/>
 
 ## Videos (YouTube)
 
