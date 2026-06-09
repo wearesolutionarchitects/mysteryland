@@ -1,9 +1,9 @@
 ---
 title: "Def Leppard"
 
-description: "Eventbericht über das Konzert von Def Leppard auf der '??? Tour' in der Westfalenhalle am 23. Juni 2026."
+description: "Eventbericht über das Konzert von Def Leppard auf der '2026 World Tour' in der Westfalenhalle am 23. Juni 2026."
 
-tour: "??? Tour"
+tour: "2026 World Tour"
 
 artist: ["Def Leppard"]
 
@@ -15,11 +15,11 @@ city: "Dortmund"
 
 venue: "Westfalenhalle"
 
-price: 111.00
+price: 150.75
 
-asin: "B0F2NCSF75"
+asin: "B0027WNRIG"
 
-tags: ["Ticket","Westfalenhalle","Deutschland", "Dortmund", "Konzert","Def Leppard","??? Tour","2026"]
+tags: ["Ticket","Westfalenhalle","Deutschland", "Dortmund", "Konzert","Def Leppard","2026 World Tour","2026"]
 ---
 import { LinkCard, Card } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
@@ -29,32 +29,42 @@ import Gallery from '@components/Gallery.astro';
 <EventFacts
     facts={[
         { icon: 'lucide:calendar-days', label: 'Datum', value: '23.06.2026' },
-        { icon: 'lucide:route', label: 'Tour', value: '??? Tour' },
+        { icon: 'lucide:route', label: 'Tour', value: '2026 World Tour' },
         { icon: 'lucide:mic-vocal', label: 'Support', value: 'Extreme' },
         { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
         { icon: 'lucide:map-pin', label: 'Stadt', value: 'Dortmund' },
         { icon: 'lucide:landmark', label: 'Venue', value: 'Westfalenhalle' },
-        { icon: 'lucide:badge-euro', label: 'Preis', value: '111,00 €' },
-        { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+        { icon: 'lucide:badge-euro', label: 'Preis', value: '150,75 €' },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Golden Circle' },
     ]}
 />
 
 ## Galerie
 
+...
+
+## Videos (YouTube)
+
+...
+
+## Setlist
+
+<Card title="Songs" icon="list-format">
+    ...
+</Card>
+
+
 ## Album
 
 <Card title="Album" icon="seti:audio">
-    <a href="https://www.amazon.de/dp/B0F2NCSF75?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-        <img src="https://m.media-amazon.com/images/I/81PHduFSQ7L._SL1500_.jpg" alt="Robbie Williams - Britpop Tour (Amazon)" width="300" />
+    <a href="https://www.amazon.de/dp/B0027WNRIG?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+        <img src="https://m.media-amazon.com/images/I/71sGfHTQ82L._SL1400_.jpg" alt="Def Leppard - Hysteria" width="300" />
     </a>
-</Card>
-
-<Card title="Setlist" icon="list-format">
 </Card>
 
 <LinkCard
     title="Mehr Informationen"
-    href="https://fanieng.com/2026/06/05/robbie-williams-duesseldorf-merkur-spiel-arena/"
+    href="https://fanieng.com/2026/06/23/def-leppard-dortmund-westfalenhalle/"
 />
 
 
