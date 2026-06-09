@@ -19,35 +19,61 @@ price: 89.00
 
 tags: ["Ticket","RheinEnergieStadion","Deutschland","Konzert","Die Toten Hosen","Trink aus! Wir müssen gehen Tour","2026"]
 ---
-import { Card } from '@astrojs/starlight/components';
-import { LinkCard } from '@astrojs/starlight/components';
+import { LinkCard, Card } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
+import EventFacts from '@components/EventFacts.astro';
+import Gallery from '@components/Gallery.astro';
+import img1730 from '../../../gallery/2026/07/17/2026-07-17_17-30-00.jpg';
 
-![Tour](../../../gallery/2026/07/17/2026-07-17_00-00-00.jpg)
+<EventFacts
+    facts={[
+        { icon: 'lucide:calendar-days', label: 'Datum', value: '17.07.2026' },
+        { icon: 'lucide:route', label: 'Tour', value: 'Trink aus! Wir müssen gehen Tour' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: '...' },
+        { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
+        { icon: 'lucide:map-pin', label: 'Stadt', value: 'Köln' },
+        { icon: 'lucide:landmark', label: 'Venue', value: 'RheinEnergieStadion' },
+        { icon: 'lucide:badge-euro', label: 'Preis', value: '89,00 €' },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+    ]}
+/>
 
-## Trink Aus! Wir Müssen Gehen - Tour 2026
-
-Nach drei Jahren Pause gehen Die Toten Hosen wieder auf eine große Tournee!
+Nach drei Jahren Pause gehen **Die Toten Hosen** wieder auf eine große Tournee - diesmal ist es die letzte!
 
 Im fünften Jahrzehnt nach ihrer Gründung verspüren die Hosen eine Lust und einen Hunger auf Konzerte wie selten zuvor. 
-Vielleicht liegt das auch an ihrer Lebenssituation: Sie wissen, dass sie mit ihrer Karriere auf der Zielgeraden sind und solche Reisen irgendwann auch ein Ende haben. 
+
+Vielleicht liegt das auch an ihrer Lebenssituation: Sie wissen, dass sie mit ihrer Karriere auf der Zielgeraden sind und solche Reisen nun dem Ende entgegengehen. 
+
 Deshalb wollen sie noch einmal mit alten und neuen Liedern losziehen und jeden Abend so spielen, als wäre es ihr letzter!
 
-## Ticket / Venue / Preis
+## Galerie
 
-![Ticket](../../../gallery/2026/07/17/2026-07-17_17-30-00.jpg)
+<Gallery
+    images={[
+        { src: img1730, alt: 'Ticket', title: 'Ticket' },
+    ]}
+/>
 
-📅 Datum: 17.07.2026  
-🇩🇪 Land: Deutschland  
-📍 Stadt: Köln        
-🏟️ Venue: RheinEnergieStadion  
-💶 Preis: 89,00 €
 
-## Bilder
+## Videos (YouTube)
 
-## Konzertbericht
+...
 
-<Card title="Setlist" icon="list-format">
+## Setlist
+
+<Card title="Songs" icon="list-format">
+    ...
 </Card>
+
+## Album
+
+<Card title="Trink aus! Wir müssen gehen" icon="seti:audio">
+    <a href="https://www.amazon.de/dp/B0H2VT1RCF?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+        <img src="https://m.media-amazon.com/images/I/61O3wze7o7L._SL1500_.jpg" alt="Die Toten Hosen - Trink aus! Wir müssen gehen" width="300" />
+    </a>
+</Card>
+
+
 
 <LinkCard
     title="Mehr Informationen"
