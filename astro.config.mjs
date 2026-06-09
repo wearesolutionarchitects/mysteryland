@@ -1,12 +1,18 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import icon from 'astro-icon';
 import path from 'path';
 
 // https://astro.build/config
 export default defineConfig({
     site: 'https://mysteryland.biz',
     integrations: [
+        icon({
+            include: {
+                lucide: ['*'],
+            },
+        }),
         starlight({ 
             title: "Mysteryland",   
             locales: {

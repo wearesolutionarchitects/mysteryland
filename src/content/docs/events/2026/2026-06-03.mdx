@@ -21,42 +21,73 @@ asin: "B0F2NCSF75"
 
 tags: ["Ticket","Volksparkstadion","Deutschland", "Hamburg", "Konzert","Linkin Park","From Zero World Tour","2026"]
 ---
-import { Card } from '@astrojs/starlight/components';
-import { LinkCard } from '@astrojs/starlight/components';
-
-![Tour](../../../gallery/2026/06/03/2026-06-03_00-00-00.jpg)
-
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+import Gallery from '@components/Gallery.astro';
+import img0000 from '../../../gallery/2026/06/03/2026-06-03_00-00-00.jpg';
+import img1930 from '../../../gallery/2026/06/03/2026-06-03_19-30-00.jpg';
+import img2103 from '../../../gallery/2026/06/03/2026-06-03_21-03-06.jpg';
+import img2104 from '../../../gallery/2026/06/03/2026-06-03_21-04-09.jpg';
+import img2112 from '../../../gallery/2026/06/03/2026-06-03_21-12-25.jpg';
+import img2116 from '../../../gallery/2026/06/03/2026-06-03_21-16-15.jpg';
+import img2151 from '../../../gallery/2026/06/03/2026-06-03_21-51-34.jpg';
+import img2219 from '../../../gallery/2026/06/03/2026-06-03_22-19-11.jpg';
+import img2222 from '../../../gallery/2026/06/03/2026-06-03_22-22-28.jpg';
+import img2230 from '../../../gallery/2026/06/03/2026-06-03_22-30-01.jpg';
+import img2301 from '../../../gallery/2026/06/03/2026-06-03_23-01-21.jpg';
 
 ## From Zero - World Tour 2026
 
-Nach dem tragischen Tod von Chester Bennington kehrt Linkin Park 2025 mit neuer Kraft zurück: 
-Die Band ist nun mit Emelie Armstrong als Sängerin unterwegs. 
+Nach dem tragischen Tod von **Chester Bennington** kehrt Linkin Park 2025 mit neuer Kraft zurück: 
+Die Band ist nun mit **Emelie Armstrong** als Sängerin unterwegs. 
 
 Ihre kraftvolle Stimme bringt frischen Wind in die bekannten Songs und wurde von Fans weltweit mit Begeisterung aufgenommen.
 
-Die "From Zero - World Tour" von 2025-2026 ist ein Meilenstein in der Geschichte von Linkin Park und bietet eine einzigartige Gelegenheit, die Band in neuem Glanz zu erleben.
+Die **"From Zero - World Tour"** von 2025-2026 ist ein Meilenstein in der Geschichte von Linkin Park und bietet eine einzigartige Gelegenheit, die Band in neuem Glanz zu erleben.
 
 ## Ticket / Venue / Preis
 
-![Ticket](../../../gallery/2026/06/03/2026-06-03_19-30-00.jpg)
+<CardGrid>
+    <Card title="Datum" icon="seti:calendar">
+        03.06.2026
+    </Card>
+    <Card title="Land" icon="flag">
+        Deutschland
+    </Card>
+    <Card title="Stadt" icon="map">
+        Hamburg
+    </Card>
+    <Card title="Venue" icon="venue">
+        Volksparkstadion
+    </Card>
+    <Card title="Preis" icon="ticket">
+        111,00 €
+    </Card>
+</CardGrid>
 
-📅 Datum: 03.06.2026  
-🇩🇪 Land: Deutschland  
-📍 Stadt: Hamburg  
-🏟️ Venue: Volksparkstadion  
-💶 Preis: 111,00 €  
+## Galerie
 
-## Bilder
+<Gallery
+    images={[
+        { src: img0000, thumbnail: img0000, alt: 'Plakat', title: 'Plakat' },
+        { src: img1930, thumbnail: img1930, alt: 'Ticket', title: 'Ticket' },
+        { src: img2103, thumbnail: img2103, alt: 'Bühne', title: '21:03' },
+        { src: img2104, thumbnail: img2104, alt: 'Bühne', title: '21:04' },
+        { src: img2112, thumbnail: img2112, alt: 'Bühne', title: '21:12' },
+        { src: img2116, thumbnail: img2116, alt: 'Bühne', title: '21:16' },
+        { src: img2151, thumbnail: img2151, alt: 'Bühne', title: '21:51' },
+        { src: img2219, thumbnail: img2219, alt: 'Bühne', title: '22:19' },
+        { src: img2222, thumbnail: img2222, alt: 'Bühne', title: '22:22' },
+        { src: img2230, thumbnail: img2230, alt: 'Bühne', title: '22:30' },
+        { src: img2301, thumbnail: img2301, alt: 'Bühne', title: '23:01' },
+    ]}
+/>
 
-## Konzertbericht
 
-<Card title="Album" icon="seti:audio">
-    <a href="https://www.amazon.de/dp/B0F2NCSF75?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-        <img src="https://m.media-amazon.com/images/I/81PHduFSQ7L._SL1500_.jpg" alt="Linkin Park - From Zero (Amazon)" width="300" />
-    </a>
-</Card>
+## Setlist
 
-<Card title="Setlist" icon="list-format">
+<Card title="Songs" icon="list-format">
     <ol>
         <li>The Emptiness Machine</li>
         <li>Points of Authority</li>
@@ -91,6 +122,15 @@ Die "From Zero - World Tour" von 2025-2026 ist ein Meilenstein in der Geschichte
         <li>Faint</li>
     </ol>
 </Card>
+
+## Album
+
+<Card title="From Zero" icon="seti:audio">
+    <a href="https://www.amazon.de/dp/B0F2NCSF75?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+        <img src="https://m.media-amazon.com/images/I/81PHduFSQ7L._SL1500_.jpg" alt="Linkin Park - From Zero (Amazon)" width="300" />
+    </a>
+</Card>
+
 
 <LinkCard
     title="Mehr Informationen"
