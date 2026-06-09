@@ -21,9 +21,9 @@ asin: "B0F2NCSF75"
 
 tags: ["Ticket","Volksparkstadion","Deutschland", "Hamburg", "Konzert","Linkin Park","From Zero World Tour","2026"]
 ---
-import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+import { Card, LinkCard } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
-import { Icon } from 'astro-icon/components';
+import EventFacts from '@components/EventFacts.astro';
 import Gallery from '@components/Gallery.astro';
 import img0000 from '../../../gallery/2026/06/03/2026-06-03_00-00-00.jpg';
 import img1930 from '../../../gallery/2026/06/03/2026-06-03_19-30-00.jpg';
@@ -37,7 +37,19 @@ import img2222 from '../../../gallery/2026/06/03/2026-06-03_22-22-28.jpg';
 import img2230 from '../../../gallery/2026/06/03/2026-06-03_22-30-01.jpg';
 import img2301 from '../../../gallery/2026/06/03/2026-06-03_23-01-21.jpg';
 
-## From Zero - World Tour 2026
+<EventFacts
+    facts={[
+        { icon: 'lucide:calendar-days', label: 'Datum', value: '03.06.2026' },
+        { icon: 'lucide:route', label: 'Tour', value: 'From Zero World Tour' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: 'Clips, Phantogram' },
+        { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
+        { icon: 'lucide:map-pin', label: 'Stadt', value: 'Hamburg' },
+        { icon: 'lucide:landmark', label: 'Venue', value: 'Volksparkstadion' },
+        { icon: 'lucide:badge-euro', label: 'Preis', value: '111,00 €' },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+    ]}
+/>
+
 
 Nach dem tragischen Tod von **Chester Bennington** kehrt Linkin Park 2025 mit neuer Kraft zurück: 
 Die Band ist nun mit **Emelie Armstrong** als Sängerin unterwegs. 
@@ -46,25 +58,6 @@ Ihre kraftvolle Stimme bringt frischen Wind in die bekannten Songs und wurde von
 
 Die **"From Zero - World Tour"** von 2025-2026 ist ein Meilenstein in der Geschichte von Linkin Park und bietet eine einzigartige Gelegenheit, die Band in neuem Glanz zu erleben.
 
-## Ticket / Venue / Preis
-
-<CardGrid>
-    <Card title="Datum" icon="seti:calendar">
-        03.06.2026
-    </Card>
-    <Card title="Land" icon="flag">
-        Deutschland
-    </Card>
-    <Card title="Stadt" icon="map">
-        Hamburg
-    </Card>
-    <Card title="Venue" icon="venue">
-        Volksparkstadion
-    </Card>
-    <Card title="Preis" icon="ticket">
-        111,00 €
-    </Card>
-</CardGrid>
 
 ## Galerie
 
@@ -136,6 +129,3 @@ Die **"From Zero - World Tour"** von 2025-2026 ist ein Meilenstein in der Geschi
     title="Mehr Informationen"
     href="https://fanieng.com/2026/06/03/linkin-park-hamburg-volksparkstadion/"
 />
-
-
-
