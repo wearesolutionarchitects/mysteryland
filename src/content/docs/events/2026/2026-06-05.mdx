@@ -23,6 +23,7 @@ tags: ["Ticket","Merkur Spiel-Arena","Deutschland", "Düsseldorf", "Konzert","Ro
 ---
 import { LinkCard, Card } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
+import EventFacts from '@components/EventFacts.astro';
 import Gallery from '@components/Gallery.astro';
 import img0000 from '../../../gallery/2026/06/05/2026-06-05_00-00-00.jpg';
 import img0000Dark from '../../../gallery/2026/06/05/2026-06-05_00-00-00-dark.jpg';
@@ -38,26 +39,32 @@ import img2220 from '../../../gallery/2026/06/05/2026-06-05_22-20-49.jpg';
 import img2232 from '../../../gallery/2026/06/05/2026-06-05_22-32-19.jpg';
 import img2237 from '../../../gallery/2026/06/05/2026-06-05_22-37-24.jpg';
 
-## Britpop Tour 2026
+<EventFacts
+    facts={[
+        { icon: 'lucide:calendar-days', label: 'Datum', value: '05.06.2026' },
+        { icon: 'lucide:route', label: 'Tour', value: 'Britpop Tour' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: 'Samu Haber' },
+        { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
+        { icon: 'lucide:map-pin', label: 'Stadt', value: 'Düsseldorf' },
+        { icon: 'lucide:landmark', label: 'Venue', value: 'Merkur Spiel-Arena' },
+        { icon: 'lucide:badge-euro', label: 'Preis', value: '199,20 €' },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Golden Circle' },
+    ]}
+/>
 
-Robbie Williams bewies beim 1. seiner beiden einzigen Deutschlandkonzerte 2026 einmal mehr, warum er zu den besten Entertainern der Popwelt zählt. 
+Robbie Williams bewies beim 1. seiner beiden einzigen Deutschlandkonzerte in 2026 einmal mehr, warum er zu den besten Entertainern der Popwelt zählt. 
 Vom Opener **„Rocket“** bis zum emotionalen Finale mit **„Angels“** hatte der Brite das Publikum fest im Griff und wechselte mühelos zwischen Rockshow,
 Stand-up-Comedy und großen Gänsehautmomenten.
 
 Typisch Robbie durfte auch der Humor nicht fehlen: Mit einem Augenzwinkern stichelte er gegen das Düsseldorfer Publikum wegen der Lautstärke im Vergleich zu den Kölnern
 und behauptete, die Fans in Köln seien lauter gewesen – obwohl die aktuelle Tour dort gar keinen Stopp eingelegt hatte. Die Arena nahm den Seitenhieb sportlich und reagierte mit umso mehr Begeisterung.
 
+Vermisst wurde von uns als Fans diesmal die typischen Getränkebecher mit Motiven zur Tour, welche wir gerne als Andenken gesammelt hätten. 
+Stattdessen gab es diesmal nur die üblichen Plastikbecher, was etwas schade war, da die Tour-Merchandise-Artikel sonst immer sehr liebevoll gestaltet sind.
+
 Musikalisch spannte Williams den Bogen von neuen Songs wie **„Rocket“** bis zu seinen größten Klassikern. **„Rock DJ“**, **„Supreme“**, **„Millennium“**, **„Feel“** und **„Let Me Entertain You“** sorgten für Partystimmung, während **„She’s the One“**, **„My Way“** und das abschließende **„Angels“** die emotionalen Höhepunkte des Abends bildeten.
 
 Nach über zwei Stunden Unterhaltung blieb vor allem ein Eindruck: Robbie Williams ist nicht nur ein Popstar, sondern ein geborener Entertainer, der selbst ein Stadionpublikum das Gefühl geben kann, Teil einer sehr persönlichen Show zu sein.
-
-## Ticket / Venue / Preis
-
-📅 Datum: 05.06.2026  
-🇩🇪 Land: Deutschland  
-📍 Stadt: Düsseldorf  
-🏟️ Venue: Merkur Spiel-Arena  
-💶 Preis: 199,20 €  
 
 ## Galerie
 
@@ -65,16 +72,16 @@ Nach über zwei Stunden Unterhaltung blieb vor allem ein Eindruck: Robbie Willia
     images={[
         { src: img0000, thumbnail: img0000Dark, alt: 'Plakat', title: 'Plakat' },
         { src: img1930, alt: 'Ticket', title: 'Ticket' },
-        { src: img2040, alt: 'Robbie Williams auf der Bühne in Düsseldorf', title: '20:40' },
-        { src: img2041, alt: 'Robbie Williams während der Britpop Tour', title: '20:41' },
-        { src: img2043, alt: 'Bühnenansicht beim Robbie-Williams-Konzert', title: '20:43' },
-        { src: img2100, alt: 'Robbie Williams live in der Merkur Spiel-Arena', title: '21:00' },
-        { src: img2130, alt: 'Robbie Williams bei seinem Konzert in Düsseldorf', title: '21:30' },
-        { src: img2146, alt: 'Robbie Williams während der Britpop Tour', title: '21:46' },
-        { src: img2200, alt: 'Robbie Williams während der Britpop Tour', title: '22:00' },
-        { src: img2220, alt: 'Robbie Williams während der Britpop Tour', title: '22:20' },
-        { src: img2232, alt: 'Robbie Williams während der Britpop Tour', title: '22:32' },
-        { src: img2237, alt: 'Robbie Williams während der Britpop Tour', title: '22:37' },
+        { src: img2040, alt: 'Bühne', title: '20:40' },
+        { src: img2041, alt: 'Bühne', title: '20:41' },
+        { src: img2043, alt: 'Bühne', title: '20:43' },
+        { src: img2100, alt: 'Bühne', title: '21:00' },
+        { src: img2130, alt: 'Bühne', title: '21:30' },
+        { src: img2146, alt: 'Bühne', title: '21:46' },
+        { src: img2200, alt: 'Bühne', title: '22:00' },
+        { src: img2220, alt: 'Bühne', title: '22:20' },
+        { src: img2232, alt: 'Bühne', title: '22:32' },
+        { src: img2237, alt: 'Bühne', title: '22:37' },
     ]}
 />
 
