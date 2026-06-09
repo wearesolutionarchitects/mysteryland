@@ -21,26 +21,27 @@ asin: "B0F2NCSF75"
 
 tags: ["Ticket","Westfalenhalle","Deutschland", "Dortmund", "Konzert","Def Leppard","??? Tour","2026"]
 ---
-import { Card } from '@astrojs/starlight/components';
-import { LinkCard } from '@astrojs/starlight/components';
+import { LinkCard, Card } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
+import EventFacts from '@components/EventFacts.astro';
+import Gallery from '@components/Gallery.astro';
 
-## ??? Tour 2026
+<EventFacts
+    facts={[
+        { icon: 'lucide:calendar-days', label: 'Datum', value: '23.06.2026' },
+        { icon: 'lucide:route', label: 'Tour', value: '??? Tour' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: 'Extreme' },
+        { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
+        { icon: 'lucide:map-pin', label: 'Stadt', value: 'Dortmund' },
+        { icon: 'lucide:landmark', label: 'Venue', value: 'Westfalenhalle' },
+        { icon: 'lucide:badge-euro', label: 'Preis', value: '111,00 €' },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+    ]}
+/>
 
-...
+## Galerie
 
-## Ticket / Venue / Preis
-
-![Ticket](../../../gallery/2026/06/05/2026-06-05_19-30-00.jpg)
-
-📅 Datum: 05.06.2026  
-🇩🇪 Land: Deutschland  
-📍 Stadt: Düsseldorf     
-🏟️ Venue: Merkur Spiel-Arena   
-💶 Preis: 199,50 €  
-
-## Bilder
-
-## Konzertbericht
+## Album
 
 <Card title="Album" icon="seti:audio">
     <a href="https://www.amazon.de/dp/B0F2NCSF75?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">

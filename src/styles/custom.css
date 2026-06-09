@@ -14,16 +14,17 @@
 }
 /* Light mode colors. */
 :root[data-theme='light'] {
-	--sl-color-accent-low: #0040dd;
+	--sl-color-accent-low: #e5f0ff;
 	--sl-color-accent: #007aff;
-	--sl-color-accent-high: #5ac8fa;
-	--sl-color-white: #ffffff;
-	--sl-color-gray-1: #000000;
-	--sl-color-gray-2: #000000;
-	--sl-color-gray-3: #000000;
-	--sl-color-gray-4: #000000;
-	--sl-color-gray-5: #000000;
-	--sl-color-gray-6: #636366;
+	--sl-color-accent-high: #0040dd;
+	--sl-color-white: #1c1c1e;
+	--sl-color-gray-1: #2c2c2e;
+	--sl-color-gray-2: #3a3a3c;
+	--sl-color-gray-3: #636366;
+	--sl-color-gray-4: #8e8e93;
+	--sl-color-gray-5: #c7c7cc;
+	--sl-color-gray-6: #e5e5ea;
+	--sl-color-gray-7: #f2f2f7;
 	--sl-color-black: #ffffff;
 }
 .starlight-logo img {
