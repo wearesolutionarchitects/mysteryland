@@ -1,9 +1,9 @@
 ---
 title: "Broilers"
 
-description: "Eventbericht über das Konzert von Broilers auf der 'Open Airs 2026 Tour' in der Merkur-Spiel-Arena in Düsseldorf am 11.07.2026."
+description: "Eventbericht über das Konzert von Broilers auf der 'Ultrabowl 2026' in der Merkur-Spiel-Arena in Düsseldorf am 11.07.2026."
 
-tour: "Open Airs 2026 Tour"
+tour: "Ultrabowl 2026"
 
 artist: ["Broilers"]
 
@@ -19,18 +19,20 @@ price: 74.85
 
 asin: "B0CY31TLQY"
 
-tags: ["Ticket","Merkur Spiel-Arena","Deutschland","Konzert","Broilers","Open Airs 2026 Tour","2026"]
+tags: ["Ticket","Merkur Spiel-Arena","Deutschland","Konzert","Broilers","Ultrabowl 2026","2026"]
 ---
 import { LinkCard, Card } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
 import EventFacts from '@components/EventFacts.astro';
 import Gallery from '@components/Gallery.astro';
+import YouTubeVideos from '@components/YouTubeVideos.astro';
 import img0000 from '../../../gallery/2026/07/11/2026-07-11_00-00-00.jpg';
+import img1930 from '../../../gallery/2026/07/11/2026-07-11_19-30-00.jpg';
 
 <EventFacts
     facts={[
         { icon: 'lucide:calendar-days', label: 'Datum', value: '11.07.2026' },
-        { icon: 'lucide:route', label: 'Tour', value: 'Open Airs 2026 Tour' },
+        { icon: 'lucide:route', label: 'Tour', value: 'Ultrabowl 2026' },
         { icon: 'lucide:mic-vocal', label: 'Support', value: 'Donots, Agnostic Front' },
         { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
         { icon: 'lucide:map-pin', label: 'Stadt', value: 'Düsseldorf' },
@@ -40,20 +42,29 @@ import img0000 from '../../../gallery/2026/07/11/2026-07-11_00-00-00.jpg';
     ]}
 />
 
-**Broilers**
+...
 
 ## Galerie
 
 <Gallery
     images={[
-        { src: img0000, alt: 'Ticket', title: 'Plakat' },
+        { src: img0000, alt: 'Plakat', title: 'Plakat' },
+        { src: img1930, alt: 'Ticket', title: 'Ticket' },
     ]}
 />
 
 
-## Videos (YouTube)
+## Videos
 
 ...
+
+{/* <YouTubeVideos
+    videos={[
+        { id: '4c_jaWmL2SU'},
+        { id: 'TIqzp0NWPUA' },
+    ]}
+/> */}
+
 
 ## Setlist
 
