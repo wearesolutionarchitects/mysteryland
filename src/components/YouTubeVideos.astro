@@ -1,0 +1,73 @@
+---
+interface YouTubeVideo {
+  id: string;
+  title: string;
+}
+
+interface Props {
+  videos: YouTubeVideo[];
+}
+
+const { videos } = Astro.props;
+const videoIdPattern = /^[A-Za-z0-9_-]{11}$/;
+
+for (const video of videos) {
+  if (!videoIdPattern.test(video.id)) {
+    throw new Error(`Ungültige YouTube-Video-ID: ${video.id}`);
+  }
+}
+---
+
+<div class="youtube-videos">
+  {videos.map(({ id, title }) => (
+    <figure>
+      <div class="video-frame">
+        <iframe
+          src={`https://www.youtube-nocookie.com/embed/${id}`}
+          title={title}
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        />
+      </div>
+      <figcaption>{title}</figcaption>
+    </figure>
+  ))}
+</div>
+
+<style>
+  .youtube-videos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+    gap: 1.5rem;
+    margin-block: 1.5rem;
+  }
+
+  figure {
+    min-width: 0;
+    margin: 0;
+  }
+
+  .video-frame {
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.5rem;
+    background: #000;
+  }
+
+  iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  figcaption {
+    margin-block-start: 0.5rem;
+    color: var(--sl-color-gray-2);
+    font-size: var(--sl-text-sm);
+    line-height: 1.4;
+  }
+</style>
