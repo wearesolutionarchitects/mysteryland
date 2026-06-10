@@ -11,76 +11,95 @@ city: "Mönchengladbach"
 
 venue: "SparkassenPark"
 
-price: 99.00
+price: 106.50
 
-artist: [""]
+artist: ["Airbourne", "Judas Priest", "The Gems", "Phil Campbell’s Bastard Sons", "Nestor", "Beyond The Black"]
 
 tags: ["Ticket","Deutschland","2026", "BOB!Fest","Festival","Mönchengladbach","SparkassenPark"]
 ---
 import { LinkCard, Card, CardGrid } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
-import img0000 from '../../../../assets/Radio_Bob_Logo_2025.png';
+import EventFacts from '@components/EventFacts.astro';
+import Gallery from '@components/Gallery.astro';
+import YouTubeVideos from '@components/YouTubeVideos.astro';
+import img0000 from '../../../gallery/2026/07/25/2026-07-25_00-00-00.jpg';
 
-## 🪧 Plakat
+<EventFacts
+    facts={[
+        { icon: 'lucide:calendar-days', label: 'Datum', value: '25.07.2026' },
+        { icon: 'lucide:route', label: 'Festival', value: 'BOB!Fest' },
+        { icon: 'lucide:mic-vocal', label: 'Artists', value: 'Airbourne, Judas Priest, The Gems, Phil Campbell’s Bastard Sons, Nestor, Beyond The Black' },
+        { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
+        { icon: 'lucide:map-pin', label: 'Stadt', value: 'Mönchengladbach' },
+        { icon: 'lucide:landmark', label: 'Venue', value: 'SparkassenPark' },
+        { icon: 'lucide:badge-euro', label: 'Preis', value: '106,50 €' },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+    ]}
+/>
 
-![Plakat](../../../gallery/2026/07/25/2026-07-25_00-00-00.jpg)
+- 13.45 - 14.20 - The Gems
+- 14.40 - 15.20 - Phil Campbell’s Bastard Sons
+- 15.40 - 16.40 - Nestor
+- 17.10 - 18.10 - Beyond The Black
+- 18.45 - 19.45 - Airbourne
+- 20.30 - 22.00 - Judas Priest
 
----
+## Galerie
 
-## 🎫 Ticket
+<Gallery
+    images={[
+        { src: img0000, alt: 'Plakat', title: 'Plakat' },
+    ]}
+/>
 
-![Ticket](../../../gallery/2026/07/25/2026-07-25_13-30-00.jpg)
+## Videos
 
-## 📌 Details
+...
 
-📅 Datum: 25.07.2026  
-🇩🇪 Land: Deutschland  
-📍 Stadt: Mönchengladbach  
-🏟️ Venue: SparkassenPark  
-💶 Preis: 99,00 €
+{/* <YouTubeVideos
+    videos={[
+        { id: '4c_jaWmL2SU'},
+        { id: 'TIqzp0NWPUA' },
+    ]}
+/> */}
 
-## 📷 Fotos
+## Setlisten
 
-<CardGrid>
-  <Card title="BOB!Fest" icon="image">
-    <Image src={img0000} alt="BOB!Fest" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-  </Card>
-</CardGrid>
-
-
-## 🎤 Konzertbericht
-
-Am 25.07.2026 findet zum 3. Mal das BOB!Fest im SparkassenPark Mönchengladbach statt, ein Festival mit einer beeindruckenden Besetzung.
-
-## 🎶 Setlists
-
-<Card title="Künstler:in" icon="list-format">
-01. ...
-02. ...
-03. ...
+<Card title="Songs" icon="list-format">
+    ...
 </Card>
 
-## 💿 Alben
+## Alben
 
 <CardGrid>
-    <Card title="Dirty & Devine" icon="seti:audio">
-        <a href="https://www.amazon.de/dp/B0DGH26MHC?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-            <img src="https://m.media-amazon.com/images/I/71cUGj1Q8ZL._SL1208_.jpg" alt="Thundermother - Dirty & Devine (Amazon)" width="300" />
+    <Card title="Boneshaker" icon="seti:audio">
+        <a href="https://www.amazon.de/dp/B07WGJJGGG?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+            <img src="https://m.media-amazon.com/images/I/9113CV5UhSL._SL1500_.jpg" alt="Airbourne - Boneshaker (Amazon)" width="300" />
         </a>
     </Card>
-    <Card title="Attracted to Danger" icon="seti:audio">
-        <a href="https://www.amazon.de/dp/B0D9JS7DTS?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-            <img src="https://m.media-amazon.com/images/I/81twT1SFzDL._SL1500_.jpg" alt="The New Roses - Attracted to Danger (Amazon)" width="300" />
+    <Card title="Invincible Shield" icon="seti:audio">
+        <a href="https://www.amazon.de/dp/B0CKR1BW3C?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+            <img src="https://m.media-amazon.com/images/I/81VbTX-1uhL._SL1500_.jpg" alt="Judas Priest - Invincible Shield Deluxe (Amazon)" width="300" />
         </a>
     </Card>
-    <Card title="Leo Rising" icon="seti:audio">
-        <a href="https://www.amazon.de/dp/B0FDB1Q5D3?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-            <img src="https://m.media-amazon.com/images/I/81v3bJaQIiL._SL1500_.jpg" alt="Danko Jones - Leo Rising (Amazon)" width="300" />
+    <Card title="Phoenix" icon="seti:audio">
+        <a href="https://www.amazon.de/dp/B0CL5KZKG8?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+            <img src="https://m.media-amazon.com/images/I/91MHfzPcUjL._SL1500_.jpg" alt="The Gems - Phoenix (Amazon)" width="300" />
         </a>
     </Card>
-    <Card title="The Revenge of Alice Cooper" icon="seti:audio">
-        <a href="https://www.amazon.de/dp/B0F59NJ3FM?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-            <img src="https://m.media-amazon.com/images/I/51Uxy8ykZ4L._SL1000_.jpg" alt="Alice Cooper - The Revenge of Alice Cooper (Amazon)" width="300" />
+    <Card title="Kings of the Asylum" icon="seti:audio">
+        <a href="https://www.amazon.de/dp/B0C8WZSC47?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+            <img src="https://m.media-amazon.com/images/I/71tJNrJTVyL._SL1500_.jpg" alt="Phil Campbell and the Bastard Sons - Kings of the Asylum (Amazon)" width="300" />
+        </a>
+    </Card>
+    <Card title="Teenage Rebel" icon="seti:audio">
+        <a href="https://www.amazon.de/dp/B0CZ3S5TG6?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+            <img src="https://m.media-amazon.com/images/I/814dFKpcH+L._SL1500_.jpg" alt="Nestor - Teenage Rebel (Amazon)" width="300" />
+        </a>
+    </Card>
+    <Card title="Break the Silence" icon="seti:audio">
+        <a href="https://www.amazon.de/dp/B0FJQCXVJ3?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+            <img src="https://m.media-amazon.com/images/I/71Z4RjJK0NL._SL1417_.jpg" alt="Beyond the Black - Break the Silence (Amazon)" width="300" />
         </a>
     </Card>
 </CardGrid>
