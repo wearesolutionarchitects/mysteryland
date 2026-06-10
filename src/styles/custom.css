@@ -27,9 +27,21 @@
 	--sl-color-gray-7: #f2f2f7;
 	--sl-color-black: #ffffff;
 }
-.starlight-logo img {
-  width: 200px !important;
-  height: auto !important;
+.site-title img {
+  width: 128px;
+  height: auto;
+  max-height: 48px;
+}
+
+@media (min-width: 50rem) {
+  :root {
+    --sl-nav-height: clamp(4rem, 5vw, 5rem);
+  }
+
+  .site-title img {
+    width: clamp(10rem, 13vw, 14rem);
+    max-height: calc(var(--sl-nav-height) - 1rem);
+  }
 }
 
 @media (min-width: 72rem) {
