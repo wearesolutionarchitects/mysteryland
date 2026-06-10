@@ -1,0 +1,88 @@
+---
+title: "OMD"
+
+description: "Eventbericht über das Konzert von OMD auf dem 'Zeltfestival Ruhr' in Witten/Kemnader See am 01.09.2026."
+
+tour: "Zeltfestival Ruhr"
+
+artist: ["OMD"]
+
+pubDate: 2026-09-01
+
+country: "Deutschland"
+
+city: "Witten"
+
+venue: "Kemnader See"
+
+price: 66.70
+
+asin: "B0CGG5NQXP"
+
+tags: ["Ticket","Kemnader See","Deutschland","Konzert","OMD","Zeltfestival Ruhr","2026"]
+---
+import { LinkCard, Card } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
+import EventFacts from '@components/EventFacts.astro';
+import Gallery from '@components/Gallery.astro';
+import YouTubeVideos from '@components/YouTubeVideos.astro';
+import img2015 from '../../../gallery/2026/09/01/2026-09-01_20-15-00.jpg';
+
+<EventFacts
+    facts={[
+        { icon: 'lucide:calendar-days', label: 'Datum', value: '01.09.2026' },
+        { icon: 'lucide:route', label: 'Tour', value: 'Zeltfestival Ruhr' },
+        { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
+        { icon: 'lucide:map-pin', label: 'Stadt', value: 'Witten' },
+        { icon: 'lucide:landmark', label: 'Venue', value: 'Kemnader See' },
+        { icon: 'lucide:badge-euro', label: 'Preis', value: '66,70 €' },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz' },
+    ]}
+/>
+
+...
+
+## Galerie
+
+<Gallery
+    images={[
+        { src: img2015, alt: 'Ticket', title: 'Ticket' },
+    ]}
+/>
+
+
+## Videos
+
+...
+
+{/* <YouTubeVideos
+    videos={[
+        { id: '4c_jaWmL2SU'},
+        { id: 'TIqzp0NWPUA' },
+    ]}
+/> */}
+
+
+## Setlist
+
+<Card title="Songs" icon="list-format">
+    ...
+</Card>
+
+## Album
+
+<Card title="Bauhaus Staircase" icon="seti:audio">
+    <a href="https://www.amazon.de/dp/B0CGG5NQXP?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+        <img src="https://m.media-amazon.com/images/I/81Oqy31BjKL._SL1500_.jpg" alt="OMD - Bauhaus Staircase" width="300" />
+    </a>
+</Card>
+
+
+
+<LinkCard
+    title="Mehr Informationen"
+    href="https://fanieng.com/2026/07/17/omd-bauhaus-staircase"
+/>
+
+
+
