@@ -19,19 +19,20 @@ price: 89.00
 
 asin: "B0H2VT1RCF"
 
-tags: ["Ticket","RheinEnergieStadion","Deutschland","Konzert","Die Toten Hosen","Trink aus! Wir müssen gehen Tour","2026"]
+tags: ["Ticket","RheinEnergieStadion","Deutschland","Konzert","Die Toten Hosen","Trink aus! Wir müssen gehen Tour","2026", "The Undertones"]
 ---
 import { LinkCard, Card } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
 import EventFacts from '@components/EventFacts.astro';
 import Gallery from '@components/Gallery.astro';
+import YouTubeVideos from '@components/YouTubeVideos.astro';
 import img1730 from '../../../gallery/2026/07/17/2026-07-17_17-30-00.jpg';
 
 <EventFacts
     facts={[
         { icon: 'lucide:calendar-days', label: 'Datum', value: '17.07.2026' },
         { icon: 'lucide:route', label: 'Tour', value: 'Trink aus! Wir müssen gehen Tour' },
-        { icon: 'lucide:mic-vocal', label: 'Support', value: '...' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: 'The Undertones, TBA' },
         { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
         { icon: 'lucide:map-pin', label: 'Stadt', value: 'Köln' },
         { icon: 'lucide:landmark', label: 'Venue', value: 'RheinEnergieStadion' },
@@ -57,9 +58,17 @@ Deshalb wollen sie noch einmal mit alten und neuen Liedern losziehen und jeden A
 />
 
 
-## Videos (YouTube)
+## Videos
 
 ...
+
+{/* <YouTubeVideos
+    videos={[
+        { id: '4c_jaWmL2SU'},
+        { id: 'TIqzp0NWPUA' },
+    ]}
+/> */}
+
 
 ## Setlist
 
