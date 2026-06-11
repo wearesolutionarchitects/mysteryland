@@ -1,0 +1,91 @@
+---
+title: "Broilers"
+
+description: "Eventbericht über das Konzert von Broilers auf der 'SANTA'S ACTION-CLUB 2026' in der Mitsubishi Electric Halle in Düsseldorf am 25.12.2026."
+
+tour: "SANTA'S ACTION-CLUB 2026"
+
+artist: ["Broilers"]
+
+pubDate: 2026-12-25
+
+country: "Deutschland"
+
+city: "Düsseldorf"
+
+venue: "Mitsubishi Electric Halle"
+
+price: 69.00
+
+asin: "B0CY31TLQY"
+
+tags: ["Ticket","Mitsubishi Electric Halle","Deutschland","Konzert","Broilers","SANTA'S ACTION-CLUB 2026","2026"]
+---
+import { LinkCard, Card } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
+import EventFacts from '@components/EventFacts.astro';
+import Gallery from '@components/Gallery.astro';
+import YouTubeVideos from '@components/YouTubeVideos.astro';
+import img0000 from '../../../gallery/2026/12/25/2026-12-25_00-00-00.jpg';
+import img1900 from '../../../gallery/2026/12/25/2026-12-25_19-00-00.jpg';
+
+<EventFacts
+    facts={[
+        { icon: 'lucide:calendar-days', label: 'Datum', value: '25.12.2026' },
+        { icon: 'lucide:route', label: 'Tour', value: 'SANTA`S ACTION-CLUB 2026' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: 'TBA' },
+        { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
+        { icon: 'lucide:map-pin', label: 'Stadt', value: 'Düsseldorf' },
+        { icon: 'lucide:landmark', label: 'Venue', value: 'Mitsubishi Electric Halle' },
+        { icon: 'lucide:badge-euro', label: 'Preis', value: '69,00 €' },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+    ]}
+/>
+
+...
+
+## Galerie
+
+<Gallery
+    images={[
+        { src: img0000, alt: 'Einladung', title: 'Einladung' },
+        { src: img1900, alt: 'Ticket', title: 'Ticket' },
+    ]}
+/>
+
+
+## Videos
+
+...
+
+{/* <YouTubeVideos
+    videos={[
+        { id: '4c_jaWmL2SU'},
+        { id: 'TIqzp0NWPUA' },
+    ]}
+/> */}
+
+
+## Setlist
+
+<Card title="Songs" icon="list-format">
+    ...
+</Card>
+
+## Album
+
+<Card title="Jolly Good Fellas" icon="seti:audio">
+    <a href="https://www.amazon.de/dp/B0CY31TLQY?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+        <img src="https://m.media-amazon.com/images/I/91RwkKVdIgL._SL1500_.jpg" alt="Broilers - Jolly Good Fellas" width="300" />
+    </a>
+</Card>
+
+
+
+<LinkCard
+    title="Mehr Informationen"
+    href="https://fanieng.com/2026/07/11/broilers-duesseldorf-merkur-spiel-arena"
+/>
+
+
+
