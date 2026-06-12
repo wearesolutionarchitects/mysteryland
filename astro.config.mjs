@@ -44,6 +44,13 @@ export default defineConfig({
             },
             sidebar: [
             {
+                label: '2027',
+                collapsed: true,
+                items: [
+                    { autogenerate: { directory: 'events/2027' } },
+                ],
+            },
+            {
                 label: '2026',
                 collapsed: false,
                 items: [
