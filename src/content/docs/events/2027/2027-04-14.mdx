@@ -1,0 +1,97 @@
+---
+title: "die ärzte"
+
+description: "Eventbericht über das Konzert von die ärzte auf der 'Eine Gänsehaut nach dem andern! – Tour 2027' in der Dortmunder Westfalenhalle am 14.04.2027."
+
+tour: "Eine Gänsehaut nach dem andern! – Tour 2027"
+
+artist: ["die ärzte"]
+
+pubDate: 2024-04-14
+
+country: "Deutschland"
+
+city: "Dortmund"
+
+venue: "Westfalenhalle"
+
+price: 79.00
+
+asin: ["B08GFRPYYF", "B096TJP6H3"]
+
+tags: ["Ticket","Westfalenhalle","Deutschland","Konzert","die ärzte","Eine Gänsehaut nach dem andern! – Tour 2027","2027"]
+---
+import { LinkCard, Card } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
+import EventFacts from '@components/EventFacts.astro';
+import Gallery from '@components/Gallery.astro';
+import YouTubeVideos from '@components/YouTubeVideos.astro';
+import img1900 from '../../../gallery/2027/04/14/2027-04-14_19-00-00.jpg';
+
+<EventFacts
+    facts={[
+        { icon: 'lucide:calendar-days', label: 'Datum', value: '14.04.2027' },
+        { icon: 'lucide:route', label: 'Tour', value: 'Eine Gänsehaut nach dem andern! – Tour 2027' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: 'TBA' },
+        { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
+        { icon: 'lucide:map-pin', label: 'Stadt', value: 'Dortmund' },
+        { icon: 'lucide:landmark', label: 'Venue', value: 'Westfalenhalle' },
+        { icon: 'lucide:badge-euro', label: 'Preis', value: '79,00 €' },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+    ]}
+/>
+
+Manchmal kommen sie wieder. Drei **die ärzte** mit dem Kontrabass stehen auf der Bühne und erzählen sich was. 
+Mit Tschingderassabum und Täterätä. Mit Nachhaltigkeitskonzept und Sozialticket. Mit La-Olas und Handylichtkerzenmeer. 
+Mit Wall Of Death und Distinktionsgewinn. Mit Gänsehaut und Freudentränen. 
+Am Ende sind alle glücklich. Mit gutem Gewissen. Versprochen.
+
+## Galerie
+
+<Gallery
+    images={[
+        { src: img1900, alt: 'Ticket', title: 'Ticket' },
+    ]}
+/>
+
+
+## Videos
+
+...
+
+{/* <YouTubeVideos
+    videos={[
+        { id: '4c_jaWmL2SU'},
+        { id: 'TIqzp0NWPUA' },
+    ]}
+/> */}
+
+
+## Setlist
+
+<Card title="Songs" icon="list-format">
+    ...
+</Card>
+
+## Album
+
+<Card title="Hell" icon="seti:audio">
+    <a href="https://www.amazon.de/dp/B08GFRPYYF?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+        <img src="https://m.media-amazon.com/images/I/71OZOJ+Z76L._SL1200_.jpg" alt="Die Toten Hosen - Hell" width="300" />
+    </a>
+</Card>
+
+<Card title="Dunkel" icon="seti:audio">
+    <a href="https://www.amazon.de/dp/B096TJP6H3?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+        <img src="https://m.media-amazon.com/images/I/81ooJgeSbGS._SL1500_.jpg" alt="Die Toten Hosen - Dunkel" width="300" />
+    </a>
+</Card>
+
+
+<LinkCard
+    title="Mehr Informationen"
+    href="https://fanieng.com/2026/07/17/die-toten-hosen-koeln-rheinergiestadion"
+/>
+
+
+
