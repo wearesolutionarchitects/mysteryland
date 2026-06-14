@@ -119,7 +119,22 @@ export default defineConfig({
                 items: [
                     { autogenerate: { directory: 'events/2017' } },
                 ],
-            }
+            },
+            {
+                label: '2015',
+                collapsed: true,
+                items: [
+                    { autogenerate: { directory: 'events/2015' } },
+                ],
+            },
+            {
+                label: '2014',
+                collapsed: true,
+                items: [
+                    { autogenerate: { directory: 'events/2014' } },
+                ],
+            },
+
     ],
         }),
         icon({
