@@ -1,53 +1,105 @@
 # Event-Workflow
 
-Der normale Workflow besteht aus drei kleinen Skripten. Jedes Skript hat genau einen Parameter und eine klar abgegrenzte Aufgabe.
+Der normale Workflow verarbeitet zuerst die Bilder aus der Inbox und erzeugt danach schrittweise die Event-MDX. Die Skripte ändern jeweils nur ihren eigenen Bereich.
 
 ## Voraussetzungen
 
 - Node.js und npm
-- `exiftool` für den Medien-Schritt (`brew install exiftool` unter macOS)
-- `.env` mit `SETLIST_API_KEY`
+- `exiftool` für Medien- und MDX-Schritt (`brew install exiftool` unter macOS)
+- `.env` mit `SETLIST_API_KEY` für den Setlist-Schritt
 
 Optionale Konfiguration:
 
 ```dotenv
 WP_BASE_URL=https://fanieng.com
 GALLERY_ROOT=./src/content/gallery
+GALLERY_INBOX=./src/content/gallery/inbox
+EVENTS_ROOT=./src/content/docs/events
 EXIFTOOL_PATH=/opt/homebrew/bin/exiftool
 SETLIST_USER_AGENT=heiko@fanieng.com
+AMAZON_HOST=www.amazon.de
+AMAZON_AFFILIATE_TAG=mysteryland-21
 ```
 
-## 1. WordPress-Post importieren
+## 1. Bilder importieren
 
-Modul: `src/scripts/event/wp.mjs`
+Modul: `src/scripts/event/media.mjs`
 
 ```bash
-npm run event:wp -- <post-id>
+npm run event:media
+```
+
+Die aus Apple Photos exportierten Bilder müssen vorher in dieser Inbox liegen:
+
+```text
+src/content/gallery/inbox/
+```
+
+Das Skript:
+
+- liest Datum und Uhrzeit bevorzugt aus einem bereits passenden Dateinamen,
+- verwendet danach EXIF-Erstellungsdaten und ersatzweise das Datum aus dem Bildtitel,
+- benennt die Datei als `YYYY-MM-DD_HH-MM-SS.ext`,
+- verschiebt sie nach `src/content/gallery/YYYY/MM/DD/`,
+- erzeugt keine Sidecar-Dateien,
+- überschreibt keine vorhandenen Dateien.
+
+Beispiel:
+
+```text
+IMG_1234.JPG -> 2014/10/11/2014-10-11_19-00-01.jpg
+```
+
+Dateien ohne verwertbares Datum bleiben in der Inbox. Das Skript beendet den Lauf dann mit einem Fehler.
+
+## 2. Event-MDX erzeugen
+
+Modul: `src/scripts/event/mdx.mjs`
+
+```bash
+npm run event:mdx -- <YYYY-MM-DD>
 ```
 
 Beispiel:
 
 ```bash
-npm run event:wp -- 611
+npm run event:mdx -- 2014-10-11
 ```
 
 Das Skript:
 
-- liest genau einen Konzert-Post aus WordPress,
-- übernimmt Eventdatum, Artist, Tour, Ort, Venue, Preis, ASIN und Tags,
+- liest alle Bilder aus `src/content/gallery/YYYY/MM/DD/`,
+- ermittelt Artist, Stadt und Venue aus der `Image Description`,
+- erwartet den Titel im Format `DD.MM.YYYY - Artist@City/Venue`,
+- übernimmt unter anderem Schlagwörter, Tour, Land und Preis aus den Metadaten,
 - erstellt `src/content/docs/events/YYYY/YYYY-MM-DD.mdx`,
-- bindet noch keine Bilder und keine Setlist ein,
-- bricht ab, wenn die Eventdatei bereits existiert.
+- bindet alle gefundenen Bilder über die `Gallery`-Komponente ein,
+- setzt noch unbekannte Inhalte auf `TBA`,
+- bricht ab, wenn die Event-MDX bereits existiert.
 
-Eine bestehende Eventdatei kann bewusst neu erzeugt werden:
+## 3. Album ergänzen
+
+Modul: `src/scripts/event/album.mjs`
 
 ```bash
-npm run event:wp -- 611 --force
+npm run event:album -- <YYYY-MM-DD> <ASIN>
 ```
 
-Vor dem Überschreiben wird die bisherige Datei mit Zeitstempel unter `.backups/events/YYYY/` gesichert. Der Backup-Ordner liegt außerhalb des Astro-Contents und wird von Git ignoriert.
+Beispiel:
 
-## 2. Setlist holen
+```bash
+npm run event:album -- 2014-10-11 B00MU78CTM
+```
+
+Das Skript:
+
+- liest Titel und Cover des Albums anhand der ASIN von Amazon,
+- ergänzt die ASIN im Frontmatter,
+- fügt eine Album-Card mit Astro-`Image` ein,
+- unterstützt mehrere Alben durch wiederholte Aufrufe,
+- verhindert doppelte ASINs.
+
+## 4. Setlists ergänzen
 
 Modul: `src/scripts/event/setlist.mjs`
 
@@ -58,47 +110,36 @@ npm run event:setlist -- <YYYY-MM-DD>
 Beispiel:
 
 ```bash
-npm run event:setlist -- 2021-08-04
+npm run event:setlist -- 2025-07-26
 ```
 
-Das Skript liest Artist, Stadt und Venue aus der vorhandenen Event-MDX, sucht die passende Setlist bei setlist.fm und gibt einen kopierbaren Markdown-Block im Terminal aus. Die MDX-Datei wird bewusst nicht automatisch geändert.
+Das Skript liest Datum, Stadt, Venue und das vollständige `artist`-Array aus der vorhandenen Event-MDX. Es sucht die Setlists bei setlist.fm und schreibt sie direkt in den Abschnitt `## Setlist`, `## Setlists` oder `## Setlisten`.
 
-## 3. Bilder vorbereiten
+Bei einem Einzelkonzert wird eine Card mit dem Titel `Songs` erzeugt. Bei einem Festival wird für jeden Artist mit gefundener Setlist eine eigene Card angelegt und die Überschrift auf `## Setlists` vereinheitlicht.
 
-Modul: `src/scripts/event/media.mjs`
+Für Festivals gilt:
 
-Zuerst die Bilder aus Apple Photos nach folgendem Ordner exportieren:
-
-```text
-src/content/gallery/YYYY/MM/DD/
-```
-
-Danach:
-
-```bash
-npm run event:media -- <YYYY-MM-DD>
-```
+- Jeder auftretende Künstler muss als eigener Eintrag im Frontmatter-Array `artist` stehen.
+- Bereits vorhandene Künstler-Cards bleiben erhalten.
+- Das Skript ergänzt nur noch fehlende Setlists und kann erneut ausgeführt werden.
+- Künstler ohne gefundene Setlist werden am Ende gemeldet und verhindern nicht, dass andere Treffer gespeichert werden.
+- Die Suche erfolgt zunächst gemeinsam nach Datum und Stadt. Weitere API-Seiten und gezielte Artist-Abfragen werden nur abgerufen, wenn noch Künstler fehlen.
 
 Beispiel:
 
-```bash
-npm run event:media -- 2021-08-04
+```yaml
+artist: ["Alice Cooper", "Danko Jones", "H-BLOCKX", "The New Roses", "Thundermother", "Ugly Kid Joe"]
 ```
 
-Das Skript:
+## Optional: WordPress importieren
 
-- benennt JPG/JPEG-Dateien anhand des EXIF-Aufnahmedatums um,
-- übernimmt Apple-Photos-Schlagwörter und Beschreibungen aus XMP nach IPTC, falls IPTC-Felder fehlen,
-- ergänzt Titel, Überschrift, Eventkategorie und Ort aus der Event-MDX,
-- ergänzt bei Bildern mit dem Schlagwort `Foto` Ersteller, Beruf, Kontakt und Urheberrechtsvermerk,
-- prüft Eventdatum und vorhandene Schlagwörter,
-- meldet fehlende zentrale Event-Schlagwörter,
-- erzeugt die zur Galerie gehörenden Markdown-Sidecars.
+Modul: `src/scripts/event/wp.mjs`
 
-Das alte IPTC-Feld `Category` erlaubt nur drei Zeichen. Das Skript verwendet deshalb `KON` oder `FES` und schreibt `Konzert` beziehungsweise `Festival` zusätzlich vollständig nach `SupplementalCategories`.
-Auch `By-lineTitle` ist im alten IPTC-Standard auf 32 Bytes begrenzt. Dort steht deshalb `Fachinformatiker:in Entwicklung`; der vollständige Beruf wird parallel im modernen XMP-Feld `AuthorsPosition` gespeichert.
+```bash
+npm run event:wp -- <post-id>
+```
 
-Fehlende EXIF-Daten oder komplett fehlende Schlagwörter führen zu einem Fehler. Bestehende Bilddateien werden nicht überschrieben.
+Der WordPress-Import ist ein alternativer Einstieg für ältere Events und gehört nicht zum normalen Inbox-Workflow. Mit `--force` kann eine vorhandene Eventdatei nach einem automatischen Backup neu erzeugt werden.
 
 ## Prüfung
 
