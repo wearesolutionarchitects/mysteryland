@@ -19,7 +19,8 @@ export default defineConfig({
     },
     integrations: [
         starlight({ 
-            title: "Mysteryland",   
+            title: "Mysteryland",
+            favicon: '/favicon.png',
             locales: {
                 root: {
                     label: 'Deutsch',
@@ -30,6 +31,8 @@ export default defineConfig({
             head: [
                 { tag: 'meta', attrs: { name: 'description', content: 'Konzertberichte, Bilder und Setlists' } },
                 { tag: 'meta', attrs: { name: 'viewport', content: 'width=device-width, initial-scale=1' } },
+                { tag: 'link', attrs: { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' } },
+                { tag: 'link', attrs: { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' } },
                 { tag: 'script', attrs: { async: true, defer: true, 'data-website-id': '76cfab5c-bdba-4584-a2f7-1c030b088c66', src: 'https://analytics.mysteryland.biz/script.js' } },
             ],
             customCss: [
