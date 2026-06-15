@@ -314,7 +314,7 @@ ${imports}
     ]}
 />
 
-TODO: Eventbericht ergänzen.
+TBA
 
 ## Galerie
 
@@ -326,17 +326,17 @@ ${galleryEntries}
 
 ## Videos
 
-TODO
+TBA
 
 ## Setlist
 
 <Card title="Songs" icon="list-format">
-    TODO
+    TBA
 </Card>
 
 ## Album
 
-TODO
+TBA
 `;
 
 fs.mkdirSync(path.dirname(targetFile), { recursive: true });

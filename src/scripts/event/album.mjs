@@ -104,7 +104,7 @@ function updateAlbumSection(body, card) {
   const next = nextHeading.exec(body);
   const contentEnd = next?.index ?? body.length;
   const current = body.slice(contentStart, contentEnd).trim();
-  const replacement = !current || current === 'TODO'
+  const replacement = !current || current === 'TBA' || current === 'TODO'
     ? `\n\n${card}\n\n`
     : `\n\n${current}\n\n${card}\n\n`;
 

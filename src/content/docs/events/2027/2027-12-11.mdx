@@ -1,19 +1,21 @@
 ---
 title: "Sondaschule"
-description: "Eventbericht über das Konzert von Sondaschule in Westfalenhalle in Dormtmund am 11.12.2027."
+description: "Eventbericht über das Konzert von Sondaschule in der Westfalenhalle Dortmund am 11.12.2027."
 tour: "25 Jahre - Mega Circle Pott"
 artist: ["Sondaschule"]
 pubDate: 2027-12-11
 country: "Deutschland"
-city: "Dormtmund"
+city: "Dortmund"
 venue: "Westfalenhalle"
 price: 66.40
-tags: ["Ticket", "€66.40", "Deutschland", "Westfalenhalle", "Konzert", "25 Jahre - Mega Circle Pott", "Dortmund", "Sondaschule", "2027", "Dormtmund"]
+asin: "B0F48VP6V8"
+tags: ["Ticket", "€66.40", "Deutschland", "Westfalenhalle", "Konzert", "25 Jahre - Mega Circle Pott", "Dortmund", "Sondaschule", "2027", "Dortmund"]
 ---
 import { Card } from '@astrojs/starlight/components';
 import EventFacts from '@components/EventFacts.astro';
 import Gallery from '@components/Gallery.astro';
 import img193000 from '../../../gallery/2027/12/11/2027-12-11_19-30-00.jpg';
+import { Image } from 'astro:assets';
 
 <EventFacts
     facts={[
@@ -21,14 +23,14 @@ import img193000 from '../../../gallery/2027/12/11/2027-12-11_19-30-00.jpg';
         { icon: 'lucide:route', label: 'Tour', value: "25 Jahre - Mega Circle Pott" },
         { icon: 'lucide:mic-vocal', label: 'Support', value: 'TBA' },
         { icon: 'lucide:globe', label: 'Land', value: "Deutschland" },
-        { icon: 'lucide:map-pin', label: 'Stadt', value: "Dormtmund" },
+        { icon: 'lucide:map-pin', label: 'Stadt', value: "Dortmund" },
         { icon: 'lucide:landmark', label: 'Venue', value: "Westfalenhalle" },
         { icon: 'lucide:badge-euro', label: 'Preis', value: "66,40 €" },
-        { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'TBA' },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
     ]}
 />
 
-TODO: Eventbericht ergänzen.
+TBA
 
 ## Galerie
 
@@ -40,14 +42,19 @@ TODO: Eventbericht ergänzen.
 
 ## Videos
 
-TODO
+TBA
 
 ## Setlist
 
 <Card title="Songs" icon="list-format">
-    TODO
+    TBA
 </Card>
 
 ## Album
 
-TODO
+
+<Card title="Wir bleiben wach" icon="seti:audio">
+    <a href="https://www.amazon.de/dp/B0F48VP6V8?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+        <Image src="https://m.media-amazon.com/images/I/51b+B-EWq1L.jpg" alt="Wir bleiben wach" width={300} height={300} />
+    </a>
+</Card>

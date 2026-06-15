@@ -101,10 +101,10 @@ const replacement = [
   `    <a href=${JSON.stringify(selected.url)} target="_blank" rel="noopener noreferrer">Setlist auf setlist.fm</a>`,
   '</Card>',
 ].join('\n');
-const setlistCard = /<Card title="Songs" icon="list-format">\s*TODO\s*<\/Card>/;
+const setlistCard = /<Card title="Songs" icon="list-format">\s*(?:TBA|TODO)\s*<\/Card>/;
 
 if (!setlistCard.test(original)) {
-  console.error(`Setlist TODO block not found in ${eventFile}`);
+  console.error(`Empty Setlist block not found in ${eventFile}`);
   process.exit(1);
 }
 
