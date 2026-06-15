@@ -1,81 +1,126 @@
 ---
 title: "Duran Duran"
-
 description: "Eventbericht über das Konzert von Duran Duran im PSD Bank Dome in Düsseldorf am 24.06.2025."
-
 tour: "Duran Duran"
-
 artist: ["Duran Duran"]
-
 pubDate: 2025-06-24
-
 country: "Deutschland"
-
 city: "Düsseldorf"
-
 venue: "PSD Bank Dome"
-
 price: 97.00
-
 asin: "B0F6VB2PFG"
-
-tags: ["€97.00","Ticket","Deutschland","Konzert","Duran Duran","2025","PSD Bank Dome","Düsseldorf", "Lars Berndt EVENTS"]
+tags: ["€97.00", "Ticket", "Plakat", "Deutschland", "Konzert", "Duran Duran", "2025", "PSD Bank Dome", "Düsseldorf", "Lars Berndt EVENTS", "Foto"]
 ---
-import { Card } from '@astrojs/starlight/components';
-import { LinkCard } from '@astrojs/starlight/components';
+import { Card, LinkCard } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
+import EventFacts from '@components/EventFacts.astro';
+import Gallery from '@components/Gallery.astro';
+import img000000 from '../../../gallery/2025/06/24/2025-06-24_00-00-00.jpg';
+import img200000 from '../../../gallery/2025/06/24/2025-06-24_20-00-00.jpg';
+import img211550 from '../../../gallery/2025/06/24/2025-06-24_21-15-50.jpg';
+import img211722 from '../../../gallery/2025/06/24/2025-06-24_21-17-22.jpg';
+import img212104 from '../../../gallery/2025/06/24/2025-06-24_21-21-04.jpg';
+import img212623 from '../../../gallery/2025/06/24/2025-06-24_21-26-23.jpg';
+import img213040 from '../../../gallery/2025/06/24/2025-06-24_21-30-40.jpg';
+import img213233 from '../../../gallery/2025/06/24/2025-06-24_21-32-33.jpg';
+import img220206 from '../../../gallery/2025/06/24/2025-06-24_22-02-06.jpg';
+import img220713 from '../../../gallery/2025/06/24/2025-06-24_22-07-13.jpg';
+import img221342 from '../../../gallery/2025/06/24/2025-06-24_22-13-42.jpg';
+import img222258 from '../../../gallery/2025/06/24/2025-06-24_22-22-58.jpg';
+import img222600 from '../../../gallery/2025/06/24/2025-06-24_22-26-00.jpg';
+import img223143 from '../../../gallery/2025/06/24/2025-06-24_22-31-43.jpg';
+import img223501 from '../../../gallery/2025/06/24/2025-06-24_22-35-01.jpg';
+import img224310 from '../../../gallery/2025/06/24/2025-06-24_22-43-10.jpg';
+import img225236 from '../../../gallery/2025/06/24/2025-06-24_22-52-36.jpg';
+import img225701 from '../../../gallery/2025/06/24/2025-06-24_22-57-01.jpg';
+import img230201 from '../../../gallery/2025/06/24/2025-06-24_23-02-01.jpg';
+import img230254 from '../../../gallery/2025/06/24/2025-06-24_23-02-54.jpg';
 
-## Plakat
+<EventFacts
+    facts={[
+        { icon: 'lucide:calendar-days', label: 'Datum', value: '24.06.2025' },
+        { icon: 'lucide:route', label: 'Tour', value: 'Duran Duran' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: 'TBA' },
+        { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
+        { icon: 'lucide:map-pin', label: 'Stadt', value: 'Düsseldorf' },
+        { icon: 'lucide:landmark', label: 'Venue', value: 'PSD Bank Dome' },
+        { icon: 'lucide:badge-euro', label: 'Preis', value: '97,00 €' },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+    ]}
+/>
 
-![Plakat](../../../gallery/2025/06/24/2025-06-24_00-00-00.jpg)
+Am 24. Juni 2025 konnte ich Duran Duran im PSD Bank Dome in Düsseldorf erleben.
 
-## 🎫 Ticket
-
-![Ticket](../../../gallery/2025/06/24/2025-06-24_20-00-00.jpg)
-
-## Details
-
-📅 Datum: 24.06.2025  
-🇩🇪 Land: Deutschland  
-📍 Stadt: Düsseldorf  
-🏟️ Venue: PSD Bank Dome  
-💶 Preis: 97,00 €
-
-## 🎤 Konzertbericht
-
-Am 24. Juni 2025 konnte ich Duran Duran im PSD Bank Dome in Düsseldorf erleben. 
 Die Band, die seit den 1980er Jahren für ihre eingängigen Melodien und ihren unverwechselbaren Sound bekannt ist, lieferte ein beeindruckendes Konzert ab.
-Die Atmosphäre im PSD Bank Dome war elektrisierend, und die Fans waren begeistert von der Performance
 
-<Card title="Album" icon="seti:audio">
-  <a href="https://www.amazon.de/dp/B0F6VB2PFG?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-    <img src="https://m.media-amazon.com/images/I/61+eRiOaghL._SL1500_.jpg" alt="Duran Duran - Greatest (Amazon)" width="300" />
-  </a>
+Die Atmosphäre im PSD Bank Dome war elektrisierend, und die Fans waren begeistert von der Performance.
+
+## Galerie
+
+<Gallery
+    images={[
+        { src: img000000, alt: 'Plakat', title: 'Plakat' },
+        { src: img200000, alt: 'Ticket', title: 'Ticket' },
+        { src: img211550, alt: 'Duran Duran auf der Bühne', title: '21:15' },
+        { src: img211722, alt: 'Duran Duran auf der Bühne', title: '21:17' },
+        { src: img212104, alt: 'Duran Duran auf der Bühne', title: '21:21' },
+        { src: img212623, alt: 'Duran Duran auf der Bühne', title: '21:26' },
+        { src: img213040, alt: 'Duran Duran auf der Bühne', title: '21:30' },
+        { src: img213233, alt: 'Duran Duran auf der Bühne', title: '21:32' },
+        { src: img220206, alt: 'Duran Duran auf der Bühne', title: '22:02' },
+        { src: img220713, alt: 'Duran Duran auf der Bühne', title: '22:07' },
+        { src: img221342, alt: 'Duran Duran auf der Bühne', title: '22:13' },
+        { src: img222258, alt: 'Duran Duran auf der Bühne', title: '22:22' },
+        { src: img222600, alt: 'Duran Duran auf der Bühne', title: '22:26' },
+        { src: img223143, alt: 'Duran Duran auf der Bühne', title: '22:31' },
+        { src: img223501, alt: 'Duran Duran auf der Bühne', title: '22:35' },
+        { src: img224310, alt: 'Duran Duran auf der Bühne', title: '22:43' },
+        { src: img225236, alt: 'Duran Duran auf der Bühne', title: '22:52' },
+        { src: img225701, alt: 'Duran Duran auf der Bühne', title: '22:57' },
+        { src: img230201, alt: 'Duran Duran auf der Bühne', title: '23:02' },
+        { src: img230254, alt: 'Duran Duran auf der Bühne', title: '23:02' },
+    ]}
+/>
+
+## Videos
+
+TBA
+
+## Setlist
+
+<Card title="Songs" icon="list-format">
+    <ol>
+        <li>VELVET NEWTON</li>
+        <li>Night Boat</li>
+        <li>The Wild Boys</li>
+        <li>Hungry Like the Wolf</li>
+        <li>The James Bond Theme</li>
+        <li>A View to a Kill</li>
+        <li>INVISIBLE</li>
+        <li>Notorious</li>
+        <li>Nite-Runner / All She Wants Is</li>
+        <li>Lonely in Your Nightmare / Super Freak</li>
+        <li>Evil Woman</li>
+        <li>Friends of Mine</li>
+        <li>Careless Memories</li>
+        <li>Ordinary World</li>
+        <li>Come Undone</li>
+        <li>(Reach Up for the) Sunrise</li>
+        <li>Planet Earth</li>
+        <li>The Reflex</li>
+        <li>White Lines (Don't Don't Do It)</li>
+        <li>Girls on Film / Psycho Killer</li>
+        <li>Save a Prayer</li>
+        <li>Rio</li>
+    </ol>
 </Card>
 
+## Album
 
-<Card title="Setlist" icon="list-format">
-01. VELVET NEWTON
-02. Night Boat
-03. The Wild Boys
-04. Hungry Like the Wolf
-05. The James Bond Theme
-06. A View to a Kill
-07. INVISIBLE
-08. Notorious
-09. Nite-Runner / All She Wants Is
-10. Lonely in Your Nightmare / Super Freak
-11. Evil Woman
-12. Friends of Mine
-13. Careless Memories
-14. Ordinary World
-15. Come Undone
-16. (Reach Up for the) Sunrise
-17. Planet Earth
-18. The Reflex
-19. White Lines (Don't Don't Do It)
-20. Girls on Film / Psycho Killer
-21. Save a Prayer
-22. Rio
+<Card title="Greatest" icon="seti:audio">
+    <a href="https://www.amazon.de/dp/B0F6VB2PFG?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+        <Image src="https://m.media-amazon.com/images/I/61+eRiOaghL._SL1500_.jpg" alt="Duran Duran - Greatest" width={300} height={300} />
+    </a>
 </Card>
 
 <LinkCard
