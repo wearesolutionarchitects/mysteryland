@@ -1,72 +1,120 @@
 ---
-
 title: "Holly Johnson"
-
-description: "Eventbericht über das Konzert von Holly Johnson im RuhrCongress Bochum am 17.05.2025."
-
+description: "Eventbericht über das Konzert von Holly Johnson im RuhrCongress in Bochum am 17.05.2025."
 tour: "Holly Johnson"
-
 artist: ["Holly Johnson"]
-
 pubDate: 2025-05-17
-
-venue: "RuhrCongress"
-
+country: "Deutschland"
 city: "Bochum"
-
+venue: "RuhrCongress"
 price: 70.00
-
 asin: "B08GG2RKD4"
-
-tags: ["Ticket","Bochum","Deutschland","Konzert","2025","RuhrCongress","Holly Johnson"]
+tags: ["Ticket", "Bochum", "Deutschland", "Konzert", "2025", "RuhrCongress", "Holly Johnson", "Foto"]
 ---
-import { Card } from '@astrojs/starlight/components';
-import { LinkCard } from '@astrojs/starlight/components';
+import { Card, LinkCard } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
+import EventFacts from '@components/EventFacts.astro';
+import Gallery from '@components/Gallery.astro';
+import YouTubeVideos from '@components/YouTubeVideos.astro';
+import img200002 from '../../../gallery/2025/05/17/2025-05-17_20-00-02.jpg';
+import img201532 from '../../../gallery/2025/05/17/2025-05-17_20-15-32.jpg';
+import img202137 from '../../../gallery/2025/05/17/2025-05-17_20-21-37.jpg';
+import img202642 from '../../../gallery/2025/05/17/2025-05-17_20-26-42.jpg';
+import img203523 from '../../../gallery/2025/05/17/2025-05-17_20-35-23.jpg';
+import img204246 from '../../../gallery/2025/05/17/2025-05-17_20-42-46.jpg';
+import img205058 from '../../../gallery/2025/05/17/2025-05-17_20-50-58.jpg';
+import img205107 from '../../../gallery/2025/05/17/2025-05-17_20-51-07.jpg';
+import img205538 from '../../../gallery/2025/05/17/2025-05-17_20-55-38.jpg';
+import img210633 from '../../../gallery/2025/05/17/2025-05-17_21-06-33.jpg';
+import img211427 from '../../../gallery/2025/05/17/2025-05-17_21-14-27.jpg';
+import img211500 from '../../../gallery/2025/05/17/2025-05-17_21-15-00.jpg';
+import img212250 from '../../../gallery/2025/05/17/2025-05-17_21-22-50.jpg';
+import img212651 from '../../../gallery/2025/05/17/2025-05-17_21-26-51.jpg';
+import img212659 from '../../../gallery/2025/05/17/2025-05-17_21-26-59.jpg';
+import img213016 from '../../../gallery/2025/05/17/2025-05-17_21-30-16.jpg';
+import img213303 from '../../../gallery/2025/05/17/2025-05-17_21-33-03.jpg';
 
-## Ticket
+<EventFacts
+    facts={[
+        { icon: 'lucide:calendar-days', label: 'Datum', value: '17.05.2025' },
+        { icon: 'lucide:route', label: 'Tour', value: 'Holly Johnson' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: '-' },
+        { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
+        { icon: 'lucide:map-pin', label: 'Stadt', value: 'Bochum' },
+        { icon: 'lucide:landmark', label: 'Venue', value: 'RuhrCongress' },
+        { icon: 'lucide:badge-euro', label: 'Preis', value: '70,00 €' },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+    ]}
+/>
 
-![Ticket](../../../gallery/2025/05/17/2025-05-17_20-00-00.jpg)
+Am 17. Mai 2025 konnte ich Holly Johnson im RuhrCongress Bochum nach meinen früheren Erfahrungen mit Playback-Auftritten unter anderem bei Peter's zum ersten Mal **live** erleben.
 
-## Details
+Der ehemalige Frontmann von Frankie Goes to Hollywood präsentierte insbesondere mit der Präsenz seiner Live-Stimme ein mitreißendes Konzert, das die Fans begeisterte.
 
-📅 Datum: 17.05.2025  
-🇩🇪 Land: Deutschland  
-📍 Stadt: Bochum        
-🏟️ Venue: RuhrCongress  
-💶 Preis: 70,00 €
+Der Abend war ein unvergessliches Erlebnis, das die Fans auf eine musikalische Reise entführte. Mit einer Mischung aus Klassikern und neuen Hits sorgte Johnson für eine ausgelassene Stimmung.
+
+## Galerie
+
+<Gallery
+    images={[
+        { src: img200002, alt: 'Holly Johnson auf der Bühne', title: '20:00' },
+        { src: img201532, alt: 'Holly Johnson auf der Bühne', title: '20:15' },
+        { src: img202137, alt: 'Holly Johnson auf der Bühne', title: '20:21' },
+        { src: img202642, alt: 'Holly Johnson auf der Bühne', title: '20:26' },
+        { src: img203523, alt: 'Holly Johnson auf der Bühne', title: '20:35' },
+        { src: img204246, alt: 'Holly Johnson auf der Bühne', title: '20:42' },
+        { src: img205058, alt: 'Holly Johnson auf der Bühne', title: '20:50' },
+        { src: img205107, alt: 'Holly Johnson auf der Bühne', title: '20:51' },
+        { src: img205538, alt: 'Holly Johnson auf der Bühne', title: '20:55' },
+        { src: img210633, alt: 'Holly Johnson auf der Bühne', title: '21:06' },
+        { src: img211427, alt: 'Holly Johnson auf der Bühne', title: '21:14' },
+        { src: img211500, alt: 'Holly Johnson auf der Bühne', title: '21:15' },
+        { src: img212250, alt: 'Holly Johnson auf der Bühne', title: '21:22' },
+        { src: img212651, alt: 'Holly Johnson auf der Bühne', title: '21:26' },
+        { src: img212659, alt: 'Holly Johnson auf der Bühne', title: '21:26' },
+        { src: img213016, alt: 'Holly Johnson auf der Bühne', title: '21:30' },
+        { src: img213303, alt: 'Holly Johnson auf der Bühne', title: '21:33' },
+    ]}
+/>
+
+## Video
+
+<YouTubeVideos
+    videos={[
+        { id: 'GkxJHTr6RaQ'},
+    ]}
+/>
 
 
-## Konzertbericht
+## Setlist
 
-- Am 17. Mai 2025 konnte ich Holly Johnson im RuhrCongress Bochum nach meinen früheren Erfahrungen mit Playback-Auftritten u.a. bei Peter's zum ersten mal **live** erleben.
-- Der ehemalige Frontmann von Frankie Goes to Hollywood präsentierte insbesondere mit der Präsenz seiner Live-Stimme ein mitreißendes Konzert, das die Fans begeisterte.   
-- Der Abend war ein unvergessliches Erlebnis, das die Fans in eine musikalische Reise entführte.   
-- Mit einer Mischung aus Klassikern und neuen Hits begeisterte Johnson das Publikum und sorgte für eine ausgelassene Stimmung.
-
-<Card title="Album" icon="seti:audio">
-  <a href="https://www.amazon.de/dp/B08GG2RKD4?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-    <img src="https://m.media-amazon.com/images/I/71A+qqcytRL._SL1200_.jpg" alt="Holly Johnson/Frankie goes to Hollywod - Welcome to the Pleasuredome (Amazon)" width="300" />
-  </a>
+<Card title="Songs" icon="list-format">
+    <ol>
+        <li>Welcome to the Pleasuredome</li>
+        <li>Black Night White Light</li>
+        <li>Rage Hard</li>
+        <li>Happy Hi!</li>
+        <li>Wish (the Lads Were Here)</li>
+        <li>Americanos</li>
+        <li>Atomic City</li>
+        <li>Heaven's Here</li>
+        <li>Love Train</li>
+        <li>Penny Arcade</li>
+        <li>Watching the Wildlife</li>
+        <li>Born to Run</li>
+        <li>War</li>
+        <li>Two Tribes</li>
+        <li>Relax</li>
+        <li>The Power of Love</li>
+    </ol>
 </Card>
 
+## Album
 
-<Card title="Setlist" icon="list-format">
-01. Welcome to the Pleasuredome  
-02. Black Night White Light  
-03. Rage Hard  
-04. Happy Hi!  
-05. Wish (the Lads Were Here)  
-06. Americanos  
-07. Atomic City  
-08. Heaven's Here  
-09. Love Train  
-10. Penny Arcade  
-11. Watching the Wildlife  
-12. Born to Run  
-13. War  
-14. Two Tribes  
-15. Relax  
-16. The Power of Love  
+<Card title="Welcome to the Pleasuredome" icon="seti:audio">
+    <a href="https://www.amazon.de/dp/B08GG2RKD4?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+        <Image src="https://m.media-amazon.com/images/I/71A+qqcytRL._SL1200_.jpg" alt="Holly Johnson und Frankie Goes to Hollywood - Welcome to the Pleasuredome" width={300} height={300} />
+    </a>
 </Card>
 
 <LinkCard
