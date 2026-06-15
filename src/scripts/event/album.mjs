@@ -74,10 +74,23 @@ function albumCard(product) {
   return [
     `<Card title=${JSON.stringify(product.title)} icon="seti:audio">`,
     `    <a href=${JSON.stringify(productUrl)} target="_blank" rel="noopener noreferrer">`,
-    `        <img src=${JSON.stringify(product.image)} alt=${JSON.stringify(product.title)} width="300" />`,
+    `        <Image src=${JSON.stringify(product.image)} alt=${JSON.stringify(product.title)} width={300} height={300} />`,
     '    </a>',
     '</Card>',
   ].join('\n');
+}
+
+function ensureImageImport(body) {
+  if (/^import\s+\{[^}]*\bImage\b[^}]*\}\s+from\s+['"]astro:assets['"];?$/m.test(body)) {
+    return body;
+  }
+
+  const imports = [...body.matchAll(/^import .+;$/gm)];
+  if (!imports.length) return `import { Image } from 'astro:assets';\n${body}`;
+
+  const lastImport = imports.at(-1);
+  const insertAt = lastImport.index + lastImport[0].length;
+  return `${body.slice(0, insertAt)}\nimport { Image } from 'astro:assets';${body.slice(insertAt)}`;
 }
 
 function updateAlbumSection(body, card) {
@@ -139,7 +152,7 @@ if (!product.title || !product.image) {
 }
 
 const frontmatter = updateAsin(frontmatterMatch[1], [...asins, asin]);
-const body = original.slice(frontmatterMatch[0].length);
+const body = ensureImageImport(original.slice(frontmatterMatch[0].length));
 const updatedBody = updateAlbumSection(body, albumCard(product));
 const updated = `---\n${frontmatter}\n---\n${updatedBody}`;
 const temporaryFile = `${eventFile}.tmp`;

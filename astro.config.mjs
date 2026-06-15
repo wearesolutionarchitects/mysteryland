@@ -9,6 +9,9 @@ import remarkToc from 'remark-toc';
 // https://astro.build/config
 export default defineConfig({
     site: 'https://mysteryland.biz',
+    image: {
+        domains: ['m.media-amazon.com'],
+    },
     markdown: {
         processor: unified({
             remarkPlugins: [remarkToc],
@@ -132,6 +135,13 @@ export default defineConfig({
                 collapsed: true,
                 items: [
                     { autogenerate: { directory: 'events/2014' } },
+                ],
+            },
+            {
+                label: '2013',
+                collapsed: true,
+                items: [
+                    { autogenerate: { directory: 'events/2013' } },
                 ],
             },
 

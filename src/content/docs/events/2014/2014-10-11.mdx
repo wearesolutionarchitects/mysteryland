@@ -12,6 +12,7 @@ asin: "B00MU78CTM"
 tags: ["Ticket", "Österreich", "€34.00", "Farin Urlaub Racing Team", "Konzert", "Wörtherseehalle", "Klagenfurt", "2014", "FURT-Tour"]
 ---
 import { Card } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
 import EventFacts from '@components/EventFacts.astro';
 import Gallery from '@components/Gallery.astro';
 import img190001 from '../../../gallery/2014/10/11/2014-10-11_19-00-01.jpg';
@@ -107,7 +108,6 @@ TODO
 
 <Card title="Faszination Weltraum" icon="seti:audio">
     <a href="https://www.amazon.de/dp/B00MU78CTM?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-        <img src="https://m.media-amazon.com/images/I/61y-tXgxLYL._SL1000_.jpg" alt="Faszination Weltraum" width="300" />
+        <Image src="https://m.media-amazon.com/images/I/61y-tXgxLYL._SL1000_.jpg" alt="Faszination Weltraum" width={300} height={300} />
     </a>
 </Card>
-

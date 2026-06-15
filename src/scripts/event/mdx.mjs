@@ -52,6 +52,7 @@ function yamlString(value) {
 
 function titleData(meta) {
   const candidates = [
+    meta.ImageDescription,
     meta.ObjectName,
     meta.Title,
     meta.Headline,
@@ -196,6 +197,7 @@ ensureExiftool();
 
 const metadata = JSON.parse(runCapture(exiftool, [
   '-j',
+  '-IFD0:ImageDescription',
   '-IPTC:ObjectName',
   '-XMP-dc:Title',
   '-IPTC:Headline',
@@ -212,11 +214,16 @@ const metadata = JSON.parse(runCapture(exiftool, [
   ...imageFiles.map((name) => path.join(galleryDir, name)),
 ]));
 
-const parsedEvent = metadata.map(titleData).find((value) => value?.date === eventDate);
+const parsedTitles = metadata.map(titleData).filter(Boolean);
+const parsedEvent = parsedTitles.find((value) => value.date === eventDate);
 if (!parsedEvent) {
+  const foundDates = [...new Set(parsedTitles.map((value) => value.date))];
   console.error([
     `No matching Photos title found for ${eventDate}.`,
     'Expected: DD.MM.YYYY - Artist@City/Venue',
+    ...(foundDates.length
+      ? [`Found title date(s): ${foundDates.join(', ')}`]
+      : ['No parseable Image Description or Photos title found.']),
   ].join('\n'));
   process.exit(1);
 }
