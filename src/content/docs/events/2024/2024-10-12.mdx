@@ -1,83 +1,143 @@
 ---
 title: "Nena"
-
-description: "Eventbericht über das Konzert von Nena und Sakias Kerner in Bochum im RuhrCongress."
-
+description: "Eventbericht über das Konzert von Nena auf der Wir gehören zusammen Tour im RuhrCongress in Bochum am 12.10.2024."
+tour: "Wir gehören zusammen"
+artist: ["Nena"]
 pubDate: 2024-10-12
-
 country: "Deutschland"
-
 city: "Bochum"
-
 venue: "RuhrCongress"
-
 price: 60.00
-
 asin: "B08FP54N78"
-
-artist: ["Nena", "Sakias Kerner"]
-
-tags: ["€60.00","Ticket","Bochum","Deutschland","2024","Konzert","Wir gehören zusammen","Nena","Sakias Kerner","RuhrCongress","Lars Berndt EVENTS"]
+tags: ["€60.00", "Ticket", "Bochum", "Deutschland", "2024", "Konzert", "Wir gehören zusammen", "Nena", "Sakias Kerner", "RuhrCongress", "Lars Berndt EVENTS", "Foto"]
 ---
+import { Card, LinkCard } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
+import EventFacts from '@components/EventFacts.astro';
+import Gallery from '@components/Gallery.astro';
+import YouTubeVideos from '@components/YouTubeVideos.astro';
+import img200000 from '../../../gallery/2024/10/12/2024-10-12_20-00-00.jpg';
+import img203211 from '../../../gallery/2024/10/12/2024-10-12_20-32-11.jpg';
+import img203837 from '../../../gallery/2024/10/12/2024-10-12_20-38-37.jpg';
+import img205231 from '../../../gallery/2024/10/12/2024-10-12_20-52-31.jpg';
+import img205249 from '../../../gallery/2024/10/12/2024-10-12_20-52-49.jpg';
+import img205841 from '../../../gallery/2024/10/12/2024-10-12_20-58-41.jpg';
+import img210637 from '../../../gallery/2024/10/12/2024-10-12_21-06-37.jpg';
+import img212842 from '../../../gallery/2024/10/12/2024-10-12_21-28-42.jpg';
+import img214002 from '../../../gallery/2024/10/12/2024-10-12_21-40-02.jpg';
+import img214318 from '../../../gallery/2024/10/12/2024-10-12_21-43-18.jpg';
+import img214447 from '../../../gallery/2024/10/12/2024-10-12_21-44-47.jpg';
+import img214935 from '../../../gallery/2024/10/12/2024-10-12_21-49-35.jpg';
+import img215217 from '../../../gallery/2024/10/12/2024-10-12_21-52-17.jpg';
+import img215508 from '../../../gallery/2024/10/12/2024-10-12_21-55-08.jpg';
+import img215853 from '../../../gallery/2024/10/12/2024-10-12_21-58-53.jpg';
+import img220759 from '../../../gallery/2024/10/12/2024-10-12_22-07-59.jpg';
+import img221212 from '../../../gallery/2024/10/12/2024-10-12_22-12-12.jpg';
+import img221247 from '../../../gallery/2024/10/12/2024-10-12_22-12-47.jpg';
+import img221913 from '../../../gallery/2024/10/12/2024-10-12_22-19-13.jpg';
+import img222341 from '../../../gallery/2024/10/12/2024-10-12_22-23-41.jpg';
+import img223202 from '../../../gallery/2024/10/12/2024-10-12_22-32-02.jpg';
+import img223453 from '../../../gallery/2024/10/12/2024-10-12_22-34-53.jpg';
+import img223938 from '../../../gallery/2024/10/12/2024-10-12_22-39-38.jpg';
+import img224835 from '../../../gallery/2024/10/12/2024-10-12_22-48-35.jpg';
 
-import { Card } from '@astrojs/starlight/components';
-import { LinkCard } from '@astrojs/starlight/components';
+<EventFacts
+    facts={[
+        { icon: 'lucide:calendar-days', label: 'Datum', value: '12.10.2024' },
+        { icon: 'lucide:route', label: 'Tour', value: 'Wir gehören zusammen' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: 'Sakias Kerner' },
+        { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
+        { icon: 'lucide:map-pin', label: 'Stadt', value: 'Bochum' },
+        { icon: 'lucide:landmark', label: 'Venue', value: 'RuhrCongress' },
+        { icon: 'lucide:badge-euro', label: 'Preis', value: '60,00 €' },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+    ]}
+/>
 
-## Ticket
-
-![Ticket](../../../gallery/2024/10/12/2024-10-12_20-00-00.jpg)
-
-## Details
-📅 Datum: 12.10.2024  
-🇩🇪 Land: Deutschland    
-📍 Stadt: Bochum  
-🏟️ Venue: RuhrCongress  
-💶 Preis: 60,00 €  
-
-
-## 🎤 Konzertbericht
-
-Am 12.10.204 durfte ich ein mitreißendes Live-Konzert von Nena erleben.
+Am 12. Oktober 2024 durfte ich ein mitreißendes Live-Konzert von Nena erleben.
 Zwischen Nostalgie, Überraschungen und einer starken Bühnenpräsenz blieb kein Wunsch offen.
 
-## ❤️ Fazit
+## Fazit
 
 Nena beweist auch heute noch, wie kraftvoll und relevant ihre Musik ist.
 
-Besonders bewegend: ihr empathischer Umgang mit dem Publikum – und natürlich die zeitlosen Gänsehaut-Momente
-bei **Irgendwie, Irgendwo, Irgendwan** und **„99 Luftballons“.**
+Besonders bewegend waren ihr empathischer Umgang mit dem Publikum und die zeitlosen Gänsehaut-Momente bei **Irgendwie, irgendwo, irgendwann** und **99 Luftballons**.
 
-<Card title="Album" icon="seti:audio">
-  <a href="https://www.amazon.de/dp/B08FP54N78?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-    <img src="https://m.media-amazon.com/images/I/61z6hH2f-TL._SL1269_.jpg" alt="Nena - Licht (Amazon)" width="300" />
-  </a>
+## Galerie
+
+<Gallery
+    images={[
+        { src: img200000, alt: 'Ticket für Nena im RuhrCongress Bochum', title: 'Ticket' },
+        { src: img203211, alt: 'Nena auf der Bühne', title: '20:32' },
+        { src: img203837, alt: 'Nena auf der Bühne', title: '20:38' },
+        { src: img205231, alt: 'Nena auf der Bühne', title: '20:52' },
+        { src: img205249, alt: 'Nena auf der Bühne', title: '20:52' },
+        { src: img205841, alt: 'Nena auf der Bühne', title: '20:58' },
+        { src: img210637, alt: 'Nena auf der Bühne', title: '21:06' },
+        { src: img212842, alt: 'Nena auf der Bühne', title: '21:28' },
+        { src: img214002, alt: 'Nena auf der Bühne', title: '21:40' },
+        { src: img214318, alt: 'Nena auf der Bühne', title: '21:43' },
+        { src: img214447, alt: 'Nena auf der Bühne', title: '21:44' },
+        { src: img214935, alt: 'Nena auf der Bühne', title: '21:49' },
+        { src: img215217, alt: 'Nena auf der Bühne', title: '21:52' },
+        { src: img215508, alt: 'Nena auf der Bühne', title: '21:55' },
+        { src: img215853, alt: 'Nena auf der Bühne', title: '21:58' },
+        { src: img220759, alt: 'Nena auf der Bühne', title: '22:07' },
+        { src: img221212, alt: 'Nena auf der Bühne', title: '22:12' },
+        { src: img221247, alt: 'Nena auf der Bühne', title: '22:12' },
+        { src: img221913, alt: 'Nena auf der Bühne', title: '22:19' },
+        { src: img222341, alt: 'Nena auf der Bühne', title: '22:23' },
+        { src: img223202, alt: 'Nena auf der Bühne', title: '22:32' },
+        { src: img223453, alt: 'Nena auf der Bühne', title: '22:34' },
+        { src: img223938, alt: 'Nena auf der Bühne', title: '22:39' },
+        { src: img224835, alt: 'Nena auf der Bühne', title: '22:48' },
+    ]}
+/>
+
+## Videos
+
+<YouTubeVideos
+    videos={[
+        { id: 'ENfU1F2mlYY'},
+    ]}
+/>
+
+## Setlist
+
+<Card title="Songs" icon="list-format">
+    <ol>
+        <li>Liebe ist</li>
+        <li>Nur geträumt</li>
+        <li>Willst du mit mir gehn</li>
+        <li>Licht</li>
+        <li>? (Fragezeichen)</li>
+        <li>Karawane</li>
+        <li>Noch einmal</li>
+        <li>Zaubertrick</li>
+        <li>Rette mich</li>
+        <li>Wir kommen in Frieden</li>
+        <li>In meinem Leben</li>
+        <li>Wunder gescheh'n</li>
+        <li>Genau jetzt</li>
+        <li>Oldschool #1</li>
+        <li>Vollmond</li>
+        <li>Oldschool #2</li>
+        <li>PI ich rechne mit allem</li>
+        <li>Es regnet</li>
+        <li>Leuchtturm / Blitzkrieg Bop</li>
+        <li>99 Luftballons / Hey Jude</li>
+        <li>Irgendwie, irgendwo, irgendwann</li>
+        <li>Zusammen</li>
+        <li>Alles neu</li>
+    </ol>
 </Card>
 
+## Album
 
-<Card title="Setlist" icon="list-format">
-01. Liebe ist  
-02. Nur geträumt  
-03. Willst du mit mir gehn  
-04. Licht  
-05. ? (Fragezeichen)  
-06. Karawane  
-07. Noch einmal  
-08. Zaubertrick  
-09. Rette mich  
-10. Wir kommen in Frieden  
-11. In meinem Leben  
-12. Wunder gescheh'n  
-13. Genau jetzt  
-14. Oldschool #1  
-15. Vollmond  
-16. Oldschool #2  
-17. PI ich rechne mit allem  
-18. Es regnet  
-19. Leuchtturm / Blitzkrieg Bop  
-20. 99 Luftballons / Hey Jude  
-21. Irgendwie, irgendwo, irgendwann  
-22. Zusammen  
-23. Alles neu  
+<Card title="Licht" icon="seti:audio">
+    <a href="https://www.amazon.de/dp/B08FP54N78?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+        <Image src="https://m.media-amazon.com/images/I/61z6hH2f-TL._SL1269_.jpg" alt="Nena - Licht" width={300} height={300} />
+    </a>
 </Card>
 
 <LinkCard

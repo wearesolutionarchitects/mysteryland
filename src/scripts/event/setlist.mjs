@@ -59,7 +59,7 @@ if (!fs.existsSync(eventFile)) {
 const original = fs.readFileSync(eventFile, 'utf8');
 const event = readFrontmatter(eventFile);
 const [yearPart, month, day] = eventDate.split('-');
-const setlistSectionPattern = /(^## (?:Setlist|Setlists|Setlisten)\s*\n)([\s\S]*?)(?=\n## |(?![\s\S]))/m;
+const setlistSectionPattern = /(^## (?:Setlist|Setlists|Setlisten)[ \t]*\n)([\s\S]*?)(?=\n## |(?![\s\S]))/m;
 const sectionMatch = original.match(setlistSectionPattern);
 
 if (!sectionMatch) {
