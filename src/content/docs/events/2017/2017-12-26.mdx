@@ -19,7 +19,12 @@ tags:
   - "Laune der Natour"
   - "Konzert"
 ---
-import { LinkCard } from '@astrojs/starlight/components';
+import { LinkCard, Card } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
+import EventFacts from '@components/EventFacts.astro';
+import Gallery from '@components/Gallery.astro';
+import YouTubeVideos from '@components/YouTubeVideos.astro';
+
 
 ## Details
 
@@ -36,6 +41,13 @@ import { LinkCard } from '@astrojs/starlight/components';
 ## Pressebericht
 
 ## Album
+
+
+<Card title="Laune der Natur Spezial Edition mit Learning English Lesson 2" icon="seti:audio">
+    <a href="https://www.amazon.de/dp/B06XKMF71P?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+        <img src="https://m.media-amazon.com/images/I/71JZUKBsObL._SL1080_.jpg" alt="Laune der Natur Spezial Edition mit Learning English Lesson 2" width="300" />
+    </a>
+</Card>
 
 ## Setlist
 

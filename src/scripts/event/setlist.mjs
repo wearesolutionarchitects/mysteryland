@@ -1,6 +1,5 @@
 // src/scripts/event/setlist.mjs
-// Finds the setlist.fm entry for an existing event MDX by event date.
-// Prints a Markdown setlist for manual insertion without changing the event file.
+// Adds the setlist.fm songs to an existing event MDX by event date.
 import fs from 'node:fs';
 import path from 'node:path';
 import { ensureDateArg, loadEnv } from '../lib/core.mjs';
@@ -10,8 +9,9 @@ loadEnv();
 const eventDate = process.argv[2];
 const apiKey = process.env.SETLIST_API_KEY || '';
 const userAgent = process.env.SETLIST_USER_AGENT || 'heiko@fanieng.com';
+const eventsRoot = process.env.EVENTS_ROOT || './src/content/docs/events';
 
-ensureDateArg(eventDate, 'Usage: npm run event:setlist -- <YYYY-MM-DD>');
+ensureDateArg(eventDate, 'Usage: npm run event:setlist -- YYYY-MM-DD');
 
 if (!apiKey) {
   console.error('Missing SETLIST_API_KEY in .env');
@@ -32,14 +32,23 @@ function readFrontmatter(file) {
   };
 }
 
+function escapeHtml(value = '') {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
 const year = eventDate.slice(0, 4);
-const eventFile = path.join('src/content/docs/events', year, `${eventDate}.mdx`);
+const eventFile = path.join(eventsRoot, year, `${eventDate}.mdx`);
 
 if (!fs.existsSync(eventFile)) {
   console.error(`Event not found: ${eventFile}`);
   process.exit(1);
 }
 
+const original = fs.readFileSync(eventFile, 'utf8');
 const event = readFrontmatter(eventFile);
 const [yearPart, month, day] = eventDate.split('-');
 const url = new URL('https://api.setlist.fm/rest/1.0/search/setlists');
@@ -79,9 +88,31 @@ if (!songs.length) {
   process.exit(1);
 }
 
-console.log('## Setlist\n');
-songs.forEach((song, index) => {
-  const note = song.info ? ` (${song.info})` : '';
-  console.log(`${index + 1}. ${song.name}${note}`);
-});
-console.log(`\n[Setlist auf setlist.fm](${selected.url})`);
+const songList = songs.map((song) => {
+  const note = song.info ? ` (${escapeHtml(song.info)})` : '';
+  return `        <li>${escapeHtml(song.name)}${note}</li>`;
+}).join('\n');
+const replacement = [
+  '<Card title="Songs" icon="list-format">',
+  '    <ol>',
+  songList,
+  '    </ol>',
+  '',
+  `    <a href=${JSON.stringify(selected.url)} target="_blank" rel="noopener noreferrer">Setlist auf setlist.fm</a>`,
+  '</Card>',
+].join('\n');
+const setlistCard = /<Card title="Songs" icon="list-format">\s*TODO\s*<\/Card>/;
+
+if (!setlistCard.test(original)) {
+  console.error(`Setlist TODO block not found in ${eventFile}`);
+  process.exit(1);
+}
+
+const updated = original.replace(setlistCard, replacement);
+const temporaryFile = `${eventFile}.tmp`;
+
+fs.writeFileSync(temporaryFile, updated, 'utf8');
+fs.renameSync(temporaryFile, eventFile);
+console.log(
+  `Added ${songs.length} songs from setlist.fm (${selected.id}) to ${eventFile}`,
+);
