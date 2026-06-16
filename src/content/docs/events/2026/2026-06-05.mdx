@@ -25,6 +25,7 @@ import { LinkCard, Card } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
 import EventFacts from '@components/EventFacts.astro';
 import Gallery from '@components/Gallery.astro';
+import YouTubeVideos from '@components/YouTubeVideos.astro';
 import img0000 from '../../../gallery/2026/06/05/2026-06-05_00-00-00.jpg';
 import img0000Dark from '../../../gallery/2026/06/05/2026-06-05_00-00-00-dark.jpg';
 import img1930 from '../../../gallery/2026/06/05/2026-06-05_19-30-00.jpg';
@@ -85,7 +86,13 @@ Nach über zwei Stunden Unterhaltung blieb vor allem ein Eindruck: Robbie Willia
     ]}
 />
 
-## Videos (YouTube)
+## Video
+
+<YouTubeVideos
+    videos={[
+        { id: "FTW6cw47-io" },
+    ]}
+/>
 
 ## Setlist
 
