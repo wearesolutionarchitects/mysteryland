@@ -9,31 +9,58 @@ city: "Gelsenkirchen"
 venue: "VELTINS-Arena"
 price: 99.55
 asin: "B00O8NQJLY"
-tags: ["€99.55", "2015", "AC/DC", "Concert Team Düsseldorf", "Deutschland", "Gelsenkirchen", "Konzert", "Veltins-Arena", "Rock or bust"]
+tags: ["€99.55", "2015", "AC/DC", "Vintage Trouble" ,"Whiskey Foundation", "Concert Team Düsseldorf", "Deutschland", "Gelsenkirchen", "Konzert", "Veltins-Arena", "Rock or bust"]
 ---
 import { Card, LinkCard } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
 import EventFacts from '@components/EventFacts.astro';
 import Gallery from '@components/Gallery.astro';
+import img190000 from '../../../gallery/2015/07/12/2015-07-12_19-00-00.jpg';
+import img211642 from '../../../gallery/2015/07/12/2015-07-12_21-16-42.jpg';
+import img213612 from '../../../gallery/2015/07/12/2015-07-12_21-36-12.jpg';
+import img214331 from '../../../gallery/2015/07/12/2015-07-12_21-43-31.jpg';
+import img220142 from '../../../gallery/2015/07/12/2015-07-12_22-01-42.jpg';
+import img221104 from '../../../gallery/2015/07/12/2015-07-12_22-11-04.jpg';
+import img221504 from '../../../gallery/2015/07/12/2015-07-12_22-15-04.jpg';
+import img222047 from '../../../gallery/2015/07/12/2015-07-12_22-20-47.jpg';
+import img222818 from '../../../gallery/2015/07/12/2015-07-12_22-28-18.jpg';
 
 <EventFacts
     facts={[
         { icon: 'lucide:calendar-days', label: 'Datum', value: "12.07.2015" },
         { icon: 'lucide:route', label: 'Tour', value: "Rock or bust" },
-        { icon: 'lucide:mic-vocal', label: "Support", value: "TBA" },
+        { icon: 'lucide:mic-vocal', label: "Support", value: "Whiskey Foundation,Vintage Trouble" },
         { icon: 'lucide:globe', label: 'Land', value: "Deutschland" },
         { icon: 'lucide:map-pin', label: 'Stadt', value: "Gelsenkirchen" },
         { icon: 'lucide:landmark', label: 'Venue', value: "VELTINS-Arena" },
         { icon: 'lucide:badge-euro', label: 'Preis', value: "99,55 €" },
-        { icon: 'lucide:ticket-check', label: 'Kategorie', value: "TBA" },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: "Tor Nord Stehplatz" },
     ]}
 />
 
-TBA
+Wenn AC/DC die Bühne betreten, gibt es keine lange Anlaufphase. Vom ersten Ton an stand die Veltins-Arena unter Strom. 
+Angus Young wirbelte mit seiner unverwechselbaren Energie über die Bühne, während Brian Johnson die großen Klassiker mit seiner markanten Stimme präsentierte.
+
+Mit Hymnen wie **Back In Black**, **Thunderstruck**, **Hells Bells** und **Highway to Hell** verwandelten die Australier das Stadion in ein einziges Meer aus singenden Fans. Dazu kamen die legendären Showelemente der Band: die riesige Glocke bei **Hells Bells**, 
+spektakuläre **Angus-Solos** und die Kanonen bei **For Those About To Rock (We Salute You)**n.
+
+Trotz einiger personeller Veränderungen zeigte sich AC/DC auch 2015 als eingespielte Rockmaschine. Die Mischung aus zeitlosen Songs, einer beeindruckenden Bühnenshow und der ungebrochenen Spielfreude der Band machte diesen Abend zu einem echten Highlight für jeden Rockfan.
 
 ## Galerie
 
-TBA
+<Gallery
+    images={[
+        { src: img190000, alt: 'Ticket', title: 'Ticket' },
+        { src: img211642, alt: 'AC/DC auf der Bühne', title: '21:16 Uhr' },
+        { src: img213612, alt: 'AC/DC auf der Bühne', title: '21:36 Uhr' },
+        { src: img214331, alt: 'AC/DC auf der Bühne', title: '21:43 Uhr' },
+        { src: img220142, alt: 'AC/DC auf der Bühne', title: '22:01 Uhr' },
+        { src: img221104, alt: 'AC/DC auf der Bühne', title: '22:11 Uhr' },
+        { src: img221504, alt: 'AC/DC auf der Bühne', title: '22:15 Uhr' },
+        { src: img222047, alt: 'AC/DC auf der Bühne', title: '22:20 Uhr' },
+        { src: img222818, alt: 'AC/DC auf der Bühne', title: '22:28 Uhr' },
+    ]}
+/>
 
 ## Videos
 
@@ -71,9 +98,14 @@ TBA
 
 ## Album
 
-TBA
+<Card title="Rock Or Bust" icon="seti:audio">
+    <a href="https://www.amazon.de/dp/B00O8NQJLY?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+        <Image src="https://m.media-amazon.com/images/I/818T7lYuhqL._SL1500_.jpg" alt="Rock Or Bust" width={300} height={300} />
+    </a>
+</Card>
 
 <LinkCard
     title="Mehr Informationen"
     href="https://fanieng.com/2015/07/12/ac-dc-gelsenkirchen-veltins-arena/"
 />
+
