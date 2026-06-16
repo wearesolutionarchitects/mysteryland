@@ -1,0 +1,338 @@
+---
+import { getCollection } from 'astro:content';
+import { Image, type LocalImageProps } from 'astro:assets';
+
+type ImportedImage = Exclude<LocalImageProps['src'], Promise<unknown>>;
+
+interface TicketSlide {
+  src: ImportedImage;
+  alt: string;
+  title: string;
+  caption?: string;
+  category?: string;
+  event?: string;
+  href?: string;
+  meta?: string;
+  price?: number;
+  variant?: 'logo' | 'ticket';
+}
+
+const { tickets = [] } = Astro.props as { tickets?: TicketSlide[] };
+
+const events = await getCollection('docs', ({ id }) => id.startsWith('events/'));
+const eventsById = new Map(events.map((event) => [event.id.replace(/\/index$/, ''), event]));
+
+function eventIdFromSlide(ticket: TicketSlide) {
+  return ticket.event?.replace(/^\/+/, '').replace(/\/+$/, '');
+}
+
+function eventHref(eventId: string | undefined) {
+  return eventId ? `/${eventId}/` : '/';
+}
+
+function formatPrice(price: number | undefined) {
+  if (typeof price !== 'number' || Number.isNaN(price)) return '';
+
+  return new Intl.NumberFormat('de-DE', {
+    style: 'currency',
+    currency: 'EUR',
+  }).format(price);
+}
+
+function extractCategory(body: string | undefined) {
+  return body?.match(/label:\s*['"]Kategorie['"]\s*,\s*value:\s*['"]([^'"]+)['"]/i)?.[1] ?? '';
+}
+
+function eventType(tags: string[] | undefined) {
+  if (tags?.some((tag) => tag.toLowerCase() === 'festival')) return 'Festival';
+  if (tags?.some((tag) => tag.toLowerCase() === 'konzert')) return 'Konzert';
+
+  return '';
+}
+
+const slides = tickets.map((ticket) => {
+  const eventId = eventIdFromSlide(ticket);
+  const event = eventId ? eventsById.get(eventId) : undefined;
+  const price = formatPrice(ticket.price ?? event?.data.price);
+  const category = ticket.category ?? (extractCategory(event?.body) || eventType(event?.data.tags));
+  const meta = ticket.meta ?? [price, category].filter(Boolean).join(' · ');
+
+  return {
+    ...ticket,
+    href: ticket.href ?? eventHref(eventId),
+    meta,
+  };
+});
+---
+
+<section class="ticket-slider" aria-label="Konzerttickets">
+  <div class="ticket-slider__frame">
+    <div class="ticket-slider__controls" aria-label="Slider Navigation">
+      <button type="button" data-ticket-slider-prev aria-label="Vorheriges Ticket">&lsaquo;</button>
+      <button type="button" data-ticket-slider-next aria-label="Nächstes Ticket">&rsaquo;</button>
+    </div>
+
+    <div class="ticket-slider__viewport">
+      <div class="ticket-slider__track" data-ticket-slider-track>
+        {slides.map((ticket) => (
+          <a
+            class={`ticket-slider__slide ticket-slider__slide--${ticket.variant ?? 'ticket'}`}
+            href={ticket.href ?? '/'}
+            aria-label={`${ticket.title}: ${ticket.caption ?? ticket.alt}`}
+          >
+            <div class="ticket-slider__image">
+              <Image
+                src={ticket.src}
+                alt={ticket.alt}
+                widths={ticket.variant === 'logo' ? [480, 720, 960, 1334] : [240, 360, 540, 720]}
+                sizes="(max-width: 42rem) calc(100vw - 6rem), 22rem"
+              />
+            </div>
+            <div class="ticket-slider__body">
+              <h3>{ticket.title}</h3>
+              {ticket.caption && <p class="ticket-slider__caption">{ticket.caption}</p>}
+              {ticket.meta && <p class="ticket-slider__meta">{ticket.meta}</p>}
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.ticket-slider').forEach((slider) => {
+    const track = slider.querySelector<HTMLElement>('[data-ticket-slider-track]');
+    const prev = slider.querySelector<HTMLButtonElement>('[data-ticket-slider-prev]');
+    const next = slider.querySelector<HTMLButtonElement>('[data-ticket-slider-next]');
+
+    if (!track || !prev || !next) return;
+
+    const slides = Array.from(track.querySelectorAll<HTMLElement>('.ticket-slider__slide'));
+    let activeIndex = 0;
+    let autoplay: number | undefined;
+    let scrollFrame: number | undefined;
+
+    const updateActiveIndex = () => {
+      activeIndex = slides.reduce((nearestIndex, slide, index) => {
+        const currentDistance = Math.abs(slide.offsetLeft - track.offsetLeft - track.scrollLeft);
+        const nearestDistance = Math.abs(slides[nearestIndex].offsetLeft - track.offsetLeft - track.scrollLeft);
+
+        return currentDistance < nearestDistance ? index : nearestIndex;
+      }, activeIndex);
+    };
+
+    const scrollToSlide = (index: number) => {
+      if (!slides.length) return;
+
+      activeIndex = (index + slides.length) % slides.length;
+      track.scrollTo({
+        left: slides[activeIndex].offsetLeft - track.offsetLeft,
+        behavior: 'smooth',
+      });
+    };
+
+    const stopAutoplay = () => {
+      if (autoplay) window.clearInterval(autoplay);
+    };
+
+    const startAutoplay = () => {
+      stopAutoplay();
+      autoplay = window.setInterval(() => scrollToSlide(activeIndex + 1), 5000);
+    };
+
+    prev.addEventListener('click', () => scrollToSlide(activeIndex - 1));
+    next.addEventListener('click', () => scrollToSlide(activeIndex + 1));
+    track.addEventListener('scroll', () => {
+      if (scrollFrame) window.cancelAnimationFrame(scrollFrame);
+      scrollFrame = window.requestAnimationFrame(updateActiveIndex);
+    });
+    slider.addEventListener('mouseenter', stopAutoplay);
+    slider.addEventListener('mouseleave', startAutoplay);
+    slider.addEventListener('focusin', stopAutoplay);
+    slider.addEventListener('focusout', (event) => {
+      if (!slider.contains(event.relatedTarget as Node | null)) startAutoplay();
+    });
+
+    startAutoplay();
+  });
+</script>
+
+<style>
+  .ticket-slider {
+    --ticket-slider-gap: clamp(0.75rem, 2vw, 1.25rem);
+    margin: 2.5rem 0;
+    max-width: 100%;
+  }
+
+  .ticket-slider__frame {
+    padding-inline: 3.25rem;
+    position: relative;
+  }
+
+  .ticket-slider__controls {
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+    z-index: 2;
+  }
+
+  .ticket-slider__controls button {
+    align-items: center;
+    background: var(--sl-color-gray-6);
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 999px;
+    color: var(--sl-color-white);
+    cursor: pointer;
+    display: inline-flex;
+    font: inherit;
+    font-size: 1.5rem;
+    height: 2.5rem;
+    justify-content: center;
+    line-height: 1;
+    pointer-events: auto;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2.5rem;
+  }
+
+  .ticket-slider__controls [data-ticket-slider-prev] {
+    left: 0;
+  }
+
+  .ticket-slider__controls [data-ticket-slider-next] {
+    right: 0;
+  }
+
+  .ticket-slider__controls button:hover,
+  .ticket-slider__controls button:focus-visible {
+    border-color: var(--sl-color-accent);
+    color: var(--sl-color-accent);
+  }
+
+  .ticket-slider__viewport {
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .ticket-slider__track {
+    display: flex;
+    gap: var(--ticket-slider-gap);
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    padding: 0.25rem 0 0.75rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    width: 100%;
+  }
+
+  .ticket-slider__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .ticket-slider__slide {
+    background: var(--sl-color-black);
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.75rem;
+    color: inherit;
+    display: flex;
+    flex: 0 0 calc((100% - var(--ticket-slider-gap)) / 2);
+    flex-direction: column;
+    overflow: hidden;
+    scroll-snap-align: start;
+    text-decoration: none;
+  }
+
+  .ticket-slider__slide--logo {
+    flex-basis: calc((100% - var(--ticket-slider-gap)) / 2);
+  }
+
+  .ticket-slider__slide:hover,
+  .ticket-slider__slide:focus-visible {
+    border-color: var(--sl-color-accent);
+  }
+
+  .ticket-slider__image {
+    align-items: center;
+    background: var(--sl-color-gray-6);
+    display: flex;
+    flex: 0 0 9.5rem;
+    justify-content: center;
+    padding: 0.75rem 1rem 0.25rem;
+  }
+
+  .ticket-slider__slide--logo .ticket-slider__image {
+    flex-basis: 9rem;
+  }
+
+  .ticket-slider__image img {
+    display: block;
+    height: auto;
+    max-height: 8.5rem;
+    max-width: 100%;
+    object-fit: contain;
+    width: auto;
+  }
+
+  .ticket-slider__body {
+    flex: 0 0 auto;
+    padding: 0.5rem 1rem 0.9rem;
+  }
+
+  .ticket-slider__body h3 {
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  .ticket-slider__caption,
+  .ticket-slider__meta {
+    color: var(--sl-color-gray-2);
+    font-size: 0.9rem;
+    margin: 0.35rem 0 0;
+    overflow-wrap: anywhere;
+  }
+
+  .ticket-slider__caption {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .ticket-slider__meta {
+    color: var(--sl-color-gray-3);
+    font-size: 0.82rem;
+  }
+
+  @media (max-width: 42rem) {
+    .ticket-slider {
+      margin: 1.5rem 0 2rem;
+    }
+
+    .ticket-slider__frame {
+      padding-inline: 2.75rem;
+    }
+
+    .ticket-slider__controls button {
+      height: 2.25rem;
+      width: 2.25rem;
+    }
+
+    .ticket-slider__slide {
+      flex-basis: 100%;
+    }
+
+    .ticket-slider__slide--logo {
+      flex-basis: 100%;
+    }
+
+    .ticket-slider__image {
+      flex-basis: 8.75rem;
+    }
+
+    .ticket-slider__image img {
+      max-height: 8rem;
+    }
+  }
+</style>

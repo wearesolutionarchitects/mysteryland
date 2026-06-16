@@ -23,8 +23,68 @@ sidebar:
     variant: tip
 ---
 import { Steps } from '@astrojs/starlight/components';
+import TicketSlider from '../../components/TicketSlider.astro';
+import mysterylandLogo from '../../assets/mysteryland.png';
+import ticket2024DepecheMode from '../gallery/2024/04/05/2024-04-05_20-00-00.jpg';
+import ticket2024Rammstein from '../gallery/2024/07/26/2024-07-26_19-30-00.jpg';
+import ticket2024Nena from '../gallery/2024/10/12/2024-10-12_20-00-00.jpg';
+import ticket2025DuranDuran from '../gallery/2025/06/24/2025-06-24_20-00-00.jpg';
+import ticket2025 from '../gallery/2025/07/26/2025-07-26_13-30-00.jpg';
+import ticket2025Kraftwerk from '../gallery/2025/11/30/2025-11-30_19-00-00.jpg';
 
-![Logo](../../assets/mysteryland.png)
+<TicketSlider
+  tickets={[
+    {
+      src: mysterylandLogo,
+      alt: 'Mysteryland Logo',
+      title: 'Mysteryland',
+      caption: '45 Jahre Live-Musik, dokumentiert mit Tickets, Bildern und Erinnerungen.',
+      variant: 'logo',
+    },
+    {
+      src: ticket2024DepecheMode,
+      alt: 'Ticket Depeche Mode in Köln 2024',
+      title: 'Depeche Mode',
+      caption: '05.04.2024 · Köln · LANXESS arena',
+      event: 'events/2024/2024-04-05',
+    },
+    {
+      src: ticket2024Rammstein,
+      alt: 'Ticket Rammstein in Gelsenkirchen 2024',
+      title: 'Rammstein',
+      caption: '26.07.2024 · Gelsenkirchen · VELTINS-Arena',
+      event: 'events/2024/2024-07-26',
+    },
+    {
+      src: ticket2024Nena,
+      alt: 'Ticket Nena in Bochum 2024',
+      title: 'Nena',
+      caption: '12.10.2024 · Bochum · RuhrCongress',
+      event: 'events/2024/2024-10-12',
+    },
+    {
+      src: ticket2025DuranDuran,
+      alt: 'Ticket Duran Duran in Düsseldorf 2025',
+      title: 'Duran Duran',
+      caption: '24.06.2025 · Düsseldorf · PSD Bank Dome',
+      event: 'events/2025/2025-06-24',
+    },
+    {
+      src: ticket2025,
+      alt: 'Ticket BOBfest in Mönchengladbach 2025',
+      title: 'BOBfest',
+      caption: '26.07.2025 · Mönchengladbach · SparkassenPark',
+      event: 'events/2025/2025-07-26',
+    },
+    {
+      src: ticket2025Kraftwerk,
+      alt: 'Ticket Kraftwerk in Bochum 2025',
+      title: 'Kraftwerk',
+      caption: '30.11.2025 · Bochum · RuhrCongress',
+      event: 'events/2025/2025-11-30',
+    },
+  ]}
+/>
 
 ## 🎸 45 Jahre Live-Musik (Est 1979)
 
