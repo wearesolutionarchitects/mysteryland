@@ -55,6 +55,28 @@ ${entries}
 />`;
 }
 
+function videoList(videos) {
+  return [...new Set((Array.isArray(videos) ? videos : [])
+    .map((video) => typeof video === 'string' ? video : video?.id)
+    .map((id) => String(id || '').trim())
+    .filter(Boolean))];
+}
+
+function videosBlock(videos) {
+  const ids = videoList(videos);
+  if (!ids.length) return 'TBA';
+
+  const entries = ids
+    .map((id) => `        { id: ${yamlString(id)} },`)
+    .join('\n');
+
+  return `<YouTubeVideos
+    videos={[
+${entries}
+    ]}
+/>`;
+}
+
 function frontmatter(event) {
   const artists = stringList(event.artists || event.artist || event.title);
   const tags = stringList(event.tags);
@@ -98,6 +120,7 @@ function eventFacts(event) {
 
 export function renderEventMdx(input) {
   const images = Array.isArray(input.images) ? input.images : [];
+  const videos = videoList(input.videos);
   const intro = String(input.intro || 'TBA').trim();
   const setlistHeading = stringList(input.artists || input.artist).length > 1
     ? 'Setlists'
@@ -107,6 +130,7 @@ export function renderEventMdx(input) {
     "import { Image } from 'astro:assets';",
     "import EventFacts from '@components/EventFacts.astro';",
     "import Gallery from '@components/Gallery.astro';",
+    videos.length ? "import YouTubeVideos from '@components/YouTubeVideos.astro';" : '',
     imageImports(images),
   ].filter(Boolean).join('\n');
   const externalLink = input.externalUrl
@@ -130,7 +154,7 @@ ${galleryBlock(images)}
 
 ## Videos
 
-TBA
+${videosBlock(videos)}
 
 ## ${setlistHeading}
 
