@@ -2,6 +2,8 @@
 
 Der normale Workflow verarbeitet zuerst die Bilder aus der Inbox und erzeugt danach schrittweise die Event-MDX. Die Skripte ändern jeweils nur ihren eigenen Bereich.
 
+Das gemeinsame MDX-Gerüst wird zentral in `src/scripts/event/render.mjs` erzeugt. `event:mdx` und `event:wp` verwenden denselben Renderer, damit neue Events immer dieselben Imports, `EventFacts`, Galerie-, Video-, Setlist- und Album-Bereiche erhalten.
+
 ## Voraussetzungen
 
 - Node.js und npm
@@ -94,7 +96,7 @@ npm run event:album -- 2014-10-11 B00MU78CTM
 Das Skript:
 
 - liest Titel und Cover des Albums anhand der ASIN von Amazon,
-- ergänzt die ASIN im Frontmatter,
+- ergänzt die ASIN im Frontmatter, falls sie dort noch fehlt,
 - fügt eine Album-Card mit Astro-`Image` ein,
 - unterstützt mehrere Alben durch wiederholte Aufrufe,
 - verhindert doppelte ASINs.
@@ -139,7 +141,7 @@ Modul: `src/scripts/event/wp.mjs`
 npm run event:wp -- <post-id>
 ```
 
-Der WordPress-Import ist ein alternativer Einstieg für ältere Events und gehört nicht zum normalen Inbox-Workflow. Mit `--force` kann eine vorhandene Eventdatei nach einem automatischen Backup neu erzeugt werden.
+Der WordPress-Import ist ein alternativer Einstieg für ältere Events und gehört nicht zum normalen Inbox-Workflow. Er verwendet dasselbe MDX-Gerüst wie `event:mdx`, aber ohne Galerie-Bilder. Mit `--force` kann eine vorhandene Eventdatei nach einem automatischen Backup neu erzeugt werden.
 
 ## Prüfung
 

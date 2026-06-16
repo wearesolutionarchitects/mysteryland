@@ -127,7 +127,7 @@ if (!frontmatterMatch) {
 }
 
 const asins = existingAsins(frontmatterMatch[1]);
-if (asins.includes(asin) || original.includes(`/dp/${asin}`)) {
+if (original.includes(`/dp/${asin}`)) {
   console.error(`ASIN already exists in ${eventFile}: ${asin}`);
   process.exit(1);
 }

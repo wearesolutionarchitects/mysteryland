@@ -4,12 +4,14 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { loadEnv } from '../lib/core.mjs';
+import { renderEventMdx } from './render.mjs';
 
 loadEnv();
 
 const postId = process.argv[2];
 const forceWrite = process.argv.includes('--force');
 const wpBaseUrl = process.env.WP_BASE_URL || 'https://fanieng.com';
+const eventsRoot = process.env.EVENTS_ROOT || './src/content/docs/events';
 
 if (!postId || !/^\d+$/.test(postId)) {
   console.error('Usage: npm run event:wp -- <post-id>');
@@ -49,10 +51,6 @@ function parseEventText(value) {
   };
 }
 
-function yamlString(value) {
-  return JSON.stringify(value || '');
-}
-
 function unique(values) {
   return [...new Set(values.map((value) => decodeHtml(String(value || '')).trim()).filter(Boolean))];
 }
@@ -85,22 +83,26 @@ const terms = (post._embedded?.['wp:term'] || []).flat();
 const tagNames = unique(terms.filter((term) => term.taxonomy === 'post_tag').map((term) => term.name));
 const categories = unique(terms.filter((term) => term.taxonomy === 'category').map((term) => term.name));
 
-if (!categories.some((category) => category.toLocaleLowerCase('de-DE') === 'konzert')) {
-  console.error(`WordPress post ${postId} is not in category "Konzert"`);
+const category = categories.some((item) => item.toLocaleLowerCase('de-DE') === 'festival')
+  ? 'Festival'
+  : 'Konzert';
+
+if (!categories.some((item) => ['konzert', 'festival'].includes(item.toLocaleLowerCase('de-DE')))) {
+  console.error(`WordPress post ${postId} is not in category "Konzert" or "Festival"`);
   process.exit(1);
 }
 
-const artistRaw = parsedTitle.artist || parsedCaption.artist;
+const artistRaw = parsedTitle.artist || parsedCaption.artist || title || 'TBA';
 const artist = tagNames.find((tag) => tag.toLocaleLowerCase('de-DE') === artistRaw.toLocaleLowerCase('de-DE')) || artistRaw;
 const tour = parsedTitle.tour || parsedCaption.tour;
 const city = parsedTitle.city || parsedCaption.city;
 const venue = parsedTitle.venue || parsedCaption.venue;
-const country = tagNames.includes('Deutschland') ? 'Deutschland' : '';
+const country = tagNames.includes('Deutschland') ? 'Deutschland' : 'TBA';
 const priceTag = tagNames.find((tag) => /^€\d/.test(tag));
 const price = priceTag ? Number(priceTag.slice(1).replace(',', '.')) : null;
 const asin = post.content?.rendered?.match(/amazon\.[^"' ]+\/(?:dp|gp\/product)\/([A-Z0-9]{10})/i)?.[1] || '';
-const tags = unique([...tagNames.filter((tag) => tag !== priceTag), tour, 'Konzert']);
-const targetFile = path.join('src/content/docs/events', year, `${eventDate}.mdx`);
+const tags = unique([...tagNames, tour, category]);
+const targetFile = path.join(eventsRoot, year, `${eventDate}.mdx`);
 
 if (fs.existsSync(targetFile)) {
   if (!forceWrite) {
@@ -115,53 +117,23 @@ if (fs.existsSync(targetFile)) {
   console.log(`Backup created: ${backupFile}`);
 }
 
-const description = `${artist}${tour ? ` mit ${tour}` : ''} am ${displayDate}${city ? ` in ${city}` : ''}${venue ? `, ${venue}` : ''}.`;
-const frontmatter = [
-  '---',
-  `title: ${yamlString(artist)}`,
-  `description: ${yamlString(description)}`,
-  `pubDate: ${eventDate}`,
-  `country: ${yamlString(country)}`,
-  `city: ${yamlString(city)}`,
-  `venue: ${yamlString(venue)}`,
-  `artist: [${yamlString(artist)}]`,
-  ...(tour ? [`tour: ${yamlString(tour)}`] : []),
-  ...(price !== null ? [`price: ${price.toFixed(2)}`] : []),
-  ...(asin ? [`asin: ${yamlString(asin)}`] : []),
-  'tags:',
-  ...tags.map((tag) => `  - ${yamlString(tag)}`),
-  '---',
-];
-
-const body = [
-  '',
-  "import { LinkCard } from '@astrojs/starlight/components';",
-  '',
-  '## Details',
-  '',
-  `📅 Datum: ${displayDate}  `,
-`🇩🇪 Land: ${country}  `,
-`📍 Stadt: ${city}  `,
-`🏟️ Venue: ${venue}  `,
-`💶 Preis: ${price.toFixed(2).replace('.', ',')} €  `,
-  '',
-  '## Bilder',
-  '',
-  '## Konzertbericht',
-  '',
-  '## Pressebericht',
-  '',
-  '## Album',
-  '',
-  '## Setlist',
-  '',
-  '<LinkCard',
-  '  title="Mehr Informationen"',
-  `  href=${JSON.stringify(post.link)}`,
-  '/>',
-  '',
-];
+const description = `Eventbericht über das ${category} von ${artist}${tour ? ` auf der ${tour}` : ''}${venue ? ` in ${venue}` : ''}${city ? ` in ${city}` : ''} am ${displayDate}.`;
+const content = renderEventMdx({
+  title: artist,
+  description,
+  tour: tour || 'TBA',
+  artists: [artist],
+  pubDate: eventDate,
+  displayDate,
+  country,
+  city: city || 'TBA',
+  venue: venue || 'TBA',
+  price,
+  asin,
+  tags,
+  externalUrl: post.link,
+});
 
 fs.mkdirSync(path.dirname(targetFile), { recursive: true });
-fs.writeFileSync(targetFile, `${frontmatter.join('\n')}${body.join('\n')}`, 'utf8');
+fs.writeFileSync(targetFile, content, 'utf8');
 console.log(`Created ${targetFile}`);

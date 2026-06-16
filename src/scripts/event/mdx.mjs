@@ -3,6 +3,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { loadEnv, runCapture } from '../lib/core.mjs';
+import { renderEventMdx, stringList } from './render.mjs';
 
 loadEnv();
 
@@ -36,18 +37,6 @@ function firstString(...values) {
     if (String(value || '').trim()) return String(value).normalize('NFC').trim();
   }
   return '';
-}
-
-function stringList(...values) {
-  return [...new Set(values
-    .flat(2)
-    .flatMap((value) => Array.isArray(value) ? value : String(value || '').split(','))
-    .map((value) => String(value || '').normalize('NFC').trim())
-    .filter(Boolean))];
-}
-
-function yamlString(value) {
-  return JSON.stringify(String(value || ''));
 }
 
 function titleData(meta) {
@@ -151,7 +140,7 @@ function importName(filename, usedNames) {
   return name;
 }
 
-function galleryLabel(meta, filename) {
+function galleryLabel(meta, filename, artist) {
   const text = firstString(meta['Caption-Abstract'], meta.Description);
   const keywords = stringList(meta.Keywords, meta.Subject);
   const normalized = `${text} ${keywords.join(' ')}`.toLocaleLowerCase('de-DE');
@@ -167,7 +156,7 @@ function galleryLabel(meta, filename) {
   }
 
   const time = imageTime(filename);
-  return { alt: 'Bühne', title: time || 'Konzertfoto' };
+  return { alt: `${artist} auf der Bühne`, title: time || 'Konzertfoto' };
 }
 
 const [year, month, day] = eventDate.split('-');
@@ -245,9 +234,6 @@ const event = {
 };
 const tour = tourFromTags(tags, event, country, category);
 const dateGerman = `${day}.${month}.${year}`;
-const priceGerman = price === null
-  ? 'TBA'
-  : `${price.toFixed(2).replace('.', ',')} €`;
 const description = `Eventbericht über das ${category} von ${event.artist} in ${event.venue} in ${event.city} am ${dateGerman}.`;
 const outputTags = stringList(
   tags,
@@ -264,80 +250,26 @@ const images = imageFiles.map((filename, index) => {
   const variable = importName(filename, usedNames);
   return {
     filename,
+    importPath: `../../../gallery/${year}/${month}/${day}/${filename}`,
     variable,
-    ...galleryLabel(metadata[index] || {}, filename),
+    ...galleryLabel(metadata[index] || {}, filename, event.artist),
   };
 });
 
-const imports = images
-  .map(({ variable, filename }) =>
-    `import ${variable} from '../../../gallery/${year}/${month}/${day}/${filename}';`
-  )
-  .join('\n');
-const galleryEntries = images
-  .map(({ variable, alt, title }) =>
-    `        { src: ${variable}, alt: ${yamlString(alt)}, title: ${yamlString(title)} },`
-  )
-  .join('\n');
-
-const frontmatter = [
-  '---',
-  `title: ${yamlString(event.artist)}`,
-  `description: ${yamlString(description)}`,
-  `tour: ${yamlString(tour)}`,
-  `artist: [${yamlString(event.artist)}]`,
-  `pubDate: ${eventDate}`,
-  `country: ${yamlString(country)}`,
-  `city: ${yamlString(event.city)}`,
-  `venue: ${yamlString(event.venue)}`,
-  ...(price === null ? [] : [`price: ${price.toFixed(2)}`]),
-  `tags: [${outputTags.map(yamlString).join(', ')}]`,
-  '---',
-].join('\n');
-
-const content = `${frontmatter}
-import { Card } from '@astrojs/starlight/components';
-import EventFacts from '@components/EventFacts.astro';
-import Gallery from '@components/Gallery.astro';
-${imports}
-
-<EventFacts
-    facts={[
-        { icon: 'lucide:calendar-days', label: 'Datum', value: ${yamlString(dateGerman)} },
-        { icon: 'lucide:route', label: 'Tour', value: ${yamlString(tour)} },
-        { icon: 'lucide:mic-vocal', label: 'Support', value: 'TBA' },
-        { icon: 'lucide:globe', label: 'Land', value: ${yamlString(country)} },
-        { icon: 'lucide:map-pin', label: 'Stadt', value: ${yamlString(event.city)} },
-        { icon: 'lucide:landmark', label: 'Venue', value: ${yamlString(event.venue)} },
-        { icon: 'lucide:badge-euro', label: 'Preis', value: ${yamlString(priceGerman)} },
-        { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'TBA' },
-    ]}
-/>
-
-TBA
-
-## Galerie
-
-<Gallery
-    images={[
-${galleryEntries}
-    ]}
-/>
-
-## Videos
-
-TBA
-
-## Setlist
-
-<Card title="Songs" icon="list-format">
-    TBA
-</Card>
-
-## Album
-
-TBA
-`;
+const content = renderEventMdx({
+  title: event.artist,
+  description,
+  tour,
+  artists: [event.artist],
+  pubDate: eventDate,
+  displayDate: dateGerman,
+  country,
+  city: event.city,
+  venue: event.venue,
+  price,
+  tags: outputTags,
+  images,
+});
 
 fs.mkdirSync(path.dirname(targetFile), { recursive: true });
 fs.writeFileSync(targetFile, content, 'utf8');
