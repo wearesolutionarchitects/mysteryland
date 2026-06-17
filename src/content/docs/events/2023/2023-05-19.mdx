@@ -1,114 +1,109 @@
 ---
 title: "Herbert Grönemeyer"
-
-description: "Eventbericht über das Konzert von Herbert Grönemeyer in Dortmund in der Westfalenhalle."
-
+description: "Eventbericht über das Konzert von Herbert Grönemeyer auf der Das ist los Tour in der Westfalenhalle in Dortmund am 19.05.2023."
+tour: "Das ist los Tour"
 pubDate: 2023-05-19
-
 country: "Deutschland"
-
 city: "Dortmund"
-
 venue: "Westfalenhalle"
-
-artist: ["Herbert Grönemeyer"]
-
 price: 74.85
-
+artist: ["Herbert Grönemeyer"]
 asin: "B0CNJS3MC9"
-
-tags: ["€74.85","Ticket","Deutschland","Konzert","Dortmund","Herbert Grönemeyer","2023"]
+tags: ["€74.85", "Deutschland", "Konzert", "Dortmund", "Herbert Grönemeyer", "2023", "Westfalenhalle", "Das ist los", "Schmyt"]
 ---
 
-import { LinkCard, Card, CardGrid } from '@astrojs/starlight/components';
+import { Card, LinkCard } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
+import EventFacts from '@components/EventFacts.astro';
+import Gallery from '@components/Gallery.astro';
+import img200000 from '../../../gallery/2023/05/19/2023-05-19_20-00-00.jpg';
+import img204716 from '../../../gallery/2023/05/19/2023-05-19_20-47-16.jpg';
+import img205135 from '../../../gallery/2023/05/19/2023-05-19_20-51-35.jpg';
+import img205659 from '../../../gallery/2023/05/19/2023-05-19_20-56-59.jpg';
+import img211430 from '../../../gallery/2023/05/19/2023-05-19_21-14-30.jpg';
 
-import img2047 from '../../../gallery/2023/05/19/2023-05-19_20-47-16.jpg';
-import img2051 from '../../../gallery/2023/05/19/2023-05-19_20-51-35.jpg';
-import img2056 from '../../../gallery/2023/05/19/2023-05-19_20-56-59.jpg';
-import img2114 from '../../../gallery/2023/05/19/2023-05-19_21-14-30.jpg';
+<EventFacts
+    facts={[
+        { icon: 'lucide:calendar-days', label: 'Datum', value: '19.05.2023' },
+        { icon: 'lucide:route', label: 'Tour', value: 'Das ist los Tour' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: 'Schmyt' },
+        { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
+        { icon: 'lucide:map-pin', label: 'Stadt', value: 'Dortmund' },
+        { icon: 'lucide:landmark', label: 'Venue', value: 'Westfalenhalle' },
+        { icon: 'lucide:badge-euro', label: 'Preis', value: '74,85 €' },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+    ]}
+/>
 
-## 🎫 Ticket
+Am 19. Mai 2023 spielte **Herbert Grönemeyer** im Rahmen der **Das ist los Tour** in der Westfalenhalle in Dortmund.
+Der Abend verband neue Songs mit den großen Klassikern, die seit Jahrzehnten fest zur deutschen Popgeschichte gehören.
 
-![Ticket](../../../gallery/2023/05/19/2023-05-19_20-00-00.jpg)
+Mit **Bochum**, **Männer**, **Der Weg**, **Mensch** und **Alkohol** traf Grönemeyer viele emotionale Punkte des Publikums.
+Die Westfalenhalle passte dazu als große, aber trotzdem direkte Konzertkulisse.
 
-## 📌 Details
-📅 Datum: 19.05.2023  
-🇩🇪 Land: Deutschland  
-📍 Stadt: Dortmund  
-🏟️ Venue: Westfalenhalle    
-💶 Preis: 74,85 €  
+## Galerie
 
-## 📷 Fotos
+<Gallery
+    images={[
+        { src: img200000, alt: 'Ticket', title: 'Ticket' },
+        { src: img204716, alt: 'Herbert Grönemeyer auf der Bühne', title: '20:47' },
+        { src: img205135, alt: 'Herbert Grönemeyer auf der Bühne', title: '20:51' },
+        { src: img205659, alt: 'Herbert Grönemeyer auf der Bühne', title: '20:56' },
+        { src: img211430, alt: 'Herbert Grönemeyer auf der Bühne', title: '21:14' },
+    ]}
+/>
 
-<CardGrid>
-  <Card title="20:47" icon="image">
-    <Image src={img2047} alt="Herbert Grönemeyer" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-  </Card>
-  <Card title="20:51" icon="image">
-    <Image src={img2051} alt="Herbert Grönemeyer um 20:51" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-  </Card>
-  <Card title="20:56" icon="image">
-    <Image src={img2056} alt="Herbert Grönemeyer um 20:56" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-  </Card>
-  <Card title="21:14" icon="image">
-    <Image src={img2114} alt="Herbert Grönemeyer um 21:14" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-  </Card>
-</CardGrid>
+## Videos
 
-## 🎤 Konzertbericht
+TBA
 
-Am 19. Mai 2023 war ich im Rahmen der Tour "Das ist los" von Herbert Grönemeyer in der Westfalenhalle in Dortmund. 
-Es war ein unvergesslicher Abend voller Emotionen und mitreißender Musik.
+## Setlist
 
-Grönemeyer, der seit Jahrzehnten zu den größten Stars der deutschen Musikszene zählt, präsentierte ein beeindruckendes Konzert, 
-das die Fans in seinen Bann zog. Mit seiner unverwechselbaren Stimme und einer energiegeladenen Performance begeisterte er das Publikum von Anfang bis Ende.
+<Card title="Songs" icon="list-format">
+    <ol>
+        <li>Tau</li>
+        <li>Das ist los</li>
+        <li>Bist du da</li>
+        <li>Sekundenglück</li>
+        <li>Kopf hoch, tanzen</li>
+        <li>Steigerlied</li>
+        <li>Bochum</li>
+        <li>Männer</li>
+        <li>Was soll das</li>
+        <li>Vollmond</li>
+        <li>Eine Tonne Blei</li>
+        <li>Der Schlüssel</li>
+        <li>Doppelherz / Iki Gönlüm</li>
+        <li>Musik nur, wenn sie laut ist</li>
+        <li>Oh Oh Oh</li>
+        <li>Herzhaft</li>
+        <li>Der Weg</li>
+        <li>Behutsam</li>
+        <li>Deine Hand</li>
+        <li>Mensch</li>
+        <li>Alkohol</li>
+        <li>Angstfrei</li>
+        <li>Bleibt alles anders</li>
+        <li>Turmhoch</li>
+        <li>Flugzeuge im Bauch</li>
+        <li>Zeit, dass sich was dreht</li>
+        <li>Urverlust</li>
+        <li>Halt mich</li>
+        <li>Demo (Letzter Tag)</li>
+        <li>Currywurst</li>
+        <li>Mein Lebensstrahlen</li>
+        <li>Land unter</li>
+        <li>Mambo</li>
+        <li>Immerfort</li>
+    </ol>
+</Card>
 
-## ❤️ Fazit
-
-Die Atmosphäre in der Westfalenhalle war elektrisierend, und Grönemeyer verstand es, die Emotionen des Publikums zu wecken.
+## Album
 
 <Card title="Album" icon="seti:audio">
   <a href="https://www.amazon.de/dp/B0CNJS3MC9?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-    <img src="https://m.media-amazon.com/images/I/71PVhItwtBL._SL1500_.jpg" alt="Herbert Grönemeyer - Das ist los (Deluxe Edition) (Amazon)" width="300" />
+    <Image src="https://m.media-amazon.com/images/I/71PVhItwtBL._SL1500_.jpg" alt="Herbert Grönemeyer - Das ist los" width={300} height={300} />
   </a>
-</Card>
-
-<Card title="Setlist" icon="list-format">
-01. Tau
-02. Das ist los
-03. Bist du da
-04. Sekundenglück
-05. Kopf hoch, tanzen
-06. Steigerlied
-07. Bochum
-08. Männer
-09. Was soll das
-10. Vollmond
-11. Eine Tonne Blei
-12. Der Schlüssel
-13. Doppelherz /  Iki Gönlüm
-14. Musik nur, wenn sie laut ist
-15. Oh Oh Oh
-16. Herzhaft
-17. Der Weg
-18. Behutsam
-19. Deine Hand
-20. Mensch
-21. Alkohol
-22. Angstfrei
-23. Bleibt alles anders
-24. Turmhoch
-25. Flugzeuge im Bauch
-26. Zeit, dass sich was dreht
-27. Urverlust
-28. Halt mich
-29. Demo (Letzter Tag)
-30. Currywurst
-31. Mein Lebensstrahlen
-32. Land unter
-33. Mambo
-34. Immerfort
 </Card>
 
 <LinkCard
