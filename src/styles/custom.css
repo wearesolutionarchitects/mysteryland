@@ -27,6 +27,16 @@
 	--sl-color-gray-7: #f2f2f7;
 	--sl-color-black: #ffffff;
 }
+
+:root:not([data-theme='light']) .sl-markdown-content strong {
+  color: #ffffff;
+  font-weight: 800;
+}
+
+:root:not([data-theme='light']) .sl-markdown-content a strong {
+  color: inherit;
+}
+
 .site-title img {
   width: 128px;
   height: auto;
