@@ -1,96 +1,141 @@
 ---
 title: "die ärzte"
-
-description: "Eventbericht über das Konzert von die ärzte auf der Tour Herbst des Lebens in der Turbinenhalle in Oberhausen."
-
-pubDate: 2023-12-10
-
+description: "Eventbericht über das Konzert von die ärzte auf der Herbst des Lebens Tour in der Turbinenhalle in Oberhausen am 12.10.2023."
+tour: "Herbst des Lebens"
+pubDate: 2023-10-12
 country: "Deutschland"
-
 city: "Oberhausen"
-
 venue: "Turbinenhalle"
-
+price: 57.50
 artist: ["die ärzte"]
-
-price: 59.00
-
 asin: ["B08GFRPYYF", "B096TJP6H3"]
-
-tags: ["Ticket","Deutschland","Turbinenhalle","Konzert","Herbst des Lebens","die ärzte","Oberhausen","2023"]
+tags: ["€57.50", "Ticket", "Deutschland", "Turbinenhalle", "Konzert", "Herbst des Lebens", "die ärzte", "Oberhausen", "2023"]
 ---
 
-import { Card } from '@astrojs/starlight/components';
-import { LinkCard } from '@astrojs/starlight/components';
+import { Card, LinkCard } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
+import EventFacts from '@components/EventFacts.astro';
+import Gallery from '@components/Gallery.astro';
+import img200000 from '../../../gallery/2023/10/12/2023-10-12_20-00-00.jpg';
+import img200001 from '../../../gallery/2023/10/12/2023-10-12_20-00-01.jpg';
+import img200448 from '../../../gallery/2023/10/12/2023-10-12_20-04-48.jpg';
+import img200804 from '../../../gallery/2023/10/12/2023-10-12_20-08-04.jpg';
+import img201812 from '../../../gallery/2023/10/12/2023-10-12_20-18-12.jpg';
+import img203254 from '../../../gallery/2023/10/12/2023-10-12_20-32-54.jpg';
+import img204219 from '../../../gallery/2023/10/12/2023-10-12_20-42-19.jpg';
+import img205820 from '../../../gallery/2023/10/12/2023-10-12_20-58-20.jpg';
+import img211016 from '../../../gallery/2023/10/12/2023-10-12_21-10-16.jpg';
+import img212526 from '../../../gallery/2023/10/12/2023-10-12_21-25-26.jpg';
+import img213606 from '../../../gallery/2023/10/12/2023-10-12_21-36-06.jpg';
+import img214403 from '../../../gallery/2023/10/12/2023-10-12_21-44-03.jpg';
+import img214827 from '../../../gallery/2023/10/12/2023-10-12_21-48-27.jpg';
+import img215752 from '../../../gallery/2023/10/12/2023-10-12_21-57-52.jpg';
+import img221557 from '../../../gallery/2023/10/12/2023-10-12_22-15-57.jpg';
+import img222521 from '../../../gallery/2023/10/12/2023-10-12_22-25-21.jpg';
+import img224430 from '../../../gallery/2023/10/12/2023-10-12_22-44-30.jpg';
 
-## Ticket
+<EventFacts
+    facts={[
+        { icon: 'lucide:calendar-days', label: 'Datum', value: '12.10.2023' },
+        { icon: 'lucide:route', label: 'Tour', value: 'Herbst des Lebens' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: '' },
+        { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
+        { icon: 'lucide:map-pin', label: 'Stadt', value: 'Oberhausen' },
+        { icon: 'lucide:landmark', label: 'Venue', value: 'Turbinenhalle' },
+        { icon: 'lucide:badge-euro', label: 'Preis', value: '57,50 €' },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+    ]}
+/>
 
-![Ticket](../../../gallery/2023/10/12/2023-10-12_20-00-00.jpg)
+Am 12. Oktober 2023 spielten **die ärzte** in der Turbinenhalle in Oberhausen.
+Die Band war auf der **Herbst des Lebens** Tour unterwegs und lieferte einen Abend zwischen neuen Songs, Klassikern und gewohntem Bühnenhumor.
 
-## Details
+Mit **Mysteryland**, **Radio brennt**, **Unrockbar**, **Junge** und **Schrei nach Liebe** war die Setlist ein breiter Querschnitt durch die Bandgeschichte.
+Gerade in der Turbinenhalle funktionierte diese Mischung aus Nähe, Energie und kontrolliertem Chaos sehr direkt.
 
-📅 Datum: 12.10.2023  
-🇩🇪 Land: Deutschland  
-📍 Stadt: Oberhausen
-🏟️ Venue: Turbinenhalle
-💶 Preis: 57,50 €
+## Galerie
 
-## Konzertbericht
+<Gallery
+    images={[
+        { src: img200000, alt: 'Ticket Vorderseite', title: 'Ticket Vorderseite' },
+        { src: img200001, alt: 'Ticket Rückseite', title: 'Ticket Rückseite' },
+        { src: img200448, alt: 'die ärzte auf der Bühne', title: '20:04' },
+        { src: img200804, alt: 'die ärzte auf der Bühne', title: '20:08' },
+        { src: img201812, alt: 'die ärzte auf der Bühne', title: '20:18' },
+        { src: img203254, alt: 'die ärzte auf der Bühne', title: '20:32' },
+        { src: img204219, alt: 'die ärzte auf der Bühne', title: '20:42' },
+        { src: img205820, alt: 'die ärzte auf der Bühne', title: '20:58' },
+        { src: img211016, alt: 'die ärzte auf der Bühne', title: '21:10' },
+        { src: img212526, alt: 'die ärzte auf der Bühne', title: '21:25' },
+        { src: img213606, alt: 'die ärzte auf der Bühne', title: '21:36' },
+        { src: img214403, alt: 'die ärzte auf der Bühne', title: '21:44' },
+        { src: img214827, alt: 'die ärzte auf der Bühne', title: '21:48' },
+        { src: img215752, alt: 'die ärzte auf der Bühne', title: '21:57' },
+        { src: img221557, alt: 'die ärzte auf der Bühne', title: '22:15' },
+        { src: img222521, alt: 'die ärzte auf der Bühne', title: '22:25' },
+        { src: img224430, alt: 'die ärzte auf der Bühne', title: '22:44' },
+    ]}
+/>
 
-Am 12. Oktober 2023 besuchte ich das Konzert von die ärzte in der Turbinenhalle in Oberhausen.   
-Die Band war auf der "Herbst des Lebens"-Tour und es war ein unvergesslicher Abend voller Energie und großartiger Musik.
+## Videos
 
-<Card title="Setlist" icon="list-format">
-- Intro (Erinnerungen aus 41 Jahren)
-- Wer verliert, hat schon verloren
-- Lied vom Scheitern
-- Ein Lied für Dich
-- Geld
-- Tamagotchi
-- Der Misanthrop
-- Noise
-- Nie wieder Krieg, nie mehr Las Vegas!
-- Vokuhila Superstar
-- Lasse redn
-- Einschlag
-- Ich, am Strand
-- 1/2 Lovesong
-- Anti-Zombie
-- Dunkel
-- Die Banane
-- Mein Baby war beim Frisör
-- Mysteryland
-- Radio brennt
-- Doof
-- Herrliche Jahre
-- Ignorama
-- Unrockbar
-- Leben vor dem Tod
-- Für uns
-- Deine Schuld
-- Dinge von denen
-- Himmelblau
-- Hurra
-- Wie es geht
-- Junge
-- Schrei nach Liebe
-- Dauerwelle vs. Minipli
-- Saufen
-- Outro (Schlaflied)
+TBA
+
+## Setlist
+
+<Card title="Songs" icon="list-format">
+    <ol>
+        <li>Intro (Erinnerungen aus 41 Jahren)</li>
+        <li>Wer verliert, hat schon verloren</li>
+        <li>Lied vom Scheitern</li>
+        <li>Ein Lied für Dich</li>
+        <li>Geld</li>
+        <li>Tamagotchi</li>
+        <li>Der Misanthrop</li>
+        <li>Noise</li>
+        <li>Nie wieder Krieg, nie mehr Las Vegas!</li>
+        <li>Vokuhila Superstar</li>
+        <li>Lasse redn</li>
+        <li>Einschlag</li>
+        <li>Ich, am Strand</li>
+        <li>1/2 Lovesong</li>
+        <li>Anti-Zombie</li>
+        <li>Dunkel</li>
+        <li>Die Banane</li>
+        <li>Mein Baby war beim Frisör</li>
+        <li>Mysteryland</li>
+        <li>Radio brennt</li>
+        <li>Doof</li>
+        <li>Herrliche Jahre</li>
+        <li>Ignorama</li>
+        <li>Unrockbar</li>
+        <li>Leben vor dem Tod</li>
+        <li>Für uns</li>
+        <li>Deine Schuld</li>
+        <li>Dinge von denen</li>
+        <li>Himmelblau</li>
+        <li>Hurra</li>
+        <li>Wie es geht</li>
+        <li>Junge</li>
+        <li>Schrei nach Liebe</li>
+        <li>Dauerwelle vs. Minipli</li>
+        <li>Saufen</li>
+        <li>Outro (Schlaflied)</li>
+    </ol>
 </Card>
 
 ## Album
 
 <Card title="Hell" icon="seti:audio">
-    <a href="https://www.amazon.de/dp/B08GFRPYYF?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-        <img src="https://m.media-amazon.com/images/I/71OZOJ+Z76L._SL1200_.jpg" alt="Die Toten Hosen - Hell" width="300" />
-    </a>
+  <a href="https://www.amazon.de/dp/B08GFRPYYF?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+    <Image src="https://m.media-amazon.com/images/I/71OZOJ+Z76L._SL1200_.jpg" alt="die ärzte - Hell" width={300} height={300} />
+  </a>
 </Card>
 
 <Card title="Dunkel" icon="seti:audio">
-    <a href="https://www.amazon.de/dp/B096TJP6H3?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-        <img src="https://m.media-amazon.com/images/I/81ooJgeSbGS._SL1500_.jpg" alt="Die Toten Hosen - Dunkel" width="300" />
-    </a>
+  <a href="https://www.amazon.de/dp/B096TJP6H3?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+    <Image src="https://m.media-amazon.com/images/I/81ooJgeSbGS._SL1500_.jpg" alt="die ärzte - Dunkel" width={300} height={300} />
+  </a>
 </Card>
 
 <LinkCard
