@@ -24,69 +24,87 @@ sidebar:
 ---
 import { Steps } from '@astrojs/starlight/components';
 import TicketSlider from '../../components/TicketSlider.astro';
-import mysterylandLogo from '../../assets/mysteryland.png';
-import img20271211 from '../gallery/2027/12/11/2027-12-11_19-30-00.jpg';
-import img20270414 from '../gallery/2027/04/14/2027-04-14_19-00-00.jpg';
-import img20270412 from '../gallery/2027/04/14/2027-04-14_19-00-00.jpg';
-import img20261225 from '../gallery/2026/12/25/2026-12-25_19-00-00.jpg';
-import img20260901 from '../gallery/2026/09/01/2026-09-01_20-15-00.jpg';
+import img20260623 from '../gallery/2026/06/23/2026-06-23_19-30-00.jpg';
+import img20260711 from '../gallery/2026/07/11/2026-07-11_19-30-00.jpg';
+import img20260717 from '../gallery/2026/07/17/2026-07-17_17-30-00.jpg';
 import img20260725 from '../gallery/2026/07/25/2026-07-25_13-30-00.jpg';
+import img20260901 from '../gallery/2026/09/01/2026-09-01_20-15-00.jpg';
+import img20261225 from '../gallery/2026/12/25/2026-12-25_19-00-00.jpg';
+import img20270412 from '../gallery/2027/04/14/2027-04-14_19-00-00.jpg';
+import img20270414 from '../gallery/2027/04/14/2027-04-14_19-00-00.jpg';
+import img20271211 from '../gallery/2027/12/11/2027-12-11_19-30-00.jpg';
+
+## Nächste Konzerte
 
 <TicketSlider
   tickets={[
     {
-      src: mysterylandLogo,
-      alt: 'Mysteryland Logo',
-      title: 'Mysteryland',
-      caption: '46 Jahre Live-Musik, dokumentiert mit Tickets, Bildern und Erinnerungen.',
-      variant: 'logo',
+      src: img20260623,
+      alt: 'Ticket Def Leppard in Dortmund am 23.06.2026',
+      title: 'Def Leppard',
+      caption: '23.06.2026 - Dortmund@Westfalenhalle',
+      event: 'events/2026/2026-06-23',
     },
     {
-      src: img20271211,
-      alt: 'Ticket Sondaschule in Dortmund 2027',
-      title: 'Sondaschule',
-      caption: '11.12.2027 · Dortmund · Westfalenhalle',
-      event: 'events/2027/2027-12-11',
-    },
-    {
-      src: img20270414,
-      alt: 'Ticket die ärzte in Dortmund am 14.04.2027',
-      title: 'die ärzte',
-      caption: '14.04.2027 · Dortmund · Westfalenhalle',
-      event: 'events/2027/2027-04-14',
-    },
-    {
-      src: img20270412,
-      alt: 'Ticket die ärzte in Dortmund am 12.04.2027',
-      title: 'die ärzte',
-      caption: '12.04.2027 · Dortmund · Westfalenhalle',
-      event: 'events/2027/2027-04-12',
-    },
-    {
-      src: img20261225,
-      alt: 'Ticket Broilers in Düsseldorf am 25.12.2026',
+      src: img20260711,
+      alt: 'Ticket Broilers in Düsseldorf am 11.07.2026',
       title: 'Broilers',
-      caption: '25.12.2026 · Düsseldorf · Mitsubishi-Electric-HALLE',
-      event: 'events/2026/2026-12-25',
+      caption: '11.07.2026 - Düsseldorf@Merkur-Spiel-Arena',
+      event: 'events/2026/2026-07-11',
+    },
+    {
+      src: img20260717,
+      alt: 'Ticket Die Toten Hosen in Köln am 17.07.2026',
+      title: 'Die Toten Hosen',
+      caption: '17.07.2026 - Köln@RheinEnergieStadion',
+      event: 'events/2026/2026-07-17',
+    },
+    {
+      src: img20260725,
+      alt: 'Ticket BOBfest in Mönchengladbach am 25.07.2026',
+      title: 'BOBfest',
+      caption: '25.07.2026 - Mönchengladbach@SparkassenPark',
+      event: 'events/2026/2026-07-25',
     },
     {
       src: img20260901,
       alt: 'Ticket OMD in Witten am 01.09.2026',
       title: 'OMD',
-      caption: '01.09.2026 · Witten · Kemnader See',
+      caption: '01.09.2026 - Witten@Kemnader See',
       event: 'events/2026/2026-09-01',
     },
     {
-      src: img20260725,
-      alt: 'Ticket BOBfest in Mönchengladbach 2026',
-      title: 'BOBfest',
-      caption: '25.07.2026 · Mönchengladbach · SparkassenPark',
-      event: 'events/2026/2026-07-25',
+      src: img20261225,
+      alt: 'Ticket Broilers in Düsseldorf am 25.12.2026',
+      title: 'Broilers',
+      caption: '25.12.2026 - Düsseldorf@Mitsubishi-Electric-HALLE',
+      event: 'events/2026/2026-12-25',
+    },
+    {
+      src: img20270412,
+      alt: 'Ticket die ärzte in Dortmund am 12.04.2027',
+      title: 'die ärzte',
+      caption: '12.04.2027 - Dortmund@Westfalenhalle',
+      event: 'events/2027/2027-04-12',
+    },
+    {
+      src: img20270414,
+      alt: 'Ticket die ärzte in Dortmund am 14.04.2027',
+      title: 'die ärzte',
+      caption: '14.04.2027 - Dortmund@Westfalenhalle',
+      event: 'events/2027/2027-04-14',
+    },
+    {
+      src: img20271211,
+      alt: 'Ticket Sondaschule in Dortmund am 11.12.2027',
+      title: 'Sondaschule',
+      caption: '11.12.2027 - Dortmund@Westfalenhalle',
+      event: 'events/2027/2027-12-11',
     },
   ]}
 />
 
-## 🎸 46 Jahre Live-Musik (Est 1979)
+## 46 Jahre Live-Musik (Est 1979)
 
 Diese Seite dokumentiert **46 Jahre** Konzerterlebnisse – gesammelt, fotografiert und reflektiert.
 Für jedes Konzert gibt es eine eigene Dokumentationsseite mit Infos, Setlist und Bildern aus dem jeweiligen Jahr.
@@ -97,7 +115,7 @@ Der Name **„Mysteryland“** ist angelehnt an den gleichnamigen Song der Band 
 
 Viel Spaß beim Eintauchen in meine persönliche Konzertgeschichte!
 
-## 📅 Chronologie
+## Chronologie
 
 <Steps>
 1. 01.09.1979: Erstes Konzert mit Extrabreit@Hagen/Wilhelmsplatz<br /><strong>Robbie Zieger</strong> als Tonmischer
