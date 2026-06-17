@@ -15,6 +15,7 @@ import { Card, LinkCard } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
 import EventFacts from '@components/EventFacts.astro';
 import Gallery from '@components/Gallery.astro';
+import YouTubeVideos from '@components/YouTubeVideos.astro';
 import img000000 from '../../../gallery/2025/06/24/2025-06-24_00-00-00.jpg';
 import img200000 from '../../../gallery/2025/06/24/2025-06-24_20-00-00.jpg';
 import img211550 from '../../../gallery/2025/06/24/2025-06-24_21-15-50.jpg';
@@ -84,7 +85,12 @@ Die Atmosphäre im PSD Bank Dome war elektrisierend, und die Fans waren begeiste
 
 ## Videos
 
-TBA
+<YouTubeVideos
+    videos={[
+        { id: 'JjRUXTOcUak'},
+        { id: 'ud7_0RhkLLE' },
+    ]}
+/>
 
 ## Setlist
 
