@@ -1,84 +1,121 @@
 ---
 title: "Peter Maffay"
-
-description: "Eventbericht über das Konzert von Peter Maffay in Gelsenkirchen im Amphitheater."
-
+description: "Eventbericht über das Konzert von Peter Maffay im Amphitheater in Gelsenkirchen am 02.06.2023."
 pubDate: 2023-06-02
-
 country: "Deutschland"
-
 city: "Gelsenkirchen"
-
 venue: "Amphitheater"
-
-artist: ["Peter Maffay", "Bülent Ceylan"]
-
 price: 72.45
-
+artist: ["Peter Maffay", "Bülent Ceylan"]
 asin: "B099BYDLLT"
-
-tags: ["€72.45","Ticket","Deutschland","Konzert","Gelsenkirchen","Amphitheater","2023","Peter Maffay", "Bülent Ceylan"]
+tags: ["€72.45", "Deutschland", "Konzert", "Gelsenkirchen", "Amphitheater", "2023", "Peter Maffay", "Bülent Ceylan"]
 ---
 
-import { Card } from '@astrojs/starlight/components';
-import { LinkCard } from '@astrojs/starlight/components';
+import { Card, LinkCard } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
+import EventFacts from '@components/EventFacts.astro';
+import Gallery from '@components/Gallery.astro';
+import img200000 from '../../../gallery/2023/06/02/2023-06-02_20-00-00.jpg';
+import img201557 from '../../../gallery/2023/06/02/2023-06-02_20-15-57.jpg';
+import img201618 from '../../../gallery/2023/06/02/2023-06-02_20-16-18.jpg';
+import img203329 from '../../../gallery/2023/06/02/2023-06-02_20-33-29.jpg';
+import img210105 from '../../../gallery/2023/06/02/2023-06-02_21-01-05.jpg';
+import img210319 from '../../../gallery/2023/06/02/2023-06-02_21-03-19.jpg';
+import img210553 from '../../../gallery/2023/06/02/2023-06-02_21-05-53.jpg';
+import img210804 from '../../../gallery/2023/06/02/2023-06-02_21-08-04.jpg';
+import img213725 from '../../../gallery/2023/06/02/2023-06-02_21-37-25.jpg';
+import img214658 from '../../../gallery/2023/06/02/2023-06-02_21-46-58.jpg';
+import img215318 from '../../../gallery/2023/06/02/2023-06-02_21-53-18.jpg';
+import img215504 from '../../../gallery/2023/06/02/2023-06-02_21-55-04.jpg';
+import img215700 from '../../../gallery/2023/06/02/2023-06-02_21-57-00.jpg';
+import img220614 from '../../../gallery/2023/06/02/2023-06-02_22-06-14.jpg';
+import img221652 from '../../../gallery/2023/06/02/2023-06-02_22-16-52.jpg';
+import img222047 from '../../../gallery/2023/06/02/2023-06-02_22-20-47.jpg';
+import img222908 from '../../../gallery/2023/06/02/2023-06-02_22-29-08.jpg';
 
-## 🎫 Ticket
+<EventFacts
+    facts={[
+        { icon: 'lucide:calendar-days', label: 'Datum', value: '02.06.2023' },
+        { icon: 'lucide:route', label: 'Tour', value: 'TBA' },
+        { icon: 'lucide:mic-vocal', label: 'Gast', value: 'Bülent Ceylan' },
+        { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
+        { icon: 'lucide:map-pin', label: 'Stadt', value: 'Gelsenkirchen' },
+        { icon: 'lucide:landmark', label: 'Venue', value: 'Amphitheater' },
+        { icon: 'lucide:badge-euro', label: 'Preis', value: '72,45 €' },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+    ]}
+/>
 
-![Ticket](../../../gallery/2023/06/02/2023-06-02_20-00-00.jpg)
+Am 02. Juni 2023 spielte **Peter Maffay** im Amphitheater in Gelsenkirchen.
+Der Abend verband Klassiker, neuere Songs und einen überraschenden Gastauftritt von **Bülent Ceylan**.
 
-## 📌 Details
-📅 Datum: 02.06.2023  
-🇩🇪 Land: Deutschland  
-📍 Stadt: Gelsenkirchen  
-🏟️ Venue: Amphitheater    
-💶 Preis: 72,45 €  
+Mit Stücken wie **Du**, **Über sieben Brücken mußt Du gehn**, **Und es war Sommer** und **Sonne in der Nacht** führte Maffay durch mehrere Jahrzehnte seiner Karriere.
+Das Amphitheater gab dem Konzert dabei eine offene, sommerliche Atmosphäre.
 
-## 🎤 Konzertbericht
+## Galerie
 
-Am 02.06.2023 besuchte ich das Konzert von Peter Maffay im Amphitheater in Gelsenkirchen. Es war ein unvergesslicher Abend, 
-der mit dem Gast Bülent Ceylan überraschte, welcher das Publikum mit seinem Humor und seiner Energie begeisterte.
+<Gallery
+    images={[
+        { src: img200000, alt: 'Ticket', title: 'Ticket' },
+        { src: img201557, alt: 'Peter Maffay auf der Bühne', title: '20:15' },
+        { src: img201618, alt: 'Peter Maffay auf der Bühne', title: '20:16' },
+        { src: img203329, alt: 'Peter Maffay auf der Bühne', title: '20:33' },
+        { src: img210105, alt: 'Peter Maffay auf der Bühne', title: '21:01' },
+        { src: img210319, alt: 'Peter Maffay auf der Bühne', title: '21:03' },
+        { src: img210553, alt: 'Peter Maffay auf der Bühne', title: '21:05' },
+        { src: img210804, alt: 'Peter Maffay auf der Bühne', title: '21:08' },
+        { src: img213725, alt: 'Peter Maffay auf der Bühne', title: '21:37' },
+        { src: img214658, alt: 'Peter Maffay auf der Bühne', title: '21:46' },
+        { src: img215318, alt: 'Peter Maffay auf der Bühne', title: '21:53' },
+        { src: img215504, alt: 'Peter Maffay auf der Bühne', title: '21:55' },
+        { src: img215700, alt: 'Peter Maffay auf der Bühne', title: '21:57' },
+        { src: img220614, alt: 'Peter Maffay auf der Bühne', title: '22:06' },
+        { src: img221652, alt: 'Peter Maffay auf der Bühne', title: '22:16' },
+        { src: img222047, alt: 'Peter Maffay auf der Bühne', title: '22:20' },
+        { src: img222908, alt: 'Peter Maffay auf der Bühne', title: '22:29' },
+    ]}
+/>
 
-## ❤️ Fazit
+## Setlist
 
-Das Konzert von Peter Maffay war ein beeindruckendes Erlebnis, das die Fans in eine musikalische Reise entführte. 
-Mit einer Mischung aus Klassikern und neuen Hits begeisterte Maffay das Publikum und sorgte für eine ausgelassene Stimmung. 
-Die Kombination aus seiner kraftvollen Stimme und der beeindruckenden Bühnenshow machte den Abend zu einem unvergesslichen Erlebnis.
+<Card title="Songs" icon="list-format">
+    <ol>
+        <li>Freiheit, die ich meine</li>
+        <li>Jetzt!</li>
+        <li>100.000 Stunden</li>
+        <li>Größer als wir</li>
+        <li>Falsche Propheten</li>
+        <li>Schwarze Linien</li>
+        <li>Gelobtes Land</li>
+        <li>Eiszeit</li>
+        <li>Weil es Dich gibt</li>
+        <li>Fühlen</li>
+        <li>Königreich der Liebe</li>
+        <li>Die Welt ist wunderbar</li>
+        <li>Father And Son</li>
+        <li>Der Schlüssel zur Macht</li>
+        <li>Glaub an mich</li>
+        <li>Halleluja</li>
+        <li>Du</li>
+        <li>Samstag abend in unserer Straße</li>
+        <li>Über sieben Brücken mußt Du gehn</li>
+        <li>Hoch und höher</li>
+        <li>Josie</li>
+        <li>Tiefer</li>
+        <li>Und es war Sommer</li>
+        <li>Schatten in die Haut tätowiert</li>
+        <li>Liebe wird verboten</li>
+        <li>So bist du</li>
+        <li>Sonne in der Nacht</li>
+    </ol>
+</Card>
+
+## Album
 
 <Card title="Album" icon="seti:audio">
   <a href="https://www.amazon.de/dp/B099BYDLLT?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-    <img src="https://m.media-amazon.com/images/I/81RaOp5XiZL._SL1500_.jpg" alt="Peter Maffay - So Weit [Vinyl LP] (Amazon)" width="300" />
+    <Image src="https://m.media-amazon.com/images/I/81RaOp5XiZL._SL1500_.jpg" alt="Peter Maffay - So Weit" width={300} height={300} />
   </a>
-</Card>
-
-<Card title="Setlist" icon="list-format">
-01. Freiheit, die ich meine
-02. Jetzt!
-03. 100.000 Stunden
-04. Größer als wir
-05. Falsche Propheten
-06. Schwarze Linien
-07. Gelobtes Land
-08. Eiszeit
-09. Weil es Dich gibt
-10. Fühlen
-11. Königreich der Liebe
-12. Die Welt ist wunderbar
-13. Father And Son
-14. Der Schlüssel zur Macht
-15. Glaub an mich
-16. Halleluja
-17. Du
-18. Samstag abend in unserer Straße
-19. Über sieben Brücken mußt Du gehn
-20. Hoch und höher
-21. Josie
-22. Tiefer
-23. Und es war Sommer
-24. Schatten in die Haut tätowiert
-25. Liebe wird verboten
-26. So bist du
-27. Sonne in der Nacht
 </Card>
 
 <LinkCard
