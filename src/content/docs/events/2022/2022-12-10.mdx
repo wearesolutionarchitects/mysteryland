@@ -1,89 +1,91 @@
 ---
 title: "Extrabreit"
-
-description: "Eventbericht über das Konzert von Extrabreit auf der WBT-Tour 2022 in der Stadthalle in Hagen."
-
+description: "Eventbericht über das Konzert von Extrabreit auf der WBT 2022 Tour in der Stadthalle in Hagen am 10.12.2022."
+tour: "WBT 2022"
 pubDate: 2022-12-10
-
 country: "Deutschland"
-
 city: "Hagen"
-
 venue: "Stadthalle"
-
 price: 35.04
-
+artist: ["Extrabreit"]
 asin: "B08HQ8MT53"
-
-tags: ["35,04 €", "Extrabreit","Deutschland","WBT 2022","Konzert","Stadthalle","Hagen","2022"]
+tags: ["35,04 €", "Extrabreit", "Deutschland", "WBT 2022", "Konzert", "Stadthalle", "Hagen", "2022", "Foto"]
 ---
 
-import { LinkCard, Card, CardGrid } from '@astrojs/starlight/components';
+import { Card, LinkCard } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
-import imgPlakat from '../../../gallery/2022/12/10/2022-12-10_20-30-01.jpg';
-import imgTicketFront from '../../../gallery/2022/12/10/2022-12-10_20-30-00.jpg';
-import img2046 from '../../../gallery/2022/12/10/2022-12-10_20-46-35.jpg';
-import img2134 from '../../../gallery/2022/12/10/2022-12-10_21-34-32.jpg';
-import img2156 from '../../../gallery/2022/12/10/2022-12-10_21-56-28.jpg';
-import img2216 from '../../../gallery/2022/12/10/2022-12-10_21-48-11.jpg';
+import EventFacts from '@components/EventFacts.astro';
+import Gallery from '@components/Gallery.astro';
+import img203000 from '../../../gallery/2022/12/10/2022-12-10_20-30-00.jpg';
+import img203001 from '../../../gallery/2022/12/10/2022-12-10_20-30-01.jpg';
+import img204016 from '../../../gallery/2022/12/10/2022-12-10_20-40-16.jpg';
+import img204635 from '../../../gallery/2022/12/10/2022-12-10_20-46-35.jpg';
+import img205315 from '../../../gallery/2022/12/10/2022-12-10_20-53-15.jpg';
+import img211838 from '../../../gallery/2022/12/10/2022-12-10_21-18-38.jpg';
+import img212316 from '../../../gallery/2022/12/10/2022-12-10_21-23-16.jpg';
+import img212321 from '../../../gallery/2022/12/10/2022-12-10_21-23-21.jpg';
+import img213432 from '../../../gallery/2022/12/10/2022-12-10_21-34-32.jpg';
+import img213438 from '../../../gallery/2022/12/10/2022-12-10_21-34-38.jpg';
+import img214808 from '../../../gallery/2022/12/10/2022-12-10_21-48-08.jpg';
+import img214811 from '../../../gallery/2022/12/10/2022-12-10_21-48-11.jpg';
+import img215005 from '../../../gallery/2022/12/10/2022-12-10_21-50-05.jpg';
+import img215628 from '../../../gallery/2022/12/10/2022-12-10_21-56-28.jpg';
+import img221513 from '../../../gallery/2022/12/10/2022-12-10_22-15-13.jpg';
+import img221640 from '../../../gallery/2022/12/10/2022-12-10_22-16-40.jpg';
 
+<EventFacts
+    facts={[
+        { icon: 'lucide:calendar-days', label: 'Datum', value: '10.12.2022' },
+        { icon: 'lucide:route', label: 'Tour', value: 'WBT 2022' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: 'TBA' },
+        { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
+        { icon: 'lucide:map-pin', label: 'Stadt', value: 'Hagen' },
+        { icon: 'lucide:landmark', label: 'Venue', value: 'Stadthalle' },
+        { icon: 'lucide:badge-euro', label: 'Preis', value: '35,04 €' },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+    ]}
+/>
 
-## 🪧 Plakat
+**Extrabreit** spielten am 10. Dezember 2022 auf der **WBT 2022** Tour in der Stadthalle Hagen.
+42 Jahre und die Legende lebt und wie!
 
-<Card title="Kongress & Eventpark" icon="image">
-    <Image src={imgPlakat} alt="Plakat" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-</Card>
+## Galerie
 
+<Gallery
+    images={[
+        { src: img203000, alt: 'Ticket Vorderseite', title: 'Ticket Vorderseite' },
+        { src: img203001, alt: 'Plakat', title: 'Plakat' },
+        { src: img204016, alt: 'Extrabreit auf der Bühne', title: '20:40' },
+        { src: img204635, alt: 'Extrabreit auf der Bühne', title: '20:46' },
+        { src: img205315, alt: 'Extrabreit auf der Bühne', title: '20:53' },
+        { src: img211838, alt: 'Extrabreit auf der Bühne', title: '21:18' },
+        { src: img212316, alt: 'Extrabreit auf der Bühne', title: '21:23' },
+        { src: img212321, alt: 'Extrabreit auf der Bühne', title: '21:23' },
+        { src: img213432, alt: 'Extrabreit auf der Bühne', title: '21:34' },
+        { src: img213438, alt: 'Extrabreit auf der Bühne', title: '21:34' },
+        { src: img214808, alt: 'Extrabreit auf der Bühne', title: '21:48' },
+        { src: img214811, alt: 'Extrabreit auf der Bühne', title: '21:48' },
+        { src: img215005, alt: 'Extrabreit auf der Bühne', title: '21:50' },
+        { src: img215628, alt: 'Extrabreit auf der Bühne', title: '21:56' },
+        { src: img221513, alt: 'Extrabreit auf der Bühne', title: '22:15' },
+        { src: img221640, alt: 'Extrabreit auf der Bühne', title: '22:16' },
+    ]}
+/>
 
-## 🎫 Ticket
+## Videos
 
-<Card title="Vorderseite" icon="image">
-    <Image src={imgTicketFront} alt="Ticket Vorderseite" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-</Card>
+TBA
 
-## 📌 Details
-📅 Datum: 10.12.2022  
-🇩🇪 Land: Deutschland  
-📍 Stadt: Hagen  
-🏟️ Venue: Stadthalle  
-💶 Preis: 35,04 €  
+## Setlist
 
-## 📷 Fotos
+TBA
 
-<CardGrid>
-    <Card title="20:46" icon="image">
-        <Image src={img2046} alt="Extrabreit um 20:46" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-    </Card>
-    <Card title="21:34" icon="image">
-        <Image src={img2134} alt="Extrabreit um 21:34" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-    </Card>
-    <Card title="21:56" icon="image">
-        <Image src={img2156} alt="Extrabreit um 21:56" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-    </Card>
-    <Card title="22:16" icon="image">
-        <Image src={img2216} alt="Extrabreit um 22:16" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-    </Card>
-</CardGrid>
-
-
-## 🎤 Konzertbericht
-
-Extrabreit - 42 Jahre und die Legende lebt und wie!!! 
-
-## 💿 Album
+## Album
 
 <Card title="Auf Ex!" icon="seti:audio">
   <a href="https://www.amazon.de/dp/B08HQ8MT53?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-    <img src="https://m.media-amazon.com/images/I/61HtVwP+jaL._SL1200_.jpg" alt="Extrabreit - Auf Ex! (Amazon)" width="300" />
+    <Image src="https://m.media-amazon.com/images/I/61HtVwP+jaL._SL1200_.jpg" alt="Extrabreit - Auf Ex!" width={300} height={300} />
   </a>
-</Card>
-
-## 🎶 Setlist
-
-<Card title="Songs" icon="list-format">
-01. ...
-02. ...
-03. ...
 </Card>
 
 <LinkCard
