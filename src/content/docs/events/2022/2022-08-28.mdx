@@ -1,128 +1,149 @@
 ---
 title: "die ärzte"
-
-description: "Eventbericht über das Konzert von die ärzte in Berlin am 28. August 2022 auf dem Flughafen Tempelhof."
-
-pubDate: 2022-08-28
-
-country: "Deutschland"
-
-city: "Berlin"
-
-venue: "Flughafen Tempelhof"
-
-artist: ["die ärzte"]
-
+description: "Eventbericht über das Konzert von die ärzte auf der Berlin Tour MMXXII auf dem Flughafen Tempelhof in Berlin am 28.08.2022."
 tour: "Berlin Tour MMXXII"
-
+pubDate: 2022-08-28
+country: "Deutschland"
+city: "Berlin"
+venue: "Flughafen Tempelhof"
 price: 72.00
-
-asin: ["B08GFRPYYF"]
-
-tags: ["€72.00","Ticket","Deutschland","Konzert","Berlin","die ärzte","Flughafen Tempelhof","2022"]
+artist: ["die ärzte"]
+asin: ["B08GFRPYYF", "B096TJP6H3"]
+tags: ["€72.00", "Ticket", "Deutschland", "Konzert", "Berlin", "die ärzte", "Berlin Tour MMXXII", "Flughafen Tempelhof", "2022", "Foto"]
 ---
 
-import { LinkCard, Card, CardGrid } from '@astrojs/starlight/components';
+import { Card, LinkCard } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
+import EventFacts from '@components/EventFacts.astro';
+import Gallery from '@components/Gallery.astro';
+import img170000 from '../../../gallery/2022/08/28/2022-08-28_17-00-00.jpg';
+import img170002 from '../../../gallery/2022/08/28/2022-08-28_17-00-02.jpg';
+import img181952 from '../../../gallery/2022/08/28/2022-08-28_18-19-52.jpg';
+import img183520 from '../../../gallery/2022/08/28/2022-08-28_18-35-20.jpg';
+import img191432 from '../../../gallery/2022/08/28/2022-08-28_19-14-32.jpg';
+import img195811 from '../../../gallery/2022/08/28/2022-08-28_19-58-11.jpg';
+import img201313 from '../../../gallery/2022/08/28/2022-08-28_20-13-13.jpg';
+import img202959 from '../../../gallery/2022/08/28/2022-08-28_20-29-59.jpg';
+import img204607 from '../../../gallery/2022/08/28/2022-08-28_20-46-07.jpg';
+import img205619 from '../../../gallery/2022/08/28/2022-08-28_20-56-19.jpg';
+import img210830 from '../../../gallery/2022/08/28/2022-08-28_21-08-30.jpg';
+import img211921 from '../../../gallery/2022/08/28/2022-08-28_21-19-21.jpg';
+import img212824 from '../../../gallery/2022/08/28/2022-08-28_21-28-24.jpg';
+import img212850 from '../../../gallery/2022/08/28/2022-08-28_21-28-50.jpg';
+import img213643 from '../../../gallery/2022/08/28/2022-08-28_21-36-43.jpg';
+import img215008 from '../../../gallery/2022/08/28/2022-08-28_21-50-08.jpg';
+import img215518 from '../../../gallery/2022/08/28/2022-08-28_21-55-18.jpg';
+import img215941 from '../../../gallery/2022/08/28/2022-08-28_21-59-41.jpg';
+import img220007 from '../../../gallery/2022/08/28/2022-08-28_22-00-07.jpg';
+import img220739 from '../../../gallery/2022/08/28/2022-08-28_22-07-39.jpg';
 
-import img2013 from '../../../gallery/2022/08/28/2022-08-28_20-13-13.jpg';
-import img2108 from '../../../gallery/2022/08/28/2022-08-28_21-08-30.jpg';
-import img2150 from '../../../gallery/2022/08/28/2022-08-28_21-50-08.jpg';
-import img2200 from '../../../gallery/2022/08/28/2022-08-28_22-00-07.jpg';
+<EventFacts
+    facts={[
+        { icon: 'lucide:calendar-days', label: 'Datum', value: '28.08.2022' },
+        { icon: 'lucide:route', label: 'Tour', value: 'Berlin Tour MMXXII' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: 'TBA' },
+        { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
+        { icon: 'lucide:map-pin', label: 'Stadt', value: 'Berlin' },
+        { icon: 'lucide:landmark', label: 'Venue', value: 'Flughafen Tempelhof' },
+        { icon: 'lucide:badge-euro', label: 'Preis', value: '72,00 €' },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+    ]}
+/>
 
-## 🎫 Ticket
+Am 28. August 2022 spielten **die ärzte** im Rahmen der **Berlin Tour MMXXII** auf dem Flughafen Tempelhof in Berlin.
 
-![Ticket](../../../gallery/2022/08/28/2022-08-28_17-00-00.jpg)
+## Galerie
 
-## 📌 Details
-📅 Datum: 28.08.2022  
-🇩🇪 Land: Deutschland  
-📍 Stadt: Berlin  
-🏟️ Venue: Flughafen Tempelhof  
-💶 Preis: 72,00 €  
+<Gallery
+    images={[
+        { src: img170000, alt: 'Ticket Vorderseite', title: 'Ticket Vorderseite' },
+        { src: img170002, alt: 'Ticket Rückseite', title: 'Ticket Rückseite' },
+        { src: img181952, alt: 'die ärzte auf dem Flughafen Tempelhof', title: '18:19' },
+        { src: img183520, alt: 'die ärzte auf dem Flughafen Tempelhof', title: '18:35' },
+        { src: img191432, alt: 'die ärzte auf dem Flughafen Tempelhof', title: '19:14' },
+        { src: img195811, alt: 'die ärzte auf der Bühne', title: '19:58' },
+        { src: img201313, alt: 'die ärzte auf der Bühne', title: '20:13' },
+        { src: img202959, alt: 'die ärzte auf der Bühne', title: '20:29' },
+        { src: img204607, alt: 'die ärzte auf der Bühne', title: '20:46' },
+        { src: img205619, alt: 'die ärzte auf der Bühne', title: '20:56' },
+        { src: img210830, alt: 'die ärzte auf der Bühne', title: '21:08' },
+        { src: img211921, alt: 'die ärzte auf der Bühne', title: '21:19' },
+        { src: img212824, alt: 'die ärzte auf der Bühne', title: '21:28' },
+        { src: img212850, alt: 'die ärzte auf der Bühne', title: '21:28' },
+        { src: img213643, alt: 'die ärzte auf der Bühne', title: '21:36' },
+        { src: img215008, alt: 'die ärzte auf der Bühne', title: '21:50' },
+        { src: img215518, alt: 'die ärzte auf der Bühne', title: '21:55' },
+        { src: img215941, alt: 'die ärzte auf der Bühne', title: '21:59' },
+        { src: img220007, alt: 'die ärzte auf der Bühne', title: '22:00' },
+        { src: img220739, alt: 'die ärzte auf der Bühne', title: '22:07' },
+    ]}
+/>
 
-## 📷 Fotos
+## Videos
 
-<CardGrid>
-  <Card title="20:13" icon="image">
-    <Image src={img2013} alt="die ärzte um 20:13" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-  </Card>
-  <Card title="21:08" icon="image">
-    <Image src={img2108} alt="die ärzte um 21:08" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-  </Card>
-  <Card title="21:50" icon="image">
-    <Image src={img2150} alt="die ärzte um 21:50" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-  </Card>
-  <Card title="22:00" icon="image">
-    <Image src={img2200} alt="die ärzte um 22:00" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-  </Card>
-</CardGrid>
+TBA
 
-## 🎤 Konzertbericht
-
-Am 28. August 2022 war ich im Rahmen der "Berlin Tour MMXXII" von die ärzte im Flughafen Tempelhof in Berlin.
-
-## 💿 Alben
-
-<CardGrid>
-
-    <Card title="Hell" icon="seti:audio">
-        <a href="https://www.amazon.de/dp/B096TJP6H3?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-            <img src="https://m.media-amazon.com/images/I/71OZOJ+Z76L._SL1200_.jpg" alt="die ärzte - Hell (Amazon)" width="300" />
-        </a>
-    </Card>
-    <Card title="Dunkel" icon="seti:audio">
-        <a href="https://www.amazon.de/dp/B0D6KJ3RFJ?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-            <img src="https://m.media-amazon.com/images/I/81ooJgeSbGS._SL1500_.jpg" alt="die ärzte - Dunkel (Amazon)" width="300" />
-        </a>
-    </Card>
-</CardGrid>
-
-## 🎶 Setlist
+## Setlist
 
 <Card title="Songs" icon="list-format">
-01. Gute Nacht
-02. Himmelblau
-03. Noise
-04. Ein Lied für Dich
-05. Meine Freunde
-06. Blumen
-07. Hurra
-08. Fiasko
-09. Angeber
-10. Ist das noch Punkrock?
-11. Doof
-12. Heulerei
-13. Lasse redn
-14. Madonnas Dickdarm
-15. Besserwisserboy
-16. Punkbabies
-17. Schunder-Song
-18. Ich, am Strand
-19. Lady
-20. 1/2 Lovesong
-21. Morgens Pauken
-22. Friedenspanzer
-23. Der Graf
-24. Kraft
-25. Kamelralley
-26. Zitroneneis
-27. Erna P.
-28. Deine Schuld
-29. Perfekt
-30. Unrockbar
-31. Dinge von denen
-32. Sommer, Palmen, Sonnenschein
-33. Ignorama
-34. Wie es geht
-35. Mach die Augen zu
-36. Dunkel
-37. Wir sind die Besten
-38. Schrei nach Liebe
-39. Junge
-40. Zu spät
-41. Dauerwelle vs. Minipli
-42. Gute Nacht
+    <ol>
+        <li>Gute Nacht</li>
+        <li>Himmelblau</li>
+        <li>Noise</li>
+        <li>Ein Lied für Dich</li>
+        <li>Meine Freunde</li>
+        <li>Blumen</li>
+        <li>Hurra</li>
+        <li>Fiasko</li>
+        <li>Angeber</li>
+        <li>Ist das noch Punkrock?</li>
+        <li>Doof</li>
+        <li>Heulerei</li>
+        <li>Lasse redn</li>
+        <li>Madonnas Dickdarm</li>
+        <li>Besserwisserboy</li>
+        <li>Punkbabies</li>
+        <li>Schunder-Song</li>
+        <li>Ich, am Strand</li>
+        <li>Lady</li>
+        <li>1/2 Lovesong</li>
+        <li>Morgens Pauken</li>
+        <li>Friedenspanzer</li>
+        <li>Der Graf</li>
+        <li>Kraft</li>
+        <li>Kamelralley</li>
+        <li>Zitroneneis</li>
+        <li>Erna P.</li>
+        <li>Deine Schuld</li>
+        <li>Perfekt</li>
+        <li>Unrockbar</li>
+        <li>Dinge von denen</li>
+        <li>Sommer, Palmen, Sonnenschein</li>
+        <li>Ignorama</li>
+        <li>Wie es geht</li>
+        <li>Mach die Augen zu</li>
+        <li>Dunkel</li>
+        <li>Wir sind die Besten</li>
+        <li>Schrei nach Liebe</li>
+        <li>Junge</li>
+        <li>Zu spät</li>
+        <li>Dauerwelle vs. Minipli</li>
+        <li>Gute Nacht</li>
+    </ol>
+</Card>
+
+## Album
+
+<Card title="Hell" icon="seti:audio">
+  <a href="https://www.amazon.de/dp/B08GFRPYYF?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+    <Image src="https://m.media-amazon.com/images/I/71OZOJ+Z76L._SL1200_.jpg" alt="die ärzte - Hell" width={300} height={300} />
+  </a>
+</Card>
+
+<Card title="Dunkel" icon="seti:audio">
+  <a href="https://www.amazon.de/dp/B096TJP6H3?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+    <Image src="https://m.media-amazon.com/images/I/81ooJgeSbGS._SL1500_.jpg" alt="die ärzte - Dunkel" width={300} height={300} />
+  </a>
 </Card>
 
 <LinkCard
