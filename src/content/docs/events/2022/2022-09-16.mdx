@@ -1,98 +1,121 @@
 ---
 title: "Sondaschule"
-
-description: "Eventbericht über das Konzert von Sondaschule in Köln am 16. September 2022 im E-Werk."
-
+description: "Eventbericht über das Konzert von Sondaschule auf der Gute Zeiten Tour im E-Werk in Köln am 16.09.2022."
+tour: "Gute Zeiten Tour"
 pubDate: 2022-09-16
-
 country: "Deutschland"
-
 city: "Köln"
-
 venue: "E-Werk"
-
-artist: ["Sondaschule"]
-
 price: 33.80
-
+artist: ["Sondaschule"]
 asin: "B0D6KJ3RFJ"
-
-tags: ["€33.80","Ticket","Deutschland","Konzert","Köln","Sondaschule","2022"]
+tags: ["€33.80", "Ticket", "Deutschland", "Konzert", "Köln", "Sondaschule", "Gute Zeiten Tour", "E-Werk", "2022", "Foto"]
 ---
 
-import { LinkCard, Card, CardGrid } from '@astrojs/starlight/components';
+import { Card, LinkCard } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
+import EventFacts from '@components/EventFacts.astro';
+import Gallery from '@components/Gallery.astro';
+import img200000 from '../../../gallery/2022/09/16/2022-09-16_20-00-00.jpg';
+import img210539 from '../../../gallery/2022/09/16/2022-09-16_21-05-39.jpg';
+import img210855 from '../../../gallery/2022/09/16/2022-09-16_21-08-55.jpg';
+import img211314 from '../../../gallery/2022/09/16/2022-09-16_21-13-14.jpg';
+import img211531 from '../../../gallery/2022/09/16/2022-09-16_21-15-31.jpg';
+import img212747 from '../../../gallery/2022/09/16/2022-09-16_21-27-47.jpg';
+import img213542 from '../../../gallery/2022/09/16/2022-09-16_21-35-42.jpg';
+import img213944 from '../../../gallery/2022/09/16/2022-09-16_21-39-44.jpg';
+import img214917 from '../../../gallery/2022/09/16/2022-09-16_21-49-17.jpg';
+import img214919 from '../../../gallery/2022/09/16/2022-09-16_21-49-19.jpg';
+import img220043 from '../../../gallery/2022/09/16/2022-09-16_22-00-43.jpg';
+import img221706 from '../../../gallery/2022/09/16/2022-09-16_22-17-06.jpg';
+import img221726 from '../../../gallery/2022/09/16/2022-09-16_22-17-26.jpg';
+import img222532 from '../../../gallery/2022/09/16/2022-09-16_22-25-32.jpg';
+import img223040 from '../../../gallery/2022/09/16/2022-09-16_22-30-40.jpg';
+import img223042 from '../../../gallery/2022/09/16/2022-09-16_22-30-42.jpg';
+import img224711 from '../../../gallery/2022/09/16/2022-09-16_22-47-11.jpg';
+import img225155 from '../../../gallery/2022/09/16/2022-09-16_22-51-55.jpg';
 
-import img2105 from '../../../gallery/2022/09/16/2022-09-16_21-05-39.jpg';
-import img2135 from '../../../gallery/2022/09/16/2022-09-16_21-35-42.jpg';
-import img2149 from '../../../gallery/2022/09/16/2022-09-16_21-49-17.jpg';
-import img2225 from '../../../gallery/2022/09/16/2022-09-16_22-25-32.jpg';
+<EventFacts
+    facts={[
+        { icon: 'lucide:calendar-days', label: 'Datum', value: '16.09.2022' },
+        { icon: 'lucide:route', label: 'Tour', value: 'Gute Zeiten Tour' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: 'TBA' },
+        { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
+        { icon: 'lucide:map-pin', label: 'Stadt', value: 'Köln' },
+        { icon: 'lucide:landmark', label: 'Venue', value: 'E-Werk' },
+        { icon: 'lucide:badge-euro', label: 'Preis', value: '33,80 €' },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+    ]}
+/>
 
-## 🎫 Ticket
+Am 16. September 2022 spielten **Sondaschule** im Rahmen der **Gute Zeiten Tour** im E-Werk in Köln.
 
-![Ticket](../../../gallery/2022/09/16/2022-09-16_20-00-00.jpg)
+## Galerie
 
-## 📌 Details
-📅 Datum: 16.09.2022  
-🇩🇪 Land: Deutschland  
-📍 Stadt: Köln  
-🏟️ Venue: E-Werk  
-💶 Preis: 33,80 €  
+<Gallery
+    images={[
+        { src: img200000, alt: 'Ticket Vorderseite', title: 'Ticket Vorderseite' },
+        { src: img210539, alt: 'Sondaschule auf der Bühne', title: '21:05' },
+        { src: img210855, alt: 'Sondaschule auf der Bühne', title: '21:08' },
+        { src: img211314, alt: 'Sondaschule auf der Bühne', title: '21:13' },
+        { src: img211531, alt: 'Sondaschule auf der Bühne', title: '21:15' },
+        { src: img212747, alt: 'Sondaschule auf der Bühne', title: '21:27' },
+        { src: img213542, alt: 'Sondaschule auf der Bühne', title: '21:35' },
+        { src: img213944, alt: 'Sondaschule auf der Bühne', title: '21:39' },
+        { src: img214917, alt: 'Sondaschule auf der Bühne', title: '21:49' },
+        { src: img214919, alt: 'Sondaschule auf der Bühne', title: '21:49' },
+        { src: img220043, alt: 'Sondaschule auf der Bühne', title: '22:00' },
+        { src: img221706, alt: 'Sondaschule auf der Bühne', title: '22:17' },
+        { src: img221726, alt: 'Sondaschule auf der Bühne', title: '22:17' },
+        { src: img222532, alt: 'Sondaschule auf der Bühne', title: '22:25' },
+        { src: img223040, alt: 'Sondaschule auf der Bühne', title: '22:30' },
+        { src: img223042, alt: 'Sondaschule auf der Bühne', title: '22:30' },
+        { src: img224711, alt: 'Sondaschule auf der Bühne', title: '22:47' },
+        { src: img225155, alt: 'Sondaschule auf der Bühne', title: '22:51' },
+    ]}
+/>
 
-## 📷 Fotos
+## Videos
 
-<CardGrid>
-  <Card title="21:05" icon="image">
-    <Image src={img2105} alt="Sondaschule um 21:05" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-  </Card>
-  <Card title="21:35" icon="image">
-    <Image src={img2135} alt="Sondaschule um 21:35" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-  </Card>
-  <Card title="21:49" icon="image">
-    <Image src={img2149} alt="Sondaschule um 21:49" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-  </Card>
-  <Card title="22:25" icon="image">
-    <Image src={img2225} alt="Sondaschule um 22:25" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-  </Card>
-</CardGrid>
+TBA
 
-## 🎤 Konzertbericht
+## Setlist
 
-Am 16. September 2022 war ich im Rahmen der "Gute Zeiten Tour" von Sondaschule im E-Werk in Köln. 
+<Card title="Songs" icon="list-format">
+    <ol>
+        <li>Ruhe vor dem Sturm</li>
+        <li>Arschlochmensch</li>
+        <li>Mülheim Ruhr</li>
+        <li>Bist du glücklich?</li>
+        <li>Sondaschule</li>
+        <li>Waffenschein bei ALDI</li>
+        <li>Bevor ich irgendwann mal geh (Ist schon OK)</li>
+        <li>Gute Zeiten</li>
+        <li>Amsterdam</li>
+        <li>Für immer nie nüchtern</li>
+        <li>Palermo</li>
+        <li>Schöne Grüße vom Meer</li>
+        <li>Ich verspreche mir selbst</li>
+        <li>Dumm aber glücklich</li>
+        <li>So issses nicht</li>
+        <li>Alles Gute</li>
+        <li>Unbesiegbar</li>
+        <li>Beverly Hills</li>
+        <li>Liebe für die Freaks</li>
+        <li>Morgens um halb 4</li>
+        <li>Merkst du nicht…</li>
+        <li>RIP Audio</li>
+        <li>Sommer, Sonne, Strand und Meer</li>
+        <li>Was ich am liebsten mach</li>
+    </ol>
+</Card>
 
-## 💿 Album
+## Album
 
 <Card title="Unbesiegbar" icon="seti:audio">
   <a href="https://www.amazon.de/dp/B0D6KJ3RFJ?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-    <img src="https://m.media-amazon.com/images/I/81N9XohkYWL._SL1500_.jpg" alt="Sondaschule - Unbesiegbar (Amazon)" width="300" />
+    <Image src="https://m.media-amazon.com/images/I/81N9XohkYWL._SL1500_.jpg" alt="Sondaschule - Unbesiegbar" width={300} height={300} />
   </a>
-</Card>
-
-<Card title="Setlist" icon="list-format">
-01. Ruhe vor dem Sturm
-02. Arschlochmensch
-03. Mülheim Ruhr
-04. Bist du glücklich?
-05. Sondaschule
-06. Waffenschein bei ALDI
-07. Bevor ich irgendwann mal geh (Ist schon OK)
-08. Gute Zeiten
-09. Amsterdam
-10. Für immer nie nüchtern
-11. Palermo
-12. Schöne Grüße vom Meer
-13. Ich verspreche mir selbst
-14. Dumm aber glücklich
-15. So issses nicht
-16. Alles Gute
-17. Unbesiegbar
-18. Beverly Hills
-19. Liebe für die Freaks
-20. Morgens um halb 4
-21. Merkst du nicht…
-22. RIP Audio
-23. Sommer, Sonne, Strand und Meer
-24. Was ich am liebsten mach
 </Card>
 
 <LinkCard
