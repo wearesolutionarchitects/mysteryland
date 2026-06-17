@@ -1,93 +1,147 @@
 ---
 title: "die ärzte"
-
-description: "Eventbericht über das Konzert von die ärzte auf der Herbst des Lebens Tour am 17.09.2023 im Palladium Köln."
-
+description: "Eventbericht über das Konzert von die ärzte auf der Herbst des Lebens Tour im Palladium in Köln am 17.09.2023."
+tour: "Herbst des Lebens"
 pubDate: 2023-09-17
-
 country: "Deutschland"
-
 city: "Köln"
-
 venue: "Palladium"
-
-price: 69.00
-
+price: 59.00
+artist: ["die ärzte"]
 asin: ["B08GFRPYYF", "B096TJP6H3"]
-
-tags: ["Ticket","Palladium","Deutschland","Köln","Konzert","Herbst des Lebens","die ärzte","2023"]
+tags: ["€59.00", "Ticket", "Palladium", "Deutschland", "Köln", "Konzert", "Herbst des Lebens", "die ärzte", "2023", "Foto"]
 ---
-import { Card } from '@astrojs/starlight/components';
-import { LinkCard } from '@astrojs/starlight/components';
 
-## Ticket
+import { Card, LinkCard } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
+import EventFacts from '@components/EventFacts.astro';
+import Gallery from '@components/Gallery.astro';
+import img200000 from '../../../gallery/2023/09/17/2023-09-17_20-00-00.jpg';
+import img200001 from '../../../gallery/2023/09/17/2023-09-17_20-00-01.jpg';
+import img200441 from '../../../gallery/2023/09/17/2023-09-17_20-04-41.jpg';
+import img200724 from '../../../gallery/2023/09/17/2023-09-17_20-07-24.jpg';
+import img201250 from '../../../gallery/2023/09/17/2023-09-17_20-12-50.jpg';
+import img201638 from '../../../gallery/2023/09/17/2023-09-17_20-16-38.jpg';
+import img203925 from '../../../gallery/2023/09/17/2023-09-17_20-39-25.jpg';
+import img205403 from '../../../gallery/2023/09/17/2023-09-17_20-54-03.jpg';
+import img205945 from '../../../gallery/2023/09/17/2023-09-17_20-59-45.jpg';
+import img210506 from '../../../gallery/2023/09/17/2023-09-17_21-05-06.jpg';
+import img212256 from '../../../gallery/2023/09/17/2023-09-17_21-22-56.jpg';
+import img214042 from '../../../gallery/2023/09/17/2023-09-17_21-40-42.jpg';
+import img215519 from '../../../gallery/2023/09/17/2023-09-17_21-55-19.jpg';
+import img220933 from '../../../gallery/2023/09/17/2023-09-17_22-09-33.jpg';
+import img221648 from '../../../gallery/2023/09/17/2023-09-17_22-16-48.jpg';
+import img223037 from '../../../gallery/2023/09/17/2023-09-17_22-30-37.jpg';
+import img223645 from '../../../gallery/2023/09/17/2023-09-17_22-36-45.jpg';
+import img224431 from '../../../gallery/2023/09/17/2023-09-17_22-44-31.jpg';
 
-![Ticket](../../../gallery/2023/09/17/2023-09-17_20-00-00.jpg)
+<EventFacts
+    facts={[
+        { icon: 'lucide:calendar-days', label: 'Datum', value: '17.09.2023' },
+        { icon: 'lucide:route', label: 'Tour', value: 'Herbst des Lebens' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: '' },
+        { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
+        { icon: 'lucide:map-pin', label: 'Stadt', value: 'Köln' },
+        { icon: 'lucide:landmark', label: 'Venue', value: 'Palladium' },
+        { icon: 'lucide:badge-euro', label: 'Preis', value: '59,00 €' },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+    ]}
+/>
 
-## Details
+Am 17. September 2023 spielten **die ärzte** im Palladium in Köln.
+Die Band war auf der **Herbst des Lebens** Tour unterwegs und verband neue Songs mit vielen Klassikern.
 
-📅 Datum: 17.09.2023  
-🇩🇪 Land: Deutschland  
-📍 Stadt: Köln  
-🏟️ Venue: Palladium
-💶 Preis: 69,00 €  
+Die Setlist reichte von **Noise**, **Dunkel** und **Demokratie** bis zu **Unrockbar**, **Junge** und **Schrei nach Liebe**.
+Das Palladium bot dafür den passenden Rahmen zwischen Clubnähe und großer Konzertenergie.
 
-<Card title="Setlist" icon="list-format">
-- Intro (Erinnerungen aus 41 Jahren)
-- Wer verliert, hat schon verloren
-- Lied vom Scheitern
-- Ein Lied für Dich
-- Geld
-- Tamagotchi
-- Der Misanthrop
-- Noise
-- Ein Sommer nur für mich
-- Vokuhila Superstar
-- Lasse redn
-- Einschlag
-- Ich, am Strand
-- Hard Luck Woman
-- 1/2 Lovesong
-- Anti-Zombie
-- Dunkel
-- Die Banane
-- Demokratie (Our Bass Player Hates This Song)
-- Dein Vampyr
-- Schunder-Song
-- Doof
-- Herrliche Jahre
-- Ignorama
-- Unrockbar
-- Leben vor dem Tod
-- Für uns
-- Deine Schuld
-- Dinge von denen
-- Himmelblau
-- Hurra
-- Wie es geht
-- El Cattivo
-- Junge
-- Schrei nach Liebe
-- Dauerwelle vs. Minipli
-- Schlaflied
+## Galerie
+
+<Gallery
+    images={[
+        { src: img200000, alt: 'Ticket Vorderseite', title: 'Ticket Vorderseite' },
+        { src: img200001, alt: 'Ticket Rückseite', title: 'Ticket Rückseite' },
+        { src: img200441, alt: 'die ärzte auf der Bühne', title: '20:04' },
+        { src: img200724, alt: 'die ärzte auf der Bühne', title: '20:07' },
+        { src: img201250, alt: 'die ärzte auf der Bühne', title: '20:12' },
+        { src: img201638, alt: 'die ärzte auf der Bühne', title: '20:16' },
+        { src: img203925, alt: 'die ärzte auf der Bühne', title: '20:39' },
+        { src: img205403, alt: 'die ärzte auf der Bühne', title: '20:54' },
+        { src: img205945, alt: 'die ärzte auf der Bühne', title: '20:59' },
+        { src: img210506, alt: 'die ärzte auf der Bühne', title: '21:05' },
+        { src: img212256, alt: 'die ärzte auf der Bühne', title: '21:22' },
+        { src: img214042, alt: 'die ärzte auf der Bühne', title: '21:40' },
+        { src: img215519, alt: 'die ärzte auf der Bühne', title: '21:55' },
+        { src: img220933, alt: 'die ärzte auf der Bühne', title: '22:09' },
+        { src: img221648, alt: 'die ärzte auf der Bühne', title: '22:16' },
+        { src: img223037, alt: 'die ärzte auf der Bühne', title: '22:30' },
+        { src: img223645, alt: 'die ärzte auf der Bühne', title: '22:36' },
+        { src: img224431, alt: 'die ärzte auf der Bühne', title: '22:44' },
+    ]}
+/>
+
+## Videos
+
+TBA
+
+## Setlist
+
+<Card title="Songs" icon="list-format">
+    <ol>
+        <li>Intro (Erinnerungen aus 41 Jahren)</li>
+        <li>Wer verliert, hat schon verloren</li>
+        <li>Lied vom Scheitern</li>
+        <li>Ein Lied für Dich</li>
+        <li>Geld</li>
+        <li>Tamagotchi</li>
+        <li>Der Misanthrop</li>
+        <li>Noise</li>
+        <li>Ein Sommer nur für mich</li>
+        <li>Vokuhila Superstar</li>
+        <li>Lasse redn</li>
+        <li>Einschlag</li>
+        <li>Ich, am Strand</li>
+        <li>Hard Luck Woman</li>
+        <li>1/2 Lovesong</li>
+        <li>Anti-Zombie</li>
+        <li>Dunkel</li>
+        <li>Die Banane</li>
+        <li>Demokratie (Our Bass Player Hates This Song)</li>
+        <li>Dein Vampyr</li>
+        <li>Schunder-Song</li>
+        <li>Doof</li>
+        <li>Herrliche Jahre</li>
+        <li>Ignorama</li>
+        <li>Unrockbar</li>
+        <li>Leben vor dem Tod</li>
+        <li>Für uns</li>
+        <li>Deine Schuld</li>
+        <li>Dinge von denen</li>
+        <li>Himmelblau</li>
+        <li>Hurra</li>
+        <li>Wie es geht</li>
+        <li>El Cattivo</li>
+        <li>Junge</li>
+        <li>Schrei nach Liebe</li>
+        <li>Dauerwelle vs. Minipli</li>
+        <li>Schlaflied</li>
+    </ol>
 </Card>
 
 ## Album
 
 <Card title="Hell" icon="seti:audio">
-    <a href="https://www.amazon.de/dp/B08GFRPYYF?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-        <img src="https://m.media-amazon.com/images/I/71OZOJ+Z76L._SL1200_.jpg" alt="Die Toten Hosen - Hell" width="300" />
-    </a>
+  <a href="https://www.amazon.de/dp/B08GFRPYYF?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+    <Image src="https://m.media-amazon.com/images/I/71OZOJ+Z76L._SL1200_.jpg" alt="die ärzte - Hell" width={300} height={300} />
+  </a>
 </Card>
 
 <Card title="Dunkel" icon="seti:audio">
-    <a href="https://www.amazon.de/dp/B096TJP6H3?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-        <img src="https://m.media-amazon.com/images/I/81ooJgeSbGS._SL1500_.jpg" alt="Die Toten Hosen - Dunkel" width="300" />
-    </a>
+  <a href="https://www.amazon.de/dp/B096TJP6H3?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+    <Image src="https://m.media-amazon.com/images/I/81ooJgeSbGS._SL1500_.jpg" alt="die ärzte - Dunkel" width={300} height={300} />
+  </a>
 </Card>
+
 <LinkCard
     title="Mehr Informationen"
     href="https://fanieng.com/2023/09/17/die-aerzte-koeln-palladium/"
 />
-
-
