@@ -8,6 +8,7 @@ country: "Deutschland"
 city: "Bochum"
 venue: "RuhrCongress"
 price: 77.40
+asin: "B0DTJ28NNK"
 tags: ["€77.40", "Ticket", "Plakat", "Bochum", "Deutschland", "Konzert", "2025", "Kraftwerk", "RuhrCongress", "Multimedia Tour 2025"]
 ---
 import { Card, LinkCard } from '@astrojs/starlight/components';
@@ -23,6 +24,7 @@ import img204858 from '../../../gallery/2025/11/30/2025-11-30_20-48-58.jpg';
 import img204934 from '../../../gallery/2025/11/30/2025-11-30_20-49-34.jpg';
 import img204956 from '../../../gallery/2025/11/30/2025-11-30_20-49-56.jpg';
 import img210345 from '../../../gallery/2025/11/30/2025-11-30_21-03-45.jpg';
+import { Image } from 'astro:assets';
 
 <EventFacts
     facts={[
@@ -56,10 +58,6 @@ Am 30. November 2025 konnte ich Kraftwerk auf ihrer Multimedia Tour 2025 im Ruhr
     ]}
 />
 
-## Videos
-
-TBA
-
 ## Setlist
 
 <Card title="Songs" icon="list-format">
@@ -92,11 +90,17 @@ TBA
     <a href="https://www.setlist.fm/setlist/kraftwerk/2025/ruhrcongress-bochum-germany-359b96b.html" target="_blank" rel="noopener noreferrer">Setlist auf setlist.fm</a>
 </Card>
 
-## Album
+## Album/Blu-ray
 
-TBA
+<Card title="Autobahn(50th Anniversary) [Blu-ray]" icon="seti:audio">
+    <a href="https://www.amazon.de/dp/B0DTJ28NNK?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+        <Image src="https://m.media-amazon.com/images/I/61tat044MqL._SL1500_.jpg" alt="Autobahn(50th Anniversary) [Blu-ray]" width={300} height={300} />
+    </a>
+</Card>
+
+
 
 <LinkCard
     title="Mehr Informationen"
-    href="https://fanieng.com/2025/11/30/2025-11-30-kraftwerk-bochum-ruhrcongress"
+    href="https://fanieng.com/2025/11/30/kraftwerk-bochum-ruhrcongress/"
 />
