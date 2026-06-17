@@ -1,75 +1,114 @@
 ---
 title: "OMD"
-
-description: "Eventbericht über das Konzert von OMD in der Mitsubishi Electric HALLE in Düsseldorf."
-
+description: "Eventbericht über das Konzert von OMD auf der Bauhaus Staircase Tour in der Mitsubishi Electric Halle in Düsseldorf am 01.02.2024."
+tour: "Bauhaus Staircase Tour"
 pubDate: 2024-02-01
-
 country: "Deutschland"
-
 city: "Düsseldorf"
-
-venue: "Mitsubishi Electric HALLE"
-
+venue: "Mitsubishi Electric Halle"
 price: 62.30
-
-asin: "B0CGB3MGGR"
-
 artist: ["OMD"]
-
-tags: ["€62.30","Ticket","2024","Deutschland","Konzert","OMD","Philipshalle","Düsseldorf"]
+asin: "B0CGB3MGGR"
+tags: ["€62.30", "Ticket", "2024", "Deutschland", "Konzert", "OMD", "Philipshalle", "Düsseldorf", "Bauhaus Staircase"]
 ---
-import { Card } from '@astrojs/starlight/components';
-import { LinkCard } from '@astrojs/starlight/components';
 
-## Ticket
+import { Card, LinkCard } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
+import EventFacts from '@components/EventFacts.astro';
+import Gallery from '@components/Gallery.astro';
+import YouTubeVideos from '@components/YouTubeVideos.astro';
+import img200000 from '../../../gallery/2024/02/01/2024-02-01_20-00-00.jpg';
+import img205338 from '../../../gallery/2024/02/01/2024-02-01_20-53-38.jpg';
+import img211855 from '../../../gallery/2024/02/01/2024-02-01_21-18-55.jpg';
+import img212355 from '../../../gallery/2024/02/01/2024-02-01_21-23-55.jpg';
+import img214901 from '../../../gallery/2024/02/01/2024-02-01_21-49-01.jpg';
+import img215322 from '../../../gallery/2024/02/01/2024-02-01_21-53-22.jpg';
+import img222503 from '../../../gallery/2024/02/01/2024-02-01_22-25-03.jpg';
+import img222619 from '../../../gallery/2024/02/01/2024-02-01_22-26-19.jpg';
+import img223851 from '../../../gallery/2024/02/01/2024-02-01_22-38-51.jpg';
+import img224625 from '../../../gallery/2024/02/01/2024-02-01_22-46-25.jpg';
 
-![Ticket](../../../gallery/2024/02/01/2024-02-01_20-00-00.jpg)
+<EventFacts
+    facts={[
+        { icon: 'lucide:calendar-days', label: 'Datum', value: '01.02.2024' },
+        { icon: 'lucide:route', label: 'Tour', value: 'Bauhaus Staircase Tour' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: '' },
+        { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
+        { icon: 'lucide:map-pin', label: 'Stadt', value: 'Düsseldorf' },
+        { icon: 'lucide:landmark', label: 'Venue', value: 'Mitsubishi Electric Halle' },
+        { icon: 'lucide:badge-euro', label: 'Preis', value: '62,30 €' },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+    ]}
+/>
 
-## Details
-📅 Datum: 01.02.2024  
-🇩🇪 Land: Deutschland  
-📍 Stadt: Düsseldorf
-🏟️ Venue: Mitsubishi Electric HALLE  
-💶 Preis: 62,30 €  
+Am 01. Februar 2024 spielten OMD in der Mitsubishi Electric Halle in Düsseldorf.
+Mit **Bauhaus Staircase** im Rücken verband die Band neuen Synthie-Pop mit den bekannten Klassikern aus mehreren Jahrzehnten.
 
-## Konzertbericht
+Besonders bei Songs wie **Maid of Orleans**, **Souvenir**, **Enola Gay** und **Electricity** wurde deutlich, warum OMD bis heute eine feste Größe im elektronischen Pop sind.
+Der Abend funktionierte als kompakter Querschnitt durch die Bandgeschichte und zeigte gleichzeitig, dass das aktuelle Material gut in das Set passt.
 
-Am 01. Februar 2024 fand in der Mitsubishi Electric HALLE in Düsseldorf ein Konzert von OMD (Orchestral Manoeuvres in the Dark) statt. 
-Die Band, die für ihren einzigartigen Synthie-Pop-Sound bekannt ist, begeisterte das Publikum mit einer Mischung aus Klassikern und neuen Hits.
+## Galerie
+
+<Gallery
+    images={[
+        { src: img200000, alt: 'Ticket', title: 'Ticket' },
+        { src: img205338, alt: 'OMD auf der Bühne', title: '20:53' },
+        { src: img211855, alt: 'OMD auf der Bühne', title: '21:18' },
+        { src: img212355, alt: 'OMD auf der Bühne', title: '21:23' },
+        { src: img214901, alt: 'OMD auf der Bühne', title: '21:49' },
+        { src: img215322, alt: 'OMD auf der Bühne', title: '21:53' },
+        { src: img222503, alt: 'OMD auf der Bühne', title: '22:25' },
+        { src: img222619, alt: 'OMD auf der Bühne', title: '22:26' },
+        { src: img223851, alt: 'OMD auf der Bühne', title: '22:38' },
+        { src: img224625, alt: 'OMD auf der Bühne', title: '22:46' },
+    ]}
+/>
+
+## Video
+
+<YouTubeVideos
+    videos={[
+        { id: 'EFpIz0RQU9c' },
+    ]}
+/>
+
+## Setlist
+
+<Card title="Songs" icon="list-format">
+    <ol>
+        <li>Evolution of Species</li>
+        <li>Anthropocene</li>
+        <li>Messages</li>
+        <li>Tesla Girls</li>
+        <li>Kleptocracy</li>
+        <li>History of Modern (Part I)</li>
+        <li>If You Leave</li>
+        <li>(Forever) Live and Die</li>
+        <li>Bauhaus Staircase</li>
+        <li>Souvenir</li>
+        <li>Joan of Arc</li>
+        <li>Joan of Arc (Maid of Orleans)</li>
+        <li>The Rock Drill</li>
+        <li>Veruschka</li>
+        <li>Healing</li>
+        <li>Don't Go</li>
+        <li>So in Love</li>
+        <li>Dreaming</li>
+        <li>Locomotion</li>
+        <li>Sailing on the Seven Seas</li>
+        <li>Enola Gay</li>
+        <li>Look at You Now</li>
+        <li>Pandora's Box</li>
+        <li>Electricity</li>
+    </ol>
+</Card>
+
+## Album
 
 <Card title="Album" icon="seti:audio">
   <a href="https://www.amazon.de/dp/B0CGB3MGGR?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-    <img src="https://m.media-amazon.com/images/I/81hsuIAqI+L._SL1500_.jpg" alt="OMD - Bauhaus Staircase (Amazon)" width="300" />
+    <Image src="https://m.media-amazon.com/images/I/81hsuIAqI+L._SL1500_.jpg" alt="OMD - Bauhaus Staircase" width={300} height={300} />
   </a>
-</Card>
-
-
-<Card title="Setlist" icon="list-format">
-01. Evolution of Species 
-02. Anthropocene
-03. Messages
-04. Tesla Girls
-05. Kleptocracy
-06. History of Modern (Part I)
-07. If You Leave
-08. (Forever) Live and Die
-09. Bauhaus Staircase
-10. Souvenir
-11. Joan of Arc
-12. Joan of Arc (Maid of Orleans)
-13. The Rock Drill
-14. Veruschka
-15. Healing
-16. Don't Go
-17. So in Love
-18. Dreaming
-19. Locomotion
-20. Sailing on the Seven Seas
-21. Enola Gay
-22. Look at You Now
-23. Pandora's Box
-24. Electricity
 </Card>
 
 <LinkCard
