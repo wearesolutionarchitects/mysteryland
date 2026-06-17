@@ -1,58 +1,101 @@
 ---
 title: "Depeche Mode"
-
-description: "Eventbericht über das Konzert von Depeche Mode in Köln auf der Memento Mori Tour."
-
+description: "Eventbericht über das Konzert von Depeche Mode auf der Memento Mori Tour 2024 in der Lanxess Arena in Köln am 05.04.2024."
+tour: "Memento Mori Tour"
 pubDate: 2024-04-05
-
 country: "Deutschland"
-
 city: "Köln"
-
 venue: "Lanxess Arena"
-
 price: 110.00
-
-asin: "B0BVBQLJ3G"
-
 artist: ["Depeche Mode"]
-
-tags: ["€110.00","Ticket", "Deutschland", "Köln", "Konzert", "Depeche Mode", "2024", "Memento Mori"]
+asin: "B0BVBQLJ3G"
+tags: ["€110.00", "Ticket", "Deutschland", "Köln", "Konzert", "Depeche Mode", "2024", "Memento Mori", "Lanxess Arena"]
 ---
 
-import { Card } from '@astrojs/starlight/components';
-import { LinkCard } from '@astrojs/starlight/components';
+import { Card, LinkCard } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
+import EventFacts from '@components/EventFacts.astro';
+import Gallery from '@components/Gallery.astro';
+import YouTubeVideos from '@components/YouTubeVideos.astro';
+import img200000 from '../../../gallery/2024/04/05/2024-04-05_20-00-00.jpg';
+import img205422 from '../../../gallery/2024/04/05/2024-04-05_20-54-22.jpg';
+import img205541 from '../../../gallery/2024/04/05/2024-04-05_20-55-41.jpg';
+import img210038 from '../../../gallery/2024/04/05/2024-04-05_21-00-38.jpg';
+import img210426 from '../../../gallery/2024/04/05/2024-04-05_21-04-26.jpg';
+import img210608 from '../../../gallery/2024/04/05/2024-04-05_21-06-08.jpg';
+import img212326 from '../../../gallery/2024/04/05/2024-04-05_21-23-26.jpg';
+import img212950 from '../../../gallery/2024/04/05/2024-04-05_21-29-50.jpg';
+import img214339 from '../../../gallery/2024/04/05/2024-04-05_21-43-39.jpg';
+import img215036 from '../../../gallery/2024/04/05/2024-04-05_21-50-36.jpg';
+import img215318 from '../../../gallery/2024/04/05/2024-04-05_21-53-18.jpg';
+import img215931 from '../../../gallery/2024/04/05/2024-04-05_21-59-31.jpg';
+import img220445 from '../../../gallery/2024/04/05/2024-04-05_22-04-45.jpg';
+import img220838 from '../../../gallery/2024/04/05/2024-04-05_22-08-38.jpg';
+import img222001 from '../../../gallery/2024/04/05/2024-04-05_22-20-01.jpg';
+import img222155 from '../../../gallery/2024/04/05/2024-04-05_22-21-55.jpg';
+import img222159 from '../../../gallery/2024/04/05/2024-04-05_22-21-59.jpg';
+import img223533 from '../../../gallery/2024/04/05/2024-04-05_22-35-33.jpg';
+import img224426 from '../../../gallery/2024/04/05/2024-04-05_22-44-26.jpg';
+import img225351 from '../../../gallery/2024/04/05/2024-04-05_22-53-51.jpg';
 
-## Ticket
+<EventFacts
+    facts={[
+        { icon: 'lucide:calendar-days', label: 'Datum', value: '05.04.2024' },
+        { icon: 'lucide:route', label: 'Tour', value: 'Memento Mori Tour' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: 'Deeper' },
+        { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
+        { icon: 'lucide:map-pin', label: 'Stadt', value: 'Köln' },
+        { icon: 'lucide:landmark', label: 'Venue', value: 'Lanxess Arena' },
+        { icon: 'lucide:badge-euro', label: 'Preis', value: '110,00 €' },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+    ]}
+/>
 
-![Ticket](../../../gallery/2024/04/05/2024-04-05_20-00-00.jpg)
+Am 05. April 2024 besuchte ich Depeche Mode in der Lanxess Arena in Köln.
+Die Band war auf der **Memento Mori Tour** unterwegs und spielte eine Mischung aus neuen Songs und Klassikern.
 
-## Details
-📅 Datum: 05.04.2024  
-🇩🇪 Land: Deutschland      
-📍 Stadt: Köln    
-🏟️ Venue: Lanxess Arena  
-💶 Preis: 110,00 €  
+Die Atmosphäre in der Arena war elektrisierend. Songs wie **Enjoy The Silence**, **Never Let Me Down Again** und **Personal Jesus** sorgten für die erwarteten großen Momente.
+Gleichzeitig fügten sich die Stücke des Albums **Memento Mori** stimmig in den Abend ein.
 
+## Galerie
 
-## 🎤 Konzertbericht
+<Gallery
+    images={[
+        { src: img200000, alt: 'Ticket', title: 'Ticket' },
+        { src: img205422, alt: 'Depeche Mode auf der Bühne', title: '20:54' },
+        { src: img205541, alt: 'Depeche Mode auf der Bühne', title: '20:55' },
+        { src: img210038, alt: 'Depeche Mode auf der Bühne', title: '21:00' },
+        { src: img210426, alt: 'Depeche Mode auf der Bühne', title: '21:04' },
+        { src: img210608, alt: 'Depeche Mode auf der Bühne', title: '21:06' },
+        { src: img212326, alt: 'Depeche Mode auf der Bühne', title: '21:23' },
+        { src: img212950, alt: 'Depeche Mode auf der Bühne', title: '21:29' },
+        { src: img214339, alt: 'Depeche Mode auf der Bühne', title: '21:43' },
+        { src: img215036, alt: 'Depeche Mode auf der Bühne', title: '21:50' },
+        { src: img215318, alt: 'Depeche Mode auf der Bühne', title: '21:53' },
+        { src: img215931, alt: 'Depeche Mode auf der Bühne', title: '21:59' },
+        { src: img220445, alt: 'Depeche Mode auf der Bühne', title: '22:04' },
+        { src: img220838, alt: 'Depeche Mode auf der Bühne', title: '22:08' },
+        { src: img222001, alt: 'Depeche Mode auf der Bühne', title: '22:20' },
+        { src: img222155, alt: 'Depeche Mode auf der Bühne', title: '22:21' },
+        { src: img222159, alt: 'Depeche Mode auf der Bühne', title: '22:21' },
+        { src: img223533, alt: 'Depeche Mode auf der Bühne', title: '22:35' },
+        { src: img224426, alt: 'Depeche Mode auf der Bühne', title: '22:44' },
+        { src: img225351, alt: 'Depeche Mode auf der Bühne', title: '22:53' },
+    ]}
+/>
 
-Am 05. April 2024 besuchte ich das Konzert von Depeche Mode in der Lanxess Arena in Köln.
-Die Band war auf der "Memento Mori"-Tour und es war ein unvergesslicher Abend voller Energie und großartiger Musik.
+## Video
 
-## ❤️ Fazit
+<YouTubeVideos
+    videos={[
+        { id: 'MYq5FLEaU3Y' },
+    ]}
+/>
 
-Die Atmosphäre in der Lanxess Arena war elektrisierend, und Depeche Mode lieferten eine beeindruckende Show ab.
-Die Band spielte eine Mischung aus ihren Klassikern und neuen Songs, die das Publikum begeisterten.
+## Setlist
 
-<Card title="Album" icon="seti:audio">
-  <a href="https://www.amazon.de/dp/B0BVBQLJ3G?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-    <img src="https://m.media-amazon.com/images/I/71ybDKXxLmL._SL1500_.jpg" alt="Depeche Mode - Memento Mori (Amazon)" width="300" />
-  </a>
-</Card>
+<Card title="Songs" icon="list-format">
 
-
-<Card title="Setlist" icon="list-format">
 01. Intro (Speak To Me)
 02. My Cosmos Is Mine
 03. Wagging Tongue
@@ -76,6 +119,14 @@ Die Band spielte eine Mischung aus ihren Klassikern und neuen Songs, die das Pub
 21. Just Can’t Get Enough
 22. Never Let Me Down Again
 23. Personal Jesus
+</Card>
+
+## Album
+
+<Card title="Album" icon="seti:audio">
+  <a href="https://www.amazon.de/dp/B0BVBQLJ3G?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+    <Image src="https://m.media-amazon.com/images/I/71ybDKXxLmL._SL1500_.jpg" alt="Depeche Mode - Memento Mori" width={300} height={300} />
+  </a>
 </Card>
 
 <LinkCard
