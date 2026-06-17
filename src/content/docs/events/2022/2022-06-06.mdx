@@ -1,142 +1,153 @@
 ---
 title: "die ärzte"
-
-description: "Eventbericht über das Konzert von die ärzte in Berlin am 06.06.2022 in der Zitadelle Spandau."
-
-pubDate: 2022-06-06
-
-country: "Deutschland"
-
-city: "Berlin"
-
-venue: "Zitadelle Spandau"
-
-artist: ["die ärzte"]
-
+description: "Eventbericht über das Konzert von die ärzte auf der Berlin Tour MMXXII in der Zitadelle Spandau in Berlin am 06.06.2022."
 tour: "Berlin Tour MMXXII"
-
+pubDate: 2022-06-06
+country: "Deutschland"
+city: "Berlin"
+venue: "Zitadelle Spandau"
 price: 63.00
-
-asin: ["B08GFRPYYF"]
-
-tags: ["€63.00","Ticket","Deutschland","Konzert","Berlin","die ärzte","Zitadelle Spandau","2022"]
+artist: ["die ärzte"]
+asin: ["B08GFRPYYF", "B096TJP6H3"]
+tags: ["€63.00", "Ticket", "Deutschland", "Konzert", "Berlin", "die ärzte", "Berlin Tour MMXXII", "Zitadelle Spandau", "2022", "Foto"]
 ---
 
-import { LinkCard, Card, CardGrid } from '@astrojs/starlight/components';
+import { Card, LinkCard } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
+import EventFacts from '@components/EventFacts.astro';
+import Gallery from '@components/Gallery.astro';
+import img180001 from '../../../gallery/2022/06/06/2022-06-06_18-00-01.jpg';
+import img180002 from '../../../gallery/2022/06/06/2022-06-06_18-00-02.jpg';
+import img180854 from '../../../gallery/2022/06/06/2022-06-06_18-08-54.jpg';
+import img190233 from '../../../gallery/2022/06/06/2022-06-06_19-02-33.jpg';
+import img191118 from '../../../gallery/2022/06/06/2022-06-06_19-11-18.jpg';
+import img192635 from '../../../gallery/2022/06/06/2022-06-06_19-26-35.jpg';
+import img193105 from '../../../gallery/2022/06/06/2022-06-06_19-31-05.jpg';
+import img194715 from '../../../gallery/2022/06/06/2022-06-06_19-47-15.jpg';
+import img195938 from '../../../gallery/2022/06/06/2022-06-06_19-59-38.jpg';
+import img201044 from '../../../gallery/2022/06/06/2022-06-06_20-10-44.jpg';
+import img203153 from '../../../gallery/2022/06/06/2022-06-06_20-31-53.jpg';
+import img204649 from '../../../gallery/2022/06/06/2022-06-06_20-46-49.jpg';
+import img204652 from '../../../gallery/2022/06/06/2022-06-06_20-46-52.jpg';
+import img204929 from '../../../gallery/2022/06/06/2022-06-06_20-49-29.jpg';
+import img204930 from '../../../gallery/2022/06/06/2022-06-06_20-49-30.jpg';
+import img212055 from '../../../gallery/2022/06/06/2022-06-06_21-20-55.jpg';
+import img213037 from '../../../gallery/2022/06/06/2022-06-06_21-30-37.jpg';
+import img213340 from '../../../gallery/2022/06/06/2022-06-06_21-33-40.jpg';
+import img213720 from '../../../gallery/2022/06/06/2022-06-06_21-37-20.jpg';
+import img213914 from '../../../gallery/2022/06/06/2022-06-06_21-39-14.jpg';
 
-import imgTicketFront from '../../../gallery/2022/06/06/2022-06-06_18-00-01.jpg';
-import imgTicketBack from '../../../gallery/2022/06/06/2022-06-06_18-00-02.jpg';
-import img1926 from '../../../gallery/2022/06/06/2022-06-06_19-26-35.jpg';
-import img2046 from '../../../gallery/2022/06/06/2022-06-06_20-46-49.jpg';
-import img2133 from '../../../gallery/2022/06/06/2022-06-06_21-33-40.jpg';
-import img2139 from '../../../gallery/2022/06/06/2022-06-06_21-39-14.jpg';
+<EventFacts
+    facts={[
+        { icon: 'lucide:calendar-days', label: 'Datum', value: '06.06.2022' },
+        { icon: 'lucide:route', label: 'Tour', value: 'Berlin Tour MMXXII' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: 'TBA' },
+        { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
+        { icon: 'lucide:map-pin', label: 'Stadt', value: 'Berlin' },
+        { icon: 'lucide:landmark', label: 'Venue', value: 'Zitadelle Spandau' },
+        { icon: 'lucide:badge-euro', label: 'Preis', value: '63,00 €' },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+    ]}
+/>
 
-## 🎫 Ticket
-
-<CardGrid>
-  <Card title="Vorderseite" icon="image">
-    <Image src={imgTicketFront} alt="Ticket Vorderseite" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-  </Card>
-  <Card title="Rückseite" icon="image">
-    <Image src={imgTicketBack} alt="Ticket Rückseite" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-  </Card>
-</CardGrid>
-
-## 📌 Details
-📅 Datum: 06.06.2022  
-🇩🇪 Land: Deutschland  
-📍 Stadt: Berlin  
-🏟️ Venue: Zitadelle Spandau   
-💶 Preis: 63,00 €  
-
-## 📷 Fotos
-
-<CardGrid>
-  <Card title="19:26" icon="image">
-    <Image src={img1926} alt="die ärzte um 19:26" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-  </Card>
-  <Card title="20:46" icon="image">
-    <Image src={img2046} alt="die ärzte um 20:46" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-  </Card>
-  <Card title="21:33" icon="image">
-    <Image src={img2133} alt="die ärzte um 21:33" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-  </Card>
-  <Card title="21:39" icon="image">
-    <Image src={img2139} alt="die ärzte um 21:39" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-  </Card>
-</CardGrid>
-
-## 🎤 Konzertbericht
-
-Am 6. Juni 2022 war ich im Rahmen der "Berlin Tour MMXXII" von die ärzte in Belas Heimat Berlin-Spandau in der Zitadelle.
-
+Am 06. Juni 2022 spielten **die ärzte** im Rahmen der **Berlin Tour MMXXII** in Belas Heimat Berlin-Spandau in der Zitadelle.
 Der Regengott meinte es zu Beginn nicht gut mit uns, aber die Stimmung war trotzdem großartig.
 
 Nach ein paar Songs verzog sich der Regen, und man wurde an "Wenn der Ruf schallt 1,2,3 - rocken wir die Welt" erinnert.
 
-## 🗞️ Pressebericht
+## Galerie
+
+<Gallery
+    images={[
+        { src: img180001, alt: 'Ticket Vorderseite', title: 'Ticket Vorderseite' },
+        { src: img180002, alt: 'Ticket Rückseite', title: 'Ticket Rückseite' },
+        { src: img180854, alt: 'die ärzte auf der Bühne', title: '18:08' },
+        { src: img190233, alt: 'die ärzte auf der Bühne', title: '19:02' },
+        { src: img191118, alt: 'die ärzte auf der Bühne', title: '19:11' },
+        { src: img192635, alt: 'die ärzte auf der Bühne', title: '19:26' },
+        { src: img193105, alt: 'die ärzte auf der Bühne', title: '19:31' },
+        { src: img194715, alt: 'die ärzte auf der Bühne', title: '19:47' },
+        { src: img195938, alt: 'die ärzte auf der Bühne', title: '19:59' },
+        { src: img201044, alt: 'die ärzte auf der Bühne', title: '20:10' },
+        { src: img203153, alt: 'die ärzte auf der Bühne', title: '20:31' },
+        { src: img204649, alt: 'die ärzte auf der Bühne', title: '20:46' },
+        { src: img204652, alt: 'die ärzte auf der Bühne', title: '20:46' },
+        { src: img204929, alt: 'die ärzte auf der Bühne', title: '20:49' },
+        { src: img204930, alt: 'die ärzte auf der Bühne', title: '20:49' },
+        { src: img212055, alt: 'die ärzte auf der Bühne', title: '21:20' },
+        { src: img213037, alt: 'die ärzte auf der Bühne', title: '21:30' },
+        { src: img213340, alt: 'die ärzte auf der Bühne', title: '21:33' },
+        { src: img213720, alt: 'die ärzte auf der Bühne', title: '21:37' },
+        { src: img213914, alt: 'die ärzte auf der Bühne', title: '21:39' },
+    ]}
+/>
+
+## Videos
+
+TBA
+
+## Pressebericht
 
 <LinkCard
     title="Berliner Morgenpost"
     href="https://www.morgenpost.de/bezirke/spandau/article235550087/Die-Aerzte-in-der-Zitadelle-Spandau-Punkrock-in-einer-Burg.html"
 />
 
-## 💿 Alben
-
-<CardGrid>
-
-    <Card title="Hell" icon="seti:audio">
-        <a href="https://www.amazon.de/dp/B096TJP6H3?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-            <img src="https://m.media-amazon.com/images/I/71OZOJ+Z76L._SL1200_.jpg" alt="die ärzte - Hell (Amazon)" width="300" />
-        </a>
-    </Card>
-    <Card title="Dunkel" icon="seti:audio">
-        <a href="https://www.amazon.de/dp/B0D6KJ3RFJ?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-            <img src="https://m.media-amazon.com/images/I/81ooJgeSbGS._SL1500_.jpg" alt="die ärzte - Dunkel (Amazon)" width="300" />
-        </a>
-    </Card>
-</CardGrid>
-
-## 🎶 Setlist
+## Setlist
 
 <Card title="Songs" icon="list-format">
-01. Gute Nacht
-02. Noise
-03. Du willst mich küssen
-04. Heulerei
-05. Hurra
-06. Mein kleiner Liebling
-07. Kraft
-08. Doof
-09. No Future (ohne neue Haarfrisur)
-10. Fiasko
-11. Angeber
-12. Wie am ersten Tag
-13. Kamelralley
-14. Punkbabies
-15. Anneliese Schmidt
-16. Achtung: Bielefeld
-17. Ich, am Strand
-18. Schrei
-19. Anti-Zombie
-20. Dunkel
-21. Der Afro von Paul Breitner
-22. Nie wieder Krieg, nie mehr Las Vegas!
-23. Wissen
-24. Zitroneneis
-25. Dobly
-26. Wie es geht
-27. Die Wiking-Jugend hat mein Mädchen entführt
-28. Unrockbar
-29. Plan B
-30. Ignorama
-31. Schrei nach Liebe
-32. Alle auf Brille
-33. Himmelblau
-34. Junge
-35. Dauerwelle vs. Minipli
-36. Der lustige Astronaut
+    <ol>
+        <li>Gute Nacht</li>
+        <li>Noise</li>
+        <li>Du willst mich küssen</li>
+        <li>Heulerei</li>
+        <li>Hurra</li>
+        <li>Mein kleiner Liebling</li>
+        <li>Kraft</li>
+        <li>Doof</li>
+        <li>No Future (ohne neue Haarfrisur)</li>
+        <li>Fiasko</li>
+        <li>Angeber</li>
+        <li>Wie am ersten Tag</li>
+        <li>Kamelralley</li>
+        <li>Punkbabies</li>
+        <li>Anneliese Schmidt</li>
+        <li>Achtung: Bielefeld</li>
+        <li>Ich, am Strand</li>
+        <li>Schrei</li>
+        <li>Anti-Zombie</li>
+        <li>Dunkel</li>
+        <li>Der Afro von Paul Breitner</li>
+        <li>Nie wieder Krieg, nie mehr Las Vegas!</li>
+        <li>Wissen</li>
+        <li>Zitroneneis</li>
+        <li>Dobly</li>
+        <li>Wie es geht</li>
+        <li>Die Wiking-Jugend hat mein Mädchen entführt</li>
+        <li>Unrockbar</li>
+        <li>Plan B</li>
+        <li>Ignorama</li>
+        <li>Schrei nach Liebe</li>
+        <li>Alle auf Brille</li>
+        <li>Himmelblau</li>
+        <li>Junge</li>
+        <li>Dauerwelle vs. Minipli</li>
+        <li>Der lustige Astronaut</li>
+    </ol>
+</Card>
+
+## Album
+
+<Card title="Hell" icon="seti:audio">
+  <a href="https://www.amazon.de/dp/B08GFRPYYF?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+    <Image src="https://m.media-amazon.com/images/I/71OZOJ+Z76L._SL1200_.jpg" alt="die ärzte - Hell" width={300} height={300} />
+  </a>
+</Card>
+
+<Card title="Dunkel" icon="seti:audio">
+  <a href="https://www.amazon.de/dp/B096TJP6H3?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+    <Image src="https://m.media-amazon.com/images/I/81ooJgeSbGS._SL1500_.jpg" alt="die ärzte - Dunkel" width={300} height={300} />
+  </a>
 </Card>
 
 <LinkCard
