@@ -1,100 +1,146 @@
 ---
 title: "Broilers"
-
-description: "Eventbericht über das Konzert der Broilers am 23.12.2022 in der Mitsubishi Electric Halle in Düsseldorf."
-
+description: "Eventbericht über das Konzert der Broilers im Santa's Action Club in der Mitsubishi Electric Halle in Düsseldorf am 23.12.2022."
+tour: "Santa's Action Club"
 pubDate: 2022-12-23
-
 country: "Deutschland"
-
 city: "Düsseldorf"
-
 venue: "Mitsubishi Electric Halle"
-
 price: 62.40
-
+artist: ["Broilers"]
 asin: "B091F3J9SK"
-
-tags: ["62,40 €", "Broilers","Deutschland","Santa's Action Club","Konzert","Mitsubishi Electric Halle","Düsseldorf","2022", "Robbie", "Thomas"]
+tags: ["62,40 €", "Broilers", "Deutschland", "Santa's Action Club", "Konzert", "Mitsubishi Electric Halle", "Düsseldorf", "2022", "Robbie", "Thomas", "Foto"]
 ---
 
-import { LinkCard, Card, CardGrid } from '@astrojs/starlight/components';
+import { Card, LinkCard } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
-import imgTicketFront from '../../../gallery/2022/12/23/2022-12-23_19-30-00.jpg';
+import EventFacts from '@components/EventFacts.astro';
+import Gallery from '@components/Gallery.astro';
+import img193000 from '../../../gallery/2022/12/23/2022-12-23_19-30-00.jpg';
+import img204059 from '../../../gallery/2022/12/23/2022-12-23_20-40-59.jpg';
+import img210420 from '../../../gallery/2022/12/23/2022-12-23_21-04-20.jpg';
+import img211024 from '../../../gallery/2022/12/23/2022-12-23_21-10-24.jpg';
+import img211510 from '../../../gallery/2022/12/23/2022-12-23_21-15-10.jpg';
+import img213744 from '../../../gallery/2022/12/23/2022-12-23_21-37-44.jpg';
+import img214648 from '../../../gallery/2022/12/23/2022-12-23_21-46-48.jpg';
+import img215602 from '../../../gallery/2022/12/23/2022-12-23_21-56-02.jpg';
+import img220207 from '../../../gallery/2022/12/23/2022-12-23_22-02-07.jpg';
+import img222417 from '../../../gallery/2022/12/23/2022-12-23_22-24-17.jpg';
+import img222730 from '../../../gallery/2022/12/23/2022-12-23_22-27-30.jpg';
+import img222810 from '../../../gallery/2022/12/23/2022-12-23_22-28-10.jpg';
+import img223039 from '../../../gallery/2022/12/23/2022-12-23_22-30-39.jpg';
+import img223215 from '../../../gallery/2022/12/23/2022-12-23_22-32-15.jpg';
+import img224528 from '../../../gallery/2022/12/23/2022-12-23_22-45-28.jpg';
+import img224655 from '../../../gallery/2022/12/23/2022-12-23_22-46-55.jpg';
+import img225521 from '../../../gallery/2022/12/23/2022-12-23_22-55-21.jpg';
+import img225842 from '../../../gallery/2022/12/23/2022-12-23_22-58-42.jpg';
+import img230824 from '../../../gallery/2022/12/23/2022-12-23_23-08-24.jpg';
+import img231254 from '../../../gallery/2022/12/23/2022-12-23_23-12-54.jpg';
+import img231352 from '../../../gallery/2022/12/23/2022-12-23_23-13-52.jpg';
 
-## 🎫 Ticket
+<EventFacts
+    facts={[
+        { icon: 'lucide:calendar-days', label: 'Datum', value: '23.12.2022' },
+        { icon: 'lucide:route', label: 'Tour', value: "Santa's Action Club" },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: 'TBA' },
+        { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
+        { icon: 'lucide:map-pin', label: 'Stadt', value: 'Düsseldorf' },
+        { icon: 'lucide:landmark', label: 'Venue', value: 'Mitsubishi Electric Halle' },
+        { icon: 'lucide:badge-euro', label: 'Preis', value: '62,40 €' },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+    ]}
+/>
 
-<Card title="Vorderseite" icon="image">
-    <Image src={imgTicketFront} alt="Ticket Vorderseite" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
+Am 23. Dezember 2022 fand das Konzert der **Broilers** in der Mitsubishi Electric Halle in Düsseldorf statt.
+Die Band, die für ihre energiegeladenen Live-Auftritte bekannt ist, lieferte auch an diesem Abend eine beeindruckende Show ab.
+Die Halle war bis auf den letzten Platz gefüllt, und die Fans waren in bester Stimmung.
+
+Ein persönliches Highlight für mich an diesem Abend war der Song **Ihr da oben**, wobei ich an zwei meiner wichtigsten Menschen in meinem Leben denken musste,
+welche meinen Weg nun nicht mehr begleiten können, aber dennoch immer einen festen Platz in meinem Herzen haben werden: 
+Robert Zieger genannt **Robbie** und **Thomas**.
+
+Von den beiden musste ich mich leider leider viel zu früh verabschieden, ich bin aber sehr dankbar für die gemeinsame Zeit und die Erfahrungen, 
+welche mir diese beiden Menschen mit mir geteilt haben und damit neue Perspektiven eröffnet haben. 
+
+Es gab aber auch einen schönen Moment, unter anderem das Teilen einer Zigarette mit einer Frau, welche genau wie ich auf die Einschränkungen der Corona-Pandemie "geschissen" hat.
+
+## Galerie
+
+<Gallery
+    images={[
+        { src: img193000, alt: 'Ticket Vorderseite', title: 'Ticket Vorderseite' },
+        { src: img204059, alt: 'Broilers in der Mitsubishi Electric Halle', title: '20:40' },
+        { src: img210420, alt: 'Broilers auf der Bühne', title: '21:04' },
+        { src: img211024, alt: 'Broilers auf der Bühne', title: '21:10' },
+        { src: img211510, alt: 'Broilers auf der Bühne', title: '21:15' },
+        { src: img213744, alt: 'Broilers auf der Bühne', title: '21:37' },
+        { src: img214648, alt: 'Broilers auf der Bühne', title: '21:46' },
+        { src: img215602, alt: 'Broilers auf der Bühne', title: '21:56' },
+        { src: img220207, alt: 'Broilers auf der Bühne', title: '22:02' },
+        { src: img222417, alt: 'Broilers auf der Bühne', title: '22:24' },
+        { src: img222730, alt: 'Broilers auf der Bühne', title: '22:27' },
+        { src: img222810, alt: 'Broilers auf der Bühne', title: '22:28' },
+        { src: img223039, alt: 'Broilers auf der Bühne', title: '22:30' },
+        { src: img223215, alt: 'Broilers auf der Bühne', title: '22:32' },
+        { src: img224528, alt: 'Broilers auf der Bühne', title: '22:45' },
+        { src: img224655, alt: 'Broilers auf der Bühne', title: '22:46' },
+        { src: img225521, alt: 'Broilers auf der Bühne', title: '22:55' },
+        { src: img225842, alt: 'Broilers auf der Bühne', title: '22:58' },
+        { src: img230824, alt: 'Broilers auf der Bühne', title: '23:08' },
+        { src: img231254, alt: 'Broilers auf der Bühne', title: '23:12' },
+        { src: img231352, alt: 'Broilers auf der Bühne', title: '23:13' },
+    ]}
+/>
+
+## Videos
+
+TBA
+
+## Setlist
+
+<Card title="Songs" icon="list-format">
+    <ol>
+        <li>Zurück zum Beton</li>
+        <li>Schwer verliebter Hooligan</li>
+        <li>Meine Familie</li>
+        <li>In 80 Tagen um die Welt</li>
+        <li>Feliz Navidad</li>
+        <li>Christmas Time (Again)</li>
+        <li>Harter Weg (Go!)</li>
+        <li>Gib das Schiff nicht auf!</li>
+        <li>33 rpm</li>
+        <li>Held in unserer Mitte</li>
+        <li>Geboren zu gewinnen</li>
+        <li>Alice und Sarah</li>
+        <li>Ihr da oben</li>
+        <li>Vor Mitternacht (Auld Lang Syne)</li>
+        <li>Ich brenn'</li>
+        <li>Die Beste aller Zeiten</li>
+        <li>Wie weit wir gehen</li>
+        <li>Merry Christmas (I Don't Want to Fight Tonight)</li>
+        <li>Santa Claus Is Coming to Town</li>
+        <li>Grauer Schnee</li>
+        <li>Mele Kalikimaka</li>
+        <li>Fairytale of New York (mit Doro Pesch)</li>
+        <li>Tanzt du noch einmal mit mir</li>
+        <li>Ruby Light & Dark</li>
+        <li>Lofi / Jingle Bells / Breaking the Law (mit Doro Pesch)</li>
+        <li>Ist da jemand?</li>
+        <li>Nur nach vorne gehen</li>
+        <li>Nicht alles endet irgendwann</li>
+        <li>Cigarettes & Whiskey</li>
+        <li>Zurück zum Beton</li>
+        <li>Meine Sache</li>
+        <li>Blume</li>
+    </ol>
 </Card>
 
-## 📌 Details
-📅 Datum: 23.12.2022  
-🇩🇪 Land: Deutschland  
-📍 Stadt: Düsseldorf  
-🏟️ Venue: Mitsubishi Electric Halle  
-💶 Preis: 62,40 €  
-
-
-## 🎤 Konzertbericht
-
-Am 23. Dezember 2022 fand das Konzert der Broilers in der Mitsubishi Electric Halle in Düsseldorf statt. 
-Die Band, die für ihre energiegeladenen Live-Auftritte bekannt ist, lieferte auch an diesem Abend eine beeindruckende Show ab.
-Die Halle war bis auf den letzten Platz gefüllt, und die Fans waren in bester Stimmung. 
-
-## ❤️ Fazit
-
-Ein persönliches Highlight für mich an diesem Abend war der Song "Ihr da oben", 
-wobei ich an die beiden wichtigen Menschen in meinem Leben denken musste: Robbie und Thomas. 
-
-Von den beiden musste ich mich leider vorher verabschieden, da sie nicht mehr unter uns weilen.
-
-Es gab aber mehr viele sehr schöne Momente, unter anderem das Teilen einer Zigarrette mit einer Frau, 
-welche genau wie ich auf die Einschränkungen der Corona-Pandemie "geschissen" hat.
-
-## 💿 Album
+## Album
 
 <Card title="Puro Amor" icon="seti:audio">
   <a href="https://www.amazon.de/dp/B091F3J9SK?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-    <img src="https://m.media-amazon.com/images/I/919v5+eZjLL._SY450_.jpg" alt="Broilers - Puro Amor (Schwarzes Vinyl)(Amazon)" width="300" />
+    <Image src="https://m.media-amazon.com/images/I/919v5+eZjLL._SY450_.jpg" alt="Broilers - Puro Amor" width={300} height={300} />
   </a>
-</Card>
-
-## 🎶 Setlist
-
-<Card title="Songs" icon="list-format">
-01. Zurück zum Beton
-02. Schwer verliebter Hooligan
-03. Meine Familie
-04. In 80 Tagen um die Welt
-05. Feliz Navidad
-06. Christmas Time (Again)
-07. Harter Weg (Go!)
-08. Gib das Schiff nicht auf!
-09. 33 rpm
-10. Held in unserer Mitte
-11. Geboren zu gewinnen
-12. Alice und Sarah
-13. Ihr da oben
-14. Vor Mitternacht (Auld Lang Syne)
-15. Ich brenn'
-16. Die Beste aller Zeiten
-17. Wie weit wir gehen
-18. Merry Christmas (I Don't Want to Fight Tonight)
-19. Santa Claus Is Coming to Town
-20. Grauer Schnee
-21. Mele Kalikimaka
-22. Fairytale of New York (mit Dort Pesch)
-23. Tanzt du noch einmal mit mir
-24. Ruby Light & Dark
-25. Lofi / Jingle Bells / Breaking the Law (mit Doro Pesch)
-26. Ist da jemand?
-27. Nur nach vorne gehen
-28. Nicht alles endet irgendwann
-29. Cigarettes & Whiskey
-30. Zurück zum Beton
-31. Meine Sache
-32. Blume
 </Card>
 
 <LinkCard
