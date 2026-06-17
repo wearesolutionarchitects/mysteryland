@@ -1,114 +1,120 @@
 ---
 title: "Brings"
-
-description: "Eventbericht über das Konzert von Brings am 23.04.2022 in Hagen."
-
+description: "Eventbericht über das Konzert von Brings in der Stadthalle in Hagen am 23.04.2022."
 pubDate: 2022-04-23
-
 country: "Deutschland"
-
 city: "Hagen"
-
 venue: "Stadthalle"
-
 price: 35.70
-
+artist: ["Brings"]
 asin: "B09XRK9MJH"
-
-tags: ["35,70 €", "Brings","Deutschland","Konzert","Stadthalle","Hagen","2022"]
+tags: ["35,70 €", "Ticket", "Plakat", "Brings", "Deutschland", "Konzert", "Stadthalle", "Hagen", "2022", "Foto"]
 ---
 
-import { LinkCard, Card, CardGrid } from '@astrojs/starlight/components';
+import { Card, LinkCard } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
-import imgPlakat from '../../../gallery/2022/04/23/2022-04-23_19-00-20.jpg';
-import imgTicketFront from '../../../gallery/2022/04/23/2022-04-23_18-30-00.jpg';
-import img2053 from '../../../gallery/2022/04/23/2022-04-23_20-53-58.jpg';
-import img2126 from '../../../gallery/2022/04/23/2022-04-23_21-26-41.jpg';
-import img2140 from '../../../gallery/2022/04/23/2022-04-23_21-40-59.jpg';
-import img2149 from '../../../gallery/2022/04/23/2022-04-23_21-49-13.jpg';
+import EventFacts from '@components/EventFacts.astro';
+import Gallery from '@components/Gallery.astro';
+import img183000 from '../../../gallery/2022/04/23/2022-04-23_18-30-00.jpg';
+import img190020 from '../../../gallery/2022/04/23/2022-04-23_19-00-20.jpg';
+import img205358 from '../../../gallery/2022/04/23/2022-04-23_20-53-58.jpg';
+import img210019 from '../../../gallery/2022/04/23/2022-04-23_21-00-19.jpg';
+import img210942 from '../../../gallery/2022/04/23/2022-04-23_21-09-42.jpg';
+import img211319 from '../../../gallery/2022/04/23/2022-04-23_21-13-19.jpg';
+import img212623 from '../../../gallery/2022/04/23/2022-04-23_21-26-23.jpg';
+import img212641 from '../../../gallery/2022/04/23/2022-04-23_21-26-41.jpg';
+import img212801 from '../../../gallery/2022/04/23/2022-04-23_21-28-01.jpg';
+import img212906 from '../../../gallery/2022/04/23/2022-04-23_21-29-06.jpg';
+import img213327 from '../../../gallery/2022/04/23/2022-04-23_21-33-27.jpg';
+import img213338 from '../../../gallery/2022/04/23/2022-04-23_21-33-38.jpg';
+import img213609 from '../../../gallery/2022/04/23/2022-04-23_21-36-09.jpg';
+import img214059 from '../../../gallery/2022/04/23/2022-04-23_21-40-59.jpg';
+import img214506 from '../../../gallery/2022/04/23/2022-04-23_21-45-06.jpg';
+import img214913 from '../../../gallery/2022/04/23/2022-04-23_21-49-13.jpg';
+import img215047 from '../../../gallery/2022/04/23/2022-04-23_21-50-47.jpg';
 
+<EventFacts
+    facts={[
+        { icon: 'lucide:calendar-days', label: 'Datum', value: '23.04.2022' },
+        { icon: 'lucide:route', label: 'Tour', value: 'TBA' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: '' },
+        { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
+        { icon: 'lucide:map-pin', label: 'Stadt', value: 'Hagen' },
+        { icon: 'lucide:landmark', label: 'Venue', value: 'Stadthalle' },
+        { icon: 'lucide:badge-euro', label: 'Preis', value: '35,70 €' },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+    ]}
+/>
 
-## 🪧 Plakat
-
-<Card title="Kongress & Eventpark" icon="image">
-    <Image src={imgPlakat} alt="Plakat" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-</Card>
-
-## 🎫 Ticket
-
-<Card title="Vorderseite" icon="image">
-    <Image src={imgTicketFront} alt="Ticket Vorderseite" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-</Card>
-
-## 📌 Details
-📅 Datum: 23.04.2022  
-🇩🇪 Land: Deutschland  
-📍 Stadt: Hagen  
-🏟️ Venue: Stadthalle  
-💶 Preis: 35,70 €  
-
-## 📷 Fotos
-
-<CardGrid>
-  <Card title="20:53" icon="image">
-    <Image src={img2053} alt="Brings um 20:53" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-  </Card>
-  <Card title="21:26" icon="image">
-    <Image src={img2126} alt="Brings um 21:26" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-  </Card>
-  <Card title="21:40" icon="image">
-    <Image src={img2140} alt="Brings um 21:40" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-  </Card>
-  <Card title="21:49" icon="image">
-    <Image src={img2149} alt="Brings um 21:49" widths={[300, 600, 900]} sizes="(max-width: 600px) 100vw, 600px" />
-  </Card>
-</CardGrid>
-
-
-## 🎤 Konzertbericht
-
-Nach der Pandemie und der langen Wartezeit war es endlich wieder so weit: [Brings](https://www.brings.com/) spielten am 23. April 2022 in der Stadthalle Hagen.
-
+Nach der Pandemie und der langen Wartezeit war es endlich wieder so weit: **Brings** spielten am 23. April 2022 in der Stadthalle Hagen.
 Die Stimmung war von Anfang an großartig, und die Band brachte das Publikum mit ihren Hits zum Mitsingen und Tanzen.
 
-## 🗞️ Pressebericht
+## Galerie
+
+<Gallery
+    images={[
+        { src: img183000, alt: 'Ticket', title: 'Ticket' },
+        { src: img190020, alt: 'Plakat', title: 'Plakat' },
+        { src: img205358, alt: 'Brings auf der Bühne', title: '20:53' },
+        { src: img210019, alt: 'Brings auf der Bühne', title: '21:00' },
+        { src: img210942, alt: 'Brings auf der Bühne', title: '21:09' },
+        { src: img211319, alt: 'Brings auf der Bühne', title: '21:13' },
+        { src: img212623, alt: 'Brings auf der Bühne', title: '21:26' },
+        { src: img212641, alt: 'Brings auf der Bühne', title: '21:26' },
+        { src: img212801, alt: 'Brings auf der Bühne', title: '21:28' },
+        { src: img212906, alt: 'Brings auf der Bühne', title: '21:29' },
+        { src: img213327, alt: 'Brings auf der Bühne', title: '21:33' },
+        { src: img213338, alt: 'Brings auf der Bühne', title: '21:33' },
+        { src: img213609, alt: 'Brings auf der Bühne', title: '21:36' },
+        { src: img214059, alt: 'Brings auf der Bühne', title: '21:40' },
+        { src: img214506, alt: 'Brings auf der Bühne', title: '21:45' },
+        { src: img214913, alt: 'Brings auf der Bühne', title: '21:49' },
+        { src: img215047, alt: 'Brings auf der Bühne', title: '21:50' },
+    ]}
+/>
+
+## Videos
+
+TBA
+
+## Pressebericht
 
 <LinkCard
     title="Stadt-Anzeiger"
     href="https://www.lokalkompass.de/hagen/c-kultur/mitreissendes-brings-konzert-in-der-stadthalle-hagen-mir-sin-widder-do-siehe-video-clip_a1714144"
-    target="_blank"
-    rel="noopener noreferrer"
 />
 
-## 💿 Album
-
-<Card title="Nix för lau" icon="seti:audio">
-  <a href="https://www.amazon.de/dp//B09XRK9MJH?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-    <img src="https://m.media-amazon.com/images/I/51-BVpU6LpL._SL1001_.jpg" alt="Brings - Nix för lau (Amazon)" width="300" />
-  </a>
-</Card>
-
-## 🎶 Setlist
+## Setlist
 
 <Card title="Songs" icon="list-format">
-01. Mir sin widder do
-02. Su lang mer noch am Lääve sin
-03. Katharina
-04. Poppe, Kaate, Danze
-05. 14. Juli
-06. Man müsste noch mal 20 sein
-07. Nur nicht aus Liebe weinen
-08. Funkemarieche
-09. Et jeilste Land
-10. Jeck Yeah!
-11. Superjeilezick
-12. Halleluja
-13. Polka, Polka, Polka
-14. Kölsche Jung
-15. Der Mai ist gekommen
-16. Liebe gewinnt
-17. Bis ans Meer
-18. Heimjon
+    <ol>
+        <li>Mir sin widder do</li>
+        <li>Su lang mer noch am Lääve sin</li>
+        <li>Katharina</li>
+        <li>Poppe, Kaate, Danze</li>
+        <li>14. Juli</li>
+        <li>Man müsste noch mal 20 sein</li>
+        <li>Nur nicht aus Liebe weinen</li>
+        <li>Funkemarieche</li>
+        <li>Et jeilste Land</li>
+        <li>Jeck Yeah!</li>
+        <li>Superjeilezick</li>
+        <li>Halleluja</li>
+        <li>Polka, Polka, Polka</li>
+        <li>Kölsche Jung</li>
+        <li>Der Mai ist gekommen</li>
+        <li>Liebe gewinnt</li>
+        <li>Bis ans Meer</li>
+        <li>Heimjon</li>
+    </ol>
+</Card>
+
+## Album
+
+<Card title="Album" icon="seti:audio">
+  <a href="https://www.amazon.de/dp/B09XRK9MJH?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+    <Image src="https://m.media-amazon.com/images/I/51-BVpU6LpL._SL1001_.jpg" alt="Brings - Nix för lau" width={300} height={300} />
+  </a>
 </Card>
 
 <LinkCard
