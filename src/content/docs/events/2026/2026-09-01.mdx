@@ -1,11 +1,19 @@
 ---
 title: "OMD"
 
-description: "Eventbericht über das Konzert von OMD auf dem 'Zeltfestival Ruhr' in Witten/Kemnader See am 01.09.2026."
+description: "Eventbericht über das Konzert von OMD auf dem Zeltfestival Ruhr am Kemnader See in Witten am 1. September 2026."
 
 tour: "Zeltfestival Ruhr"
 
 artist: ["OMD"]
+
+category: "Konzert"
+
+ticketCategory: "Stehplatz"
+
+support: "TBA"
+
+status: "scheduled"
 
 pubDate: 2026-09-01
 
@@ -19,7 +27,11 @@ price: 66.70
 
 asin: "B0CGG5NQXP"
 
-tags: ["Ticket","Kemnader See","Deutschland","Konzert","OMD","Zeltfestival Ruhr","2026"]
+ogImage: "/og/events/2026/2026-09-01.jpg"
+
+canonicalUrl: "/events/2026/2026-09-01/"
+
+tags: ["Ticket", "Kemnader See", "Deutschland", "Witten", "Konzert", "OMD", "Zeltfestival Ruhr", "2026"]
 ---
 import { LinkCard, Card } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
@@ -38,10 +50,11 @@ import img2015 from '../../../gallery/2026/09/01/2026-09-01_20-15-00.jpg';
         { icon: 'lucide:landmark', label: 'Venue', value: 'Kemnader See' },
         { icon: 'lucide:badge-euro', label: 'Preis', value: '66,70 €' },
         { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz' },
+        { icon: 'lucide:tag', label: 'Typ', value: 'Konzert' },
     ]}
 />
 
-TBA
+OMD spielen am 1. September 2026 beim **Zeltfestival Ruhr** am Kemnader See. Das Konzert verbindet den Festivalrahmen mit dem elektronischen Pop-Katalog der Band rund um Klassiker wie **Enola Gay** und Material aus **Bauhaus Staircase**.
 
 ## Galerie
 
@@ -74,7 +87,7 @@ TBA
 
 <Card title="Bauhaus Staircase" icon="seti:audio">
     <a href="https://www.amazon.de/dp/B0CGG5NQXP?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-        <img src="https://m.media-amazon.com/images/I/81Oqy31BjKL._SL1500_.jpg" alt="OMD - Bauhaus Staircase" width="300" />
+        <Image src="https://m.media-amazon.com/images/I/81Oqy31BjKL._SL1500_.jpg" alt="OMD - Bauhaus Staircase" width={300} height={300} />
     </a>
 </Card>
 
@@ -84,5 +97,4 @@ TBA
     title="Mehr Informationen"
     href="https://fanieng.com/2026/07/17/omd-bauhaus-staircase"
 />
-
 
