@@ -33,6 +33,28 @@ function frontmatterAsin(value) {
   ];
 }
 
+function frontmatterScalarOrArray(key, value) {
+  const values = stringList(value);
+  if (!values.length) return [];
+  return [
+    values.length === 1
+      ? `${key}: ${yamlString(values[0])}`
+      : `${key}: ${frontmatterArray(values)}`,
+  ];
+}
+
+function eventCategory(event) {
+  return event.category || event.eventType || 'Konzert';
+}
+
+function eventStatus(pubDate) {
+  const value = String(pubDate || '');
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return 'TBA';
+
+  const today = new Date().toISOString().slice(0, 10);
+  return value > today ? 'scheduled' : 'completed';
+}
+
 function imageImports(images) {
   return images
     .map(({ variable, importPath }) => `import ${variable} from ${yamlString(importPath)};`)
@@ -80,6 +102,7 @@ ${entries}
 function frontmatter(event) {
   const artists = stringList(event.artists || event.artist || event.title);
   const tags = stringList(event.tags);
+  const category = eventCategory(event);
 
   return [
     '---',
@@ -87,6 +110,11 @@ function frontmatter(event) {
     `description: ${yamlString(event.description)}`,
     `tour: ${yamlString(event.tour || 'TBA')}`,
     `artist: ${frontmatterArray(artists)}`,
+    `category: ${yamlString(category)}`,
+    `ticketCategory: ${yamlString(event.ticketCategory || 'TBA')}`,
+    ...frontmatterScalarOrArray('support', event.support || 'TBA'),
+    ...frontmatterScalarOrArray('guest', event.guest),
+    `status: ${yamlString(event.status || eventStatus(event.pubDate))}`,
     `pubDate: ${event.pubDate}`,
     `country: ${yamlString(event.country || 'TBA')}`,
     `city: ${yamlString(event.city || 'TBA')}`,
@@ -95,6 +123,8 @@ function frontmatter(event) {
       ? [`price: ${event.price.toFixed(2)}`]
       : []),
     ...frontmatterAsin(event.asin),
+    ...(event.ogImage ? [`ogImage: ${yamlString(event.ogImage)}`] : []),
+    ...(event.canonicalUrl ? [`canonicalUrl: ${yamlString(event.canonicalUrl)}`] : []),
     `tags: ${frontmatterArray(tags)}`,
     '---',
   ].join('\n');
@@ -114,6 +144,7 @@ function eventFacts(event) {
         { icon: 'lucide:landmark', label: 'Venue', value: ${yamlString(event.venue || 'TBA')} },
         { icon: 'lucide:badge-euro', label: 'Preis', value: ${yamlString(priceValue(event.price))} },
         { icon: 'lucide:ticket-check', label: 'Kategorie', value: ${yamlString(event.ticketCategory || 'TBA')} },
+        { icon: 'lucide:tag', label: 'Typ', value: ${yamlString(eventCategory(event))} },
     ]}
 />`;
 }
