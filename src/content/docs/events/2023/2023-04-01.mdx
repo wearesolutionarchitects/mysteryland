@@ -2,6 +2,9 @@
 title: "Abwärts"
 description: "Eventbericht über das Konzert von Abwärts auf der Tour 2023 im SO 36 in Berlin am 01.04.2023."
 tour: "Tour 2023"
+category: "Konzert"
+ticketCategory: "Stehplatz Innenraum"
+status: "completed"
 pubDate: 2023-04-01
 country: "Deutschland"
 city: "Berlin"
@@ -9,7 +12,9 @@ venue: "SO 36"
 price: 26.40
 artist: ["Abwärts", "Frank Z.", "Rodrigo González", "Klaus Jankuhn", "Günter Schulz"]
 asin: "B0BZQWTMTS"
-tags: ["€26.40", "Ticket", "Deutschland", "Konzert", "Berlin", "Abwärts", "2023", "SO 36", "Tour 2023", "Foto"]
+ogImage: "/og/events/2023/2023-04-01.jpg"
+canonicalUrl: "/events/2023/2023-04-01/"
+tags: ["Ticket", "Deutschland", "Konzert", "Berlin", "Abwärts", "Frank Z.", "Rodrigo González", "Klaus Jankuhn", "Günter Schulz", "2023", "SO 36", "Tour 2023", "Foto"]
 ---
 
 import { Card, LinkCard } from '@astrojs/starlight/components';
@@ -31,12 +36,13 @@ import img232053 from '../../../gallery/2023/04/01/2023-04-01_23-20-53.jpg';
     facts={[
         { icon: 'lucide:calendar-days', label: 'Datum', value: '01.04.2023' },
         { icon: 'lucide:route', label: 'Tour', value: 'Tour 2023' },
-        { icon: 'lucide:mic-vocal', label: 'Line-up', value: 'Frank Z., Rodrigo González, Klaus Jankuhn, Günter Schulz' },
+        { icon: 'lucide:mic-vocal', label: 'Line-up', value: 'Abwärts, Frank Z., Rodrigo González, Klaus Jankuhn, Günter Schulz', links: [{ label: 'Abwärts', href: 'http://www.abwaerts.com/' }, { label: 'Frank Z.' }, { label: 'Rodrigo González', href: 'http://www.rodarmy.org/' }, { label: 'Klaus Jankuhn' }, { label: 'Günter Schulz', href: 'http://guenterschulzmusic.com/home' }] },
         { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
         { icon: 'lucide:map-pin', label: 'Stadt', value: 'Berlin' },
         { icon: 'lucide:landmark', label: 'Venue', value: 'SO 36' },
         { icon: 'lucide:badge-euro', label: 'Preis', value: '26,40 €' },
         { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+        { icon: 'lucide:tag', label: 'Typ', value: 'Konzert' },
     ]}
 />
 
