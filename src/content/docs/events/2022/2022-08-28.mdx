@@ -1,7 +1,11 @@
 ---
 title: "die ärzte"
-description: "Eventbericht über das Konzert von die ärzte auf der Berlin Tour MMXXII auf dem Flughafen Tempelhof in Berlin am 28.08.2022."
+description: "Eventbericht über das Konzert von die ärzte auf der Berlin Tour MMXXII auf dem Flughafen Tempelhof in Berlin am 28. August 2022 mit Royal Republic und The Dead End Kids."
 tour: "Berlin Tour MMXXII"
+category: "Konzert"
+ticketCategory: "Stehplatz Innenraum"
+support: ["Royal Republic", "The Dead End Kids"]
+status: "completed"
 pubDate: 2022-08-28
 country: "Deutschland"
 city: "Berlin"
@@ -9,7 +13,9 @@ venue: "Flughafen Tempelhof"
 price: 72.00
 artist: ["die ärzte"]
 asin: ["B08GFRPYYF", "B096TJP6H3"]
-tags: ["€72.00", "Ticket", "Deutschland", "Konzert", "Berlin", "die ärzte", "Berlin Tour MMXXII", "Flughafen Tempelhof", "2022", "Foto"]
+ogImage: "/og/events/2022/2022-08-28.jpg"
+canonicalUrl: "/events/2022/2022-08-28/"
+tags: ["Deutschland", "Konzert", "Berlin", "die ärzte", "Royal Republic", "The Dead End Kids", "Berlin Tour MMXXII", "Flughafen Tempelhof", "2022"]
 ---
 
 import { Card, LinkCard } from '@astrojs/starlight/components';
@@ -41,12 +47,13 @@ import img220739 from '../../../gallery/2022/08/28/2022-08-28_22-07-39.jpg';
     facts={[
         { icon: 'lucide:calendar-days', label: 'Datum', value: '28.08.2022' },
         { icon: 'lucide:route', label: 'Tour', value: 'Berlin Tour MMXXII' },
-        { icon: 'lucide:mic-vocal', label: 'Support', value: 'TBA' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: 'Royal Republic, The Dead End Kids', links: [{ label: 'Royal Republic', href: 'https://www.royalrepublic.net/' }, { label: 'The Dead End Kids' }] },
         { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
         { icon: 'lucide:map-pin', label: 'Stadt', value: 'Berlin' },
         { icon: 'lucide:landmark', label: 'Venue', value: 'Flughafen Tempelhof' },
         { icon: 'lucide:badge-euro', label: 'Preis', value: '72,00 €' },
         { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+        { icon: 'lucide:tag', label: 'Typ', value: 'Konzert' },
     ]}
 />
 
