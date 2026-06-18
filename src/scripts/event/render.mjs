@@ -55,6 +55,30 @@ function eventStatus(pubDate) {
   return value > today ? 'scheduled' : 'completed';
 }
 
+function eventCanonicalUrl(pubDate) {
+  const value = String(pubDate || '');
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return '';
+
+  const year = value.slice(0, 4);
+  return `/events/${year}/${value}/`;
+}
+
+function eventOgImage(event) {
+  return event.ogImage || event.fallbackOgImage || '/apple-touch-icon.png';
+}
+
+function normalizeEvent(input) {
+  return {
+    ...input,
+    category: eventCategory(input),
+    ticketCategory: input.ticketCategory || 'TBA',
+    support: input.support || 'TBA',
+    status: input.status || eventStatus(input.pubDate),
+    canonicalUrl: input.canonicalUrl || eventCanonicalUrl(input.pubDate),
+    ogImage: eventOgImage(input),
+  };
+}
+
 function imageImports(images) {
   return images
     .map(({ variable, importPath }) => `import ${variable} from ${yamlString(importPath)};`)
@@ -111,10 +135,10 @@ function frontmatter(event) {
     `tour: ${yamlString(event.tour || 'TBA')}`,
     `artist: ${frontmatterArray(artists)}`,
     `category: ${yamlString(category)}`,
-    `ticketCategory: ${yamlString(event.ticketCategory || 'TBA')}`,
-    ...frontmatterScalarOrArray('support', event.support || 'TBA'),
+    `ticketCategory: ${yamlString(event.ticketCategory)}`,
+    ...frontmatterScalarOrArray('support', event.support),
     ...frontmatterScalarOrArray('guest', event.guest),
-    `status: ${yamlString(event.status || eventStatus(event.pubDate))}`,
+    `status: ${yamlString(event.status)}`,
     `pubDate: ${event.pubDate}`,
     `country: ${yamlString(event.country || 'TBA')}`,
     `city: ${yamlString(event.city || 'TBA')}`,
@@ -123,8 +147,8 @@ function frontmatter(event) {
       ? [`price: ${event.price.toFixed(2)}`]
       : []),
     ...frontmatterAsin(event.asin),
-    ...(event.ogImage ? [`ogImage: ${yamlString(event.ogImage)}`] : []),
-    ...(event.canonicalUrl ? [`canonicalUrl: ${yamlString(event.canonicalUrl)}`] : []),
+    `ogImage: ${yamlString(event.ogImage)}`,
+    `canonicalUrl: ${yamlString(event.canonicalUrl)}`,
     `tags: ${frontmatterArray(tags)}`,
     '---',
   ].join('\n');
@@ -138,22 +162,23 @@ function eventFacts(event) {
     facts={[
         { icon: 'lucide:calendar-days', label: 'Datum', value: ${yamlString(displayDate)} },
         { icon: 'lucide:route', label: 'Tour', value: ${yamlString(event.tour || 'TBA')} },
-        { icon: 'lucide:mic-vocal', label: ${yamlString(event.supportLabel || 'Support')}, value: ${yamlString(event.support || 'TBA')} },
+        { icon: 'lucide:mic-vocal', label: ${yamlString(event.supportLabel || 'Support')}, value: ${yamlString(event.support)} },
         { icon: 'lucide:globe', label: 'Land', value: ${yamlString(event.country || 'TBA')} },
         { icon: 'lucide:map-pin', label: 'Stadt', value: ${yamlString(event.city || 'TBA')} },
         { icon: 'lucide:landmark', label: 'Venue', value: ${yamlString(event.venue || 'TBA')} },
         { icon: 'lucide:badge-euro', label: 'Preis', value: ${yamlString(priceValue(event.price))} },
-        { icon: 'lucide:ticket-check', label: 'Kategorie', value: ${yamlString(event.ticketCategory || 'TBA')} },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: ${yamlString(event.ticketCategory)} },
         { icon: 'lucide:tag', label: 'Typ', value: ${yamlString(eventCategory(event))} },
     ]}
 />`;
 }
 
 export function renderEventMdx(input) {
+  const event = normalizeEvent(input);
   const images = Array.isArray(input.images) ? input.images : [];
   const videos = videoList(input.videos);
-  const intro = String(input.intro || 'TBA').trim();
-  const setlistHeading = stringList(input.artists || input.artist).length > 1
+  const intro = String(event.intro || 'TBA').trim();
+  const setlistHeading = stringList(event.artists || event.artist).length > 1
     ? 'Setlists'
     : 'Setlist';
   const imports = [
@@ -164,18 +189,18 @@ export function renderEventMdx(input) {
     videos.length ? "import YouTubeVideos from '@components/YouTubeVideos.astro';" : '',
     imageImports(images),
   ].filter(Boolean).join('\n');
-  const externalLink = input.externalUrl
+  const externalLink = event.externalUrl
     ? `
 <LinkCard
     title="Mehr Informationen"
-    href=${yamlString(input.externalUrl)}
+    href=${yamlString(event.externalUrl)}
 />`
     : '';
 
-  return `${frontmatter(input)}
+  return `${frontmatter(event)}
 ${imports}
 
-${eventFacts(input)}
+${eventFacts(event)}
 
 ${intro}
 
