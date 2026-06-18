@@ -1,5 +1,5 @@
 ---
-title: "22.11.1986 – Peter’s Pop Show"
+title: "Peter’s Pop Show"
 description: "Eventbericht über das Konzert von 22.11.1986 – Peter’s Pop Show in Westfalenhalle in Dortmund am 22.11.1986."
 tour: "TBA"
 artist: ["22.11.1986 – Peter’s Pop Show"]
@@ -21,17 +21,17 @@ import { Card, LinkCard } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
 import EventFacts from '@components/EventFacts.astro';
 import Gallery from '@components/Gallery.astro';
+import YouTubeVideos from '@components/YouTubeVideos.astro';
 
 <EventFacts
     facts={[
         { icon: 'lucide:calendar-days', label: 'Datum', value: "22.11.1986" },
-        { icon: 'lucide:route', label: 'Tour', value: "TBA" },
         { icon: 'lucide:globe', label: 'Land', value: "Deutschland" },
         { icon: 'lucide:map-pin', label: 'Stadt', value: "Dortmund" },
         { icon: 'lucide:landmark', label: 'Venue', value: "Westfalenhalle" },
         { icon: 'lucide:badge-euro', label: 'Preis', value: "0,00 €" },
-        { icon: 'lucide:ticket-check', label: 'Kategorie', value: "TBA" },
-        { icon: 'lucide:tag', label: 'Typ', value: "Konzert" },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: "Stehplatz Innenraum" },
+        { icon: 'lucide:tag', label: 'Typ', value: "Festival" },
     ]}
 />
 
@@ -41,9 +41,13 @@ TBA
 
 TBA
 
-## Videos
+## Video
 
-TBA
+<YouTubeVideos
+    videos={[
+        { id: 'dWTpZRhn0sY' },
+    ]}
+/>
 
 ## Setlist
 
