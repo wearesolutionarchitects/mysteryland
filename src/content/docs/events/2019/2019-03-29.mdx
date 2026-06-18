@@ -1,12 +1,13 @@
 ---
-title: "BELA B FELSENHEIMER SCHARNOW IST ÜBER(ALL)"
-description: "BELA B FELSENHEIMER SCHARNOW IST ÜBER(ALL) am 2019-03-29 in Essen, Zeche Carl."
+title: "Bela B Felsenheimer"
+description: "Eventbericht über Bela B Felsenheimer mit Scharnow ist überall in der Zeche Carl in Essen am 29.03.2019."
+tour: "Scharnow ist überall"
 pubDate: 2019-03-29
 country: "Deutschland"
 city: "Essen"
 venue: "Zeche Carl"
-artist: ["BELA B FELSENHEIMER SCHARNOW IST ÜBER(ALL)"]
 price: 23.00
+artist: ["Bela B Felsenheimer"]
 asin: "345327136X"
 tags:
   - "2019"
@@ -14,29 +15,50 @@ tags:
   - "Deutschland"
   - "Essen"
   - "Zeche Carl"
-  - "Konzert"
+  - "Scharnow"
+  - "Lesung"
 ---
-import { LinkCard } from '@astrojs/starlight/components';
 
-## Details
+import { Card, LinkCard } from '@astrojs/starlight/components';
+import EventFacts from '@components/EventFacts.astro';
+import { Image } from 'astro:assets';
 
-📅 Datum: 2019-03-29  
-🇩🇪 Land: Deutschland  
-📍 Stadt: Essen  
-🏟️ Venue: Zeche Carl  
-💶 Preis: 23,00 €  
+<EventFacts
+    facts={[
+        { icon: 'lucide:calendar-days', label: 'Datum', value: '29.03.2019' },
+        { icon: 'lucide:route', label: 'Tour', value: 'Scharnow ist überall' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: '' },
+        { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
+        { icon: 'lucide:map-pin', label: 'Stadt', value: 'Essen' },
+        { icon: 'lucide:landmark', label: 'Venue', value: 'Zeche Carl' },
+        { icon: 'lucide:badge-euro', label: 'Preis', value: '23,00 €' },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Lesung' },
+    ]}
+/>
 
-## Bilder
+**Bela B Felsenheimer** war am 29. März 2019 zu einer Lesung aus seinem 1. Buch **Scharnow ist überall** in der Zeche Carl in Essen zu Gast.
 
-## Konzertbericht
+## Galerie
+
+TBA
+
+## Videos
+
+TBA
 
 ## Pressebericht
 
-## Album
+TBA
 
-## Setlist
+## Buch
+
+<Card title="Scharnow" icon="open-book">
+  <a href="https://www.amazon.de/dp/345327136X?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+    <Image src="https://m.media-amazon.com/images/I/81GgBsZhZiL._SL1500_.jpg" alt="Buchcover von Scharnow" width={300} height={450} />
+  </a>
+</Card>
 
 <LinkCard
-  title="Mehr Informationen"
-  href="https://fanieng.com/2019/03/29/bela-b-essen-zeche-carl/"
+    title="Mehr Informationen"
+    href="https://fanieng.com/2019/03/29/bela-b-essen-zeche-carl/"
 />
