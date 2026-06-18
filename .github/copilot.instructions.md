@@ -32,10 +32,11 @@ This project follows a structured and modular development approach with a focus 
 - Artist-Profile liegen unter `src/content/docs/artists/<slug>.mdx`.
 - Artist-Slugs sind stabil und deutsch lesbar, z.B. `die-aerzte`, `herbert-groenemeyer`, `guenter-schulz`.
 - Das minimale Artist-Frontmatter nutzt `title`, `description`, `artistName`, `artistType`, `aliases`, `origin`, `country`, `artistStatus`, `website`, `musicbrainzId`, `wikidataId`, `canonicalUrl`, `tags`.
+- `website` ist die offizielle externe Artist-URL. Nicht automatisch aus Slugs ableiten.
 - Unbekannte Artist-Informationen werden mit `TBA` gepflegt, nicht geraten.
 - Fehlende Artist-Profile werden mit `npm run artist:sync` aus `artist`, `support` und `guest` der Event-MDX-Dateien erzeugt.
 - Manuell gepflegte Artist-Seiten sollen nicht durch Skripte überschrieben werden.
-- Artist-Menüs, Support-Links in `EventFacts` und Statistikseiten bauen später auf `src/content/docs/artists` auf, sind aber getrennte Ausbaustufen.
+- Support-Links in `EventFacts` zeigen auf offizielle externe URLs. Interne Artist-Seiten bleiben davon getrennt und werden später für Menüs und Statistikseiten verwendet.
 
 ## Code Style and Formatting
 

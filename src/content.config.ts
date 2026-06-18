@@ -16,6 +16,7 @@ const docsCollection = defineCollection({
       tour: z.string().optional(),
       artist: z.array(z.string()).optional(),
       artistName: z.string().optional(),
+      artistPage: z.string().optional(),
       artistType: z.enum(['Band', 'Solo', 'Projekt', 'Person', 'TBA']).optional(),
       aliases: z.array(z.string()).optional(),
       origin: z.string().optional(),

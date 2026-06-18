@@ -118,6 +118,7 @@ function renderArtist({ name, slug, roles }) {
 title: ${yamlString(name)}
 description: ${yamlString(`Artist-Profil zu ${name} im Mysteryland Konzertarchiv.`)}
 artistName: ${yamlString(name)}
+artistPage: ${yamlString(`/artists/${slug}/`)}
 artistType: "TBA"
 aliases: []
 origin: "TBA"
@@ -177,7 +178,11 @@ for (const artist of [...artists.values()].sort((a, b) => a.slug.localeCompare(b
   if (fs.existsSync(target)) {
     const content = fs.readFileSync(target, 'utf8');
     const expectedCanonical = `canonicalUrl: ${yamlString(`/artists/${artist.slug}/`)}`;
-    if (content.includes('## Überblick\n\nTBA\n\n## Archiv') && !content.includes(expectedCanonical)) {
+    const expectedArtistPage = `artistPage: ${yamlString(`/artists/${artist.slug}/`)}`;
+    if (
+      content.includes('## Überblick\n\nTBA\n\n## Archiv')
+      && (!content.includes(expectedCanonical) || !content.includes(expectedArtistPage))
+    ) {
       fs.writeFileSync(target, renderArtist(artist), 'utf8');
       repaired += 1;
       console.log(`Repaired ${target}`);

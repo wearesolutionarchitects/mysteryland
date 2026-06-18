@@ -43,6 +43,18 @@ function frontmatterScalarOrArray(key, value) {
   ];
 }
 
+function factLinks(value) {
+  const links = Array.isArray(value) ? value : [];
+  if (!links.length) return '';
+
+  const entries = links
+    .filter(({ label, href }) => String(label || '').trim() && String(href || '').trim())
+    .map(({ label, href }) => `{ label: ${yamlString(label)}, href: ${yamlString(href)} }`)
+    .join(', ');
+
+  return entries ? `, links: [${entries}]` : '';
+}
+
 function eventCategory(event) {
   return event.category || event.eventType || 'Konzert';
 }
@@ -162,7 +174,7 @@ function eventFacts(event) {
     facts={[
         { icon: 'lucide:calendar-days', label: 'Datum', value: ${yamlString(displayDate)} },
         { icon: 'lucide:route', label: 'Tour', value: ${yamlString(event.tour || 'TBA')} },
-        { icon: 'lucide:mic-vocal', label: ${yamlString(event.supportLabel || 'Support')}, value: ${yamlString(event.support)} },
+        { icon: 'lucide:mic-vocal', label: ${yamlString(event.supportLabel || 'Support')}, value: ${yamlString(event.support)}${factLinks(event.supportLinks)} },
         { icon: 'lucide:globe', label: 'Land', value: ${yamlString(event.country || 'TBA')} },
         { icon: 'lucide:map-pin', label: 'Stadt', value: ${yamlString(event.city || 'TBA')} },
         { icon: 'lucide:landmark', label: 'Venue', value: ${yamlString(event.venue || 'TBA')} },

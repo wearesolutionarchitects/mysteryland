@@ -1,10 +1,16 @@
 ---
 import { Icon } from 'astro-icon/components';
 
+interface FactLink {
+  label: string;
+  href: string;
+}
+
 interface Fact {
   icon: string;
   label: string;
-  value: string;
+  value?: string;
+  links?: FactLink[];
 }
 
 interface Props {
@@ -15,11 +21,20 @@ const { facts } = Astro.props;
 ---
 
 <dl class="event-facts">
-  {facts.map(({ icon, label, value }) => (
+  {facts.map(({ icon, label, value, links = [] }) => (
     <div class="event-fact">
       <Icon name={icon} size="1.25rem" aria-hidden="true" />
       <dt>{label}</dt>
-      <dd>{value}</dd>
+      <dd>
+        {links.length > 0
+          ? links.map(({ label: linkLabel, href }, index) => (
+              <>
+                {index > 0 && <span>, </span>}
+                <a href={href} target="_blank" rel="noopener noreferrer">{linkLabel}</a>
+              </>
+            ))
+          : value}
+      </dd>
     </div>
   ))}
 </dl>
@@ -67,6 +82,17 @@ const { facts } = Astro.props;
     font-weight: 600;
     line-height: 1.3;
     overflow-wrap: anywhere;
+  }
+
+  dd a {
+    color: var(--sl-color-accent-high);
+    text-decoration-color: color-mix(in srgb, var(--sl-color-accent-high), transparent 35%);
+    text-underline-offset: 0.15em;
+  }
+
+  dd a:hover,
+  dd a:focus-visible {
+    color: var(--sl-color-white);
   }
 
   :global(.content-panel:has(.event-facts)) {

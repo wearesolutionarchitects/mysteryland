@@ -233,6 +233,7 @@ Artist-Profile verwenden mindestens dieses Frontmatter:
 title: "Donots"
 description: "Artist-Profil zu Donots im Mysteryland Konzertarchiv."
 artistName: "Donots"
+artistPage: "/artists/donots/"
 artistType: "TBA"
 aliases: []
 origin: "TBA"
@@ -245,7 +246,24 @@ canonicalUrl: "/artists/donots/"
 tags: ["Artist", "TBA"]
 ```
 
-Die Artist-Seiten werden bewusst noch nicht in der Sidebar eingebunden. Menüs, Artist-Übersichten, automatische Support-Links in `EventFacts` und Statistikseiten werden später auf dieser Struktur aufgebaut.
+`website` ist die offizielle externe Artist-URL. Unbekannte Websites bleiben `TBA`.
+
+Support-Links in `EventFacts` zeigen auf diese offiziellen externen URLs, nicht auf interne Artist-Seiten. In manuell gepflegten Event-MDX-Dateien werden sie direkt am Support-Fact gesetzt:
+
+```mdx
+{ icon: 'lucide:mic-vocal', label: 'Support', value: 'Donots, Agnostic Front', links: [{ label: 'Donots', href: 'https://www.donots.com/' }, { label: 'Agnostic Front', href: 'https://www.agnosticfront.com/' }] },
+```
+
+Bei generierten Events kann der zentrale Renderer dafür `supportLinks` verwenden:
+
+```js
+supportLinks: [
+  { label: 'Donots', href: 'https://www.donots.com/' },
+  { label: 'Agnostic Front', href: 'https://www.agnosticfront.com/' },
+]
+```
+
+Die Artist-Seiten werden bewusst noch nicht in der Sidebar eingebunden. Menüs, Artist-Übersichten und Statistikseiten werden später auf dieser Struktur aufgebaut.
 
 ## Prüfung
 
