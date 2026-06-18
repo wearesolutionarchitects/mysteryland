@@ -2,7 +2,9 @@
 
 Der normale Workflow verarbeitet zuerst die Bilder aus der Inbox und erzeugt danach schrittweise die Event-MDX. Die Skripte ändern jeweils nur ihren eigenen Bereich.
 
-Das gemeinsame MDX-Gerüst wird zentral in `src/scripts/event/render.mjs` erzeugt. `event:mdx` und `event:wp` verwenden denselben Renderer, damit neue Events immer dieselben Imports, `EventFacts`, Galerie-, Video-, Setlist- und Album-Bereiche erhalten.
+Das gemeinsame MDX-Gerüst wird zentral in `src/scripts/event/render.mjs` erzeugt. `event:mdx` und `event:wp` verwenden denselben Renderer, damit neue Events immer dieselben Imports, `EventFacts`, Galerie-, Video-, Setlist-, Album- und SEO-Felder erhalten.
+
+Event-Seiten sollen strukturiertes Frontmatter besitzen, damit `src/components/EventSeo.astro` daraus JSON-LD, Open-Graph- und Twitter-Metadaten erzeugen kann.
 
 ## Voraussetzungen
 
@@ -22,6 +24,41 @@ SETLIST_USER_AGENT=heiko@fanieng.com
 AMAZON_HOST=www.amazon.de
 AMAZON_AFFILIATE_TAG=mysteryland-21
 ```
+
+## Event-Frontmatter
+
+Neue oder nachgezogene Event-MDX-Dateien sollen mindestens diese Felder verwenden:
+
+```yaml
+title: "Sondaschule"
+description: "Eventbericht über das Konzert von Sondaschule in der Westfalenhalle Dortmund am 11.12.2027."
+tour: "25 Jahre - Mega Circle Pott"
+artist: ["Sondaschule"]
+category: "Konzert"
+ticketCategory: "Stehplatz Innenraum"
+support: "TBA"
+status: "scheduled"
+pubDate: 2027-12-11
+country: "Deutschland"
+city: "Dortmund"
+venue: "Westfalenhalle"
+price: 66.40
+asin: "B0F48VP6V8"
+ogImage: "/og/events/2027/2027-12-11.jpg"
+canonicalUrl: "/events/2027/2027-12-11/"
+tags: ["Ticket", "€66.40", "Deutschland", "Westfalenhalle", "Konzert", "25 Jahre - Mega Circle Pott", "Dortmund", "Sondaschule", "2027"]
+```
+
+Konventionen:
+
+- `category`: `Konzert`, `Festival`, `Lesung` oder `TBA`
+- `status`: `scheduled`, `postponed`, `cancelled`, `completed` oder `TBA`
+- `ticketCategory`: z.B. `Stehplatz Innenraum`, `Sitzplatz`, `Front of Stage`, `TBA`
+- `support` und `guest`: String oder Array, unbekannt als `TBA`
+- `canonicalUrl`: `/events/YYYY/YYYY-MM-DD/`
+- `ogImage`: öffentlicher Pfad unter `/og/events/YYYY/YYYY-MM-DD.jpg`
+
+`TBA` ist bewusst erlaubt. Fehlende Informationen sollen nicht geraten werden.
 
 ## 1. Bilder importieren
 
@@ -76,10 +113,40 @@ Das Skript:
 - übernimmt unter anderem Schlagwörter, Tour, Land und Preis aus den Metadaten,
 - erstellt `src/content/docs/events/YYYY/YYYY-MM-DD.mdx`,
 - bindet alle gefundenen Bilder über die `Gallery`-Komponente ein,
+- erzeugt automatisch ein öffentliches OG-Bild unter `public/og/events/YYYY/YYYY-MM-DD.jpg`,
+- setzt `ogImage` und `canonicalUrl` im Frontmatter,
+- setzt SEO-relevante Felder wie `category`, `ticketCategory`, `support` und `status`,
 - setzt noch unbekannte Inhalte auf `TBA`,
 - bricht ab, wenn die Event-MDX bereits existiert.
 
-## 3. Album ergänzen
+## 3. Open-Graph-Bild erzeugen
+
+Modul: `src/scripts/event/og.mjs`
+
+```bash
+npm run event:og -- <YYYY-MM-DD>
+```
+
+Beispiel:
+
+```bash
+npm run event:og -- 2027-12-11
+```
+
+Das Skript:
+
+- nimmt standardmäßig das erste Bild aus `src/content/gallery/YYYY/MM/DD/`,
+- erzeugt ein 1200x630-JPG mit schwarzem Hintergrund,
+- speichert es unter `public/og/events/YYYY/YYYY-MM-DD.jpg`,
+- kann optional mit einem expliziten Quellbild aufgerufen werden:
+
+```bash
+npm run event:og -- 2027-12-11 src/content/gallery/2027/12/11/2027-12-11_19-30-00.jpg
+```
+
+Die Galerie bleibt bewusst in `src/content/gallery`. Nur das abgeleitete OG-Bild liegt öffentlich in `public/og/events`.
+
+## 4. Album ergänzen
 
 Modul: `src/scripts/event/album.mjs`
 
@@ -101,7 +168,7 @@ Das Skript:
 - unterstützt mehrere Alben durch wiederholte Aufrufe,
 - verhindert doppelte ASINs.
 
-## 4. Setlists ergänzen
+## 5. Setlists ergänzen
 
 Modul: `src/scripts/event/setlist.mjs`
 

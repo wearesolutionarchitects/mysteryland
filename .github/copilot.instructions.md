@@ -9,8 +9,23 @@ This project follows a structured and modular development approach with a focus 
 - **Code reusability**: Encouraging modular, **KISS (Keep It Simple, Stupid)** and **DRY (Don't Repeat Yourself)** principles.
 - **Security best practices**: Avoiding vulnerabilities in authentication, authorization, and data handling.
 - **CMS-Migration**: WordPress wird schrittweise durch ein modernes, auf Markdown und Astro basierendes System ersetzt.
+- **Event-Archiv**: Konzert-, Festival- und Lesungsseiten werden als strukturierte MDX-Dateien unter `src/content/docs/events/YYYY/YYYY-MM-DD.mdx` gepflegt.
 
 ---
+
+## Event Content & SEO
+
+- Event-MDX-Dateien müssen das zentrale Frontmatter-Schema nutzen: `title`, `description`, `tour`, `artist`, `category`, `ticketCategory`, `support`, `status`, `pubDate`, `country`, `city`, `venue`, `price`, `asin`, `ogImage`, `canonicalUrl`, `tags`.
+- Verwende `TBA` für noch unbekannte Inhalte. Erfinde keine Setlists, Supports, Kategorien oder Preise.
+- `category` ist einer von `Konzert`, `Festival`, `Lesung` oder `TBA`.
+- `status` ist einer von `scheduled`, `postponed`, `cancelled`, `completed` oder `TBA`.
+- Gallery-Bilder bleiben in `src/content/gallery/YYYY/MM/DD/` und werden in MDX über Astro-Imports und die `Gallery`-Komponente eingebunden.
+- Öffentliche Open-Graph-Bilder liegen separat unter `public/og/events/YYYY/YYYY-MM-DD.jpg`.
+- `ogImage` soll auf diesen öffentlichen Pfad zeigen, z.B. `/og/events/2027/2027-12-11.jpg`.
+- `canonicalUrl` folgt dem Muster `/events/YYYY/YYYY-MM-DD/`.
+- `src/components/EventSeo.astro` rendert JSON-LD aus dem Frontmatter. Änderungen am Frontmatter-Schema müssen mit dieser Komponente und `src/content.config.ts` konsistent bleiben.
+- Neue Event-MDX-Dateien sollen über den zentralen Renderer `src/scripts/event/render.mjs` erzeugt oder an dessen Ausgabeformat angelehnt werden.
+- Das OG-Bild wird über `npm run event:og -- YYYY-MM-DD` erzeugt oder automatisch durch `npm run event:mdx -- YYYY-MM-DD`.
 
 ## Code Style and Formatting
 
