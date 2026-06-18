@@ -1,6 +1,11 @@
 ---
 title: "Brings"
-description: "Eventbericht über das Konzert von Brings in der Stadthalle in Hagen am 23.04.2022."
+description: "Eventbericht über das Konzert von Brings in der Stadthalle in Hagen am 23. April 2022."
+tour: "TBA"
+category: "Konzert"
+ticketCategory: "Stehplatz Innenraum"
+support: "TBA"
+status: "completed"
 pubDate: 2022-04-23
 country: "Deutschland"
 city: "Hagen"
@@ -8,7 +13,9 @@ venue: "Stadthalle"
 price: 35.70
 artist: ["Brings"]
 asin: "B09XRK9MJH"
-tags: ["35,70 €", "Plakat", "Brings", "Deutschland", "Konzert", "Stadthalle", "Hagen", "2022"]
+ogImage: "/og/events/2022/2022-04-23.jpg"
+canonicalUrl: "/events/2022/2022-04-23/"
+tags: ["Brings", "Deutschland", "Konzert", "Stadthalle", "Hagen", "2022"]
 ---
 
 import { Card, LinkCard } from '@astrojs/starlight/components';
@@ -37,12 +44,13 @@ import img215047 from '../../../gallery/2022/04/23/2022-04-23_21-50-47.jpg';
     facts={[
         { icon: 'lucide:calendar-days', label: 'Datum', value: '23.04.2022' },
         { icon: 'lucide:route', label: 'Tour', value: 'TBA' },
-        { icon: 'lucide:mic-vocal', label: 'Support', value: '' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: 'TBA' },
         { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
         { icon: 'lucide:map-pin', label: 'Stadt', value: 'Hagen' },
         { icon: 'lucide:landmark', label: 'Venue', value: 'Stadthalle' },
         { icon: 'lucide:badge-euro', label: 'Preis', value: '35,70 €' },
         { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+        { icon: 'lucide:tag', label: 'Typ', value: 'Konzert' },
     ]}
 />
 
