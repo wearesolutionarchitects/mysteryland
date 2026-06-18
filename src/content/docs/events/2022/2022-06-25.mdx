@@ -1,7 +1,12 @@
 ---
 title: "Die Toten Hosen"
-description: "Eventbericht über das Konzert von Die Toten Hosen auf der Alles aus Liebe - 40 Jahre Die Toten Hosen Tour in der Merkur Spiel-Arena in Düsseldorf am 25.06.2022."
+description: "Eventbericht über das Konzert von Die Toten Hosen auf der Alles aus Liebe - 40 Jahre Die Toten Hosen Tour in der Merkur Spiel-Arena in Düsseldorf am 25. Juni 2022 mit Beatsteaks und die ärzte."
 tour: "Alles aus Liebe - 40 Jahre Die Toten Hosen"
+category: "Konzert"
+ticketCategory: "Stehplatz Innenraum"
+support: "Beatsteaks"
+guest: "die ärzte"
+status: "completed"
 pubDate: 2022-06-25
 country: "Deutschland"
 city: "Düsseldorf"
@@ -9,7 +14,9 @@ venue: "Merkur Spiel-Arena"
 price: 68.00
 artist: ["Die Toten Hosen", "Beatsteaks", "die ärzte"]
 asin: ["B0B1B1NCFB"]
-tags: ["€68.00", "Ticket", "Beatsteaks", "die ärzte", "Deutschland", "Konzert", "Düsseldorf", "Die Toten Hosen", "Merkur Spiel-Arena", "2022", "Foto"]
+ogImage: "/og/events/2022/2022-06-25.jpg"
+canonicalUrl: "/events/2022/2022-06-25/"
+tags: ["Beatsteaks", "die ärzte", "Deutschland", "Konzert", "Düsseldorf", "Die Toten Hosen", "Merkur Spiel-Arena", "2022"]
 ---
 
 import { Card, LinkCard } from '@astrojs/starlight/components';
@@ -48,13 +55,14 @@ import img225521 from '../../../gallery/2022/06/25/2022-06-25_22-55-21.jpg';
     facts={[
         { icon: 'lucide:calendar-days', label: 'Datum', value: '25.06.2022' },
         { icon: 'lucide:route', label: 'Tour', value: 'Alles aus Liebe - 40 Jahre Die Toten Hosen' },
-        { icon: 'lucide:mic-vocal', label: 'Support', value: 'Beatsteaks' },
-        { icon: 'lucide:mic-2', label: 'Gast', value: 'die ärzte' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: 'Beatsteaks', links: [{ label: 'Beatsteaks', href: 'https://beatsteaks.com/' }] },
+        { icon: 'lucide:mic-2', label: 'Gast', value: 'die ärzte', links: [{ label: 'die ärzte', href: 'https://www.bademeister.com/' }] },
         { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
         { icon: 'lucide:map-pin', label: 'Stadt', value: 'Düsseldorf' },
         { icon: 'lucide:landmark', label: 'Venue', value: 'Merkur Spiel-Arena' },
         { icon: 'lucide:badge-euro', label: 'Preis', value: '68,00 €' },
         { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+        { icon: 'lucide:tag', label: 'Typ', value: 'Konzert' },
     ]}
 />
 
