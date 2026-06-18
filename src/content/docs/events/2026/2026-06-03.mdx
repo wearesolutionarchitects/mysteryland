@@ -7,6 +7,14 @@ tour: "From Zero World Tour"
 
 artist: ["Linkin Park"]
 
+category: "Konzert"
+
+ticketCategory: "Stehplatz Innenraum"
+
+support: ["Clips", "Phantogram"]
+
+status: "completed"
+
 pubDate: 2026-06-03
 
 country: "Deutschland"
@@ -19,7 +27,11 @@ price: 111.00
 
 asin: "B0F2NCSF75"
 
-tags: ["Ticket","Volksparkstadion","Deutschland", "Hamburg", "Konzert","Linkin Park","From Zero World Tour","2026"]
+ogImage: "/og/events/2026/2026-06-03.jpg"
+
+canonicalUrl: "/events/2026/2026-06-03/"
+
+tags: ["Ticket", "Volksparkstadion", "Deutschland", "Hamburg", "Konzert", "Linkin Park", "From Zero World Tour", "2026"]
 ---
 import { Card, LinkCard } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
@@ -48,6 +60,7 @@ import img2301 from '../../../gallery/2026/06/03/2026-06-03_23-01-21.jpg';
         { icon: 'lucide:landmark', label: 'Venue', value: 'Volksparkstadion' },
         { icon: 'lucide:badge-euro', label: 'Preis', value: '111,00 €' },
         { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+        { icon: 'lucide:tag', label: 'Typ', value: 'Konzert' },
     ]}
 />
 
@@ -129,7 +142,7 @@ Die **"From Zero - World Tour"** von 2025-2026 ist ein Meilenstein in der Geschi
 
 <Card title="From Zero" icon="seti:audio">
     <a href="https://www.amazon.de/dp/B0F2NCSF75?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-        <img src="https://m.media-amazon.com/images/I/81PHduFSQ7L._SL1500_.jpg" alt="Linkin Park - From Zero (Amazon)" width="300" />
+        <Image src="https://m.media-amazon.com/images/I/81PHduFSQ7L._SL1500_.jpg" alt="Linkin Park - From Zero" width={300} height={300} />
     </a>
 </Card>
 
