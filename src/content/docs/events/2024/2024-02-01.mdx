@@ -1,7 +1,11 @@
 ---
 title: "OMD"
-description: "Eventbericht über das Konzert von OMD auf der Bauhaus Staircase Tour in der Mitsubishi Electric Halle in Düsseldorf am 01.02.2024."
+description: "Eventbericht über das Konzert von OMD auf der Bauhaus Staircase Tour in der Mitsubishi Electric Halle in Düsseldorf am 1. Februar 2024."
 tour: "Bauhaus Staircase Tour"
+category: "Konzert"
+ticketCategory: "Stehplatz Innenraum"
+support: "TBA"
+status: "completed"
 pubDate: 2024-02-01
 country: "Deutschland"
 city: "Düsseldorf"
@@ -9,7 +13,9 @@ venue: "Mitsubishi Electric Halle"
 price: 62.30
 artist: ["OMD"]
 asin: "B0CGB3MGGR"
-tags: ["€62.30", "Ticket", "2024", "Deutschland", "Konzert", "OMD", "Philipshalle", "Düsseldorf", "Bauhaus Staircase"]
+ogImage: "/og/events/2024/2024-02-01.jpg"
+canonicalUrl: "/events/2024/2024-02-01/"
+tags: ["Ticket", "2024", "Deutschland", "Konzert", "OMD", "Mitsubishi Electric Halle", "Düsseldorf", "Bauhaus Staircase"]
 ---
 
 import { Card, LinkCard } from '@astrojs/starlight/components';
@@ -32,12 +38,13 @@ import img224625 from '../../../gallery/2024/02/01/2024-02-01_22-46-25.jpg';
     facts={[
         { icon: 'lucide:calendar-days', label: 'Datum', value: '01.02.2024' },
         { icon: 'lucide:route', label: 'Tour', value: 'Bauhaus Staircase Tour' },
-        { icon: 'lucide:mic-vocal', label: 'Support', value: '' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: 'TBA' },
         { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
         { icon: 'lucide:map-pin', label: 'Stadt', value: 'Düsseldorf' },
         { icon: 'lucide:landmark', label: 'Venue', value: 'Mitsubishi Electric Halle' },
         { icon: 'lucide:badge-euro', label: 'Preis', value: '62,30 €' },
         { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+        { icon: 'lucide:tag', label: 'Typ', value: 'Konzert' },
     ]}
 />
 
