@@ -1,7 +1,11 @@
 ---
 title: "Extrabreit"
-description: "Eventbericht über das Konzert von Extrabreit auf der WBT 2022 Tour im Lido in Berlin am 28.12.2022."
+description: "Eventbericht über das Konzert von Extrabreit auf der WBT 2022 Tour im Lido in Berlin am 28. Dezember 2022."
 tour: "WBT 2022"
+category: "Konzert"
+ticketCategory: "Stehplatz Innenraum"
+support: "TBA"
+status: "completed"
 pubDate: 2022-12-28
 country: "Deutschland"
 city: "Berlin"
@@ -9,7 +13,9 @@ venue: "Lido"
 price: 0.00
 artist: ["Extrabreit"]
 asin: "B08HQ8MT53"
-tags: ["0,00 €", "Extrabreit", "Deutschland", "WBT 2022", "Konzert", "Lido", "Berlin", "2022", "Foto"]
+ogImage: "/og/events/2022/2022-12-28.jpg"
+canonicalUrl: "/events/2022/2022-12-28/"
+tags: ["Extrabreit", "Deutschland", "WBT 2022", "Konzert", "Lido", "Berlin", "2022"]
 ---
 
 import { Card, LinkCard } from '@astrojs/starlight/components';
@@ -29,12 +35,12 @@ import img221528 from '../../../gallery/2022/12/28/2022-12-28_22-15-28.jpg';
     facts={[
         { icon: 'lucide:calendar-days', label: 'Datum', value: '28.12.2022' },
         { icon: 'lucide:route', label: 'Tour', value: 'WBT 2022' },
-        { icon: 'lucide:mic-vocal', label: 'Support', value: '' },
         { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
         { icon: 'lucide:map-pin', label: 'Stadt', value: 'Berlin' },
         { icon: 'lucide:landmark', label: 'Venue', value: 'Lido' },
         { icon: 'lucide:badge-euro', label: 'Preis', value: '0,00 €' },
         { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+        { icon: 'lucide:tag', label: 'Typ', value: 'Konzert' },
     ]}
 />
 
