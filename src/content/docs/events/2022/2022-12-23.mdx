@@ -1,7 +1,11 @@
 ---
 title: "Broilers"
-description: "Eventbericht über das Konzert der Broilers im Santa's Action Club in der Mitsubishi Electric Halle in Düsseldorf am 23.12.2022."
+description: "Eventbericht über das Konzert der Broilers im Santa's Action Club in der Mitsubishi Electric Halle in Düsseldorf am 23. Dezember 2022 mit The Iron Roses."
 tour: "Santa's Action Club"
+category: "Konzert"
+ticketCategory: "Stehplatz Innenraum"
+support: "The Iron Roses"
+status: "completed"
 pubDate: 2022-12-23
 country: "Deutschland"
 city: "Düsseldorf"
@@ -9,7 +13,9 @@ venue: "Mitsubishi Electric Halle"
 price: 62.40
 artist: ["Broilers"]
 asin: "B091F3J9SK"
-tags: ["62,40 €", "Broilers", "Deutschland", "Santa's Action Club", "Konzert", "Mitsubishi Electric Halle", "Düsseldorf", "2022", "Robbie", "Thomas", "Foto"]
+ogImage: "/og/events/2022/2022-12-23.jpg"
+canonicalUrl: "/events/2022/2022-12-23/"
+tags: ["Broilers", "Deutschland", "Santa's Action Club", "Konzert", "Mitsubishi Electric Halle", "Düsseldorf", "The Iron Roses", "2022", "Robbie", "Thomas"]
 ---
 
 import { Card, LinkCard } from '@astrojs/starlight/components';
@@ -42,12 +48,13 @@ import img231352 from '../../../gallery/2022/12/23/2022-12-23_23-13-52.jpg';
     facts={[
         { icon: 'lucide:calendar-days', label: 'Datum', value: '23.12.2022' },
         { icon: 'lucide:route', label: 'Tour', value: "Santa's Action Club" },
-        { icon: 'lucide:mic-vocal', label: 'Support', value: 'TBA' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: 'The Iron Roses', links: [{ label: 'The Iron Roses', href: 'https://www.theironroses.info/' }] },
         { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
         { icon: 'lucide:map-pin', label: 'Stadt', value: 'Düsseldorf' },
         { icon: 'lucide:landmark', label: 'Venue', value: 'Mitsubishi Electric Halle' },
         { icon: 'lucide:badge-euro', label: 'Preis', value: '62,40 €' },
         { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+        { icon: 'lucide:tag', label: 'Typ', value: 'Konzert' },
     ]}
 />
 
@@ -91,10 +98,6 @@ Es gab aber auch einen schönen Moment, unter anderem das Teilen einer Zigarette
         { src: img231352, alt: 'Broilers auf der Bühne', title: '23:13' },
     ]}
 />
-
-## Videos
-
-TBA
 
 ## Setlist
 
