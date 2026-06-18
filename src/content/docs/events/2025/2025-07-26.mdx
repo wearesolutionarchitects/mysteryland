@@ -2,6 +2,9 @@
 title: "BOB!Fest"
 description: "Eventbericht über das BOB!Fest im SparkassenPark Mönchengladbach am 26.07.2025 mit Alice Cooper, Danko Jones, H-BLOCKX, The New Roses, Thundermother und Ugly Kid Joe."
 tour: "BOB!Fest 2025"
+category: "Festival"
+ticketCategory: "Stehplatz Innenraum"
+status: "completed"
 pubDate: 2025-07-26
 country: "Deutschland"
 city: "Mönchengladbach"
@@ -9,7 +12,9 @@ venue: "SparkassenPark"
 price: 96.50
 artist: ["Alice Cooper", "Danko Jones", "H-BLOCKX", "The New Roses", "Thundermother", "Ugly Kid Joe"]
 asin: ["B0DGH26MHC", "B0D9JS7DTS", "B0FDB1Q5D3", "B0F59NJ3FM"]
-tags: ["H-BLOCKX", "Thundermother", "Ticket", "Plakat", "Deutschland", "2025", "Alice Cooper", "The New Roses", "Danko Jones", "BOBfest", "Festival", "Mönchengladbach", "SparkassenPark", "Ugly Kid Joe", "€96.50", "Foto"]
+ogImage: "/og/events/2025/2025-07-26.jpg"
+canonicalUrl: "/events/2025/2025-07-26/"
+tags: ["H-BLOCKX", "Thundermother", "Ticket", "Plakat", "Deutschland", "2025", "Alice Cooper", "The New Roses", "Danko Jones", "BOB!Fest", "Festival", "Mönchengladbach", "SparkassenPark", "Ugly Kid Joe", "Foto"]
 ---
 import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
@@ -43,12 +48,13 @@ import img215007 from '../../../gallery/2025/07/26/2025-07-26_21-50-07.jpg';
     facts={[
         { icon: 'lucide:calendar-days', label: 'Datum', value: '26.07.2025' },
         { icon: 'lucide:route', label: 'Tour', value: 'BOB!Fest 2025' },
-        { icon: 'lucide:mic-vocal', label: 'Line-up', value: 'Alice Cooper, Danko Jones, H-BLOCKX, The New Roses, Thundermother, Ugly Kid Joe' },
+        { icon: 'lucide:mic-vocal', label: 'Line-up', value: 'Alice Cooper, Danko Jones, H-BLOCKX, The New Roses, Thundermother, Ugly Kid Joe', links: [{ label: 'Alice Cooper', href: 'https://alicecooper.com/' }, { label: 'Danko Jones', href: 'https://dankojones.com/' }, { label: 'H-BLOCKX', href: 'http://www.h-blockx.net/' }, { label: 'The New Roses', href: 'https://www.thenewroses.com/' }, { label: 'Thundermother', href: 'https://thundermother.com/' }, { label: 'Ugly Kid Joe', href: 'http://www.uglykidjoe.net/' }] },
         { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
         { icon: 'lucide:map-pin', label: 'Stadt', value: 'Mönchengladbach' },
         { icon: 'lucide:landmark', label: 'Venue', value: 'SparkassenPark' },
         { icon: 'lucide:badge-euro', label: 'Preis', value: '96,50 €' },
         { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+        { icon: 'lucide:tag', label: 'Typ', value: 'Festival' },
     ]}
 />
 
