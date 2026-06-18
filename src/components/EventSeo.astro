@@ -1,0 +1,127 @@
+---
+const route = Astro.locals.starlightRoute;
+const entry = route?.entry;
+const data = entry?.data ?? {};
+const isEvent = typeof route?.id === 'string' && route.id.startsWith('events/');
+
+function text(value: unknown) {
+  const result = String(value || '').trim();
+  return result && result !== 'TBA' ? result : '';
+}
+
+function values(value: unknown) {
+  return [...new Set((Array.isArray(value) ? value : [value])
+    .flatMap((item) => String(item || '').split(','))
+    .map((item) => item.trim())
+    .filter(Boolean)
+    .filter((item) => item !== 'TBA'))];
+}
+
+function absoluteUrl(value: unknown) {
+  const url = String(value || '').trim();
+  if (!url) return '';
+  if (/^https?:\/\//i.test(url)) return url;
+
+  return new URL(url.startsWith('/') ? url : `/${url}`, Astro.site ?? Astro.url).href;
+}
+
+function schemaEventStatus(value: unknown) {
+  const status = String(value || '').toLowerCase();
+  if (status === 'cancelled') return 'https://schema.org/EventCancelled';
+  if (status === 'postponed') return 'https://schema.org/EventPostponed';
+  if (status === 'scheduled') return 'https://schema.org/EventScheduled';
+
+  return 'https://schema.org/EventScheduled';
+}
+
+function isoDate(value: unknown) {
+  if (value instanceof Date) return value.toISOString().slice(0, 10);
+  return String(value || '').slice(0, 10);
+}
+
+function categoryFromData() {
+  const category = text(data.category);
+  if (category) return category;
+
+  const tags = values(data.tags).map((tag) => tag.toLocaleLowerCase('de-DE'));
+  if (tags.includes('festival')) return 'Festival';
+  if (tags.includes('lesung')) return 'Lesung';
+  if (tags.includes('konzert')) return 'Konzert';
+
+  return '';
+}
+
+function performerType(category: string) {
+  return category === 'Lesung' ? 'Person' : 'MusicGroup';
+}
+
+const title = text(data.title);
+const description = text(data.description);
+const canonical = absoluteUrl(data.canonicalUrl || Astro.url.pathname);
+const image = absoluteUrl(data.ogImage);
+const artists = values(data.artist);
+const performers = values([data.artist, data.support, data.guest]);
+const startDate = isoDate(data.pubDate);
+const price = typeof data.price === 'number' && Number.isFinite(data.price) ? data.price : undefined;
+const category = categoryFromData();
+const keywords = values(data.tags);
+const venue = text(data.venue);
+const city = text(data.city);
+const country = text(data.country);
+const ticketCategory = text(data.ticketCategory);
+const eventId = canonical ? `${canonical}#event` : '';
+
+const eventJsonLd = isEvent ? {
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  ...(eventId ? { '@id': eventId } : {}),
+  name: title,
+  ...(description ? { description } : {}),
+  startDate,
+  eventStatus: schemaEventStatus(data.status),
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  url: canonical,
+  ...(route?.lang ? { inLanguage: route.lang } : {}),
+  ...(image ? { image: [image] } : {}),
+  ...(category ? { additionalType: category } : {}),
+  ...(keywords.length ? { keywords: keywords.join(', ') } : {}),
+  location: {
+    '@type': 'Place',
+    ...(venue ? { name: venue } : {}),
+    ...((city || country) ? { address: {
+      '@type': 'PostalAddress',
+      ...(city ? { addressLocality: city } : {}),
+      ...(country ? { addressCountry: country } : {}),
+    } } : {}),
+  },
+  ...(performers.length ? {
+    performer: performers.map((name) => ({
+      '@type': performerType(category),
+      name,
+    })),
+  } : {}),
+  ...(price !== undefined ? {
+    offers: {
+      '@type': 'Offer',
+      price,
+      priceCurrency: 'EUR',
+      availability: 'https://schema.org/InStock',
+      url: canonical,
+      ...(ticketCategory ? { name: ticketCategory } : {}),
+    },
+  } : {}),
+} : null;
+---
+
+{isEvent && (
+  <>
+    <meta property="article:published_time" content={startDate} />
+    {artists.map((artist) => <meta property="article:tag" content={artist} />)}
+    {category && category !== 'TBA' && <meta property="article:section" content={category} />}
+    {image && <meta property="og:image" content={image} />}
+    {image && <meta name="twitter:image" content={image} />}
+    {eventJsonLd && (
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(eventJsonLd)} />
+    )}
+  </>
+)}

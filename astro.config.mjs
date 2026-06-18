@@ -40,6 +40,7 @@ export default defineConfig({
                 './src/styles/custom.css',
             ],
             components: {
+                Head: './src/components/Head.astro',
                 ThemeProvider: './src/components/ThemeProvider.astro',
             },
             social: [
