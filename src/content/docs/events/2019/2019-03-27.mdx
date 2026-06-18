@@ -1,13 +1,13 @@
 ---
 title: "Herbert Grönemeyer"
-description: "Herbert Grönemeyer mit Tumult am 2019-03-27 in Dortmund, Westfalenhalle."
+description: "Eventbericht über das Konzert von Herbert Grönemeyer auf der Tumult Tour in der Westfalenhalle in Dortmund am 27.03.2019."
+tour: "Tumult"
 pubDate: 2019-03-27
 country: "Deutschland"
 city: "Dortmund"
 venue: "Westfalenhalle"
-artist: ["Herbert Grönemeyer"]
-tour: "Tumult"
 price: 62.25
+artist: ["Herbert Grönemeyer"]
 asin: "B07HPZVBPS"
 tags:
   - "2019"
@@ -19,27 +19,89 @@ tags:
   - "Tumult"
   - "Konzert"
 ---
-import { LinkCard } from '@astrojs/starlight/components';
 
-## Details
+import { Card, LinkCard } from '@astrojs/starlight/components';
+import EventFacts from '@components/EventFacts.astro';
+import { Image } from 'astro:assets';
+import Gallery from '@components/Gallery.astro';
 
-📅 Datum: 2019-03-27  
-🇩🇪 Land: Deutschland  
-📍 Stadt: Dortmund  
-🏟️ Venue: Westfalenhalle  
-💶 Preis: 62,25 €  
+<EventFacts
+    facts={[
+        { icon: 'lucide:calendar-days', label: 'Datum', value: '27.03.2019' },
+        { icon: 'lucide:route', label: 'Tour', value: 'Tumult' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: '' },
+        { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
+        { icon: 'lucide:map-pin', label: 'Stadt', value: 'Dortmund' },
+        { icon: 'lucide:landmark', label: 'Venue', value: 'Westfalenhalle' },
+        { icon: 'lucide:badge-euro', label: 'Preis', value: '62,25 €' },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+    ]}
+/>
 
-## Bilder
+**Herbert Grönemeyer** spielte am 27. März 2019 auf der **Tumult** Tour in der Westfalenhalle in Dortmund.
 
-## Konzertbericht
+## Galerie
+
+TBA
+
+## Videos
+
+TBA
 
 ## Pressebericht
 
+TBA
+
+<Card title="Songs" icon="list-format">
+    <ol>
+        <li>Sekundenglück</li>
+        <li>Bist du da</li>
+        <li>Und immer</li>
+        <li>Kopf hoch, tanzen</li>
+        <li>Taufrisch</li>
+        <li>Bochum (mit Steigerlied-Intro)</li>
+        <li>Männer</li>
+        <li>Was soll das</li>
+        <li>Vollmond</li>
+        <li>Mein Lebensstrahlen</li>
+        <li>Halt mich</li>
+        <li>Stück vom Himmel</li>
+        <li>Doppelherz /  Iki Gönlüm</li>
+        <li>Fisch im Netz</li>
+        <li>Fall der Fälle</li>
+        <li>Mensch</li>
+        <li>Alkohol</li>
+        <li>Bleibt alles anders</li>
+        <li>Der Held</li>
+        <li>Morgen</li>
+        <li>Oh wie ist das schön</li>
+        <li>Der Weg</li>
+        <li>Flugzeuge im Bauch (Jazz Version)</li>
+        <li>Musik nur, wenn sie laut ist</li>
+        <li>Oh wie ist das schön</li>
+        <li>Currywurst</li>
+        <li>Land unter</li>
+        <li>Demo (Letzter Tag)</li>
+        <li>Zeit, dass sich was dreht</li>
+        <li>Warum</li>
+        <li>Lebe mit mir los</li>
+        <li>Kinder an die Macht</li>
+        <li>Verwandt</li>
+        <li>Immerfort</li>
+    </ol>
+
+    <a href="https://www.setlist.fm/setlist/herbert-gronemeyer/2019/westfalenhalle-dortmund-germany-3393a085.html" target="_blank" rel="noopener noreferrer">Setlist auf setlist.fm</a>
+</Card>
+
 ## Album
 
-## Setlist
+<Card title="Tumult" icon="seti:audio">
+  <a href="https://www.amazon.de/dp/B07HPZVBPS?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+    <Image src="https://m.media-amazon.com/images/I/61I45WH3hJL._SL1200_.jpg" alt="Herbert Grönemeyer - Tumult Albumcover" width={300} height={300} />
+  </a>
+</Card>
 
 <LinkCard
-  title="Mehr Informationen"
-  href="https://fanieng.com/2019/03/27/herbert-groenemeyer-dortmund-westfalenhalle-2/"
+    title="Mehr Informationen"
+    href="https://fanieng.com/2019/03/27/herbert-groenemeyer-dortmund-westfalenhalle-2/"
 />
