@@ -25,6 +25,7 @@ import Gallery from '@components/Gallery.astro';
 <EventFacts
     facts={[
         { icon: 'lucide:calendar-days', label: 'Datum', value: "29.09.1979" },
+        { icon: 'lucide:route', label: 'Tour', value: 'Stadtteilfest Wehringhausen' },
         { icon: 'lucide:globe', label: 'Land', value: "Deutschland" },
         { icon: 'lucide:map-pin', label: 'Stadt', value: "Hagen" },
         { icon: 'lucide:landmark', label: 'Venue', value: "Wilhelmsplatz" },
@@ -34,8 +35,6 @@ import Gallery from '@components/Gallery.astro';
 />
 
 ## Galerie
-
-TBA
 
 <LinkCard 
     title="Externe Quelle"
@@ -50,9 +49,15 @@ TBA
 
 ## Album
 
-TBA
+<Card title="Ihre Grössten Erfolge" icon="seti:audio">
+    <a href="https://www.amazon.de/dp/B0000084XP?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+        <Image src="https://m.media-amazon.com/images/I/91g6CuGDQQL._SL1500_.jpg" alt="Ihre Grössten Erfolge" width={300} height={300} />
+    </a>
+</Card>
 
 <LinkCard
     title="Mehr Informationen"
     href="https://fanieng.com/1979/09/29/29-09-1979-extrabreit-hagen-wilhelmsplatz/"
 />
+
+
