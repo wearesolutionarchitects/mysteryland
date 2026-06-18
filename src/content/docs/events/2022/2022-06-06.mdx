@@ -1,7 +1,11 @@
 ---
 title: "die ärzte"
-description: "Eventbericht über das Konzert von die ärzte auf der Berlin Tour MMXXII in der Zitadelle Spandau in Berlin am 06.06.2022."
+description: "Eventbericht über das Konzert von die ärzte auf der Berlin Tour MMXXII in der Zitadelle Spandau in Berlin am 6. Juni 2022 mit Großstadtgeflüster."
 tour: "Berlin Tour MMXXII"
+category: "Konzert"
+ticketCategory: "Stehplatz Innenraum"
+support: "Großstadtgeflüster"
+status: "completed"
 pubDate: 2022-06-06
 country: "Deutschland"
 city: "Berlin"
@@ -9,7 +13,9 @@ venue: "Zitadelle Spandau"
 price: 63.00
 artist: ["die ärzte"]
 asin: ["B08GFRPYYF", "B096TJP6H3"]
-tags: ["€63.00", "Ticket", "Deutschland", "Konzert", "Berlin", "die ärzte", "Berlin Tour MMXXII", "Zitadelle Spandau", "2022", "Foto"]
+ogImage: "/og/events/2022/2022-06-06.jpg"
+canonicalUrl: "/events/2022/2022-06-06/"
+tags: ["Deutschland", "Konzert", "Berlin", "die ärzte", "Großstadtgeflüster", "Berlin Tour MMXXII", "Zitadelle Spandau", "2022"]
 ---
 
 import { Card, LinkCard } from '@astrojs/starlight/components';
@@ -41,12 +47,13 @@ import img213914 from '../../../gallery/2022/06/06/2022-06-06_21-39-14.jpg';
     facts={[
         { icon: 'lucide:calendar-days', label: 'Datum', value: '06.06.2022' },
         { icon: 'lucide:route', label: 'Tour', value: 'Berlin Tour MMXXII' },
-        { icon: 'lucide:mic-vocal', label: 'Support', value: 'TBA' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: 'Großstadtgeflüster', links: [{ label: 'Großstadtgeflüster', href: 'https://grossstadtgefluester.de/' }] },
         { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
         { icon: 'lucide:map-pin', label: 'Stadt', value: 'Berlin' },
         { icon: 'lucide:landmark', label: 'Venue', value: 'Zitadelle Spandau' },
         { icon: 'lucide:badge-euro', label: 'Preis', value: '63,00 €' },
         { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+        { icon: 'lucide:tag', label: 'Typ', value: 'Konzert' },
     ]}
 />
 
@@ -81,10 +88,6 @@ Nach ein paar Songs verzog sich der Regen, und man wurde an "Wenn der Ruf schall
         { src: img213914, alt: 'die ärzte auf der Bühne', title: '21:39' },
     ]}
 />
-
-## Videos
-
-TBA
 
 ## Pressebericht
 
