@@ -1,7 +1,11 @@
 ---
 title: "die ärzte"
-description: "Eventbericht über das Konzert von die ärzte auf der Herbst des Lebens Tour im Palladium in Köln am 17.09.2023."
+description: "Eventbericht über das Konzert von die ärzte auf der Herbst des Lebens Tour im Palladium in Köln am 17. September 2023."
 tour: "Herbst des Lebens"
+category: "Konzert"
+ticketCategory: "Stehplatz Innenraum"
+support: "TBA"
+status: "completed"
 pubDate: 2023-09-17
 country: "Deutschland"
 city: "Köln"
@@ -9,7 +13,9 @@ venue: "Palladium"
 price: 59.00
 artist: ["die ärzte"]
 asin: ["B08GFRPYYF", "B096TJP6H3"]
-tags: ["€59.00", "Ticket", "Palladium", "Deutschland", "Köln", "Konzert", "Herbst des Lebens", "die ärzte", "2023", "Foto"]
+ogImage: "/og/events/2023/2023-09-17.jpg"
+canonicalUrl: "/events/2023/2023-09-17/"
+tags: ["Palladium", "Deutschland", "Köln", "Konzert", "Herbst des Lebens", "die ärzte", "2023"]
 ---
 
 import { Card, LinkCard } from '@astrojs/starlight/components';
@@ -39,12 +45,13 @@ import img224431 from '../../../gallery/2023/09/17/2023-09-17_22-44-31.jpg';
     facts={[
         { icon: 'lucide:calendar-days', label: 'Datum', value: '17.09.2023' },
         { icon: 'lucide:route', label: 'Tour', value: 'Herbst des Lebens' },
-        { icon: 'lucide:mic-vocal', label: 'Support', value: '' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: 'TBA' },
         { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
         { icon: 'lucide:map-pin', label: 'Stadt', value: 'Köln' },
         { icon: 'lucide:landmark', label: 'Venue', value: 'Palladium' },
         { icon: 'lucide:badge-euro', label: 'Preis', value: '59,00 €' },
         { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+        { icon: 'lucide:tag', label: 'Typ', value: 'Konzert' },
     ]}
 />
 
