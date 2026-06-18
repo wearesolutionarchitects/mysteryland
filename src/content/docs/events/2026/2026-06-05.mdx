@@ -7,6 +7,14 @@ tour: "Britpop Tour"
 
 artist: ["Robbie Williams"]
 
+category: "Konzert"
+
+ticketCategory: "Golden Circle"
+
+support: "Samu Haber"
+
+status: "completed"
+
 pubDate: 2026-06-05
 
 country: "Deutschland"
@@ -19,7 +27,11 @@ price: 199.20
 
 asin: "B0FHSYHX88"
 
-tags: ["Ticket","Merkur Spiel-Arena","Deutschland", "Düsseldorf", "Konzert","Robbie Williams","Britpop Tour","2026"]
+ogImage: "/og/events/2026/2026-06-05.jpg"
+
+canonicalUrl: "/events/2026/2026-06-05/"
+
+tags: ["Ticket", "Merkur Spiel-Arena", "Deutschland", "Düsseldorf", "Konzert", "Robbie Williams", "Britpop Tour", "2026"]
 ---
 import { LinkCard, Card } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
@@ -50,6 +62,7 @@ import img2237 from '../../../gallery/2026/06/05/2026-06-05_22-37-24.jpg';
         { icon: 'lucide:landmark', label: 'Venue', value: 'Merkur Spiel-Arena' },
         { icon: 'lucide:badge-euro', label: 'Preis', value: '199,20 €' },
         { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Golden Circle' },
+        { icon: 'lucide:tag', label: 'Typ', value: 'Konzert' },
     ]}
 />
 
@@ -126,7 +139,7 @@ Nach über zwei Stunden Unterhaltung blieb vor allem ein Eindruck: Robbie Willia
 
 <Card title="Britpop" icon="seti:audio">
     <a href="https://www.amazon.de/dp/B0FHSYHX88?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-        <img src="https://m.media-amazon.com/images/I/71mz8Yz985L._SL1500_.jpg" alt="Robbie Williams - Britpop" width="300" />
+        <Image src="https://m.media-amazon.com/images/I/71mz8Yz985L._SL1500_.jpg" alt="Robbie Williams - Britpop" width={300} height={300} />
     </a>
 </Card>
 
@@ -134,4 +147,3 @@ Nach über zwei Stunden Unterhaltung blieb vor allem ein Eindruck: Robbie Willia
     title="Mehr Informationen"
     href="https://fanieng.com/2026/06/05/robbie-williams-duesseldorf-merkur-spiel-arena/"
 />
-
