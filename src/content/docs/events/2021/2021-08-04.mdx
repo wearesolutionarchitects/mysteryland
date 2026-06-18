@@ -1,13 +1,13 @@
 ---
 title: "Campino"
-description: "Campino mit Hope Street am 2021-08-04 in Dortmund, Westfalenpark."
+description: "Eventbericht über Campino mit Hope Street im Westfalenpark in Dortmund am 04.08.2021."
+tour: "Hope Street"
 pubDate: 2021-08-04
 country: "Deutschland"
 city: "Dortmund"
 venue: "Westfalenpark"
-artist: ["Campino"]
-tour: "Hope Street"
 price: 39.75
+artist: ["Campino"]
 asin: "3492318452"
 tags:
   - "2021"
@@ -18,28 +18,65 @@ tags:
   - "Westfalenpark"
   - "Hope Street"
   - "Konzert"
+  - "Foto"
 ---
-import { LinkCard } from '@astrojs/starlight/components';
 
-## Details
+import { Card, LinkCard } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
+import EventFacts from '@components/EventFacts.astro';
+import Gallery from '@components/Gallery.astro';
+import img183000 from '../../../gallery/2021/08/04/2021-08-04_18-30-00.jpg';
+import img190140 from '../../../gallery/2021/08/04/2021-08-04_19-01-40.jpg';
+import img200316 from '../../../gallery/2021/08/04/2021-08-04_20-03-16.jpg';
+import img203021 from '../../../gallery/2021/08/04/2021-08-04_20-30-21.jpg';
+import img204753 from '../../../gallery/2021/08/04/2021-08-04_20-47-53.jpg';
+import img210048 from '../../../gallery/2021/08/04/2021-08-04_21-00-48.jpg';
+import img210933 from '../../../gallery/2021/08/04/2021-08-04_21-09-33.jpg';
+import img212757 from '../../../gallery/2021/08/04/2021-08-04_21-27-57.jpg';
+import img214833 from '../../../gallery/2021/08/04/2021-08-04_21-48-33.jpg';
+import img222234 from '../../../gallery/2021/08/04/2021-08-04_22-22-34.jpg';
 
-📅 Datum: 2021-08-04  
-🇩🇪 Land: Deutschland  
-📍 Stadt: Dortmund  
-🏟️ Venue: Westfalenpark  
-💶 Preis: 39,75 €  
+<EventFacts
+    facts={[
+        { icon: 'lucide:calendar-days', label: 'Datum', value: '04.08.2021' },
+        { icon: 'lucide:route', label: 'Tour', value: 'Hope Street' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: 'Kuddel' },
+        { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
+        { icon: 'lucide:map-pin', label: 'Stadt', value: 'Dortmund' },
+        { icon: 'lucide:landmark', label: 'Venue', value: 'Westfalenpark' },
+        { icon: 'lucide:badge-euro', label: 'Preis', value: '39,75 €' },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Block 5' },
+    ]}
+/>
 
-## Bilder
+**Campino** war am 04. August 2021 zur Lesung aus seinem Buch **Hope Street** im Westfalenpark in Dortmund zu Gast.
 
-## Konzertbericht
+## Galerie
 
-## Pressebericht
+<Gallery
+    images={[
+        { src: img183000, alt: 'Campino im Westfalenpark', title: '18:30' },
+        { src: img190140, alt: 'Campino im Westfalenpark', title: '19:01' },
+        { src: img200316, alt: 'Campino im Westfalenpark', title: '20:03' },
+        { src: img203021, alt: 'Campino im Westfalenpark', title: '20:30' },
+        { src: img204753, alt: 'Campino im Westfalenpark', title: '20:47' },
+        { src: img210048, alt: 'Campino im Westfalenpark', title: '21:00' },
+        { src: img210933, alt: 'Campino im Westfalenpark', title: '21:09' },
+        { src: img212757, alt: 'Campino im Westfalenpark', title: '21:27' },
+        { src: img214833, alt: 'Campino im Westfalenpark', title: '21:48' },
+        { src: img222234, alt: 'Campino im Westfalenpark', title: '22:22' },
+    ]}
+/>
 
-## Album
+## Buch
 
-## Setlist
+<Card title="Hope Street" icon="open-book">
+  <a href="https://www.amazon.de/dp/3492318452?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+    <Image src="https://m.media-amazon.com/images/I/71rb44KZt4L._SL1500_.jpg" alt="Campino - Hope Street" width={300} height={300} />
+  </a>
+</Card>
 
 <LinkCard
-  title="Mehr Informationen"
-  href="https://fanieng.com/2021/08/04/campino-dortmund-westfalenpark/"
+    title="Mehr Informationen"
+    href="https://fanieng.com/2021/08/04/campino-dortmund-westfalenpark/"
 />
