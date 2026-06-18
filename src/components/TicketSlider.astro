@@ -54,7 +54,10 @@ const slides = tickets.map((ticket) => {
   const eventId = eventIdFromSlide(ticket);
   const event = eventId ? eventsById.get(eventId) : undefined;
   const price = formatPrice(ticket.price ?? event?.data.price);
-  const category = ticket.category ?? (extractCategory(event?.body) || eventType(event?.data.tags));
+  const category = ticket.category
+    ?? event?.data.ticketCategory
+    ?? event?.data.category
+    ?? (extractCategory(event?.body) || eventType(event?.data.tags));
   const meta = ticket.meta ?? [price, category].filter(Boolean).join(' · ');
 
   return {
