@@ -1,7 +1,11 @@
 ---
 title: "die ärzte"
-description: "Eventbericht über das Konzert von die ärzte auf der Herbst des Lebens Tour in der Turbinenhalle in Oberhausen am 12.10.2023."
+description: "Eventbericht über das Konzert von die ärzte auf der Herbst des Lebens Tour in der Turbinenhalle in Oberhausen am 12. Oktober 2023."
 tour: "Herbst des Lebens"
+category: "Konzert"
+ticketCategory: "Stehplatz Innenraum"
+support: "TBA"
+status: "completed"
 pubDate: 2023-10-12
 country: "Deutschland"
 city: "Oberhausen"
@@ -9,7 +13,9 @@ venue: "Turbinenhalle"
 price: 57.50
 artist: ["die ärzte"]
 asin: ["B08GFRPYYF", "B096TJP6H3"]
-tags: ["€57.50", "Ticket", "Deutschland", "Turbinenhalle", "Konzert", "Herbst des Lebens", "die ärzte", "Oberhausen", "2023"]
+ogImage: "/og/events/2023/2023-10-12.jpg"
+canonicalUrl: "/events/2023/2023-10-12/"
+tags: ["Deutschland", "Turbinenhalle", "Konzert", "Herbst des Lebens", "die ärzte", "Oberhausen", "2023"]
 ---
 
 import { Card, LinkCard } from '@astrojs/starlight/components';
@@ -38,12 +44,13 @@ import img224430 from '../../../gallery/2023/10/12/2023-10-12_22-44-30.jpg';
     facts={[
         { icon: 'lucide:calendar-days', label: 'Datum', value: '12.10.2023' },
         { icon: 'lucide:route', label: 'Tour', value: 'Herbst des Lebens' },
-        { icon: 'lucide:mic-vocal', label: 'Support', value: '' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: 'TBA' },
         { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
         { icon: 'lucide:map-pin', label: 'Stadt', value: 'Oberhausen' },
         { icon: 'lucide:landmark', label: 'Venue', value: 'Turbinenhalle' },
         { icon: 'lucide:badge-euro', label: 'Preis', value: '57,50 €' },
         { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+        { icon: 'lucide:tag', label: 'Typ', value: 'Konzert' },
     ]}
 />
 
