@@ -7,6 +7,14 @@ tour: "2026 World Tour"
 
 artist: ["Def Leppard"]
 
+category: "Konzert"
+
+ticketCategory: "Golden Circle"
+
+support: "Extreme"
+
+status: "scheduled"
+
 pubDate: 2026-06-23
 
 country: "Deutschland"
@@ -19,12 +27,17 @@ price: 150.75
 
 asin: "B0027WNRIG"
 
-tags: ["Ticket","Westfalenhalle","Deutschland", "Dortmund", "Konzert","Def Leppard","2026 World Tour","2026"]
+ogImage: "/og/events/2026/2026-06-23.jpg"
+
+canonicalUrl: "/events/2026/2026-06-23/"
+
+tags: ["Ticket", "Westfalenhalle", "Deutschland", "Dortmund", "Konzert", "Def Leppard", "2026 World Tour", "2026"]
 ---
 import { LinkCard, Card } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
 import EventFacts from '@components/EventFacts.astro';
 import Gallery from '@components/Gallery.astro';
+import YouTubeVideos from '@components/YouTubeVideos.astro';
 import img1930 from '../../../gallery/2026/06/23/2026-06-23_19-30-00.jpg';
 
 <EventFacts
@@ -37,11 +50,12 @@ import img1930 from '../../../gallery/2026/06/23/2026-06-23_19-30-00.jpg';
         { icon: 'lucide:landmark', label: 'Venue', value: 'Westfalenhalle' },
         { icon: 'lucide:badge-euro', label: 'Preis', value: '150,75 €' },
         { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Golden Circle' },
+        { icon: 'lucide:tag', label: 'Typ', value: 'Konzert' },
     ]}
 />
 
-
 Def Leppard befindet sich derzeit auf ihrer „2026 World Tour“, die eine Sommer-Arenatour durch Großbritannien und Europa mit den Special Guests Extreme umfasst. Teil der Tour ist ein mit Spannung erwartetes Einzelkonzert in Deutschland in der Westfalenhalle in Dortmund.
+
 ## Galerie
 
 <Gallery
@@ -50,9 +64,13 @@ Def Leppard befindet sich derzeit auf ihrer „2026 World Tour“, die eine Somm
     ]}
 />
 
-## Videos (YouTube)
+## Videos
 
-TBA
+<YouTubeVideos
+    videos={[
+        { id: 'hCd8cz1K6nE' },
+    ]}
+/>
 
 ## Setlist
 
@@ -65,7 +83,7 @@ TBA
 
 <Card title="Hysteria" icon="seti:audio">
     <a href="https://www.amazon.de/dp/B0027WNRIG?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-        <img src="https://m.media-amazon.com/images/I/71sGfHTQ82L._SL1400_.jpg" alt="Def Leppard - Hysteria" width="300" />
+        <Image src="https://m.media-amazon.com/images/I/71sGfHTQ82L._SL1400_.jpg" alt="Def Leppard - Hysteria" width={300} height={300} />
     </a>
 </Card>
 
@@ -73,5 +91,4 @@ TBA
     title="Mehr Informationen"
     href="https://fanieng.com/2026/06/23/def-leppard-dortmund-westfalenhalle/"
 />
-
 
