@@ -1,6 +1,11 @@
 ---
 title: "Lenny Kravitz"
-description: "Eventbericht über das Konzert von Lenny Kravitz auf der Blue Electric Light Tour 2024 in der Sporthalle in Hamburg am 23.06.2024."
+description: "Eventbericht über das Konzert von Lenny Kravitz auf der Blue Electric Light Tour 2024 in der Sporthalle in Hamburg am 23. Juni 2024."
+tour: "Blue Electric Light Tour 2024"
+category: "Konzert"
+ticketCategory: "Stehplatz Innenraum"
+support: "TBA"
+status: "completed"
 pubDate: 2024-06-23
 country: "Deutschland"
 city: "Hamburg"
@@ -8,7 +13,9 @@ venue: "Sporthalle"
 price: 91.20
 artist: ["Lenny Kravitz"]
 asin: "B0DB272NR3"
-tags: ["€91.20","2024","Lenny Kravitz","Deutschland","Hamburg","Konzert","Blue Electric Light","Foto","Sporthalle","Karsten Jahnke Konzertdirektion"]
+ogImage: "/og/events/2024/2024-06-23.jpg"
+canonicalUrl: "/events/2024/2024-06-23/"
+tags: ["2024", "Lenny Kravitz", "Deutschland", "Hamburg", "Konzert", "Blue Electric Light", "Foto", "Sporthalle", "Karsten Jahnke Konzertdirektion"]
 ---
 
 import { Card, LinkCard } from '@astrojs/starlight/components';
@@ -48,12 +55,13 @@ import img221546 from '../../../gallery/2024/06/23/2024-06-23_22-15-46.jpg';
     facts={[
         { icon: 'lucide:calendar-days', label: 'Datum', value: '23.06.2024' },
         { icon: 'lucide:route', label: 'Tour', value: 'Blue Electric Light Tour 2024' },
-        { icon: 'lucide:mic-vocal', label: 'Support', value: '' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: 'TBA' },
         { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
         { icon: 'lucide:map-pin', label: 'Stadt', value: 'Hamburg' },
         { icon: 'lucide:landmark', label: 'Venue', value: 'Sporthalle' },
         { icon: 'lucide:badge-euro', label: 'Preis', value: '91,20 €' },
         { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+        { icon: 'lucide:tag', label: 'Typ', value: 'Konzert' },
     ]}
 />
 
@@ -61,7 +69,7 @@ Mit seinem aktuellen Album **Blue Electric Light** im Gepäck, frisch 60 geworde
 warum er seit Jahrzehnten zu den großen Rockstars gehört.
 
 Spätestens bei Klassikern wie **Are You Gonna Go My Way**, **Fly Away** und **American Woman** hielt es das Publikum nicht mehr auf den Sitzen. 
-Aber auch die neuen Songs wie **TK421** und **Paralyzed** fügten sich nahtlos in das Set ein und zeigten, dass Kravitz auch 2026 noch musikalisch relevant ist.
+Aber auch die neuen Songs wie **TK421** und **Paralyzed** fügten sich nahtlos in das Set ein und zeigten, dass Kravitz auch 2024 noch musikalisch relevant ist.
 
 Zwischen Rock, Funk und Soul lieferte er einen souveränen Auftritt ab, der deutlich machte: Lenny hat von seiner Coolness und Bühnenpräsenz nichts verloren. 
 Ein rundum gelungener Konzertabend.
@@ -112,34 +120,35 @@ Ein rundum gelungener Konzertabend.
 ## Setlist
 
 <Card title="Songs" icon="list-format">
-
-01. Again
-02. Always on the Run
-03. American Woman
-04. Are You Gonna Go My Way
-05. Believe
-06. Beyond the 7th Sky
-07. Black Velveteen
-08. Fear
-09. Fly Away
-10. Human
-11. I Belong to You
-12. I'm a Believer
-13. It Ain't Over 'Til It's Over
-14. Let Love Rule
-15. Low
-16. Minister of Rock 'n Roll
-17. Paralyzed
-18. Stillness of Heart
-19. The Chamber
-20. TK421
+    <ol>
+        <li>Again</li>
+        <li>Always on the Run</li>
+        <li>American Woman</li>
+        <li>Are You Gonna Go My Way</li>
+        <li>Believe</li>
+        <li>Beyond the 7th Sky</li>
+        <li>Black Velveteen</li>
+        <li>Fear</li>
+        <li>Fly Away</li>
+        <li>Human</li>
+        <li>I Belong to You</li>
+        <li>I'm a Believer</li>
+        <li>It Ain't Over 'Til It's Over</li>
+        <li>Let Love Rule</li>
+        <li>Low</li>
+        <li>Minister of Rock 'n Roll</li>
+        <li>Paralyzed</li>
+        <li>Stillness of Heart</li>
+        <li>The Chamber</li>
+        <li>TK421</li>
+    </ol>
 </Card>
 
 ## Album
 
 <Card title="Album" icon="seti:audio">
   <a href="https://www.amazon.de/dp/B0DB272NR3?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-    <img src="https://m.media-amazon.com/images/I/71N8hrLBGOL._SL1500_.jpg" alt="Lenny Kravitz - Blue Electric Light (Amazon)" width="300" />
+    <Image src="https://m.media-amazon.com/images/I/71N8hrLBGOL._SL1500_.jpg" alt="Lenny Kravitz - Blue Electric Light" width={300} height={300} />
   </a>
 </Card>
 
