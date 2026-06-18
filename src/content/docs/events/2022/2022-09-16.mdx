@@ -1,7 +1,11 @@
 ---
 title: "Sondaschule"
-description: "Eventbericht über das Konzert von Sondaschule auf der Gute Zeiten Tour im E-Werk in Köln am 16.09.2022."
+description: "Eventbericht über das Konzert von Sondaschule auf der Gute Zeiten Tour im E-Werk in Köln am 16. September 2022 mit Treptow."
 tour: "Gute Zeiten Tour"
+category: "Konzert"
+ticketCategory: "Stehplatz Innenraum"
+support: "Treptow"
+status: "completed"
 pubDate: 2022-09-16
 country: "Deutschland"
 city: "Köln"
@@ -9,7 +13,9 @@ venue: "E-Werk"
 price: 33.80
 artist: ["Sondaschule"]
 asin: "B0D6KJ3RFJ"
-tags: ["€33.80", "Ticket", "Deutschland", "Konzert", "Köln", "Sondaschule", "Gute Zeiten Tour", "E-Werk", "2022", "Foto"]
+ogImage: "/og/events/2022/2022-09-16.jpg"
+canonicalUrl: "/events/2022/2022-09-16/"
+tags: ["Deutschland", "Konzert", "Köln", "Sondaschule", "Treptow", "Gute Zeiten Tour", "E-Werk", "2022"]
 ---
 
 import { Card, LinkCard } from '@astrojs/starlight/components';
@@ -39,12 +45,13 @@ import img225155 from '../../../gallery/2022/09/16/2022-09-16_22-51-55.jpg';
     facts={[
         { icon: 'lucide:calendar-days', label: 'Datum', value: '16.09.2022' },
         { icon: 'lucide:route', label: 'Tour', value: 'Gute Zeiten Tour' },
-        { icon: 'lucide:mic-vocal', label: 'Support', value: 'TBA' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: 'Treptow', links: [{ label: 'Treptow', href: 'https://treptow.wtf/' }] },
         { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
         { icon: 'lucide:map-pin', label: 'Stadt', value: 'Köln' },
         { icon: 'lucide:landmark', label: 'Venue', value: 'E-Werk' },
         { icon: 'lucide:badge-euro', label: 'Preis', value: '33,80 €' },
         { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+        { icon: 'lucide:tag', label: 'Typ', value: 'Konzert' },
     ]}
 />
 
@@ -74,10 +81,6 @@ Am 16. September 2022 spielten **Sondaschule** im Rahmen der **Gute Zeiten Tour*
         { src: img225155, alt: 'Sondaschule auf der Bühne', title: '22:51' },
     ]}
 />
-
-## Videos
-
-TBA
 
 ## Setlist
 
