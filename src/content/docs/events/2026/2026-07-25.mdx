@@ -1,7 +1,15 @@
 ---
 title: "BOB!Fest"
 
-description: "Eventbericht über das BOB!Fest im SparkassenPark Mönchengladbach am 25.07.2026"
+description: "Eventbericht über das BOB!Fest 2026 im SparkassenPark Mönchengladbach am 25. Juli 2026 mit Airbourne, Judas Priest, The Gems, Phil Campbell’s Bastard Sons, Nestor und Beyond The Black."
+
+tour: "BOB!Fest 2026"
+
+category: "Festival"
+
+ticketCategory: "Stehplatz Innenraum"
+
+status: "scheduled"
 
 pubDate: 2026-07-25
 
@@ -15,7 +23,13 @@ price: 106.50
 
 artist: ["Airbourne", "Judas Priest", "The Gems", "Phil Campbell’s Bastard Sons", "Nestor", "Beyond The Black"]
 
-tags: ["Ticket","Deutschland","2026", "BOB!Fest","Festival","Mönchengladbach","SparkassenPark"]
+asin: ["B07WGJJGGG", "B0CKR1BW3C", "B0CL5KZKG8", "B0C8WZSC47", "B0CZ3S5TG6", "B0FJQCXVJ3"]
+
+ogImage: "/og/events/2026/2026-07-25.jpg"
+
+canonicalUrl: "/events/2026/2026-07-25/"
+
+tags: ["Ticket", "Plakat", "Deutschland", "2026", "BOB!Fest", "Festival", "Mönchengladbach", "SparkassenPark", "Airbourne", "Judas Priest", "The Gems", "Phil Campbell’s Bastard Sons", "Nestor", "Beyond The Black"]
 ---
 import { LinkCard, Card, CardGrid } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
@@ -23,17 +37,19 @@ import EventFacts from '@components/EventFacts.astro';
 import Gallery from '@components/Gallery.astro';
 import YouTubeVideos from '@components/YouTubeVideos.astro';
 import img0000 from '../../../gallery/2026/07/25/2026-07-25_00-00-00.jpg';
+import img1330 from '../../../gallery/2026/07/25/2026-07-25_13-30-00.jpg';
 
 <EventFacts
     facts={[
         { icon: 'lucide:calendar-days', label: 'Datum', value: '25.07.2026' },
-        { icon: 'lucide:route', label: 'Festival', value: 'BOB!Fest' },
-        { icon: 'lucide:mic-vocal', label: 'Artists', value: 'Airbourne, Judas Priest, The Gems, Phil Campbell’s Bastard Sons, Nestor, Beyond The Black' },
+        { icon: 'lucide:route', label: 'Tour', value: 'BOB!Fest 2026' },
+        { icon: 'lucide:mic-vocal', label: 'Line-up', value: 'Airbourne, Judas Priest, The Gems, Phil Campbell’s Bastard Sons, Nestor, Beyond The Black', links: [{ label: 'Airbourne', href: 'https://airbournerock.com/' }, { label: 'Judas Priest', href: 'https://judaspriest.com/' }, { label: 'The Gems', href: 'https://label.napalmrecords.com/the-gems' }, { label: 'Phil Campbell’s Bastard Sons', href: 'https://www.philcampbell.net/' }, { label: 'Nestor', href: 'https://www.nestortheband.com/' }, { label: 'Beyond The Black', href: 'https://beyond-the-black.com/' }] },
         { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
         { icon: 'lucide:map-pin', label: 'Stadt', value: 'Mönchengladbach' },
         { icon: 'lucide:landmark', label: 'Venue', value: 'SparkassenPark' },
         { icon: 'lucide:badge-euro', label: 'Preis', value: '106,50 €' },
         { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+        { icon: 'lucide:tag', label: 'Typ', value: 'Festival' },
     ]}
 />
 
@@ -49,6 +65,7 @@ import img0000 from '../../../gallery/2026/07/25/2026-07-25_00-00-00.jpg';
 <Gallery
     images={[
         { src: img0000, alt: 'Plakat', title: 'Plakat' },
+        { src: img1330, alt: 'Ticket', title: 'Ticket' },
     ]}
 />
 
