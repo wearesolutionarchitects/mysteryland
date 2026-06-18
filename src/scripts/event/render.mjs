@@ -48,11 +48,34 @@ function factLinks(value) {
   if (!links.length) return '';
 
   const entries = links
-    .filter(({ label, href }) => String(label || '').trim() && String(href || '').trim())
-    .map(({ label, href }) => `{ label: ${yamlString(label)}, href: ${yamlString(href)} }`)
+    .filter(({ label }) => hasKnownValue(label))
+    .map(({ label, href }) => {
+      const value = `{ label: ${yamlString(label)}`;
+      return String(href || '').trim()
+        ? `${value}, href: ${yamlString(href)} }`
+        : `${value} }`;
+    })
     .join(', ');
 
   return entries ? `, links: [${entries}]` : '';
+}
+
+function hasKnownValue(value) {
+  return knownValues(value).length > 0;
+}
+
+function knownValues(value) {
+  return stringList(value).filter((item) => !['-', 'TBA', 'keine Vorband'].includes(item));
+}
+
+function isScheduledEvent(event) {
+  if (event.status === 'scheduled') return true;
+
+  const value = String(event.pubDate || '');
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+
+  const today = new Date().toISOString().slice(0, 10);
+  return value > today;
 }
 
 function eventCategory(event) {
@@ -169,18 +192,27 @@ function frontmatter(event) {
 function eventFacts(event) {
   const [year, month, day] = String(event.pubDate || '').split('-');
   const displayDate = event.displayDate || `${day}.${month}.${year}`;
+  const showSupport = hasKnownValue(event.support) || isScheduledEvent(event);
+  const supportValue = hasKnownValue(event.support)
+    ? knownValues(event.support).join(', ')
+    : 'TBA';
+  const facts = [
+    `        { icon: 'lucide:calendar-days', label: 'Datum', value: ${yamlString(displayDate)} },`,
+    `        { icon: 'lucide:route', label: 'Tour', value: ${yamlString(event.tour || 'TBA')} },`,
+    ...(showSupport
+      ? [`        { icon: 'lucide:mic-vocal', label: ${yamlString(event.supportLabel || 'Support')}, value: ${yamlString(supportValue)}${factLinks(event.supportLinks)} },`]
+      : []),
+    `        { icon: 'lucide:globe', label: 'Land', value: ${yamlString(event.country || 'TBA')} },`,
+    `        { icon: 'lucide:map-pin', label: 'Stadt', value: ${yamlString(event.city || 'TBA')} },`,
+    `        { icon: 'lucide:landmark', label: 'Venue', value: ${yamlString(event.venue || 'TBA')} },`,
+    `        { icon: 'lucide:badge-euro', label: 'Preis', value: ${yamlString(priceValue(event.price))} },`,
+    `        { icon: 'lucide:ticket-check', label: 'Kategorie', value: ${yamlString(event.ticketCategory)} },`,
+    `        { icon: 'lucide:tag', label: 'Typ', value: ${yamlString(eventCategory(event))} },`,
+  ].join('\n');
 
   return `<EventFacts
     facts={[
-        { icon: 'lucide:calendar-days', label: 'Datum', value: ${yamlString(displayDate)} },
-        { icon: 'lucide:route', label: 'Tour', value: ${yamlString(event.tour || 'TBA')} },
-        { icon: 'lucide:mic-vocal', label: ${yamlString(event.supportLabel || 'Support')}, value: ${yamlString(event.support)}${factLinks(event.supportLinks)} },
-        { icon: 'lucide:globe', label: 'Land', value: ${yamlString(event.country || 'TBA')} },
-        { icon: 'lucide:map-pin', label: 'Stadt', value: ${yamlString(event.city || 'TBA')} },
-        { icon: 'lucide:landmark', label: 'Venue', value: ${yamlString(event.venue || 'TBA')} },
-        { icon: 'lucide:badge-euro', label: 'Preis', value: ${yamlString(priceValue(event.price))} },
-        { icon: 'lucide:ticket-check', label: 'Kategorie', value: ${yamlString(event.ticketCategory)} },
-        { icon: 'lucide:tag', label: 'Typ', value: ${yamlString(eventCategory(event))} },
+${facts}
     ]}
 />`;
 }
