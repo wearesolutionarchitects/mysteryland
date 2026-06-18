@@ -1,7 +1,11 @@
 ---
 title: "Depeche Mode"
-description: "Eventbericht über das Konzert von Depeche Mode auf der Memento Mori Tour in der MERKUR SPIEL ARENA in Düsseldorf am 04.06.2023."
+description: "Eventbericht über das Konzert von Depeche Mode auf der Memento Mori Tour in der MERKUR SPIEL ARENA in Düsseldorf am 4. Juni 2023 mit Young Fathers."
 tour: "Memento Mori Tour"
+category: "Konzert"
+ticketCategory: "Front of Stage"
+support: "Young Fathers"
+status: "completed"
 pubDate: 2023-06-04
 country: "Deutschland"
 city: "Düsseldorf"
@@ -9,7 +13,9 @@ venue: "MERKUR SPIEL ARENA"
 price: 148.90
 artist: ["Depeche Mode", "Young Fathers"]
 asin: "B0BVBQLJ3G"
-tags: ["€148.90", "Depeche Mode", "Young Fathers", "Deutschland", "Memento Mori", "Konzert", "MERKUR SPIEL ARENA", "Düsseldorf", "2023", "Live Nation"]
+ogImage: "/og/events/2023/2023-06-04.jpg"
+canonicalUrl: "/events/2023/2023-06-04/"
+tags: ["Depeche Mode", "Young Fathers", "Deutschland", "Memento Mori", "Konzert", "MERKUR SPIEL ARENA", "Düsseldorf", "2023", "Live Nation"]
 ---
 
 import { Card, LinkCard } from '@astrojs/starlight/components';
@@ -46,12 +52,13 @@ import img225506 from '../../../gallery/2023/06/04/2023-06-04_22-55-06.jpg';
     facts={[
         { icon: 'lucide:calendar-days', label: 'Datum', value: '04.06.2023' },
         { icon: 'lucide:route', label: 'Tour', value: 'Memento Mori Tour' },
-        { icon: 'lucide:mic-vocal', label: 'Support', value: 'Young Fathers' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: 'Young Fathers', links: [{ label: 'Young Fathers', href: 'https://www.young-fathers.com/' }] },
         { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
         { icon: 'lucide:map-pin', label: 'Stadt', value: 'Düsseldorf' },
         { icon: 'lucide:landmark', label: 'Venue', value: 'MERKUR SPIEL ARENA' },
         { icon: 'lucide:badge-euro', label: 'Preis', value: '148,90 €' },
         { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Front of Stage' },
+        { icon: 'lucide:tag', label: 'Typ', value: 'Konzert' },
     ]}
 />
 
