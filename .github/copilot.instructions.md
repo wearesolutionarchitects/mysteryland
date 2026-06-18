@@ -27,6 +27,16 @@ This project follows a structured and modular development approach with a focus 
 - Neue Event-MDX-Dateien sollen über den zentralen Renderer `src/scripts/event/render.mjs` erzeugt oder an dessen Ausgabeformat angelehnt werden.
 - Das OG-Bild wird über `npm run event:og -- YYYY-MM-DD` erzeugt oder automatisch durch `npm run event:mdx -- YYYY-MM-DD`.
 
+## Artist Content
+
+- Artist-Profile liegen unter `src/content/docs/artists/<slug>.mdx`.
+- Artist-Slugs sind stabil und deutsch lesbar, z.B. `die-aerzte`, `herbert-groenemeyer`, `guenter-schulz`.
+- Das minimale Artist-Frontmatter nutzt `title`, `description`, `artistName`, `artistType`, `aliases`, `origin`, `country`, `artistStatus`, `website`, `musicbrainzId`, `wikidataId`, `canonicalUrl`, `tags`.
+- Unbekannte Artist-Informationen werden mit `TBA` gepflegt, nicht geraten.
+- Fehlende Artist-Profile werden mit `npm run artist:sync` aus `artist`, `support` und `guest` der Event-MDX-Dateien erzeugt.
+- Manuell gepflegte Artist-Seiten sollen nicht durch Skripte überschrieben werden.
+- Artist-Menüs, Support-Links in `EventFacts` und Statistikseiten bauen später auf `src/content/docs/artists` auf, sind aber getrennte Ausbaustufen.
+
 ## Code Style and Formatting
 
 - Use **camelCase** for variables and functions.

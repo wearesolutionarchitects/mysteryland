@@ -210,6 +210,43 @@ npm run event:wp -- <post-id>
 
 Der WordPress-Import ist ein alternativer Einstieg für ältere Events und gehört nicht zum normalen Inbox-Workflow. Er verwendet dasselbe MDX-Gerüst wie `event:mdx`, aber ohne Galerie-Bilder. Mit `--force` kann eine vorhandene Eventdatei nach einem automatischen Backup neu erzeugt werden.
 
+## Artist-Profile synchronisieren
+
+Modul: `src/scripts/artist/sync.mjs`
+
+```bash
+npm run artist:sync
+```
+
+Das Skript:
+
+- liest `artist`, `support` und `guest` aus allen Event-MDX-Dateien,
+- erzeugt fehlende Artist-Profile unter `src/content/docs/artists/<slug>.mdx`,
+- nutzt deutsch lesbare Slugs wie `die-aerzte` oder `herbert-groenemeyer`,
+- überschreibt keine manuell gepflegten Artist-Seiten,
+- repariert nur unveränderte automatisch erzeugte Platzhalterprofile, wenn sich deren Slug oder Canonical ändern muss,
+- schreibt erste Archiv-Zähler für Headliner-, Support- und Gast-Rollen in die Seite.
+
+Artist-Profile verwenden mindestens dieses Frontmatter:
+
+```yaml
+title: "Donots"
+description: "Artist-Profil zu Donots im Mysteryland Konzertarchiv."
+artistName: "Donots"
+artistType: "TBA"
+aliases: []
+origin: "TBA"
+country: "TBA"
+artistStatus: "TBA"
+website: "TBA"
+musicbrainzId: "TBA"
+wikidataId: "TBA"
+canonicalUrl: "/artists/donots/"
+tags: ["Artist", "TBA"]
+```
+
+Die Artist-Seiten werden bewusst noch nicht in der Sidebar eingebunden. Menüs, Artist-Übersichten, automatische Support-Links in `EventFacts` und Statistikseiten werden später auf dieser Struktur aufgebaut.
+
 ## Prüfung
 
 Nach jedem Event:

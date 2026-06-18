@@ -7,7 +7,15 @@ tour: "Ultrabowl 2026"
 
 artist: ["Broilers"]
 
-pubDate: 2026-07-17
+category: "Konzert"
+
+ticketCategory: "Stehplatz Innenraum"
+
+support: ["Donots", "Agnostic Front"]
+
+status: "scheduled"
+
+pubDate: 2026-07-11
 
 country: "Deutschland"
 
@@ -19,7 +27,11 @@ price: 74.85
 
 asin: "B0CY31TLQY"
 
-tags: ["Ticket","Merkur Spiel-Arena","Deutschland","Konzert","Broilers","Ultrabowl 2026","2026"]
+ogImage: "/og/events/2026/2026-07-11.jpg"
+
+canonicalUrl: "/events/2026/2026-07-11/"
+
+tags: ["Ticket", "Merkur Spiel-Arena", "Deutschland", "Düsseldorf", "Konzert", "Broilers", "Ultrabowl 2026", "2026"]
 ---
 import { LinkCard, Card } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
@@ -39,6 +51,7 @@ import img1930 from '../../../gallery/2026/07/11/2026-07-11_19-30-00.jpg';
         { icon: 'lucide:landmark', label: 'Venue', value: 'Merkur Spiel-Arena' },
         { icon: 'lucide:badge-euro', label: 'Preis', value: '74,85 €' },
         { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+        { icon: 'lucide:tag', label: 'Typ', value: 'Konzert' },
     ]}
 />
 
@@ -72,7 +85,7 @@ TBA
 
 <Card title="Jolly Good Fellas" icon="seti:audio">
     <a href="https://www.amazon.de/dp/B0CY31TLQY?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-        <img src="https://m.media-amazon.com/images/I/91RwkKVdIgL._SL1500_.jpg" alt="Broilers - Jolly Good Fellas" width="300" />
+        <Image src="https://m.media-amazon.com/images/I/91RwkKVdIgL._SL1500_.jpg" alt="Broilers - Jolly Good Fellas" width={300} height={300} />
     </a>
 </Card>
 
@@ -82,5 +95,4 @@ TBA
     title="Mehr Informationen"
     href="https://fanieng.com/2026/07/11/broilers-duesseldorf-merkur-spiel-arena"
 />
-
 

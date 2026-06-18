@@ -14,6 +14,7 @@
     "event:mdx": "node src/scripts/event/mdx.mjs",
     "event:og": "node src/scripts/event/og.mjs",
     "event:album": "node src/scripts/event/album.mjs",
+    "artist:sync": "node src/scripts/artist/sync.mjs",
     "script:content:generate-readme": "node src/scripts/content/generate-readme.mjs",
     "script:github:create-labels": "node src/scripts/github/create-label.mjs"
   },
