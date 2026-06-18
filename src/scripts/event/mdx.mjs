@@ -3,6 +3,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { loadEnv, runCapture } from '../lib/core.mjs';
+import { createEventOgImage } from './og.mjs';
 import { renderEventMdx, stringList } from './render.mjs';
 
 loadEnv();
@@ -256,6 +257,11 @@ const images = imageFiles.map((filename, index) => {
   };
 });
 
+const ogImage = await createEventOgImage({
+  eventDate,
+  sourceImage: path.join(galleryDir, imageFiles[0]),
+});
+
 const content = renderEventMdx({
   title: event.artist,
   description,
@@ -269,6 +275,7 @@ const content = renderEventMdx({
   city: event.city,
   venue: event.venue,
   price,
+  ogImage: ogImage.publicPath,
   tags: outputTags,
   images,
 });
@@ -276,3 +283,4 @@ const content = renderEventMdx({
 fs.mkdirSync(path.dirname(targetFile), { recursive: true });
 fs.writeFileSync(targetFile, content, 'utf8');
 console.log(`Created ${targetFile} from ${imageFiles.length} image(s)`);
+console.log(`Created ${ogImage.filePath}`);
