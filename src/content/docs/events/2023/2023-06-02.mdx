@@ -1,6 +1,11 @@
 ---
 title: "Peter Maffay"
-description: "Eventbericht über das Konzert von Peter Maffay im Amphitheater in Gelsenkirchen am 02.06.2023."
+description: "Eventbericht über das Konzert von Peter Maffay im Amphitheater in Gelsenkirchen am 2. Juni 2023 mit Bülent Ceylan als Gast."
+tour: "TBA"
+category: "Konzert"
+ticketCategory: "Stehplatz Innenraum"
+guest: "Bülent Ceylan"
+status: "completed"
 pubDate: 2023-06-02
 country: "Deutschland"
 city: "Gelsenkirchen"
@@ -8,7 +13,9 @@ venue: "Amphitheater"
 price: 72.45
 artist: ["Peter Maffay", "Bülent Ceylan"]
 asin: "B099BYDLLT"
-tags: ["€72.45", "Deutschland", "Konzert", "Gelsenkirchen", "Amphitheater", "2023", "Peter Maffay", "Bülent Ceylan"]
+ogImage: "/og/events/2023/2023-06-02.jpg"
+canonicalUrl: "/events/2023/2023-06-02/"
+tags: ["Deutschland", "Konzert", "Gelsenkirchen", "Amphitheater", "2023", "Peter Maffay", "Bülent Ceylan"]
 ---
 
 import { Card, LinkCard } from '@astrojs/starlight/components';
@@ -37,12 +44,13 @@ import img222908 from '../../../gallery/2023/06/02/2023-06-02_22-29-08.jpg';
     facts={[
         { icon: 'lucide:calendar-days', label: 'Datum', value: '02.06.2023' },
         { icon: 'lucide:route', label: 'Tour', value: 'TBA' },
-        { icon: 'lucide:mic-vocal', label: 'Gast', value: 'Bülent Ceylan' },
+        { icon: 'lucide:mic-vocal', label: 'Gast', value: 'Bülent Ceylan', links: [{ label: 'Bülent Ceylan', href: 'https://www.buelent-ceylan.de/' }] },
         { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
         { icon: 'lucide:map-pin', label: 'Stadt', value: 'Gelsenkirchen' },
         { icon: 'lucide:landmark', label: 'Venue', value: 'Amphitheater' },
         { icon: 'lucide:badge-euro', label: 'Preis', value: '72,45 €' },
         { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+        { icon: 'lucide:tag', label: 'Typ', value: 'Konzert' },
     ]}
 />
 
