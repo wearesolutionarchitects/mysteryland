@@ -3,13 +3,19 @@ title: "Holly Johnson"
 description: "Eventbericht über das Konzert von Holly Johnson im RuhrCongress in Bochum am 17.05.2025."
 tour: "Holly Johnson"
 artist: ["Holly Johnson"]
+category: "Konzert"
+ticketCategory: "Stehplatz Innenraum"
+support: "TBA"
+status: "completed"
 pubDate: 2025-05-17
 country: "Deutschland"
 city: "Bochum"
 venue: "RuhrCongress"
 price: 70.00
 asin: "B08GG2RKD4"
-tags: ["Ticket", "Bochum", "Deutschland", "Konzert", "2025", "RuhrCongress", "Holly Johnson", "Foto"]
+ogImage: "/og/events/2025/2025-05-17.jpg"
+canonicalUrl: "/events/2025/2025-05-17/"
+tags: ["Ticket", "Bochum", "Deutschland", "Konzert", "2025", "RuhrCongress", "Holly Johnson", "Frankie Goes to Hollywood", "Foto"]
 ---
 import { Card, LinkCard } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
@@ -38,12 +44,13 @@ import img213303 from '../../../gallery/2025/05/17/2025-05-17_21-33-03.jpg';
     facts={[
         { icon: 'lucide:calendar-days', label: 'Datum', value: '17.05.2025' },
         { icon: 'lucide:route', label: 'Tour', value: 'Holly Johnson' },
-        { icon: 'lucide:mic-vocal', label: 'Support', value: '-' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: 'TBA' },
         { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
         { icon: 'lucide:map-pin', label: 'Stadt', value: 'Bochum' },
         { icon: 'lucide:landmark', label: 'Venue', value: 'RuhrCongress' },
         { icon: 'lucide:badge-euro', label: 'Preis', value: '70,00 €' },
         { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+        { icon: 'lucide:tag', label: 'Typ', value: 'Konzert' },
     ]}
 />
 
