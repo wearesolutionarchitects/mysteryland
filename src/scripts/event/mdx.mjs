@@ -261,6 +261,8 @@ const content = renderEventMdx({
   description,
   tour,
   artists: [event.artist],
+  category,
+  ticketCategory: 'TBA',
   pubDate: eventDate,
   displayDate: dateGerman,
   country,
