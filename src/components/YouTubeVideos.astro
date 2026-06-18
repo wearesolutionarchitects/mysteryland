@@ -22,19 +22,48 @@ for (const video of videos) {
   {videos.map(({ id, title }) => (
     <figure>
       <div class="video-frame">
-        <iframe
-          src={`https://www.youtube-nocookie.com/embed/${id}`}
-          title={title}
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen
-        />
+        <button class="video-consent" type="button" data-video-id={id} data-video-title={title}>
+          <img
+            src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`}
+            alt=""
+            loading="lazy"
+            decoding="async"
+          />
+          <span class="video-overlay">
+            <span class="play-icon" aria-hidden="true">▶</span>
+            <span>Video laden</span>
+          </span>
+        </button>
+        <noscript>
+          <a href={`https://www.youtube-nocookie.com/embed/${id}`}>Video auf YouTube öffnen</a>
+        </noscript>
       </div>
       <figcaption>{title}</figcaption>
     </figure>
   ))}
 </div>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.video-consent').forEach((button) => {
+    button.addEventListener('click', () => {
+      const videoId = button.dataset.videoId;
+      const videoTitle = button.dataset.videoTitle || 'YouTube-Video';
+      const frame = button.closest('.video-frame');
+
+      if (!videoId || !frame) return;
+
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`;
+      iframe.title = videoTitle;
+      iframe.loading = 'lazy';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      iframe.allowFullscreen = true;
+
+      frame.replaceChildren(iframe);
+    });
+  });
+</script>
 
 <style>
   .youtube-videos {
@@ -50,6 +79,7 @@ for (const video of videos) {
   }
 
   .video-frame {
+    position: relative;
     overflow: hidden;
     aspect-ratio: 16 / 9;
     border: 1px solid var(--sl-color-gray-5);
@@ -62,6 +92,66 @@ for (const video of videos) {
     width: 100%;
     height: 100%;
     border: 0;
+  }
+
+  .video-consent {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    padding: 0;
+    color: var(--sl-color-white);
+    background: #000;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .video-consent img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.78;
+    transition: opacity 160ms ease, transform 160ms ease;
+  }
+
+  .video-consent:hover,
+  .video-consent:focus-visible {
+    outline: 2px solid var(--sl-color-accent-high);
+    outline-offset: -2px;
+  }
+
+  .video-consent:hover img,
+  .video-consent:focus-visible img {
+    opacity: 0.92;
+    transform: scale(1.02);
+  }
+
+  .video-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.35));
+    text-shadow: 0 1px 8px #000;
+  }
+
+  .play-icon {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 999px;
+    color: var(--sl-color-accent-high);
+    background: rgba(0, 0, 0, 0.72);
+    font-size: 1.25rem;
+  }
+
+  noscript a {
+    color: var(--sl-color-white);
   }
 
   figcaption {
