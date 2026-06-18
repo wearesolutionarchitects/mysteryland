@@ -3,15 +3,22 @@ title: "Kraftwerk"
 description: "Eventbericht über das Konzert von Kraftwerk auf der Multimedia Tour 2025 im RuhrCongress in Bochum am 30.11.2025."
 tour: "Multimedia Tour 2025"
 artist: ["Kraftwerk"]
+category: "Konzert"
+ticketCategory: "Stehplatz Innenraum"
+support: "TBA"
+status: "completed"
 pubDate: 2025-11-30
 country: "Deutschland"
 city: "Bochum"
 venue: "RuhrCongress"
 price: 77.40
 asin: "B0DTJ28NNK"
-tags: ["€77.40", "Ticket", "Plakat", "Bochum", "Deutschland", "Konzert", "2025", "Kraftwerk", "RuhrCongress", "Multimedia Tour 2025"]
+ogImage: "/og/events/2025/2025-11-30.jpg"
+canonicalUrl: "/events/2025/2025-11-30/"
+tags: ["Ticket", "Plakat", "Bochum", "Deutschland", "Konzert", "2025", "Kraftwerk", "RuhrCongress", "Multimedia Tour 2025"]
 ---
 import { Card, LinkCard } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
 import EventFacts from '@components/EventFacts.astro';
 import Gallery from '@components/Gallery.astro';
 import img000000 from '../../../gallery/2025/11/30/2025-11-30_00-00-00.jpg';
@@ -24,18 +31,18 @@ import img204858 from '../../../gallery/2025/11/30/2025-11-30_20-48-58.jpg';
 import img204934 from '../../../gallery/2025/11/30/2025-11-30_20-49-34.jpg';
 import img204956 from '../../../gallery/2025/11/30/2025-11-30_20-49-56.jpg';
 import img210345 from '../../../gallery/2025/11/30/2025-11-30_21-03-45.jpg';
-import { Image } from 'astro:assets';
 
 <EventFacts
     facts={[
         { icon: 'lucide:calendar-days', label: 'Datum', value: '30.11.2025' },
         { icon: 'lucide:route', label: 'Tour', value: 'Multimedia Tour 2025' },
-        { icon: 'lucide:mic-vocal', label: 'Support', value: '' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: 'TBA' },
         { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
         { icon: 'lucide:map-pin', label: 'Stadt', value: 'Bochum' },
         { icon: 'lucide:landmark', label: 'Venue', value: 'RuhrCongress' },
         { icon: 'lucide:badge-euro', label: 'Preis', value: '77,40 €' },
         { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+        { icon: 'lucide:tag', label: 'Typ', value: 'Konzert' },
     ]}
 />
 
