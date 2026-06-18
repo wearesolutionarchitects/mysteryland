@@ -12,6 +12,7 @@
     "event:setlist": "node src/scripts/event/setlist.mjs",
     "event:media": "node src/scripts/event/media.mjs",
     "event:mdx": "node src/scripts/event/mdx.mjs",
+    "event:og": "node src/scripts/event/og.mjs",
     "event:album": "node src/scripts/event/album.mjs",
     "script:content:generate-readme": "node src/scripts/content/generate-readme.mjs",
     "script:github:create-labels": "node src/scripts/github/create-label.mjs"
