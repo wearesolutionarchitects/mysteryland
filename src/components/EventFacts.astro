@@ -3,7 +3,7 @@ import { Icon } from 'astro-icon/components';
 
 interface FactLink {
   label: string;
-  href: string;
+  href?: string;
 }
 
 interface Fact {
@@ -30,7 +30,9 @@ const { facts } = Astro.props;
           ? links.map(({ label: linkLabel, href }, index) => (
               <>
                 {index > 0 && <span>, </span>}
-                <a href={href} target="_blank" rel="noopener noreferrer">{linkLabel}</a>
+                {href
+                  ? <a href={href} target="_blank" rel="noopener noreferrer">{linkLabel}</a>
+                  : <span>{linkLabel}</span>}
               </>
             ))
           : value}

@@ -1,11 +1,19 @@
 ---
 title: "Die Toten Hosen"
 
-description: "Eventbericht über das Konzert von Die Toten Hosen auf der 'Trink aus! Wir müssen gehen Tour' im RheinEnergieStadion in Köln am 17.07.2026."
+description: "Eventbericht über das Konzert von Die Toten Hosen auf der 'Trink aus! Wir müssen gehen Tour' im RheinEnergieStadion in Köln am 17. Juli 2026 mit The Undertones."
 
-tour: "Trink aus! Wir müssen gehen"
+tour: "Trink aus! Wir müssen gehen Tour"
 
 artist: ["Die Toten Hosen"]
+
+category: "Konzert"
+
+ticketCategory: "Stehplatz Innenraum"
+
+support: ["The Undertones", "TBA"]
+
+status: "scheduled"
 
 pubDate: 2026-07-17
 
@@ -13,31 +21,37 @@ country: "Deutschland"
 
 city: "Köln"
 
-venue: "RheinergieStadion"
+venue: "RheinEnergieStadion"
 
 price: 89.00
 
 asin: "B0H2VT1RCF"
 
-tags: ["Ticket","RheinEnergieStadion","Deutschland","Konzert","Die Toten Hosen","Trink aus! Wir müssen gehen Tour","2026", "The Undertones"]
+ogImage: "/og/events/2026/2026-07-17.jpg"
+
+canonicalUrl: "/events/2026/2026-07-17/"
+
+tags: ["Ticket", "Plakat", "RheinEnergieStadion", "Deutschland", "Köln", "Konzert", "Die Toten Hosen", "The Undertones", "Trink aus! Wir müssen gehen Tour", "2026"]
 ---
 import { LinkCard, Card } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
 import EventFacts from '@components/EventFacts.astro';
 import Gallery from '@components/Gallery.astro';
 import YouTubeVideos from '@components/YouTubeVideos.astro';
+import img0000 from '../../../gallery/2026/07/17/2026-07-17_00-00-00.jpg';
 import img1730 from '../../../gallery/2026/07/17/2026-07-17_17-30-00.jpg';
 
 <EventFacts
     facts={[
         { icon: 'lucide:calendar-days', label: 'Datum', value: '17.07.2026' },
         { icon: 'lucide:route', label: 'Tour', value: 'Trink aus! Wir müssen gehen Tour' },
-        { icon: 'lucide:mic-vocal', label: 'Support', value: 'The Undertones, TBA' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: 'The Undertones, TBA', links: [{ label: 'The Undertones', href: 'http://theundertones.com/' }, { label: 'TBA' }] },
         { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
         { icon: 'lucide:map-pin', label: 'Stadt', value: 'Köln' },
         { icon: 'lucide:landmark', label: 'Venue', value: 'RheinEnergieStadion' },
         { icon: 'lucide:badge-euro', label: 'Preis', value: '89,00 €' },
         { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+        { icon: 'lucide:tag', label: 'Typ', value: 'Konzert' },
     ]}
 />
 
@@ -53,6 +67,7 @@ Deshalb wollen sie noch einmal mit alten und neuen Liedern losziehen und jeden A
 
 <Gallery
     images={[
+        { src: img0000, alt: 'Plakat', title: 'Plakat' },
         { src: img1730, alt: 'Ticket', title: 'Ticket' },
     ]}
 />
@@ -79,7 +94,7 @@ Deshalb wollen sie noch einmal mit alten und neuen Liedern losziehen und jeden A
 
 <Card title="Trink aus! Wir müssen gehen" icon="seti:audio">
     <a href="https://www.amazon.de/dp/B0H2VT1RCF?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-        <img src="https://m.media-amazon.com/images/I/61O3wze7o7L._SL1500_.jpg" alt="Die Toten Hosen - Trink aus! Wir müssen gehen" width="300" />
+        <Image src="https://m.media-amazon.com/images/I/61O3wze7o7L._SL1500_.jpg" alt="Die Toten Hosen - Trink aus! Wir müssen gehen" width={300} height={300} />
     </a>
 </Card>
 
@@ -89,5 +104,4 @@ Deshalb wollen sie noch einmal mit alten und neuen Liedern losziehen und jeden A
     title="Mehr Informationen"
     href="https://fanieng.com/2026/07/17/die-toten-hosen-koeln-rheinergiestadion"
 />
-
 
