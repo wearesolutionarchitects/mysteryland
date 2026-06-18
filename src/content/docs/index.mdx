@@ -4,23 +4,31 @@ title: "Mysteryland"
 
 # template: splash
 
-description: "Meine persönliche Konzertgeschichte – 45 Jahre Live-Musik, dokumentiert mit Bildern und Erinnerungen."
+description: "Persönliches Konzertarchiv seit 1979 mit Tickets, Bildern, Setlists, Alben und Erinnerungen."
 
 pubDate: 2023-10-01
 
-updatedDate: 2025-03-31
+updatedDate: 2026-06-18
 
-tags: ["Konzert"]
+ogImage: "/og/index.jpg"
+
+canonicalUrl: "/"
+
+tags: ["Konzert", "Festival", "Live-Musik", "Ticket", "Setlist", "Galerie"]
+
+head:
+  - tag: meta
+    attrs:
+      property: og:image
+      content: https://mysteryland.biz/og/index.jpg
+  - tag: meta
+    attrs:
+      name: twitter:image
+      content: https://mysteryland.biz/og/index.jpg
 
 sidebar:
-  # Set a custom label for the link
-  label: Custom sidebar label
-  # Set a custom order for the link (lower numbers are displayed higher up)
+  label: Mysteryland
   order: 1
-  # Add a badge to the link
-  badge:
-    text: New
-    variant: tip
 ---
 import { Steps } from '@astrojs/starlight/components';
 import TicketSlider from '../../components/TicketSlider.astro';
@@ -30,9 +38,16 @@ import img20260717 from '../gallery/2026/07/17/2026-07-17_17-30-00.jpg';
 import img20260725 from '../gallery/2026/07/25/2026-07-25_13-30-00.jpg';
 import img20260901 from '../gallery/2026/09/01/2026-09-01_20-15-00.jpg';
 import img20261225 from '../gallery/2026/12/25/2026-12-25_19-00-00.jpg';
-import img20270412 from '../gallery/2027/04/14/2027-04-14_19-00-00.jpg';
 import img20270414 from '../gallery/2027/04/14/2027-04-14_19-00-00.jpg';
 import img20271211 from '../gallery/2027/12/11/2027-12-11_19-30-00.jpg';
+
+## Überblick
+
+**Mysteryland** ist mein persönliches Konzertarchiv seit 1979.
+Die Seiten dokumentieren Tickets, Bilder, Setlists, Alben und Erinnerungen aus Konzerten, Festivals und Lesungen.
+
+Die Event-Seiten werden als strukturierte MDX-Dateien gepflegt.
+Metadaten wie Datum, Ort, Venue, Artist, Ticketpreis, Kategorie und Open-Graph-Bild liegen im Frontmatter und werden für Darstellung, JSON-LD und Social Previews verwendet.
 
 ## Nächste Konzerte
 
@@ -79,13 +94,6 @@ import img20271211 from '../gallery/2027/12/11/2027-12-11_19-30-00.jpg';
       title: 'Broilers',
       caption: '25.12.2026 - Düsseldorf@Mitsubishi-Electric-HALLE',
       event: 'events/2026/2026-12-25',
-    },
-    {
-      src: img20270412,
-      alt: 'Ticket die ärzte in Dortmund am 12.04.2027',
-      title: 'die ärzte',
-      caption: '12.04.2027 - Dortmund@Westfalenhalle',
-      event: 'events/2027/2027-04-12',
     },
     {
       src: img20270414,
