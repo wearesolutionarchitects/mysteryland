@@ -7,7 +7,15 @@ tour: "Eine Gänsehaut nach dem andern! – Tour 2027"
 
 artist: ["die ärzte"]
 
-pubDate: 2024-04-14
+category: "Konzert"
+
+ticketCategory: "Stehplatz Innenraum"
+
+support: "TBA"
+
+status: "scheduled"
+
+pubDate: 2027-04-14
 
 country: "Deutschland"
 
@@ -19,7 +27,11 @@ price: 79.00
 
 asin: ["B08GFRPYYF", "B096TJP6H3"]
 
-tags: ["Ticket","Westfalenhalle","Deutschland","Konzert","die ärzte","Eine Gänsehaut nach dem andern! – Tour 2027","2027"]
+ogImage: "/og/events/2027/2027-04-14.jpg"
+
+canonicalUrl: "/events/2027/2027-04-14/"
+
+tags: ["Ticket", "Westfalenhalle", "Deutschland", "Konzert", "Dortmund", "die ärzte", "Eine Gänsehaut nach dem andern! – Tour 2027", "2027"]
 ---
 import { LinkCard, Card } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
@@ -27,6 +39,7 @@ import EventFacts from '@components/EventFacts.astro';
 import Gallery from '@components/Gallery.astro';
 import YouTubeVideos from '@components/YouTubeVideos.astro';
 import img1900 from '../../../gallery/2027/04/14/2027-04-14_19-00-00.jpg';
+import img193001 from '../../../gallery/2027/04/14/2027-04-14_19-30-01.jpg';
 
 <EventFacts
     facts={[
@@ -38,6 +51,7 @@ import img1900 from '../../../gallery/2027/04/14/2027-04-14_19-00-00.jpg';
         { icon: 'lucide:landmark', label: 'Venue', value: 'Westfalenhalle' },
         { icon: 'lucide:badge-euro', label: 'Preis', value: '79,00 €' },
         { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+        { icon: 'lucide:tag', label: 'Typ', value: 'Konzert' },
     ]}
 />
 
@@ -50,7 +64,8 @@ Am Ende sind alle glücklich. Mit gutem Gewissen. Versprochen.
 
 <Gallery
     images={[
-        { src: img1900, alt: 'Ticket', title: 'Ticket' },
+        { src: img1900, alt: 'Ticket die ärzte in Dortmund am 14.04.2027', title: 'Ticket' },
+        { src: img193001, alt: 'Ticket die ärzte in Dortmund am 14.04.2027', title: 'Ticket' },
     ]}
 />
 
@@ -75,13 +90,13 @@ Am Ende sind alle glücklich. Mit gutem Gewissen. Versprochen.
 
 <Card title="Hell" icon="seti:audio">
     <a href="https://www.amazon.de/dp/B08GFRPYYF?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-        <img src="https://m.media-amazon.com/images/I/71OZOJ+Z76L._SL1200_.jpg" alt="Die Toten Hosen - Hell" width="300" />
+        <Image src="https://m.media-amazon.com/images/I/71OZOJ+Z76L._SL1200_.jpg" alt="die ärzte - Hell" width={300} height={300} />
     </a>
 </Card>
 
 <Card title="Dunkel" icon="seti:audio">
     <a href="https://www.amazon.de/dp/B096TJP6H3?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-        <img src="https://m.media-amazon.com/images/I/81ooJgeSbGS._SL1500_.jpg" alt="Die Toten Hosen - Dunkel" width="300" />
+        <Image src="https://m.media-amazon.com/images/I/81ooJgeSbGS._SL1500_.jpg" alt="die ärzte - Dunkel" width={300} height={300} />
     </a>
 </Card>
 
@@ -90,5 +105,4 @@ Am Ende sind alle glücklich. Mit gutem Gewissen. Versprochen.
     title="Mehr Informationen"
     href="https://fanieng.com/2027/04/14/die-aerzte-dortmund-westfalenhalle/"
 />
-
 
