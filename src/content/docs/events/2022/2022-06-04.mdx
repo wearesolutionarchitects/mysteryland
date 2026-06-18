@@ -1,7 +1,11 @@
 ---
 title: "die ärzte"
-description: "Eventbericht über das Konzert von die ärzte auf der Buffalo Bill in Rom Tour im RheinEnergieStadion in Köln am 04.06.2022."
+description: "Eventbericht über das Konzert von die ärzte auf der Buffalo Bill in Rom Tour im RheinEnergieStadion in Köln am 4. Juni 2022 mit Adam Angst."
 tour: "Buffalo Bill in Rom"
+category: "Konzert"
+ticketCategory: "Stehplatz Innenraum"
+support: "Adam Angst"
+status: "completed"
 pubDate: 2022-06-04
 country: "Deutschland"
 city: "Köln"
@@ -9,7 +13,9 @@ venue: "RheinEnergieStadion"
 price: 69.00
 artist: ["die ärzte", "Adam Angst"]
 asin: ["B08GFRPYYF", "B096TJP6H3"]
-tags: ["€69.00", "Ticket", "Deutschland", "Konzert", "Köln", "die ärzte", "Adam Angst", "Buffalo Bill in Rom", "RheinEnergieStadion", "2022", "Foto"]
+ogImage: "/og/events/2022/2022-06-04.jpg"
+canonicalUrl: "/events/2022/2022-06-04/"
+tags: ["Deutschland", "Konzert", "Köln", "die ärzte", "Adam Angst", "Buffalo Bill in Rom", "RheinEnergieStadion", "2022"]
 ---
 
 import { Card, LinkCard } from '@astrojs/starlight/components';
@@ -44,12 +50,13 @@ import img223454 from '../../../gallery/2022/06/04/2022-06-04_22-34-54.jpg';
     facts={[
         { icon: 'lucide:calendar-days', label: 'Datum', value: '04.06.2022' },
         { icon: 'lucide:route', label: 'Tour', value: 'Buffalo Bill in Rom' },
-        { icon: 'lucide:mic-vocal', label: 'Support', value: 'Adam Angst' },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: 'Adam Angst', links: [{ label: 'Adam Angst', href: 'https://adamangst.de/' }] },
         { icon: 'lucide:globe', label: 'Land', value: 'Deutschland' },
         { icon: 'lucide:map-pin', label: 'Stadt', value: 'Köln' },
         { icon: 'lucide:landmark', label: 'Venue', value: 'RheinEnergieStadion' },
         { icon: 'lucide:badge-euro', label: 'Preis', value: '69,00 €' },
         { icon: 'lucide:ticket-check', label: 'Kategorie', value: 'Stehplatz Innenraum' },
+        { icon: 'lucide:tag', label: 'Typ', value: 'Konzert' },
     ]}
 />
 
