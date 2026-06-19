@@ -1,0 +1,62 @@
+[
+  {
+    "name": "die ärzte",
+    "slug": "die-aerzte",
+    "href": "/artists/die-aerzte/",
+    "total": 10
+  },
+  {
+    "name": "Depeche Mode",
+    "slug": "depeche-mode",
+    "href": "/artists/depeche-mode/",
+    "total": 7
+  },
+  {
+    "name": "Extrabreit",
+    "slug": "extrabreit",
+    "href": "/artists/extrabreit/",
+    "total": 6
+  },
+  {
+    "name": "Broilers",
+    "slug": "broilers",
+    "href": "/artists/broilers/",
+    "total": 4
+  },
+  {
+    "name": "Die Toten Hosen",
+    "slug": "die-toten-hosen",
+    "href": "/artists/die-toten-hosen/",
+    "total": 3
+  },
+  {
+    "name": "Udo Lindenberg",
+    "slug": "udo-lindenberg",
+    "href": "/artists/udo-lindenberg/",
+    "total": 3
+  },
+  {
+    "name": "Abwärts",
+    "slug": "abwaerts",
+    "href": "/artists/abwaerts/",
+    "total": 2
+  },
+  {
+    "name": "Adam Angst",
+    "slug": "adam-angst",
+    "href": "/artists/adam-angst/",
+    "total": 2
+  },
+  {
+    "name": "Beatsteaks",
+    "slug": "beatsteaks",
+    "href": "/artists/beatsteaks/",
+    "total": 2
+  },
+  {
+    "name": "Bonfire",
+    "slug": "bonfire",
+    "href": "/artists/bonfire/",
+    "total": 2
+  }
+]
