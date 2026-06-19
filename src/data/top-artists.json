@@ -9,7 +9,7 @@
     "name": "Depeche Mode",
     "slug": "depeche-mode",
     "href": "/artists/depeche-mode/",
-    "total": 7
+    "total": 8
   },
   {
     "name": "Extrabreit",
@@ -24,39 +24,39 @@
     "total": 4
   },
   {
+    "name": "Die Toten Hosen",
+    "slug": "die-toten-hosen",
+    "href": "/artists/die-toten-hosen/",
+    "total": 4
+  },
+  {
+    "name": "Udo Lindenberg",
+    "slug": "udo-lindenberg",
+    "href": "/artists/udo-lindenberg/",
+    "total": 4
+  },
+  {
+    "name": "Bonnie Tyler",
+    "slug": "bonnie-tyler",
+    "href": "/artists/bonnie-tyler/",
+    "total": 3
+  },
+  {
     "name": "Brings",
     "slug": "brings",
     "href": "/artists/brings/",
     "total": 3
   },
   {
-    "name": "Die Toten Hosen",
-    "slug": "die-toten-hosen",
-    "href": "/artists/die-toten-hosen/",
+    "name": "Gianna Nannini",
+    "slug": "gianna-nannini",
+    "href": "/artists/gianna-nannini/",
     "total": 3
   },
   {
-    "name": "Peter Maffay",
-    "slug": "peter-maffay",
-    "href": "/artists/peter-maffay/",
+    "name": "Lenny Kravitz",
+    "slug": "lenny-kravitz",
+    "href": "/artists/lenny-kravitz/",
     "total": 3
-  },
-  {
-    "name": "Sandra",
-    "slug": "sandra",
-    "href": "/artists/sandra/",
-    "total": 3
-  },
-  {
-    "name": "Udo Lindenberg",
-    "slug": "udo-lindenberg",
-    "href": "/artists/udo-lindenberg/",
-    "total": 3
-  },
-  {
-    "name": "Abwärts",
-    "slug": "abwaerts",
-    "href": "/artists/abwaerts/",
-    "total": 2
   }
 ]
