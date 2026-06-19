@@ -19,6 +19,7 @@ const docsCollection = defineCollection({
       artistPage: z.string().optional(),
       artistType: z.enum(['Band', 'Solo', 'Projekt', 'Person', 'TBA']).optional(),
       aliases: z.array(z.string()).optional(),
+      members: z.array(z.string()).optional(),
       origin: z.string().optional(),
       artistStatus: z.enum(['active', 'inactive', 'disbanded', 'deceased', 'TBA']).optional(),
       website: z.string().optional(),
