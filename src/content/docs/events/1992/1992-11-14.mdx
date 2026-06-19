@@ -21,11 +21,12 @@ import { Image } from 'astro:assets';
 import EventFacts from '@components/EventFacts.astro';
 import Gallery from '@components/Gallery.astro';
 import YouTubeVideos from '@components/YouTubeVideos.astro';
+import img190001 from '../../../gallery/1992/11/14/1992-11-14_19-00-01.jpg';
+import img190002 from '../../../gallery/1992/11/14/1992-11-14_19-00-02.jpg';
 
 <EventFacts
     facts={[
         { icon: 'lucide:calendar-days', label: 'Datum', value: "14.11.1992" },
-        { icon: 'lucide:route', label: 'Tour', value: "Peter's Pop Show 1992" },
         { icon: 'lucide:globe', label: 'Land', value: "Deutschland" },
         { icon: 'lucide:map-pin', label: 'Stadt', value: "Dortmund" },
         { icon: 'lucide:landmark', label: 'Venue', value: "Westfalenhalle" },
@@ -35,15 +36,26 @@ import YouTubeVideos from '@components/YouTubeVideos.astro';
     ]}
 />
 
-TBA
-
 ## Galerie
 
-TBA
+<Gallery
+    images={[
+        { src: img190001, alt: "Peter's Pop Show 1992 in Dortmund", title: "Backstage Ticket" },
+        { src: img190002, alt: "Peter's Pop Show 1992 in Dortmund", title: "Ticket" },
+    ]}
+/>
 
 ## Videos
 
-TBA
+YZBoENJKtyA
+
+<YouTubeVideos
+    videos={[
+        { id: "YHL4EwsYbO8" },
+        { id: "wg0IsHo4eds" },
+        { id: "YZBoENJKtyA" },
+    ]}
+/>
 
 ## Setlist
 
