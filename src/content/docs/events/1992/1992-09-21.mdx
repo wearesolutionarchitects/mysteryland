@@ -1,0 +1,75 @@
+---
+title: "Marius Müller-Westernhagen"
+description: "Eventbericht über das Konzert von Marius Müller-Westernhagen in Westfalenhalle in Dortmund am 21.09.1992."
+tour: "TBA"
+artist: ["Marius Müller-Westernhagen"]
+category: "Konzert"
+ticketCategory: "TBA"
+support: "TBA"
+status: "completed"
+pubDate: 1992-09-21
+country: "Deutschland"
+city: "Dortmund"
+venue: "Westfalenhalle"
+price: 16.50
+asin: "B00000ASQW"
+ogImage: "/apple-touch-icon.png"
+canonicalUrl: "/events/1992/1992-09-21/"
+tags: ["€16.50", "1992", "Deutschland", "Dortmund", "Konzert", "Marius Müller-Westernhagen", "Westfalenhalle"]
+---
+import { Card, LinkCard } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
+import EventFacts from '@components/EventFacts.astro';
+import Gallery from '@components/Gallery.astro';
+import YouTubeVideos from '@components/YouTubeVideos.astro';
+import img180000 from '../../../gallery/1992/09/21/1992-09-21_18-00-00.jpg';
+
+<EventFacts
+    facts={[
+        { icon: 'lucide:calendar-days', label: 'Datum', value: "21.09.1992" },
+        { icon: 'lucide:route', label: 'Tour', value: "Ja Ja" },
+        { icon: 'lucide:globe', label: 'Land', value: "Deutschland" },
+        { icon: 'lucide:map-pin', label: 'Stadt', value: "Dortmund" },
+        { icon: 'lucide:landmark', label: 'Venue', value: "Westfalenhalle" },
+        { icon: 'lucide:badge-euro', label: 'Preis', value: "16,50 €" },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: "Stehplatz Innenraum" },
+        { icon: 'lucide:tag', label: 'Typ', value: "Konzert" },
+    ]}
+/>
+
+## Galerie
+
+<Gallery
+    images={[
+        { src: img180000, alt: "Ticket Marius Müller-Westernhagen in Dortmund", title: "Ticket" },
+    ]}
+/>
+
+
+## Videos
+
+<YouTubeVideos
+    videos={[
+        { id: "F1F5E83h4m4", title: "Marius Müller-Westernhagen - Konzert Dortmund 21.09.1992" },
+    ]}
+/>
+
+## Setlist
+
+<Card title="Songs" icon="list-format">
+    TBA
+</Card>
+
+## Album
+
+<Card title="Ja Ja" icon="seti:audio">
+    <a href="https://www.amazon.de/dp/B00000ASQW?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+        <Image src="https://m.media-amazon.com/images/I/518Xg7wsicL.jpg" alt="Ja Ja" width={300} height={300} />
+    </a>
+</Card>
+
+<LinkCard
+    title="Mehr Informationen"
+    href="https://fanieng.com/1992/09/21/21-09-1992-marius-mueller-westernhagen-dortmund-westfalenhalle/"
+/>
+
