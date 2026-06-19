@@ -42,6 +42,7 @@ export default defineConfig({
             components: {
                 Head: './src/components/Head.astro',
                 ThemeProvider: './src/components/ThemeProvider.astro',
+                TableOfContents: './src/components/TableOfContents.astro',
             },
             social: [
                 {icon: 'github', label:'github', href: 'https://github.com/wearesolutionarchitects'},
@@ -170,6 +171,20 @@ export default defineConfig({
                 ],
             },
         {
+                label: '1990',
+                collapsed: true,
+                items: [
+                    { autogenerate: { directory: 'events/1990' } },
+                ],
+            },
+            {
+                label: '1989',
+                collapsed: true,
+                items: [
+                    { autogenerate: { directory: 'events/1989' } },
+                ],
+            },
+            {
                 label: '1988',
                 collapsed: true,
                 items: [
