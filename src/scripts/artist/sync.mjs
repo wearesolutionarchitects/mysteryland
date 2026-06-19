@@ -143,6 +143,27 @@ TBA
 `;
 }
 
+function archiveBlock({ roles }) {
+  return `## Archiv
+
+- Headliner: ${roles.headliner.size}
+- Support: ${roles.support.size}
+- Gast: ${roles.guest.size}`;
+}
+
+function updateArchiveCounts(content, artist) {
+  const nextBlock = archiveBlock(artist);
+
+  if (/## Archiv\n\n- Headliner: \d+\n- Support: \d+\n- Gast: \d+/.test(content)) {
+    return content.replace(
+      /## Archiv\n\n- Headliner: \d+\n- Support: \d+\n- Gast: \d+/,
+      nextBlock,
+    );
+  }
+
+  return `${content.trimEnd()}\n\n${nextBlock}\n`;
+}
+
 const artists = new Map();
 
 for (const filePath of walkMdxFiles(eventsRoot)) {
@@ -176,17 +197,24 @@ for (const artist of [...artists.values()].sort((a, b) => a.slug.localeCompare(b
   }
 
   if (fs.existsSync(target)) {
-    const content = fs.readFileSync(target, 'utf8');
+    let content = fs.readFileSync(target, 'utf8');
     const expectedCanonical = `canonicalUrl: ${yamlString(`/artists/${artist.slug}/`)}`;
     const expectedArtistPage = `artistPage: ${yamlString(`/artists/${artist.slug}/`)}`;
     if (
       content.includes('## Überblick\n\nTBA\n\n## Archiv')
       && (!content.includes(expectedCanonical) || !content.includes(expectedArtistPage))
     ) {
-      fs.writeFileSync(target, renderArtist(artist), 'utf8');
+      content = renderArtist(artist);
       repaired += 1;
       console.log(`Repaired ${target}`);
     }
+    const updatedContent = updateArchiveCounts(content, artist);
+    if (updatedContent !== content) {
+      content = updatedContent;
+      repaired += 1;
+      console.log(`Updated archive counts in ${target}`);
+    }
+    fs.writeFileSync(target, content, 'utf8');
     skipped += 1;
     continue;
   }
