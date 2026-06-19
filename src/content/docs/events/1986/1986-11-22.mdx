@@ -1,10 +1,10 @@
 ---
 title: "Peter’s Pop Show"
-description: "Eventbericht über das Konzert von 22.11.1986 – Peter’s Pop Show in Westfalenhalle in Dortmund am 22.11.1986."
-tour: "TBA"
-artist: ["22.11.1986 – Peter’s Pop Show"]
-category: "Konzert"
-ticketCategory: "TBA"
+description: "Eventbericht über Peter’s Pop Show 1986 in der Westfalenhalle in Dortmund am 22. November 1986 mit Depeche Mode, Tina Turner, Billy Idol, Europe und vielen weiteren Künstler:innen."
+tour: "Peter’s Pop Show 1986"
+artist: ["Verschiedene Künstler:innen"]
+category: "Festival"
+ticketCategory: "Stehplatz Innenraum"
 support: "TBA"
 status: "completed"
 pubDate: 1986-11-22
@@ -13,19 +13,22 @@ city: "Dortmund"
 venue: "Westfalenhalle"
 price: 0.00
 asin: ["B0015ILASM", "B0000923NZ"]
-ogImage: "/apple-touch-icon.png"
+ogImage: "/og/events/1986/1986-11-22.jpg"
 canonicalUrl: "/events/1986/1986-11-22/"
-tags: ["€0.00", "1986", "Barclay James Harvest", "Billy Idol", "Bob Geldof", "C.C. Catch", "Chris Norman", "Corey Hart", "Depeche Mode", "Deutschland", "Dortmund", "Eros Ramazzotti", "Europe", "Fahrenheit", "Falco", "Frankie goes to Hollywood", "Gianna Nanninni", "Hubert Kah", "Kim Wilde", "Kool & The Gang", "Modern Talking", "Münchener Freiheit", "Patty La Belle", "Paul Young", "Pet Shop Boys", "Peter Cetera", "Peter's Pop Show", "Playing Games", "Rick Ocasek", "Robbie Zieger", "Robert Palmer", "Samantha Fox", "Sandra", "Sigue Sigue Sputnic", "Silent Circle", "Spandau Ballet", "Tina Turner", "Trio Rio", "Verschiedene Künstler:innen", "Westfalenhalle", "Konzert"]
+tags: ["1986", "Barclay James Harvest", "Billy Idol", "Bob Geldof", "C.C. Catch", "Chris Norman", "Corey Hart", "Depeche Mode", "Deutschland", "Dortmund", "Eros Ramazzotti", "Europe", "Fahrenheit", "Falco", "Frankie Goes To Hollywood", "Gianna Nannini", "Hubert Kah", "Kim Wilde", "Kool & The Gang", "Modern Talking", "Münchener Freiheit", "Patty LaBelle", "Paul Young", "Pet Shop Boys", "Peter Cetera", "Peter's Pop Show", "Playing Games", "Ric Ocasek", "Robbie Zieger", "Robert Palmer", "Samantha Fox", "Sandra", "Sigue Sigue Sputnik", "Silent Circle", "Spandau Ballet", "Tina Turner", "Trio Rio", "Verschiedene Künstler:innen", "Westfalenhalle", "Festival"]
 ---
 import { Card, LinkCard } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
 import EventFacts from '@components/EventFacts.astro';
 import Gallery from '@components/Gallery.astro';
 import YouTubeVideos from '@components/YouTubeVideos.astro';
+import img200000 from '../../../gallery/1986/1986-11-22/1986-11-22_20-00-00.jpg';
+import img200001 from '../../../gallery/1986/1986-11-22/1986-11-22_20-00-01.jpg';
 
 <EventFacts
     facts={[
         { icon: 'lucide:calendar-days', label: 'Datum', value: "22.11.1986" },
+        { icon: 'lucide:route', label: 'Tour', value: "Peter’s Pop Show 1986" },
         { icon: 'lucide:globe', label: 'Land', value: "Deutschland" },
         { icon: 'lucide:map-pin', label: 'Stadt', value: "Dortmund" },
         { icon: 'lucide:landmark', label: 'Venue', value: "Westfalenhalle" },
@@ -35,11 +38,20 @@ import YouTubeVideos from '@components/YouTubeVideos.astro';
     ]}
 />
 
-TBA
+Am 22. November 1986 fand **Peter’s Pop Show** in der Dortmunder Westfalenhalle statt.
+Die ZDF-Produktion brachte zahlreiche internationale Pop-Acts der 1980er Jahre zusammen, darunter **Depeche Mode**, **Tina Turner**, **Billy Idol**, **Europe**, **Falco**, **Pet Shop Boys** und viele weitere Künstler:innen.
+
+Für meine Konzertgeschichte war diese Show auch durch den Bezug zu **Robbie Zieger** besonders prägend.
+Robbie war bei den Pop-Shows im technischen Umfeld aktiv und hat meine frühe Faszination für große Musikproduktionen, Bühnenlicht und Live-Inszenierung mitgeprägt.
 
 ## Galerie
 
-TBA
+<Gallery
+    images={[
+        { src: img200000, alt: "Ticket Peter’s Pop Show 1986 in Dortmund", title: "Ticket Vorderseite" },
+        { src: img200001, alt: "Ticket Peter’s Pop Show 1986 in Dortmund", title: "Ticket Rückseite" },
+    ]}
+/>
 
 ## Video
 
@@ -52,7 +64,74 @@ TBA
 ## Setlist
 
 <Card title="Songs" icon="list-format">
-    TBA
+    <ol>
+        <li>Europe - Final Countdown</li>
+        <li>Europe - Rock The Night</li>
+        <li>Samantha Fox - Touch Me</li>
+        <li>Samantha Fox - Hold On Tight</li>
+        <li>Billy Idol - To Be A Lover</li>
+        <li>Billy Idol - Don’t Need A Gun</li>
+        <li>Robert Palmer - Addicted To Love</li>
+        <li>Robert Palmer - I Didn’t Mean To Turn You On</li>
+        <li>Tina Turner - Typical Male</li>
+        <li>Tina Turner - Two People</li>
+        <li>Tina Turner - What You Get Is What You See</li>
+        <li>Depeche Mode - Stripped</li>
+        <li>Depeche Mode - A Question Of Time</li>
+        <li>Falco - Emotional</li>
+        <li>Falco - Coming Home [Jeanny II]</li>
+        <li>Falco - Amadeus</li>
+        <li>Paul Young - Wonderland</li>
+        <li>Paul Young - Some People</li>
+        <li>Patty LaBelle - Oh, People</li>
+        <li>Patty LaBelle - On My Own</li>
+        <li>Frankie Goes To Hollywood - Rage Hard</li>
+        <li>Frankie Goes To Hollywood - Warriors Of The Wasteland</li>
+        <li>Spandau Ballet - Fight For Ourselves</li>
+        <li>Spandau Ballet - Through The Barricades</li>
+        <li>Bob Geldof - Love Like A Rocket</li>
+        <li>Bob Geldof - This Is The World Calling</li>
+        <li>Chris Norman - Midnight Lady</li>
+        <li>Chris Norman - It’s A Tragedy</li>
+        <li>Kool & The Gang - Victory</li>
+        <li>Kool & The Gang - Cherish</li>
+        <li>Peter Cetera - The Glory Of Love</li>
+        <li>Peter Cetera - The Next Time I Fall</li>
+        <li>Sandra - Hi! Hi! Hi!</li>
+        <li>Sandra - Loreen</li>
+        <li>Modern Talking - Geronimo’s Cadillac</li>
+        <li>Modern Talking - Give Me Peace On Earth</li>
+        <li>Kim Wilde - Schoolgirl</li>
+        <li>Kim Wilde - You Keep Me Hanging On</li>
+        <li>Eros Ramazzotti - Adesso Tu</li>
+        <li>Eros Ramazzotti - Un Cuore Con Le Ali</li>
+        <li>Playing Games - Love Seems To Be</li>
+        <li>Playing Games - No Matter What Colour</li>
+        <li>Gianna Nannini - Avventuriera</li>
+        <li>Gianna Nannini - Bello E Impossibile</li>
+        <li>Barclay James Harvest - He Said Love</li>
+        <li>Barclay James Harvest - Prisoner Of Your Love</li>
+        <li>Pet Shop Boys - Opportunities</li>
+        <li>Pet Shop Boys - Suburbia</li>
+        <li>C.C. Catch - Heartbreak Hotel</li>
+        <li>C.C. Catch - Heaven And Hell</li>
+        <li>Rio Reiser - König Von Deutschland</li>
+        <li>Rio Reiser - Für Immer Und Dich</li>
+        <li>Münchener Freiheit - Tausendmal Du</li>
+        <li>Münchener Freiheit - Es Gibt Kein Nächstes Mal</li>
+        <li>Trio Rio - New York - Rio - Tokyo</li>
+        <li>Trio Rio - I’m Still In Love With You</li>
+        <li>Ric Ocasek - Emotion In Motion</li>
+        <li>Ric Ocasek - Look In Your Eyes</li>
+        <li>Sigue Sigue Sputnik - 21st Century Boy</li>
+        <li>Sigue Sigue Sputnik - Sexbomb Boogie</li>
+        <li>Hubert Kah - Limousine</li>
+        <li>Hubert Kah - Something I Should Know</li>
+        <li>Corey Hart - Angry Young Man</li>
+        <li>Go West - We Close Our Eyes</li>
+        <li>Silent Circle - Time For Love</li>
+        <li>Fahrenheit - Highway To Freedom</li>
+    </ol>
 </Card>
 
 ## Album
@@ -73,5 +152,4 @@ TBA
     title="Mehr Informationen"
     href="https://fanieng.com/1986/11/22/22-11-1986-peters-pop-show-dortmund-westfalenhalle/"
 />
-
 
