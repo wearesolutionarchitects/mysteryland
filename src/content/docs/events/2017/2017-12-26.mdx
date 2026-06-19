@@ -1,57 +1,65 @@
 ---
 title: "Die Toten Hosen"
-description: "Die Toten Hosen mit Laune der Natour am 26.12.2017 in Dortmund, Westfalenhalle."
+description: "Eventbericht über das Konzert von Die Toten Hosen auf der Laune der Natour in der Westfalenhalle in Dortmund am 26. Dezember 2017."
+tour: "Laune der Natour"
+artist: ["Die Toten Hosen"]
+category: "Konzert"
+ticketCategory: "TBA"
+support: "TBA"
+status: "completed"
 pubDate: 2017-12-26
 country: "Deutschland"
 city: "Dortmund"
 venue: "Westfalenhalle"
-artist: ["Die Toten Hosen"]
-tour: "Laune der Natour"
 price: 47.00
 asin: "B06XKMF71P"
-tags:
-  - "2017"
-  - "Concert Team Düsseldorf"
-  - "Deutschland"
-  - "Die Toten Hosen"
-  - "Dortmund"
-  - "Westfalenhalle"
-  - "Laune der Natour"
-  - "Konzert"
+ogImage: "/apple-touch-icon.png"
+canonicalUrl: "/events/2017/2017-12-26/"
+tags: ["2017", "Concert Team Düsseldorf", "Deutschland", "Die Toten Hosen", "Dortmund", "Konzert", "Laune der Natour", "Westfalenhalle"]
 ---
-import { LinkCard, Card } from '@astrojs/starlight/components';
+import { Card, LinkCard } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
 import EventFacts from '@components/EventFacts.astro';
-import Gallery from '@components/Gallery.astro';
-import YouTubeVideos from '@components/YouTubeVideos.astro';
 
+<EventFacts
+    facts={[
+        { icon: 'lucide:calendar-days', label: 'Datum', value: "26.12.2017" },
+        { icon: 'lucide:route', label: 'Tour', value: "Laune der Natour" },
+        { icon: 'lucide:globe', label: 'Land', value: "Deutschland" },
+        { icon: 'lucide:map-pin', label: 'Stadt', value: "Dortmund" },
+        { icon: 'lucide:landmark', label: 'Venue', value: "Westfalenhalle" },
+        { icon: 'lucide:badge-euro', label: 'Preis', value: "47,00 €" },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: "TBA" },
+        { icon: 'lucide:tag', label: 'Typ', value: "Konzert" },
+    ]}
+/>
 
-## Details
+Am 26. Dezember 2017 spielten **Die Toten Hosen** im Rahmen der **Laune der Natour** in der Westfalenhalle in Dortmund.
+Das Konzert gehört zu den Dortmunder Stationen der Tour zum Album **Laune der Natur**.
 
-📅 Datum: 26.12.2017  
-🇩🇪 Land: Deutschland  
-📍 Stadt: Dortmund  
-🏟️ Venue: Westfalenhalle  
-💶 Preis: 47,00 €  
+## Galerie
 
-## Bilder
+TBA
 
-## Konzertbericht
+## Videos
 
-## Pressebericht
-
-## Album
-
-
-<Card title="Laune der Natur Spezial Edition mit Learning English Lesson 2" icon="seti:audio">
-    <a href="https://www.amazon.de/dp/B06XKMF71P?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-        <img src="https://m.media-amazon.com/images/I/71JZUKBsObL._SL1080_.jpg" alt="Laune der Natur Spezial Edition mit Learning English Lesson 2" width="300" />
-    </a>
-</Card>
+TBA
 
 ## Setlist
 
+<Card title="Songs" icon="list-format">
+    TBA
+</Card>
+
+## Album
+
+<Card title="Laune der Natur Spezial Edition mit Learning English Lesson 2" icon="seti:audio">
+    <a href="https://www.amazon.de/dp/B06XKMF71P?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+        <Image src="https://m.media-amazon.com/images/I/71JZUKBsObL._SL1080_.jpg" alt="Laune der Natur Spezial Edition mit Learning English Lesson 2" width={300} height={300} />
+    </a>
+</Card>
+
 <LinkCard
-  title="Mehr Informationen"
-  href="https://fanieng.com/2017/12/26/die-toten-hosen-dortmund-westfalenhalle/"
+    title="Mehr Informationen"
+    href="https://fanieng.com/2017/12/26/die-toten-hosen-dortmund-westfalenhalle/"
 />
