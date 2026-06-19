@@ -10,6 +10,7 @@ interface GalleryImage {
   thumbnail?: ImportedImage;
   alt: string;
   title?: string;
+  fit?: 'cover' | 'contain';
 }
 
 const { images = [] } = Astro.props as { images?: GalleryImage[] };
@@ -35,6 +36,10 @@ const galleryId = `gallery-${crypto.randomUUID()}`;
   object-fit: cover;
   transition: transform 0.2s ease;
   cursor: zoom-in;
+}
+.gallery img.fit-contain {
+  background: #000;
+  object-fit: contain;
 }
 .gallery img:hover {
   transform: scale(1.02);
@@ -152,6 +157,7 @@ const galleryId = `gallery-${crypto.randomUUID()}`;
       <Image
         src={img.thumbnail || img.src}
         alt={img.alt}
+        class:list={[`fit-${img.fit || 'cover'}`]}
         widths={[300, 600, 900]}
         sizes="(max-width: 600px) 100vw, 600px"
       />
