@@ -1,42 +1,59 @@
 ---
 title: "Extrabreit"
-description: "Extrabreit am 08.12.2017 in Hagen, Stadthalle."
+description: "Eventbericht über das Konzert von Extrabreit in der Stadthalle in Hagen am 8. Dezember 2017."
+tour: "TBA"
+artist: ["Extrabreit"]
+category: "Konzert"
+ticketCategory: "TBA"
+support: "TBA"
+status: "completed"
 pubDate: 2017-12-08
 country: "Deutschland"
 city: "Hagen"
 venue: "Stadthalle"
-artist: ["Extrabreit"]
 price: 27.00
-tags:
-  - "2017"
-  - "58/Event"
-  - "Deutschland"
-  - "Extrabreit"
-  - "Hagen"
-  - "Stadthalle"
-  - "Konzert"
+ogImage: "/apple-touch-icon.png"
+canonicalUrl: "/events/2017/2017-12-08/"
+tags: ["2017", "58/Event", "Deutschland", "Extrabreit", "Hagen", "Konzert", "Stadthalle"]
 ---
-import { LinkCard } from '@astrojs/starlight/components';
+import { Card, LinkCard } from '@astrojs/starlight/components';
+import EventFacts from '@components/EventFacts.astro';
 
-## Details
+<EventFacts
+    facts={[
+        { icon: 'lucide:calendar-days', label: 'Datum', value: "08.12.2017" },
+        { icon: 'lucide:route', label: 'Tour', value: "TBA" },
+        { icon: 'lucide:globe', label: 'Land', value: "Deutschland" },
+        { icon: 'lucide:map-pin', label: 'Stadt', value: "Hagen" },
+        { icon: 'lucide:landmark', label: 'Venue', value: "Stadthalle" },
+        { icon: 'lucide:badge-euro', label: 'Preis', value: "27,00 €" },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: "TBA" },
+        { icon: 'lucide:tag', label: 'Typ', value: "Konzert" },
+    ]}
+/>
 
-📅 Datum: 08.12.2017  
-🇩🇪 Land: Deutschland  
-📍 Stadt: Hagen  
-🏟️ Venue: Stadthalle  
-💶 Preis: 27,00 €  
+Am 8. Dezember 2017 spielten **Extrabreit** in der Stadthalle Hagen.
+Der Termin gehört zu den wiederkehrenden Hagener Extrabreit-Konzerten im Archiv.
 
-## Bilder
+## Galerie
 
-## Konzertbericht
+TBA
 
-## Pressebericht
+## Videos
 
-## Album
+TBA
 
 ## Setlist
 
+<Card title="Songs" icon="list-format">
+    TBA
+</Card>
+
+## Album
+
+TBA
+
 <LinkCard
-  title="Mehr Informationen"
-  href="https://fanieng.com/2017/12/08/extrabreit-hagen-stadthalle-2/"
+    title="Mehr Informationen"
+    href="https://fanieng.com/2017/12/08/extrabreit-hagen-stadthalle-2/"
 />
