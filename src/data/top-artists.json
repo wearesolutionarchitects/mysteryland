@@ -24,9 +24,27 @@
     "total": 4
   },
   {
+    "name": "Brings",
+    "slug": "brings",
+    "href": "/artists/brings/",
+    "total": 3
+  },
+  {
     "name": "Die Toten Hosen",
     "slug": "die-toten-hosen",
     "href": "/artists/die-toten-hosen/",
+    "total": 3
+  },
+  {
+    "name": "Peter Maffay",
+    "slug": "peter-maffay",
+    "href": "/artists/peter-maffay/",
+    "total": 3
+  },
+  {
+    "name": "Sandra",
+    "slug": "sandra",
+    "href": "/artists/sandra/",
     "total": 3
   },
   {
@@ -39,24 +57,6 @@
     "name": "Abwärts",
     "slug": "abwaerts",
     "href": "/artists/abwaerts/",
-    "total": 2
-  },
-  {
-    "name": "Adam Angst",
-    "slug": "adam-angst",
-    "href": "/artists/adam-angst/",
-    "total": 2
-  },
-  {
-    "name": "Beatsteaks",
-    "slug": "beatsteaks",
-    "href": "/artists/beatsteaks/",
-    "total": 2
-  },
-  {
-    "name": "Bonfire",
-    "slug": "bonfire",
-    "href": "/artists/bonfire/",
     "total": 2
   }
 ]
