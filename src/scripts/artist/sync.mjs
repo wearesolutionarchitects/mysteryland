@@ -5,6 +5,7 @@ import path from 'node:path';
 
 const eventsRoot = process.env.EVENTS_ROOT || './src/content/docs/events';
 const artistsRoot = process.env.ARTISTS_ROOT || './src/content/docs/artists';
+const topArtistsFile = process.env.TOP_ARTISTS_FILE || './src/data/top-artists.json';
 
 const ignoredValues = new Set(['', '-', 'TBA', 'keine Vorband']);
 
@@ -151,6 +152,23 @@ function archiveBlock({ roles }) {
 - Gast: ${roles.guest.size}`;
 }
 
+function artistTotal({ roles }) {
+  return roles.headliner.size + roles.support.size + roles.guest.size;
+}
+
+function topArtistsData(artists) {
+  return [...artists.values()]
+    .map((artist) => ({
+      name: artist.name,
+      slug: artist.slug,
+      href: `/artists/${artist.slug}/`,
+      total: artistTotal(artist),
+    }))
+    .filter((artist) => artist.total > 0)
+    .sort((a, b) => b.total - a.total || a.name.localeCompare(b.name, 'de-DE'))
+    .slice(0, 10);
+}
+
 function updateArchiveCounts(content, artist) {
   const nextBlock = archiveBlock(artist);
 
@@ -224,4 +242,7 @@ for (const artist of [...artists.values()].sort((a, b) => a.slug.localeCompare(b
   console.log(`Created ${target}`);
 }
 
+fs.mkdirSync(path.dirname(topArtistsFile), { recursive: true });
+fs.writeFileSync(`${topArtistsFile}`, `${JSON.stringify(topArtistsData(artists), null, 2)}\n`, 'utf8');
+console.log(`Updated ${topArtistsFile}`);
 console.log(`Artist sync complete. Created: ${created}. Existing: ${skipped}. Repaired: ${repaired}.`);
