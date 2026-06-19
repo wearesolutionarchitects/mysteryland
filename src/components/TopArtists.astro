@@ -1,0 +1,54 @@
+---
+import topArtists from '../data/top-artists.json';
+---
+
+{
+    topArtists.length > 0 && (
+        <section class="top-artists" aria-labelledby="mysteryland-top-artists">
+            <h2 id="mysteryland-top-artists">Top Artists</h2>
+            <ol>
+                {topArtists.map((artist) => (
+                    <li>
+                        <span class="artist-name">{artist.name}</span>
+                        <span class="artist-count">{artist.total}</span>
+                    </li>
+                ))}
+            </ol>
+        </section>
+    )
+}
+
+<style>
+    .top-artists {
+        border-top: 1px solid var(--sl-color-gray-5);
+        margin-top: 1rem;
+        padding-top: 1rem;
+    }
+
+    .top-artists ol {
+        display: grid;
+        gap: 0.35rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .top-artists li {
+        align-items: baseline;
+        display: flex;
+        gap: 0.5rem;
+        justify-content: space-between;
+    }
+
+    .artist-name {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .artist-count {
+        color: var(--sl-color-gray-2);
+        font-variant-numeric: tabular-nums;
+    }
+</style>
