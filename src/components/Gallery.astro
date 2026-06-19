@@ -13,6 +13,7 @@ interface GalleryImage {
 }
 
 const { images = [] } = Astro.props as { images?: GalleryImage[] };
+const galleryId = `gallery-${crypto.randomUUID()}`;
 ---
 
 <style>
@@ -52,20 +53,57 @@ const { images = [] } = Astro.props as { images?: GalleryImage[] };
 <script>
   import GLightbox from 'glightbox';
 
-  GLightbox({
-    selector: '.glightbox',
-    touchNavigation: true,
-    loop: true,
-    zoomable: true,
-    openEffect: 'zoom',
-    closeEffect: 'fade',
-    slideEffect: 'slide'
-  });
+  type GalleryLightbox = {
+    destroy: () => void;
+    openAt: (index?: number) => void;
+  };
+
+  const initGalleryLightbox = () => {
+    const state = globalThis as typeof globalThis & {
+      mysterylandGalleryLightboxes?: Map<string, GalleryLightbox>;
+    };
+
+    state.mysterylandGalleryLightboxes ??= new Map();
+
+    document.querySelectorAll<HTMLElement>('[data-gallery-id]').forEach((gallery) => {
+      const galleryId = gallery.dataset.galleryId;
+      if (!galleryId) return;
+
+      state.mysterylandGalleryLightboxes?.get(galleryId)?.destroy();
+
+      const lightbox = GLightbox({
+        selector: `[data-gallery-id="${galleryId}"] .glightbox`,
+        touchNavigation: true,
+        loop: true,
+        zoomable: true,
+        openEffect: 'zoom',
+        closeEffect: 'fade',
+        slideEffect: 'slide',
+      }) as GalleryLightbox;
+
+      state.mysterylandGalleryLightboxes?.set(galleryId, lightbox);
+
+      gallery.querySelectorAll<HTMLAnchorElement>('.glightbox').forEach((link, index) => {
+        link.onclick = (event) => {
+          event.preventDefault();
+          lightbox.openAt(index);
+        };
+      });
+    });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initGalleryLightbox, { once: true });
+  } else {
+    initGalleryLightbox();
+  }
+
+  document.addEventListener('astro:page-load', initGalleryLightbox);
 </script>
 
-<div class="gallery">
-  {images.map((img) => (
-    <a href={img.src.src} class="glightbox" data-gallery="gallery" data-title={img.title || img.alt}>
+<div class="gallery" data-gallery-id={galleryId}>
+  {images.map((img, index) => (
+    <a href={img.src.src} class="glightbox" data-gallery={galleryId} data-type="image" data-title={img.title || img.alt} data-index={index}>
       <Image
         src={img.thumbnail || img.src}
         alt={img.alt}
