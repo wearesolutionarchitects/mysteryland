@@ -51,17 +51,30 @@ const galleryId = `gallery-${crypto.randomUUID()}`;
 </style>
 
 <script>
-  import GLightbox from 'glightbox';
-
   type GalleryLightbox = {
     destroy: () => void;
     openAt: (index?: number) => void;
   };
 
-  const initGalleryLightbox = () => {
-    const state = globalThis as typeof globalThis & {
-      mysterylandGalleryLightboxes?: Map<string, GalleryLightbox>;
-    };
+  type GalleryLightboxFactory = (options: Record<string, unknown>) => GalleryLightbox;
+
+  type GalleryState = {
+    mysterylandGalleryLightboxes?: Map<string, GalleryLightbox>;
+    mysterylandGalleryLightboxImport?: Promise<GalleryLightboxFactory>;
+    mysterylandGalleryClickBound?: boolean;
+  };
+
+  const galleryState = () => globalThis as typeof globalThis & GalleryState;
+
+  const loadGLightbox = () => {
+    const state = galleryState();
+    state.mysterylandGalleryLightboxImport ??= import('glightbox').then((module) => module.default as GalleryLightboxFactory);
+    return state.mysterylandGalleryLightboxImport;
+  };
+
+  const initGalleryLightbox = async () => {
+    const state = galleryState();
+    const GLightbox = await loadGLightbox();
 
     state.mysterylandGalleryLightboxes ??= new Map();
 
@@ -82,23 +95,55 @@ const galleryId = `gallery-${crypto.randomUUID()}`;
       }) as GalleryLightbox;
 
       state.mysterylandGalleryLightboxes?.set(galleryId, lightbox);
-
-      gallery.querySelectorAll<HTMLAnchorElement>('.glightbox').forEach((link, index) => {
-        link.onclick = (event) => {
-          event.preventDefault();
-          lightbox.openAt(index);
-        };
-      });
     });
   };
 
+  const scheduleGalleryLightboxInit = () => {
+    void initGalleryLightbox();
+    requestAnimationFrame(() => void initGalleryLightbox());
+    setTimeout(() => void initGalleryLightbox(), 100);
+  };
+
+  const bindGalleryLightboxClick = () => {
+    const state = galleryState();
+    if (state.mysterylandGalleryClickBound) return;
+    state.mysterylandGalleryClickBound = true;
+
+    document.addEventListener('click', async (event) => {
+      const target = event.target instanceof Element
+        ? event.target.closest<HTMLAnchorElement>('a.glightbox')
+        : null;
+      if (!target) return;
+
+      const gallery = target.closest<HTMLElement>('[data-gallery-id]');
+      const galleryId = gallery?.dataset.galleryId;
+      if (!galleryId) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      try {
+        await initGalleryLightbox();
+        const index = Number(target.dataset.index || '0');
+        galleryState().mysterylandGalleryLightboxes?.get(galleryId)?.openAt(index);
+      } catch (error) {
+        console.error('Failed to open gallery lightbox', error);
+      }
+    }, { capture: true });
+  };
+
+  const bootGalleryLightbox = () => {
+    bindGalleryLightboxClick();
+    scheduleGalleryLightboxInit();
+  };
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initGalleryLightbox, { once: true });
+    document.addEventListener('DOMContentLoaded', bootGalleryLightbox, { once: true });
   } else {
-    initGalleryLightbox();
+    bootGalleryLightbox();
   }
 
-  document.addEventListener('astro:page-load', initGalleryLightbox);
+  document.addEventListener('astro:page-load', bootGalleryLightbox);
 </script>
 
 <div class="gallery" data-gallery-id={galleryId}>
