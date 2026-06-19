@@ -1,43 +1,115 @@
 ---
 title: "Broilers"
-description: "Broilers am 16.12.2017 in Dortmund, Westfalenhalle."
+description: "Eventbericht über das Konzert der Broilers in der Westfalenhalle in Dortmund am 16. Dezember 2017."
+tour: "TBA"
+artist: ["Broilers"]
+category: "Konzert"
+ticketCategory: "TBA"
+support: "TBA"
+status: "completed"
 pubDate: 2017-12-16
 country: "Deutschland"
 city: "Dortmund"
 venue: "Westfalenhalle"
-artist: ["Broilers"]
 price: 34.00
 asin: "B01M6CXU4P"
-tags:
-  - "2017"
-  - "Broilers"
-  - "Deutschland"
-  - "Dortmund"
-  - "Kingstar GmbH"
-  - "Westfalenhalle"
-  - "Konzert"
+ogImage: "/og/events/2017/2017-12-16.jpg"
+canonicalUrl: "/events/2017/2017-12-16/"
+tags: ["2017", "Broilers", "Concert Team Düsseldorf", "Deutschland", "Dortmund", "Konzert", "Kingstar GmbH", "Westfalenhalle"]
 ---
-import { LinkCard } from '@astrojs/starlight/components';
+import { Card, LinkCard } from '@astrojs/starlight/components';
+import EventFacts from '@components/EventFacts.astro';
+import Gallery from '@components/Gallery.astro';
+import YouTubeVideos from '@components/YouTubeVideos.astro';
+import img200000 from '../../../gallery/2017/12-16/2017-12-16_20-00-00.jpg';
+import img200001 from '../../../gallery/2017/12-16/2017-12-16_20-00-01.jpg';
+import { Image } from 'astro:assets';
 
-## Details
+<EventFacts
+    facts={[
+        { icon: 'lucide:calendar-days', label: 'Datum', value: "16.12.2017" },
+        { icon: 'lucide:route', label: 'Tour', value: "Ein Teil von mir" },
+        { icon: 'lucide:globe', label: 'Land', value: "Deutschland" },
+        { icon: 'lucide:map-pin', label: 'Stadt', value: "Dortmund" },
+        { icon: 'lucide:landmark', label: 'Venue', value: "Westfalenhalle" },
+        { icon: 'lucide:badge-euro', label: 'Preis', value: "34,00 €" },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: "Stehplatz Innenraum" },
+        { icon: 'lucide:tag', label: 'Typ', value: "Konzert" },
+    ]}
+/>
 
-📅 Datum: 16.12.2017  
-🇩🇪 Land: Deutschland  
-📍 Stadt: Dortmund  
-🏟️ Venue: Westfalenhalle  
-💶 Preis: 34,00 €  
+Am 16. Dezember 2017 spielten die **Broilers** in der Westfalenhalle in Dortmund.
+Das war mein erstes Konzert der Broilers, das ich besucht habe, und es folgten dann noch viele weitere.
 
-## Bilder
+## Galerie
 
-## Konzertbericht
+<Gallery
+    images={[
+        { src: img200000, alt: "Ticket Broilers in Dortmund 2017", title: "Ticket Vorderseite", fit: "contain" },
+        { src: img200001, alt: "Ticket Broilers in Dortmund 2017", title: "Ticket Rückseite", fit: "contain" },
+    ]}
+/>
 
-## Pressebericht
+## Video
 
-## Album
+<YouTubeVideos
+    videos={[
+        { id: "UZmBtoiwzbU" },
+    ]}
+/>
+
 
 ## Setlist
 
+<Card title="Songs" icon="list-format">
+    <ol>
+        <li>Gotta Go</li>
+        <li>If the Kids Are United</li>
+        <li>Preludio Vanitas</li>
+        <li>Zurück zum Beton</li>
+        <li>Meine Familie</li>
+        <li>Ruby Light &amp; Dark</li>
+        <li>Harter Weg (Go!)</li>
+        <li>Paul der Hooligan</li>
+        <li>Tanzt du noch einmal mit mir?</li>
+        <li>Glück auf!</li>
+        <li>Dumm und glücklich</li>
+        <li>In 80 Tagen um die Welt</li>
+        <li>Keine Hymnen heute</li>
+        <li>An all den Schmutz</li>
+        <li>Wie weit wir gehen</li>
+        <li>Ihr da oben</li>
+        <li>Ich brenn'</li>
+        <li>Lofi</li>
+        <li>Die Beste aller Zeiten</li>
+        <li>Held in unserer Mitte</li>
+        <li>Wo es hingeht</li>
+        <li>Zusammen</li>
+        <li>Nur nach vorne gehen</li>
+        <li>Ist da jemand?</li>
+        <li>33 rpm</li>
+        <li>Bitteres Manifest</li>
+        <li>Und hier steh ich</li>
+        <li>Jump</li>
+        <li>Meine Sache</li>
+        <li>Blume</li>
+        <li>Don't Stop Believin'</li>
+    </ol>
+
+    <a href="https://www.setlist.fm/setlist/broilers/2017/westfalenhalle-1-dortmund-germany-33e1a0a5.html" target="_blank" rel="noopener noreferrer">Setlist auf setlist.fm</a>
+</Card>
+
+## Album
+
+<Card title="(sic!) Ltd.Deluxe Edition" icon="seti:audio">
+    <a href="https://www.amazon.de/dp/B01M6CXU4P?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+        <Image src="https://m.media-amazon.com/images/I/A1fWAKWJRIL._SL1500_.jpg" alt="(sic!) Ltd.Deluxe Edition" width={300} height={300} />
+    </a>
+</Card>
+
 <LinkCard
-  title="Mehr Informationen"
-  href="https://fanieng.com/2017/12/16/broilers-dortmund-westfalenhalle/"
+    title="Mehr Informationen"
+    href="https://fanieng.com/2017/12/16/broilers-dortmund-westfalenhalle/"
 />
+
+
