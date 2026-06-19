@@ -18,6 +18,7 @@ Optionale Konfiguration:
 WP_BASE_URL=https://fanieng.com
 GALLERY_ROOT=./src/content/gallery
 GALLERY_INBOX=./src/content/gallery/inbox
+GALLERY_OUTBOX=./src/content/gallery/outbox
 EVENTS_ROOT=./src/content/docs/events
 EXIFTOOL_PATH=/opt/homebrew/bin/exiftool
 SETLIST_USER_AGENT=heiko@fanieng.com
@@ -146,7 +147,45 @@ npm run event:og -- 2027-12-11 src/content/gallery/2027/12/11/2027-12-11_19-30-0
 
 Die Galerie bleibt bewusst in `src/content/gallery`. Nur das abgeleitete OG-Bild liegt öffentlich in `public/og/events`.
 
-## 4. Album ergänzen
+## 4. Social-Outbox erzeugen
+
+Modul: `src/scripts/event/outbox.mjs`
+
+```bash
+npm run event:outbox -- <YYYY-MM-DD>
+```
+
+Beispiel:
+
+```bash
+npm run event:outbox -- 2027-12-11
+```
+
+Das Skript:
+
+- nimmt standardmäßig das erste Bild aus `src/content/gallery/YYYY/MM/DD/`,
+- kann optional mit einem expliziten Quellbild aufgerufen werden,
+- erzeugt kanaloptimierte JPGs für Facebook, Instagram und WhatsApp Status,
+- speichert sie unter `src/content/gallery/outbox/YYYY-MM-DD/`,
+- verwendet schwarze Balken statt Beschnitt, damit Ticket-Scans und Plakate vollständig bleiben.
+
+Ausgabeformate:
+
+```text
+facebook.jpg        1200x630
+instagram.jpg       1080x1080
+whatsapp-status.jpg 1080x1920
+```
+
+Beispiel mit explizitem Quellbild:
+
+```bash
+npm run event:outbox -- 2027-12-11 src/content/gallery/2027/12/11/2027-12-11_20-00-00.jpg
+```
+
+Die Outbox ist bewusst nicht öffentliches Site-Output-Verzeichnis, sondern ein Arbeitsbereich für Uploads zu Facebook, Instagram und WhatsApp.
+
+## 5. Album ergänzen
 
 Modul: `src/scripts/event/album.mjs`
 
@@ -168,7 +207,7 @@ Das Skript:
 - unterstützt mehrere Alben durch wiederholte Aufrufe,
 - verhindert doppelte ASINs.
 
-## 5. Setlists ergänzen
+## 6. Setlists ergänzen
 
 Modul: `src/scripts/event/setlist.mjs`
 
