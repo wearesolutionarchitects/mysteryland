@@ -152,35 +152,37 @@ Die Galerie bleibt bewusst in `src/content/gallery`. Nur das abgeleitete OG-Bild
 Modul: `src/scripts/event/outbox.mjs`
 
 ```bash
-npm run event:outbox -- <YYYY-MM-DD>
+npm run event:outbox
 ```
 
 Beispiel:
 
 ```bash
-npm run event:outbox -- 2027-12-11
+npm run event:outbox
 ```
 
 Das Skript:
 
-- nimmt standardmäßig das erste Bild aus `src/content/gallery/YYYY/MM/DD/`,
-- kann optional mit einem expliziten Quellbild aufgerufen werden,
-- erzeugt kanaloptimierte JPGs für Facebook, Instagram und WhatsApp Status,
-- speichert sie unter `src/content/gallery/outbox/YYYY-MM-DD/`,
-- verwendet schwarze Balken statt Beschnitt, damit Ticket-Scans und Plakate vollständig bleiben.
+- sucht alle noch bevorstehenden Events anhand des Event-Frontmatters,
+- verarbeitet alle Bilder aus `src/content/gallery/YYYY/MM/DD/`,
+- erzeugt pro Quellbild kanaloptimierte JPGs für Facebook, Instagram und WhatsApp Status,
+- speichert sie gebündelt unter `src/content/gallery/outbox/<kanal>/`,
+- löscht bei einem Komplettlauf die Outbox und baut die Kanalordner neu auf,
+- löscht bei einem Einzel-Event nur die Dateien dieses Datums in den Kanalordnern,
+- verwendet schwarze Balken statt Beschnitt, damit Ticket-Scans, Plakate und 4:3-Fotos vollständig bleiben.
 
 Ausgabeformate:
 
 ```text
-facebook.jpg        1200x630
-instagram.jpg       1080x1080
-whatsapp-status.jpg 1080x1920
+facebook/        1200x630
+instagram/       1080x1350
+whatsapp-status/ 1080x1920
 ```
 
-Beispiel mit explizitem Quellbild:
+Optional kann ein einzelnes Event gezielt neu erzeugt werden:
 
 ```bash
-npm run event:outbox -- 2027-12-11 src/content/gallery/2027/12/11/2027-12-11_20-00-00.jpg
+npm run event:outbox -- 2027-12-11
 ```
 
 Die Outbox ist bewusst nicht öffentliches Site-Output-Verzeichnis, sondern ein Arbeitsbereich für Uploads zu Facebook, Instagram und WhatsApp.
