@@ -2,6 +2,7 @@
 // Creates missing artist profile pages from event frontmatter.
 import fs from 'node:fs';
 import path from 'node:path';
+import { parse as parseYaml } from 'yaml';
 
 const eventsRoot = process.env.EVENTS_ROOT || './src/content/docs/events';
 const artistsRoot = process.env.ARTISTS_ROOT || './src/content/docs/artists';
@@ -102,6 +103,7 @@ function addArtist(map, name, role, eventPath) {
         headliner: new Set(),
         support: new Set(),
         guest: new Set(),
+        member: new Set(),
       },
     });
   }
@@ -111,10 +113,6 @@ function addArtist(map, name, role, eventPath) {
 }
 
 function renderArtist({ name, slug, roles }) {
-  const headlinerCount = roles.headliner.size;
-  const supportCount = roles.support.size;
-  const guestCount = roles.guest.size;
-
   return `---
 title: ${yamlString(name)}
 description: ${yamlString(`Artist-Profil zu ${name} im Mysteryland Konzertarchiv.`)}
@@ -122,6 +120,7 @@ artistName: ${yamlString(name)}
 artistPage: ${yamlString(`/artists/${slug}/`)}
 artistType: "TBA"
 aliases: []
+members: []
 origin: "TBA"
 country: "TBA"
 artistStatus: "TBA"
@@ -136,24 +135,28 @@ tags: ["Artist", "TBA"]
 
 TBA
 
-## Archiv
-
-- Headliner: ${headlinerCount}
-- Support: ${supportCount}
-- Gast: ${guestCount}
+${archiveBlock({ roles })}
 `;
 }
 
 function archiveBlock({ roles }) {
-  return `## Archiv
+  const lines = [
+    '## Archiv',
+    '',
+    `- Headliner: ${roles.headliner.size}`,
+    `- Support: ${roles.support.size}`,
+    `- Gast: ${roles.guest.size}`,
+  ];
 
-- Headliner: ${roles.headliner.size}
-- Support: ${roles.support.size}
-- Gast: ${roles.guest.size}`;
+  if (roles.member.size > 0) {
+    lines.push(`- Mitglied: ${roles.member.size}`);
+  }
+
+  return lines.join('\n');
 }
 
 function artistTotal({ roles }) {
-  return roles.headliner.size + roles.support.size + roles.guest.size;
+  return roles.headliner.size + roles.support.size + roles.guest.size + roles.member.size;
 }
 
 function topArtistsData(artists) {
@@ -172,9 +175,9 @@ function topArtistsData(artists) {
 function updateArchiveCounts(content, artist) {
   const nextBlock = archiveBlock(artist);
 
-  if (/## Archiv\n\n- Headliner: \d+\n- Support: \d+\n- Gast: \d+/.test(content)) {
+  if (/## Archiv\n\n- Headliner: \d+\n- Support: \d+\n- Gast: \d+(?:\n- Mitglied: \d+)?/.test(content)) {
     return content.replace(
-      /## Archiv\n\n- Headliner: \d+\n- Support: \d+\n- Gast: \d+/,
+      /## Archiv\n\n- Headliner: \d+\n- Support: \d+\n- Gast: \d+(?:\n- Mitglied: \d+)?/,
       nextBlock,
     );
   }
@@ -195,6 +198,42 @@ for (const filePath of walkMdxFiles(eventsRoot)) {
   }
   for (const name of stringList(frontmatterValue(data, 'guest'))) {
     addArtist(artists, name, 'guest', filePath);
+  }
+}
+
+for (const filePath of walkMdxFiles(artistsRoot)) {
+  const data = frontmatter(fs.readFileSync(filePath, 'utf8'));
+  const artistData = parseYaml(data) || {};
+  const groupName = artistData.artistName || artistData.title;
+  const members = Array.isArray(artistData.members) ? artistData.members : [];
+  const group = artists.get(slugify(groupName));
+  if (!group || members.length === 0) continue;
+
+  for (const memberName of members) {
+    const memberSlug = slugify(memberName);
+    if (!memberSlug || ignoredValues.has(memberName)) continue;
+    if (!artists.has(memberSlug)) {
+      artists.set(memberSlug, {
+        name: memberName,
+        slug: memberSlug,
+        roles: {
+          headliner: new Set(),
+          support: new Set(),
+          guest: new Set(),
+          member: new Set(),
+        },
+      });
+    }
+    const member = artists.get(memberSlug);
+    for (const event of group.roles.headliner) {
+      member.roles.member.add(event);
+    }
+    for (const event of group.roles.support) {
+      member.roles.member.add(event);
+    }
+    for (const event of group.roles.guest) {
+      member.roles.member.add(event);
+    }
   }
 }
 
