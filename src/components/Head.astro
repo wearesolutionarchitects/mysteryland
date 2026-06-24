@@ -2,6 +2,99 @@
 import DefaultHead from '@astrojs/starlight/components/Head.astro';
 import EventSeo from './EventSeo.astro';
 
+const route = Astro.locals.starlightRoute;
+const entry = route?.entry;
+const data = entry?.data ?? {};
+const isEvent = typeof route?.id === 'string' && route.id.startsWith('events/');
+const isArtist = typeof route?.id === 'string' && route.id.startsWith('artists/');
+
+function text(value: unknown) {
+  const result = String(value || '').trim();
+  return result && result !== 'TBA' ? result : '';
+}
+
+function values(value: unknown) {
+  return [...new Set((Array.isArray(value) ? value : [value])
+    .flatMap((item) => String(item || '').split(','))
+    .map((item) => item.trim())
+    .filter(Boolean)
+    .filter((item) => item !== 'TBA'))];
+}
+
+function isoDate(value: unknown) {
+  if (value instanceof Date) return value.toISOString().slice(0, 10);
+  return String(value || '').slice(0, 10);
+}
+
+function dateLabel(value: unknown) {
+  const iso = isoDate(value);
+  const match = iso.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!match) return '';
+
+  return `${match[3]}.${match[2]}.${match[1]}`;
+}
+
+function eventSeoTitle() {
+  const artists = values(data.artist);
+  const title = artists.length ? artists.join(', ') : text(data.title);
+  const city = text(data.city);
+  const venue = text(data.venue);
+  const date = dateLabel(data.pubDate);
+
+  if (!title) return '';
+
+  return [
+    title,
+    city ? `in ${city}` : '',
+    venue,
+    date,
+  ].filter(Boolean).join(' ');
+}
+
+function replaceHeadTag(head: unknown[], matcher: (entry: any) => boolean, replacement: any) {
+  const index = head.findIndex(matcher);
+  if (index === -1) {
+    head.push(replacement);
+    return;
+  }
+
+  head[index] = replacement;
+}
+
+if (isEvent && route?.head) {
+  const title = eventSeoTitle();
+  const description = text(data.description);
+
+  if (title) {
+    replaceHeadTag(route.head, (entry) => entry.tag === 'title', {
+      tag: 'title',
+      content: `${title} | Mysteryland`,
+    });
+    replaceHeadTag(route.head, (entry) => entry.tag === 'meta' && entry.attrs?.property === 'og:title', {
+      tag: 'meta',
+      attrs: { property: 'og:title', content: title },
+    });
+  }
+
+  if (description) {
+    replaceHeadTag(route.head, (entry) => entry.tag === 'meta' && entry.attrs?.name === 'description', {
+      tag: 'meta',
+      attrs: { name: 'description', content: description },
+    });
+    replaceHeadTag(route.head, (entry) => entry.tag === 'meta' && entry.attrs?.property === 'og:description', {
+      tag: 'meta',
+      attrs: { property: 'og:description', content: description },
+    });
+  }
+}
+
+if (isArtist && route?.head) {
+  replaceHeadTag(route.head, (entry) => entry.tag === 'meta' && entry.attrs?.name === 'robots', {
+    tag: 'meta',
+    attrs: { name: 'robots', content: 'noindex,follow' },
+  });
+}
+
 const contentSecurityPolicy = [
   "default-src 'self'",
   "base-uri 'self'",

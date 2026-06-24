@@ -20,6 +20,7 @@ export default defineConfig({
     integrations: [
         starlight({ 
             title: "Mysteryland",
+            description: "Persönliches Konzertarchiv mit Tickets, Fotos, Setlists, Alben und Erinnerungen zu Konzerten, Festivals und Live-Musik seit 1979.",
             favicon: '/favicon.png',
             locales: {
                 root: {
@@ -29,7 +30,6 @@ export default defineConfig({
             },         
             
             head: [
-                { tag: 'meta', attrs: { name: 'description', content: 'Konzertberichte, Bilder und Setlists' } },
                 { tag: 'meta', attrs: { name: 'viewport', content: 'width=device-width, initial-scale=1' } },
                 { tag: 'link', attrs: { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' } },
                 { tag: 'link', attrs: { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' } },
