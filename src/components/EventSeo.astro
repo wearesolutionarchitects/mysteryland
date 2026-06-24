@@ -25,13 +25,21 @@ function absoluteUrl(value: unknown) {
   return new URL(url.startsWith('/') ? url : `/${url}`, Astro.site ?? Astro.url).href;
 }
 
-function schemaEventStatus(value: unknown) {
+function isFutureDate(value: unknown) {
+  const iso = isoDate(value);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(iso)) return false;
+
+  return iso > new Date().toISOString().slice(0, 10);
+}
+
+function schemaEventStatus(value: unknown, pubDate: unknown) {
   const status = String(value || '').toLowerCase();
   if (status === 'cancelled') return 'https://schema.org/EventCancelled';
   if (status === 'postponed') return 'https://schema.org/EventPostponed';
   if (status === 'scheduled') return 'https://schema.org/EventScheduled';
+  if (status === 'completed') return '';
 
-  return 'https://schema.org/EventScheduled';
+  return isFutureDate(pubDate) ? 'https://schema.org/EventScheduled' : '';
 }
 
 function isoDate(value: unknown) {
@@ -70,6 +78,7 @@ const city = text(data.city);
 const country = text(data.country);
 const ticketCategory = text(data.ticketCategory);
 const eventId = canonical ? `${canonical}#event` : '';
+const eventStatus = schemaEventStatus(data.status, data.pubDate);
 
 const eventJsonLd = isEvent ? {
   '@context': 'https://schema.org',
@@ -78,7 +87,7 @@ const eventJsonLd = isEvent ? {
   name: title,
   ...(description ? { description } : {}),
   startDate,
-  eventStatus: schemaEventStatus(data.status),
+  ...(eventStatus ? { eventStatus } : {}),
   eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
   url: canonical,
   ...(route?.lang ? { inLanguage: route.lang } : {}),
