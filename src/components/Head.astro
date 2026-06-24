@@ -36,7 +36,7 @@ function dateLabel(value: unknown) {
 
 function eventSeoTitle() {
   const artists = values(data.artist);
-  const title = artists.length ? artists.join(', ') : text(data.title);
+  const title = text(data.title) || artists[0] || '';
   const city = text(data.city);
   const venue = text(data.venue);
   const date = dateLabel(data.pubDate);

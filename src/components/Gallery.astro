@@ -1,6 +1,6 @@
 ---
 // src/components/Gallery.astro
-import { Image, type LocalImageProps } from 'astro:assets';
+import { Image, getImage, type LocalImageProps } from 'astro:assets';
 import 'glightbox/dist/css/glightbox.min.css';
 
 type ImportedImage = Exclude<LocalImageProps['src'], Promise<unknown>>;
@@ -15,6 +15,20 @@ interface GalleryImage {
 
 const { images = [] } = Astro.props as { images?: GalleryImage[] };
 const galleryId = `gallery-${crypto.randomUUID()}`;
+
+const galleryImages = await Promise.all(images.map(async (img) => {
+  const lightbox = await getImage({
+    src: img.src,
+    width: 1800,
+    format: 'webp',
+    quality: 82,
+  });
+
+  return {
+    ...img,
+    lightboxSrc: lightbox.src,
+  };
+}));
 ---
 
 <style>
@@ -152,14 +166,16 @@ const galleryId = `gallery-${crypto.randomUUID()}`;
 </script>
 
 <div class="gallery" data-gallery-id={galleryId}>
-  {images.map((img, index) => (
-    <a href={img.src.src} class="glightbox" data-gallery={galleryId} data-type="image" data-title={img.title || img.alt} data-index={index}>
+  {galleryImages.map((img, index) => (
+    <a href={img.lightboxSrc} class="glightbox" data-gallery={galleryId} data-type="image" data-title={img.title || img.alt} data-index={index}>
       <Image
         src={img.thumbnail || img.src}
         alt={img.alt}
         class:list={[`fit-${img.fit || 'cover'}`]}
         widths={[300, 600, 900]}
         sizes="(max-width: 600px) 100vw, 600px"
+        format="webp"
+        quality={78}
       />
     </a>
   ))}
