@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import { unified } from '@astrojs/markdown-remark';
+import sitemap from '@astrojs/sitemap';
 import starlight from '@astrojs/starlight';
 import icon from 'astro-icon';
 import path from 'path';
@@ -18,6 +19,9 @@ export default defineConfig({
         }),
     },
     integrations: [
+        sitemap({
+            filter: (page) => !new URL(page).pathname.startsWith('/artists/'),
+        }),
         starlight({ 
             title: "Mysteryland",
             description: "Persönliches Konzertarchiv mit Tickets, Fotos, Setlists, Alben und Erinnerungen zu Konzerten, Festivals und Live-Musik seit 1979.",
