@@ -13,6 +13,7 @@
     "event:media": "node src/scripts/event/media.mjs",
     "event:mdx": "node src/scripts/event/mdx.mjs",
     "event:og": "node src/scripts/event/og.mjs",
+    "event:seo": "node src/scripts/event/seo.mjs",
     "event:outbox": "node src/scripts/event/outbox.mjs",
     "event:album": "node src/scripts/event/album.mjs",
     "artist:sync": "node src/scripts/artist/sync.mjs",

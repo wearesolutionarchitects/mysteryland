@@ -147,7 +147,30 @@ npm run event:og -- 2027-12-11 src/content/gallery/2027/12/11/2027-12-11_19-30-0
 
 Die Galerie bleibt bewusst in `src/content/gallery`. Nur das abgeleitete OG-Bild liegt öffentlich in `public/og/events`.
 
-## 4. Social-Outbox erzeugen
+## 4. Event-SEO prüfen und nachziehen
+
+Modul: `src/scripts/event/seo.mjs`
+
+```bash
+npm run event:seo
+```
+
+Das Skript läuft standardmäßig im Audit-Modus und zeigt nur an, welche Event-Dateien angepasst würden.
+
+```bash
+npm run event:seo -- --write
+```
+
+Das Skript:
+
+- prüft alle Event-MDX-Dateien unter `src/content/docs/events`,
+- erzeugt fehlende OG-Bilder aus vorhandenen Gallery-Bildern,
+- setzt `ogImage` auf `/og/events/YYYY/YYYY-MM-DD.jpg`,
+- setzt als bewussten Fallback `/apple-touch-icon.png`, wenn es keine Gallery-Quelle gibt,
+- ersetzt nur eindeutig schwache Import-Descriptions wie `Artist am YYYY-MM-DD in Stadt, Venue.`,
+- überschreibt keine bereits individuell gepflegten Event-Descriptions.
+
+## 5. Social-Outbox erzeugen
 
 Modul: `src/scripts/event/outbox.mjs`
 
@@ -187,7 +210,7 @@ npm run event:outbox -- 2027-12-11
 
 Die Outbox ist bewusst nicht öffentliches Site-Output-Verzeichnis, sondern ein Arbeitsbereich für Uploads zu Facebook, Instagram und WhatsApp.
 
-## 5. Album ergänzen
+## 6. Album ergänzen
 
 Modul: `src/scripts/event/album.mjs`
 
@@ -209,7 +232,7 @@ Das Skript:
 - unterstützt mehrere Alben durch wiederholte Aufrufe,
 - verhindert doppelte ASINs.
 
-## 6. Setlists ergänzen
+## 7. Setlists ergänzen
 
 Modul: `src/scripts/event/setlist.mjs`
 
