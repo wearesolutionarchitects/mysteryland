@@ -1,22 +1,15 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import { unified } from '@astrojs/markdown-remark';
 import sitemap from '@astrojs/sitemap';
 import starlight from '@astrojs/starlight';
 import icon from 'astro-icon';
 import path from 'path';
-import remarkToc from 'remark-toc';
 
 // https://astro.build/config
 export default defineConfig({
     site: 'https://mysteryland.biz',
     image: {
         domains: ['m.media-amazon.com'],
-    },
-    markdown: {
-        processor: unified({
-            remarkPlugins: [remarkToc],
-        }),
     },
     integrations: [
         sitemap({
