@@ -45,6 +45,7 @@ export default defineConfig({
             ],
             components: {
                 Head: './src/components/Head.astro',
+                PageTitle: './src/components/PageTitle.astro',
                 ThemeProvider: './src/components/ThemeProvider.astro',
                 TableOfContents: './src/components/TableOfContents.astro',
             },

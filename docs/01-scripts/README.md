@@ -31,7 +31,11 @@ AMAZON_AFFILIATE_TAG=mysteryland-21
 Neue oder nachgezogene Event-MDX-Dateien sollen mindestens diese Felder verwenden:
 
 ```yaml
-title: "Sondaschule"
+title: "Sondaschule live in Dortmund, Westfalenhalle - 11. Dezember 2027"
+sidebar:
+  label: "Sondaschule"
+displayTitle: "Sondaschule"
+subtitle: "Westfalenhalle · Dortmund · 11. Dezember 2027"
 description: "Eventbericht über das Konzert von Sondaschule in der Westfalenhalle Dortmund am 11.12.2027."
 tour: "25 Jahre - Mega Circle Pott"
 artist: ["Sondaschule"]
@@ -52,6 +56,11 @@ tags: ["Ticket", "€66.40", "Deutschland", "Westfalenhalle", "Konzert", "25 Jah
 
 Konventionen:
 
+- `title`: aussagekräftiger Seitentitel für Browser-Title, Open Graph und JSON-LD, z.B. `Sondaschule live in Dortmund, Westfalenhalle - 11. Dezember 2027`
+- `sidebar.label`: kompaktes Menülabel, in der Regel der Headliner oder Festivalname
+- `displayTitle`: kompakte sichtbare H1, in der Regel der Headliner oder Festivalname
+- `subtitle`: sichtbare Kontextzeile unter der H1, in der Regel `Venue · Stadt · Datum`
+- Für Festivals und TV-Shows wird der Eventname bevorzugt, z.B. `BOB!Fest in Mönchengladbach, SparkassenPark - 25. Juli 2026`.
 - `category`: `Konzert`, `Festival`, `Lesung` oder `TBA`
 - `status`: `scheduled`, `postponed`, `cancelled`, `completed` oder `TBA`
 - `ticketCategory`: z.B. `Stehplatz Innenraum`, `Sitzplatz`, `Front of Stage`, `TBA`

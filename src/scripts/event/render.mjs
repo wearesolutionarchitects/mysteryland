@@ -102,9 +102,51 @@ function eventOgImage(event) {
   return event.ogImage || event.fallbackOgImage || '/apple-touch-icon.png';
 }
 
+function dateLongLabel(value) {
+  const match = String(value || '').match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!match) return '';
+
+  return new Intl.DateTimeFormat('de-DE', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  }).format(new Date(`${match[1]}-${match[2]}-${match[3]}T00:00:00Z`));
+}
+
+function titleParts(input) {
+  const artists = stringList(input.artists || input.artist || input.title);
+  const category = eventCategory(input);
+  const sidebarLabel = input.sidebarLabel || '';
+  const displayTitle = input.displayTitle
+    || (category === 'Festival' ? sidebarLabel || input.tour || input.title : '')
+    || artists[0]
+    || input.title;
+  const city = input.city || '';
+  const venue = input.venue || '';
+  const date = dateLongLabel(input.pubDate);
+  const eventVerb = category === 'Konzert' ? 'live' : '';
+  const title = input.title || [
+    displayTitle,
+    city ? `${eventVerb ? `${eventVerb} ` : ''}in ${city}` : eventVerb,
+    venue,
+    date ? `- ${date}` : '',
+  ].filter(Boolean).join(' ');
+  const subtitle = input.subtitle || [
+    venue,
+    city,
+    date,
+  ].filter(Boolean).join(' · ');
+
+  return { title, displayTitle, subtitle };
+}
+
 function normalizeEvent(input) {
+  const titles = titleParts(input);
+
   return {
     ...input,
+    ...titles,
     category: eventCategory(input),
     ticketCategory: input.ticketCategory || 'TBA',
     support: input.support || 'TBA',
@@ -162,10 +204,15 @@ function frontmatter(event) {
   const artists = stringList(event.artists || event.artist || event.title);
   const tags = stringList(event.tags);
   const category = eventCategory(event);
+  const sidebarLabel = event.sidebarLabel || artists[0] || event.title;
 
   return [
     '---',
     `title: ${yamlString(event.title)}`,
+    'sidebar:',
+    `  label: ${yamlString(sidebarLabel)}`,
+    `displayTitle: ${yamlString(event.displayTitle)}`,
+    `subtitle: ${yamlString(event.subtitle)}`,
     `description: ${yamlString(event.description)}`,
     `tour: ${yamlString(event.tour || 'TBA')}`,
     `artist: ${frontmatterArray(artists)}`,

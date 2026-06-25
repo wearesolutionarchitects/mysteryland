@@ -10,6 +10,8 @@ const docsCollection = defineCollection({
   schema: docsSchema({
     extend: z.object({
       tags: z.array(z.string()).optional(),
+      displayTitle: z.string().optional(),
+      subtitle: z.string().optional(),
       city: z.string().optional(),
       venue: z.string().optional(),
       country: z.string().optional(),

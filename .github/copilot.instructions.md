@@ -15,7 +15,11 @@ This project follows a structured and modular development approach with a focus 
 
 ## Event Content & SEO
 
-- Event-MDX-Dateien müssen das zentrale Frontmatter-Schema nutzen: `title`, `description`, `tour`, `artist`, `category`, `ticketCategory`, `support`, `status`, `pubDate`, `country`, `city`, `venue`, `price`, `asin`, `ogImage`, `canonicalUrl`, `tags`.
+- Event-MDX-Dateien müssen das zentrale Frontmatter-Schema nutzen: `title`, `sidebar.label`, `displayTitle`, `subtitle`, `description`, `tour`, `artist`, `category`, `ticketCategory`, `support`, `status`, `pubDate`, `country`, `city`, `venue`, `price`, `asin`, `ogImage`, `canonicalUrl`, `tags`.
+- `title` ist der aussagekräftige SEO/GEO-Titel für Browser-Title, Open Graph und JSON-LD, z.B. `Sondaschule live in Dortmund, Westfalenhalle - 11. Dezember 2027`.
+- `sidebar.label` bleibt kompakt für die Navigation, in der Regel Headliner oder Festivalname.
+- `displayTitle` ist die kompakte sichtbare H1. `subtitle` ist die sichtbare Kontextzeile unter der H1, in der Regel `Venue · Stadt · Datum`.
+- Für Festivals und TV-Shows wird im `title` und `displayTitle` der Eventname bevorzugt, nicht der erste Artist aus dem Line-up.
 - Verwende `TBA` für noch unbekannte Inhalte. Erfinde keine Setlists, Supports, Kategorien oder Preise.
 - `category` ist einer von `Konzert`, `Festival`, `Lesung` oder `TBA`.
 - `status` ist einer von `scheduled`, `postponed`, `cancelled`, `completed` oder `TBA`.

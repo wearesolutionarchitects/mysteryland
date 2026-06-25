@@ -42,6 +42,7 @@ function eventSeoTitle() {
   const date = dateLabel(data.pubDate);
 
   if (!title) return '';
+  if (text(data.displayTitle) && text(data.subtitle)) return title;
 
   return [
     title,
