@@ -18,15 +18,15 @@
     "total": 6
   },
   {
-    "name": "Broilers",
-    "slug": "broilers",
-    "href": "/artists/broilers/",
-    "total": 4
-  },
-  {
     "name": "Die Toten Hosen",
     "slug": "die-toten-hosen",
     "href": "/artists/die-toten-hosen/",
+    "total": 5
+  },
+  {
+    "name": "Broilers",
+    "slug": "broilers",
+    "href": "/artists/broilers/",
     "total": 4
   },
   {
