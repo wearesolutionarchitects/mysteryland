@@ -169,6 +169,13 @@ export default defineConfig({
                 ],
             },
         {
+                label: '1997',
+                collapsed: true,
+                items: [
+                    { autogenerate: { directory: 'events/1997' } },
+                ],
+            },
+            {
                 label: '1996',
                 collapsed: true,
                 items: [
