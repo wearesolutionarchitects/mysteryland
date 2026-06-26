@@ -1,0 +1,69 @@
+---
+title: "Herbert Grönemeyer live in Köln, Lanxess-Arena - 15. November 2002"
+sidebar:
+  label: "Herbert Grönemeyer"
+displayTitle: "Herbert Grönemeyer"
+subtitle: "Lanxess-Arena · Köln · 15. November 2002"
+description: "Eventbericht über das Konzert von Herbert Grönemeyer auf der Mensch Tour 2002/2003 in der Lanxess-Arena Köln am 15. November 2002."
+tour: "Mensch Tour 2002/2003"
+artist: ["Herbert Grönemeyer"]
+category: "Konzert"
+ticketCategory: "Stehplatz Innenraum"
+support: ""
+status: "completed"
+pubDate: 2002-11-15
+country: "Deutschland"
+city: "Köln"
+venue: "Lanxess-Arena"
+price: 30.40
+asin: ["B07BLJ4M92", "3956145291"]
+ogImage: "/og/events/2002/2002-11-15.jpg"
+canonicalUrl: "/events/2002/2002-11-15/"
+tags: ["€30.40", "2002", "DBE Köln", "Deutschland", "Herbert Grönemeyer", "Köln", "Lanxess-Arena", "Marek Lieberberg", "Mensch Tour 2002/2003", "Mensch", "B07BLJ4M92", "3956145291", "Konzert"]
+---
+import { Image } from 'astro:assets';
+import { Card, CardGrid } from '@astrojs/starlight/components';
+import EventFacts from '@components/EventFacts.astro';
+import Gallery from '@components/Gallery.astro';
+import albumB07BLJ4M92 from '../../../gallery/2002/11/15/2002-11-15_00-00-00_05_B07BLJ4M92.jpg';
+import album3956145291 from '../../../gallery/2002/11/15/2002-11-15_00-00-00_05_3956145291.jpg';
+import img200000 from '../../../gallery/2002/11/15/2002-11-15_20-00-00.jpg';
+
+<EventFacts
+    facts={[
+        { icon: 'lucide:calendar-days', label: 'Datum', value: "15.11.2002" },
+        { icon: 'lucide:route', label: 'Tour', value: "Mensch Tour 2002/2003" },
+        { icon: 'lucide:globe', label: 'Land', value: "Deutschland" },
+        { icon: 'lucide:map-pin', label: 'Stadt', value: "Köln" },
+        { icon: 'lucide:landmark', label: 'Venue', value: "Lanxess-Arena" },
+        { icon: 'lucide:badge-euro', label: 'Preis', value: "30,40 €" },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: "Stehplatz Innenraum" },
+        { icon: 'lucide:tag', label: 'Typ', value: "Konzert" },
+    ]}
+/>
+
+Am 15. November 2002 spielte **Herbert Grönemeyer** auf der **Mensch Tour 2002/2003** in der Lanxess-Arena in Köln.
+Der Abend gehört in die Phase des Albums **Mensch**, das 2002 eine zentrale Rolle in seiner Live-Geschichte spielte.
+
+## Galerie
+
+<Gallery
+    images={[
+        { src: img200000, alt: "Ticket Herbert Grönemeyer auf der Mensch Tour in der Lanxess-Arena Köln", title: "Ticket" },
+    ]}
+/>
+
+## Album
+
+<CardGrid>
+    <Card title="Mensch (Remastered)" icon="seti:audio">
+        <a href="https://www.amazon.de/dp/B07BLJ4M92?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+            <Image src={albumB07BLJ4M92} alt="Herbert Grönemeyer - Mensch (Remastered)" width={300} height={300} />
+        </a>
+    </Card>
+    <Card title="Zu Mensch" icon="open-book">
+        <a href="https://www.amazon.de/dp/3956145291?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+            <Image src={album3956145291} alt="Zu Mensch - Skizzen und Blicke zurück auf Herbert Grönemeyers Album Mensch" width={300} height={300} />
+        </a>
+    </Card>
+</CardGrid>
