@@ -26,6 +26,7 @@ export function firstEventImage(eventDate, galleryRoot = DEFAULT_GALLERY_ROOT) {
 
   const image = fs.readdirSync(galleryDir)
     .filter((name) => /\.(jpe?g|png|webp)$/i.test(name))
+    .filter((name) => !/_05_[A-Z0-9]+/i.test(name))
     .sort()
     .at(0);
 
