@@ -21,10 +21,12 @@ ogImage: "/og/events/1998/1998-09-03.jpg"
 canonicalUrl: "/events/1998/1998-09-03/"
 tags: ["€15.00", "1998", "1LIVE", "Amphitheater", "Attacke Royal", "Concert Team Düsseldorf", "Deutschland", "die ärzte", "Xanten", "Konzert"]
 ---
+import { Image } from 'astro:assets';
 import { Card } from '@astrojs/starlight/components';
 import EventFacts from '@components/EventFacts.astro';
 import Gallery from '@components/Gallery.astro';
 import img190000 from '../../../gallery/1998/09/03/1998-09-03_19-00-00.jpg';
+import albumB00000JP3Y from '../../../gallery/1998/09/03/1998-09-03_00-00-00_05_B00000JP3Y.jpg';
 
 <EventFacts
     facts={[
@@ -102,6 +104,6 @@ Das Konzert liegt in der Phase rund um das Album **13** und enthält eine sehr l
 
 <Card title="13" icon="seti:audio">
     <a href="https://www.amazon.de/dp/B00000JP3Y?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-        <img src="https://m.media-amazon.com/images/I/61MA9yBJ5fL._SL1200_.jpg" alt="die ärzte - 13" width="300" height="300" loading="lazy" decoding="async" />
+        <Image src={albumB00000JP3Y} alt="die ärzte - 13" width={300} height={300} />
     </a>
 </Card>

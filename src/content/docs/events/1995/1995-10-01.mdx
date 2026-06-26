@@ -21,10 +21,12 @@ ogImage: "/og/events/1995/1995-10-01.jpg"
 canonicalUrl: "/events/1995/1995-10-01/"
 tags: ["€12.00", "1995", "Deutschland", "die ärzte", "Eine Frage der Ehre", "Stadthalle", "Unna", "Konzert"]
 ---
+import { Image } from 'astro:assets';
 import { Card, LinkCard } from '@astrojs/starlight/components';
 import EventFacts from '@components/EventFacts.astro';
 import Gallery from '@components/Gallery.astro';
 import img190000 from '../../../gallery/1995/10/01/1995-10-01_19-00-00.jpg';
+import albumB000MGAZ2K from '../../../gallery/1995/10/01/1995-10-01_00-00-00_05_B000MGAZ2K.jpg';
 
 <EventFacts
     facts={[
@@ -100,7 +102,7 @@ Das Konzert liegt in der Phase rund um **Planet Punk** und dokumentiert eine seh
 
 <Card title="Planet Punk" icon="seti:audio">
     <a href="https://www.amazon.de/dp/B000MGAZ2K?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-        <img src="https://m.media-amazon.com/images/I/61kS7dc-B7L._SL1000_.jpg" alt="Die Ärzte - Planet Punk" width="300" height="300" loading="lazy" decoding="async" />
+        <Image src={albumB000MGAZ2K} alt="Die Ärzte - Planet Punk" width={300} height={300} />
     </a>
 </Card>
 

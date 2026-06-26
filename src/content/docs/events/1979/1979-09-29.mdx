@@ -25,6 +25,7 @@ import { Card, LinkCard } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
 import EventFacts from '@components/EventFacts.astro';
 import Gallery from '@components/Gallery.astro';
+import albumB0000084XP from '../../../gallery/1979/09/29/1979-09-29_00-00-00_05_B0000084XP.jpg';
 
 <EventFacts
     facts={[
@@ -62,7 +63,7 @@ mit großartigen Bands - damals noch playpback - meine Leidenschaft für Live-Ko
 
 <Card title="Ihre Grössten Erfolge" icon="seti:audio">
     <a href="https://www.amazon.de/dp/B0000084XP?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-        <Image src="https://m.media-amazon.com/images/I/91g6CuGDQQL._SL1500_.jpg" alt="Ihre Grössten Erfolge" width={300} height={300} />
+        <Image src={albumB0000084XP} alt="Ihre Grössten Erfolge" width={300} height={300} />
     </a>
 </Card>
 

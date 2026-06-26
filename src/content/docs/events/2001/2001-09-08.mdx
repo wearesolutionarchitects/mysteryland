@@ -21,6 +21,7 @@ ogImage: "/og/events/2001/2001-09-08.jpg"
 canonicalUrl: "/events/2001/2001-09-08/"
 tags: ["€24.39", "2001", "Deutschland", "die ärzte", "Flughafen", "Halle 401", "Rauf auf die Bühne Unsichtbarer!", "Sylt", "Westerland", "Konzert"]
 ---
+import { Image } from 'astro:assets';
 import { Card } from '@astrojs/starlight/components';
 import EventFacts from '@components/EventFacts.astro';
 import Gallery from '@components/Gallery.astro';
@@ -40,6 +41,7 @@ import img2059592 from '../../../gallery/2001/09/08/2001-09-08_20-59-59-2.jpg';
 import img2059593 from '../../../gallery/2001/09/08/2001-09-08_20-59-59-3.jpg';
 import img2059594 from '../../../gallery/2001/09/08/2001-09-08_20-59-59-4.jpg';
 import img2100002 from '../../../gallery/2001/09/08/2001-09-08_21-00-00-2.jpg';
+import albumB00004ZC4S from '../../../gallery/2001/09/08/2001-09-08_00-00-00_05_B00004ZC4S.jpg';
 
 <EventFacts
     facts={[
@@ -141,6 +143,6 @@ In der Setlist taucht mit **Mysteryland** ein Song auf, der für dieses Archiv n
 
 <Card title="Runter mit den Spendierhosen, Unsichtbarer!" icon="seti:audio">
     <a href="https://www.amazon.de/dp/B00004ZC4S?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-        <img src="https://m.media-amazon.com/images/I/51scrIT3pxL._AC_AC_SR250,250_.jpg" alt="die ärzte - Runter mit den Spendierhosen, Unsichtbarer!" width="300" height="300" loading="lazy" decoding="async" />
+        <Image src={albumB00004ZC4S} alt="die ärzte - Runter mit den Spendierhosen, Unsichtbarer!" width={300} height={300} />
     </a>
 </Card>

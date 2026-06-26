@@ -21,10 +21,12 @@ ogImage: "/og/events/2001/2001-07-08.jpg"
 canonicalUrl: "/events/2001/2001-07-08/"
 tags: ["€49.75", "2001", "AC/DC", "Concert Team Düsseldorf", "Deutschland", "Die Toten Hosen", "Köln", "Müngersdorfer Stadion", "RheinEnergieStadion", "Stiff Upper Lip", "Konzert"]
 ---
+import { Image } from 'astro:assets';
 import { Card } from '@astrojs/starlight/components';
 import EventFacts from '@components/EventFacts.astro';
 import Gallery from '@components/Gallery.astro';
 import img163000 from '../../../gallery/2001/07/08/2001-07-08_16-30-00.jpg';
+import albumB000NVI1IO from '../../../gallery/2001/07/08/2001-07-08_00-00-00_05_B000NVI1IO.jpg';
 
 <EventFacts
     facts={[
@@ -84,6 +86,6 @@ Die Setlist zeigt den klassischen AC/DC-Block dieser Tour: **Stiff Upper Lip**, 
 
 <Card title="Stiff Upper Lip" icon="seti:audio">
     <a href="https://www.amazon.de/dp/B000NVI1IO?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-        <img src="https://m.media-amazon.com/images/I/61D+sUghO6L._AC_AC_SR250,250_.jpg" alt="AC/DC - Stiff Upper Lip" width="300" height="300" loading="lazy" decoding="async" />
+        <Image src={albumB000NVI1IO} alt="AC/DC - Stiff Upper Lip" width={300} height={300} />
     </a>
 </Card>

@@ -21,10 +21,12 @@ ogImage: "/og/events/2002/2002-05-08.jpg"
 canonicalUrl: "/events/2002/2002-05-08/"
 tags: ["€28.88", "2002", "Deutschland", "Dortmund", "Fury in the Slaughterhouse", "The Color Fury", "B00005YW80", "Westfalenhalle", "Westfalenhalle 2", "Konzert"]
 ---
+import { Image } from 'astro:assets';
 import { Card } from '@astrojs/starlight/components';
 import EventFacts from '@components/EventFacts.astro';
 import Gallery from '@components/Gallery.astro';
 import img200000 from '../../../gallery/2002/05/08/2002-05-08_20-00-00.jpg';
+import albumB00005YW80 from '../../../gallery/2002/05/08/2002-05-08_00-00-00_05_B00005YW80.jpg';
 
 <EventFacts
     facts={[
@@ -83,6 +85,6 @@ Die Setlist verbindet Songs aus der **The Color Fury**-Phase mit zentralen Fury-
 
 <Card title="The Color Fury" icon="seti:audio">
     <a href="https://www.amazon.de/dp/B00005YW80?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-        <img src="https://m.media-amazon.com/images/I/61Xw8aA22CL.jpg" alt="The Color Fury Album Cover" width="300" height="300" loading="lazy" decoding="async"/>
+        <Image src={albumB00005YW80} alt="The Color Fury Album Cover" width={300} height={300} />
     </a>
 </Card>

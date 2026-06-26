@@ -21,10 +21,12 @@ ogImage: "/og/events/2000/2000-05-27.jpg"
 canonicalUrl: "/events/2000/2000-05-27/"
 tags: ["€19.90", "2000", "Concert Team Düsseldorf", "Deutschland", "Die Toten Hosen", "Dortmund", "KKT", "Unsterblich", "Westfalenhalle", "Konzert"]
 ---
+import { Image } from 'astro:assets';
 import { Card } from '@astrojs/starlight/components';
 import EventFacts from '@components/EventFacts.astro';
 import Gallery from '@components/Gallery.astro';
 import img200000 from '../../../gallery/2000/05/27/2000-05-27_20-00-00.jpg';
+import albumB0000365EY from '../../../gallery/2000/05/27/2000-05-27_00-00-00_05_B0000365EY.jpg';
 
 <EventFacts
     facts={[
@@ -99,6 +101,6 @@ Das Konzert liegt in der Phase rund um das Album **Unsterblich** und verbindet d
 
 <Card title="Unsterblich" icon="seti:audio">
     <a href="https://www.amazon.de/dp/B0000365EY?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-        <img src="https://m.media-amazon.com/images/I/51raobQCFRL._SL1000_.jpg" alt="Unsterblich Album Cover" width="300" height="300" loading="lazy" decoding="async" /> 
+        <Image src={albumB0000365EY} alt="Unsterblich Album Cover" width={300} height={300} /> 
     </a>
 </Card>

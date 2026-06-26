@@ -21,10 +21,13 @@ ogImage: "/og/events/2001/2001-09-27.jpg"
 canonicalUrl: "/events/2001/2001-09-27/"
 tags: ["€45.38", "2001", "Depeche Mode", "Deutschland", "Exciter Tour", "Köln", "Kölnarena", "Lanxess-Arena", "Marek Lieberberg", "Konzert"]
 ---
+import { Image } from 'astro:assets';
 import { Card, CardGrid } from '@astrojs/starlight/components';
 import EventFacts from '@components/EventFacts.astro';
 import Gallery from '@components/Gallery.astro';
 import img200000 from '../../../gallery/2001/09/27/2001-09-27_20-00-00.jpg';
+import albumB00DJLOBKM from '../../../gallery/2001/09/27/2001-09-27_00-00-00_05_B00DJLOBKM.jpg';
+import albumB09TFYZ2RW from '../../../gallery/2001/09/27/2001-09-27_00-00-00_05_B09TFYZ2RW.jpg';
 
 <EventFacts
     facts={[
@@ -84,12 +87,12 @@ In der Setlist standen außerdem zentrale Live-Klassiker wie **Walking in My Sho
 <CardGrid>
     <Card title="Exciter" icon="seti:audio">
         <a href="https://www.amazon.de/dp/B00DJLOBKM?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-            <img src="https://m.media-amazon.com/images/I/51wLyN8JfhL._AC_AC_SR250,250_.jpg" alt="Depeche Mode - Exciter" width="300" height="300" loading="lazy" decoding="async" />
+            <Image src={albumB00DJLOBKM} alt="Depeche Mode - Exciter" width={300} height={300} />
         </a>
     </Card>
     <Card title="Exciter | The 12'' Singles" icon="seti:audio">
         <a href="https://www.amazon.de/dp/B09TFYZ2RW?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-            <img src="https://m.media-amazon.com/images/I/31gHLeykrFL._AC_AC_SR250,250_.jpg" alt="Depeche Mode - Exciter The 12'' Singles" width="300" height="300" loading="lazy" decoding="async" />
+            <Image src={albumB09TFYZ2RW} alt="Depeche Mode - Exciter The 12'' Singles" width={300} height={300} />
         </a>
     </Card>
 </CardGrid>

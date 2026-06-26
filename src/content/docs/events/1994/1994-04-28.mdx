@@ -21,10 +21,12 @@ ogImage: "/og/events/1994/1994-04-28.jpg"
 canonicalUrl: "/events/1994/1994-04-28/"
 tags: ["€0.00", "1994", "Deutschland", "Die Toten Hosen", "Dortmund", "Reich & Sexy", "Robbie Zieger", "Westfalenhalle", "Konzert"]
 ---
+import { Image } from 'astro:assets';
 import { Card, LinkCard } from '@astrojs/starlight/components';
 import EventFacts from '@components/EventFacts.astro';
 import Gallery from '@components/Gallery.astro';
 import img200000 from '../../../gallery/1994/04/28/1994-04-28_20-00-00.jpg';
+import albumB000WXJP1A from '../../../gallery/1994/04/28/1994-04-28_00-00-00_05_B000WXJP1A.jpg';
 
 <EventFacts
     facts={[
@@ -92,7 +94,7 @@ Die Setlist zeigt die Band in einer Phase, in der neue Songs und frühe Klassike
 
 <Card title="Reich & Sexy" icon="seti:audio">
     <a href="https://www.amazon.de/dp/B000WXJP1A?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-        <img src="https://m.media-amazon.com/images/I/91IBp8d2OeL._SL1500_.jpg" alt="Die Toten Hosen - Reich & Sexy" width="300" height="300" loading="lazy" decoding="async" />
+        <Image src={albumB000WXJP1A} alt="Die Toten Hosen - Reich & Sexy" width={300} height={300} />
     </a>
 </Card>
 

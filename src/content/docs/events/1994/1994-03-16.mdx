@@ -21,10 +21,12 @@ ogImage: "/og/events/1994/1994-03-16.jpg"
 canonicalUrl: "/events/1994/1994-03-16/"
 tags: ["€25.00", "1994", "Bielefeld", "Deutschland", "die ärzte", "PC 69", "Tour Tour", "Konzert"]
 ---
+import { Image } from 'astro:assets';
 import { Card, LinkCard } from '@astrojs/starlight/components';
 import EventFacts from '@components/EventFacts.astro';
 import Gallery from '@components/Gallery.astro';
 import img190000 from '../../../gallery/1994/03/16/1994-03-16_19-00-00.jpg';
+import albumB000MGAZ2A from '../../../gallery/1994/03/16/1994-03-16_00-00-00_05_B000MGAZ2A.jpg';
 
 <EventFacts
     facts={[
@@ -80,7 +82,7 @@ Das Konzert gehört zur **Tour Tour**, also in die Phase nach der Wiedervereinig
 
 <Card title="Die Bestie in Menschengestalt" icon="seti:audio">
     <a href="https://www.amazon.de/dp/B000MGAZ2A?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-        <img src="https://m.media-amazon.com/images/I/81TKa1bvFyL._SL1390_.jpg" alt="die ärzte - Die Bestie in Menschengestalt" width="300" height="300" loading="lazy" decoding="async" />
+        <Image src={albumB000MGAZ2A} alt="die ärzte - Die Bestie in Menschengestalt" width={300} height={300} />
     </a>
 </Card>
 

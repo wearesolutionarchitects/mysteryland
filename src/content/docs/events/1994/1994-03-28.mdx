@@ -21,10 +21,12 @@ ogImage: "/og/events/1994/1994-03-28.jpg"
 canonicalUrl: "/events/1994/1994-03-28/"
 tags: ["€14.50", "1994", "Deutschland", "Dortmund", "Herbert Grönemeyer", "Westfalenhalle", "Chaos", "Konzert"]
 ---
+import { Image } from 'astro:assets';
 import { Card, LinkCard } from '@astrojs/starlight/components';
 import EventFacts from '@components/EventFacts.astro';
 import Gallery from '@components/Gallery.astro';
 import img200000 from '../../../gallery/1994/03/28/1994-03-28_20-00-00.jpg';
+import albumB07BF1Z3HP from '../../../gallery/1994/03/28/1994-03-28_00-00-00_05_B07BF1Z3HP.jpg';
 
 <EventFacts
     facts={[
@@ -90,7 +92,7 @@ Das Ticket dokumentiert ein Konzert aus der Phase rund um das Album **Chaos**, m
 
 <Card title="Chaos" icon="seti:audio">
     <a href="https://www.amazon.de/dp/B07BF1Z3HP?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-        <img src="https://m.media-amazon.com/images/I/81zkbCCbH8L._SY450_.jpg" alt="Herbert Grönemeyer - Chaos" width="300" height="300" loading="lazy" decoding="async" />
+        <Image src={albumB07BF1Z3HP} alt="Herbert Grönemeyer - Chaos" width={300} height={300} />
     </a>
 </Card>
 

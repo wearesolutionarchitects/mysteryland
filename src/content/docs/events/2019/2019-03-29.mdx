@@ -27,6 +27,7 @@ tags:
 import { Card, LinkCard } from '@astrojs/starlight/components';
 import EventFacts from '@components/EventFacts.astro';
 import { Image } from 'astro:assets';
+import album345327136X from '../../../gallery/2019/03/29/2019-03-29_00-00-00_05_345327136X.jpg';
 
 <EventFacts
     facts={[
@@ -58,7 +59,7 @@ TBA
 
 <Card title="Scharnow" icon="open-book">
   <a href="https://www.amazon.de/dp/345327136X?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-    <Image src="https://m.media-amazon.com/images/I/81GgBsZhZiL._SL1500_.jpg" alt="Buchcover von Scharnow" width={300} height={450} />
+    <Image src={album345327136X} alt="Buchcover von Scharnow" width={300} height={450} />
   </a>
 </Card>
 

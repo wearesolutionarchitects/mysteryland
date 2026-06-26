@@ -26,6 +26,7 @@ import { Image } from 'astro:assets';
 import EventFacts from '@components/EventFacts.astro';
 import Gallery from '@components/Gallery.astro';
 import img200000 from '../../../gallery/1990/05/29/1990-05-29_20-00-00.jpg';
+import albumB0000084XR from '../../../gallery/1990/05/29/1990-05-29_00-00-00_05_B0000084XR.jpg';
 
 <EventFacts
     facts={[
@@ -61,7 +62,7 @@ Das Konzert gehört zu den frühen Stationen der Chronologie nach den großen Po
 
 <Card title="Zurück aus der Zukunft" icon="seti:audio">
     <a href="https://www.amazon.de/dp/B0000084XR?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-        <Image src="https://m.media-amazon.com/images/I/617mSIKD84L._SL1200_.jpg" alt="Zurück aus der Zukunft" width={300} height={300} />
+        <Image src={albumB0000084XR} alt="Zurück aus der Zukunft" width={300} height={300} />
     </a>
 </Card>
 

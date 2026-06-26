@@ -21,6 +21,7 @@ ogImage: "/og/events/2002/2002-05-16.jpg"
 canonicalUrl: "/events/2002/2002-05-16/"
 tags: ["€10.00", "2002", "Deutschland", "Farin Urlaub", "Farin Urlaub Racing Team", "Geheimkonzert", "Hamburg", "Markthalle", "Endlich Urlaub!", "B00005QTRH", "Konzert"]
 ---
+import { Image } from 'astro:assets';
 import { Card } from '@astrojs/starlight/components';
 import EventFacts from '@components/EventFacts.astro';
 import Gallery from '@components/Gallery.astro';
@@ -28,6 +29,7 @@ import img210000 from '../../../gallery/2002/05/16/2002-05-16_21-00-00.jpg';
 import img210002 from '../../../gallery/2002/05/16/2002-05-16_21-00-02.jpg';
 import img213000 from '../../../gallery/2002/05/16/2002-05-16_21-30-00.jpg';
 import img220000 from '../../../gallery/2002/05/16/2002-05-16_22-00-00.jpg';
+import albumB00005QTRH from '../../../gallery/2002/05/16/2002-05-16_00-00-00_05_B00005QTRH.jpg';
 
 <EventFacts
     facts={[
@@ -87,6 +89,6 @@ Die Setlist kombiniert Songs des Soloalbums mit Zugaben wie **Wo ist das Problem
 
 <Card title="Endlich Urlaub!" icon="seti:audio">
     <a href="https://www.amazon.de/dp/B00005QTRH?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-        <img src="https://m.media-amazon.com/images/I/517mGT6K3gL._AC_AC_SR250,250_.jpg" alt="Farin Urlaub - Endlich Urlaub!" width="300" height="300" loading="lazy" decoding="async" />
+        <Image src={albumB00005QTRH} alt="Farin Urlaub - Endlich Urlaub!" width={300} height={300} />
     </a>
 </Card>
