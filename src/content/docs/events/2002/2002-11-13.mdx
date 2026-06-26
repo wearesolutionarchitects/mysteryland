@@ -1,0 +1,93 @@
+---
+title: "Bryan Adams live in Frankfurt, Festhalle - 13. November 2002"
+sidebar:
+  label: "Bryan Adams"
+displayTitle: "Bryan Adams"
+subtitle: "Festhalle · Frankfurt · 13. November 2002"
+description: "Eventbericht über das Konzert von Bryan Adams auf der Here I Am Tour 2002 in der Festhalle Frankfurt am 13. November 2002."
+tour: "Here I Am Tour 2002"
+artist: ["Bryan Adams"]
+category: "Konzert"
+ticketCategory: "Stehplatz Innenraum"
+support: ""
+status: "completed"
+pubDate: 2002-11-13
+country: "Deutschland"
+city: "Frankfurt"
+venue: "Festhalle"
+price: 47.20
+asin: "B000068VL0"
+ogImage: "/og/events/2002/2002-11-13.jpg"
+canonicalUrl: "/events/2002/2002-11-13/"
+tags: ["€47.20", "2002", "Bryan Adams", "Deutschland", "Festhalle", "Frankfurt", "Here I Am Tour 2002", "Marek Lieberberg", "Spirit: Stallion of the Cimarron", "B000068VL0", "Konzert"]
+---
+import { Image } from 'astro:assets';
+import { Card } from '@astrojs/starlight/components';
+import EventFacts from '@components/EventFacts.astro';
+import Gallery from '@components/Gallery.astro';
+import albumB000068VL0 from '../../../gallery/2002/11/13/2002-11-13_00-00-00_05_B000068VL0.jpg';
+import img180000 from '../../../gallery/2002/11/13/2002-11-13_18-00-00.jpg';
+
+<EventFacts
+    facts={[
+        { icon: 'lucide:calendar-days', label: 'Datum', value: "13.11.2002" },
+        { icon: 'lucide:route', label: 'Tour', value: "Here I Am Tour 2002" },
+        { icon: 'lucide:globe', label: 'Land', value: "Deutschland" },
+        { icon: 'lucide:map-pin', label: 'Stadt', value: "Frankfurt" },
+        { icon: 'lucide:landmark', label: 'Venue', value: "Festhalle" },
+        { icon: 'lucide:badge-euro', label: 'Preis', value: "47,20 €" },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: "Stehplatz Innenraum" },
+        { icon: 'lucide:tag', label: 'Typ', value: "Konzert" },
+    ]}
+/>
+
+Am 13. November 2002 spielte **Bryan Adams** auf der **Here I Am Tour 2002** in der Festhalle in Frankfurt.
+Der Abend ist im Archiv über das Ticket dokumentiert und ergänzt die Reihe der großen Hallenkonzerte aus dem Jahr 2002.
+
+Die Setlist beginnt mit **Here I Am** und führt über Klassiker wie **Summer of '69**, **Heaven**, **Run to You** und **The Best of Me**.
+Der Tourbezug führt zum Soundtrack **Spirit: Stallion of the Cimarron**, auf dem **Here I Am** 2002 veröffentlicht wurde.
+
+## Galerie
+
+<Gallery
+    images={[
+        { src: img180000, alt: "Ticket Bryan Adams auf der Here I Am Tour 2002 in der Festhalle Frankfurt", title: "Ticket" },
+    ]}
+/>
+
+## Setlist
+
+<Card title="Songs" icon="list-format">
+    <ol>
+        <li>Here I Am</li>
+        <li>House Arrest</li>
+        <li>18 til I Die</li>
+        <li>Can't Stop This Thing We Started</li>
+        <li>Back to You</li>
+        <li>Summer of '69</li>
+        <li>It's Only Love</li>
+        <li>(Everything I Do) I Do It for You</li>
+        <li>Straight from the Heart</li>
+        <li>Cuts Like a Knife</li>
+        <li>When You're Gone</li>
+        <li>I'm Ready</li>
+        <li>Heaven</li>
+        <li>Somebody</li>
+        <li>The Only Thing That Looks Good on Me Is You</li>
+        <li>A Little Less Conversation</li>
+        <li>Seven Nights to Rock</li>
+        <li>Poison Ivy</li>
+        <li>The Twist</li>
+        <li>Cloud #9</li>
+        <li>Run to You</li>
+        <li>The Best of Me</li>
+    </ol>
+</Card>
+
+## Album
+
+<Card title="Spirit: Stallion of the Cimarron" icon="seti:audio">
+    <a href="https://www.amazon.de/dp/B000068VL0?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+        <Image src={albumB000068VL0} alt="Bryan Adams - Spirit: Stallion of the Cimarron" width={300} height={300} />
+    </a>
+</Card>
