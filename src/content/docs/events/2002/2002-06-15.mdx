@@ -1,0 +1,60 @@
+---
+title: "Lenny Kravitz live in Oberhausen, König-Pilsener-Arena - 15. Juni 2002"
+sidebar:
+  label: "Lenny Kravitz"
+displayTitle: "Lenny Kravitz"
+subtitle: "König-Pilsener-Arena · Oberhausen · 15. Juni 2002"
+description: "Eventbericht über das Konzert von Lenny Kravitz auf der Lenny Live Tour in der König-Pilsener-Arena Oberhausen am 15. Juni 2002."
+tour: "Lenny Live"
+artist: ["Lenny Kravitz"]
+category: "Konzert"
+ticketCategory: "Stehplatz Innenraum"
+support: ""
+status: "completed"
+pubDate: 2002-06-15
+country: "Deutschland"
+city: "Oberhausen"
+venue: "König-Pilsener-Arena"
+price: 47.02
+ogImage: "/og/events/2002/2002-06-15.jpg"
+canonicalUrl: "/events/2002/2002-06-15/"
+asin: "B00005QCNW"
+tags: ["€47.02", "2002", "DBE Köln", "Deutschland", "König-Pilsener-Arena", "Lenny Kravitz", "Lenny Live", "Marek Lieberberg", "Oberhausen", "Lenny", "B00005QCNW", "Konzert"]
+---
+import { Card } from '@astrojs/starlight/components';
+import EventFacts from '@components/EventFacts.astro';
+import Gallery from '@components/Gallery.astro';
+import { Image } from 'astro:assets';
+import albumB00005QCNW from '../../../gallery/2002/06/15/2002-06-15_00-00-00_05_B00005QCNW.jpg';
+import img200000 from '../../../gallery/2002/06/15/2002-06-15_20-00-00.jpg';
+
+<EventFacts
+    facts={[
+        { icon: 'lucide:calendar-days', label: 'Datum', value: "15.06.2002" },
+        { icon: 'lucide:route', label: 'Tour', value: "Lenny Live" },
+        { icon: 'lucide:globe', label: 'Land', value: "Deutschland" },
+        { icon: 'lucide:map-pin', label: 'Stadt', value: "Oberhausen" },
+        { icon: 'lucide:landmark', label: 'Venue', value: "König-Pilsener-Arena" },
+        { icon: 'lucide:badge-euro', label: 'Preis', value: "47,02 €" },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: "Stehplatz Innenraum" },
+        { icon: 'lucide:tag', label: 'Typ', value: "Konzert" },
+    ]}
+/>
+
+Am 15. Juni 2002 spielte **Lenny Kravitz** in der König-Pilsener-Arena in Oberhausen.
+
+## Galerie
+
+<Gallery
+    images={[
+        { src: img200000, alt: "Ticket Lenny Kravitz in der König-Pilsener-Arena Oberhausen", title: "Ticket" },
+    ]}
+/>
+
+## Album
+
+<Card title="Lenny" icon="seti:audio">
+    <a href="https://www.amazon.de/dp/B00005QCNW?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+        <Image src={albumB00005QCNW} alt="Lenny Kravitz - Lenny" width={300} height={300} />
+    </a>
+</Card>

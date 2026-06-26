@@ -30,6 +30,12 @@
     "total": 4
   },
   {
+    "name": "Lenny Kravitz",
+    "slug": "lenny-kravitz",
+    "href": "/artists/lenny-kravitz/",
+    "total": 4
+  },
+  {
     "name": "Udo Lindenberg",
     "slug": "udo-lindenberg",
     "href": "/artists/udo-lindenberg/",
@@ -51,12 +57,6 @@
     "name": "Gianna Nannini",
     "slug": "gianna-nannini",
     "href": "/artists/gianna-nannini/",
-    "total": 3
-  },
-  {
-    "name": "Herbert Grönemeyer",
-    "slug": "herbert-groenemeyer",
-    "href": "/artists/herbert-groenemeyer/",
     "total": 3
   }
 ]
