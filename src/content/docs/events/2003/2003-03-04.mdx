@@ -17,16 +17,25 @@ country: "Deutschland"
 city: "Krefeld"
 venue: "Kulturfabrik"
 price: 17.00
-asin: "B0000AN32D"
-ogImage: "/apple-touch-icon.png"
+asin: ["B0000AN32D", "B0002F4RS4"]
+ogImage: "/og/events/2003/2003-03-04.jpg"
 canonicalUrl: "/events/2003/2003-03-04/"
 tags: ["€17.00", "2003", "Concert Team Düsseldorf", "Deutschland", "die ärzte", "Kegeln for Kreuzberg Tour", "KKT", "Krefeld", "Kulturfabrik", "Nackt unter Kannibalen", "Konzert"]
 ---
-import { Card } from '@astrojs/starlight/components';
-import { Image } from 'astro:assets';
+import { Card, CardGrid } from '@astrojs/starlight/components';
 import EventFacts from '@components/EventFacts.astro';
 import Gallery from '@components/Gallery.astro';
-import albumB000068VL0 from '../../../gallery/cover/B000068VL0.jpg';
+import img200000 from '../../../gallery/2003/03/04/2003-03-04_20-00-00.jpg';
+import img200002 from '../../../gallery/2003/03/04/2003-03-04_20-00-02.jpg';
+import img201056 from '../../../gallery/2003/03/04/2003-03-04_20-10-56.jpg';
+import img202016 from '../../../gallery/2003/03/04/2003-03-04_20-20-16.jpg';
+import img202346 from '../../../gallery/2003/03/04/2003-03-04_20-23-46.jpg';
+import img214840 from '../../../gallery/2003/03/04/2003-03-04_21-48-40.jpg';
+import img215510 from '../../../gallery/2003/03/04/2003-03-04_21-55-10.jpg';
+import img220950 from '../../../gallery/2003/03/04/2003-03-04_22-09-50.jpg';
+import { Image } from 'astro:assets';
+import albumB0000AN32D from '../../../gallery/cover/B0000AN32D.jpg';
+import albumB0002F4RS4 from '../../../gallery/cover/B0002F4RS4.jpg';
 
 <EventFacts
     facts={[
@@ -48,7 +57,18 @@ Das Konzert gehörte zur **Kegeln for Kreuzberg Tour**, einer Reihe von zehn Clu
 
 ## Galerie
 
-TBA
+<Gallery
+    images={[
+        { src: img200000, alt: "Ticketvorderseite für die ärzte als Nackt unter Kannibalen in der Kulturfabrik Krefeld", title: "Ticketvorderseite" },
+        { src: img200002, alt: "Ticketrückseite für die ärzte als Nackt unter Kannibalen in der Kulturfabrik Krefeld", title: "Ticketrückseite" },
+        { src: img201056, alt: "die ärzte als Nackt unter Kannibalen live in der Kulturfabrik Krefeld", title: "Konzertfoto 1" },
+        { src: img202016, alt: "die ärzte auf der Kegeln for Kreuzberg Tour in Krefeld", title: "Konzertfoto 2" },
+        { src: img202346, alt: "Nackt unter Kannibalen live am 4. März 2003 in Krefeld", title: "Konzertfoto 3" },
+        { src: img214840, alt: "Bühne beim Geheimkonzert von die ärzte in der Kulturfabrik", title: "Konzertfoto 4" },
+        { src: img215510, alt: "die ärzte unter dem Namen Nackt unter Kannibalen auf der Bühne", title: "Konzertfoto 5" },
+        { src: img220950, alt: "Finale des Clubkonzerts von die ärzte in Krefeld", title: "Konzertfoto 6" },
+    ]}
+/>
 
 ## Videos
 
@@ -104,10 +124,18 @@ TBA
     </ol>
 </Card>
 
-## Album
+## Album/DVD
 
-<Card title="Spirit: Stallion of the Cimarron" icon="seti:audio">
-    <a href="https://www.amazon.de/dp/B000068VL0?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
-        <Image src={albumB000068VL0} alt="Bryan Adams - Spirit: Stallion of the Cimarron" width={300} height={300} />
-    </a>
-</Card>
+<CardGrid columns={2} gap="1rem">
+    <Card title="Geräusch" icon="seti:audio">
+        <a href="https://www.amazon.de/dp/B0000AN32D?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+            <Image src={albumB0000AN32D} alt="Geräusch" width={300} height={300} />
+        </a>
+    </Card>
+
+    <Card title="Die Band, die sie Pferd nannten" icon="seti:audio">
+        <a href="https://www.amazon.de/dp/B0002F4RS4?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+            <Image src={albumB0002F4RS4} alt="Die Band, die sie Pferd nannten" width={300} height={300} />
+        </a>
+    </Card>
+</CardGrid>
