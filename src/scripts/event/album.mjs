@@ -9,6 +9,7 @@ loadEnv();
 const eventDate = process.argv[2] || '';
 const asin = String(process.argv[3] || '').toUpperCase();
 const eventsRoot = process.env.EVENTS_ROOT || './src/content/docs/events';
+const coversRoot = process.env.COVERS_ROOT || './src/content/gallery/cover';
 const amazonHost = process.env.AMAZON_HOST || 'www.amazon.de';
 const affiliateTag = process.env.AMAZON_AFFILIATE_TAG || 'mysteryland-21';
 
@@ -69,15 +70,38 @@ function updateAsin(frontmatter, values) {
   return `${frontmatter}\nasin: ${value}`;
 }
 
-function albumCard(product) {
+function albumCard(product, variable) {
   const productUrl = `https://${amazonHost}/dp/${asin}?tag=${affiliateTag}`;
   return [
     `<Card title=${JSON.stringify(product.title)} icon="seti:audio">`,
     `    <a href=${JSON.stringify(productUrl)} target="_blank" rel="noopener noreferrer">`,
-    `        <Image src=${JSON.stringify(product.image)} alt=${JSON.stringify(product.title)} width={300} height={300} />`,
+    `        <Image src={${variable}} alt=${JSON.stringify(product.title)} width={300} height={300} />`,
     '    </a>',
     '</Card>',
   ].join('\n');
+}
+
+function coverExtension(imageUrl) {
+  const extension = new URL(imageUrl).pathname.match(/\.(jpe?g|png|webp)$/i)?.[1]?.toLowerCase() || 'jpg';
+  return extension === 'jpeg' ? 'jpg' : extension;
+}
+
+function existingCover() {
+  if (!fs.existsSync(coversRoot)) return '';
+  return fs.readdirSync(coversRoot).find((name) => new RegExp(`^${asin}\\.(?:jpe?g|png|webp)$`, 'i').test(name)) || '';
+}
+
+function ensureCoverImport(body, variable, fileName) {
+  if (new RegExp(`^import\\s+${variable}\\s+from\\s+['"][^'"]+['"];?$`, 'm').test(body)) {
+    return body;
+  }
+
+  const imports = [...body.matchAll(/^import .+;$/gm)];
+  if (!imports.length) return `import ${variable} from '../../../gallery/cover/${fileName}';\n${body}`;
+
+  const lastImport = imports.at(-1);
+  const insertAt = lastImport.index + lastImport[0].length;
+  return `${body.slice(0, insertAt)}\nimport ${variable} from '../../../gallery/cover/${fileName}';${body.slice(insertAt)}`;
 }
 
 function ensureImageImport(body) {
@@ -104,7 +128,8 @@ function updateAlbumSection(body, card) {
   const next = nextHeading.exec(body);
   const contentEnd = next?.index ?? body.length;
   const current = body.slice(contentStart, contentEnd).trim();
-  const replacement = !current || current === 'TBA' || current === 'TODO'
+  const placeholderCard = /^<Card title=["']Album["'] icon=["']seti:audio["']>\s*(?:TBA|TODO)\s*<\/Card>$/s;
+  const replacement = !current || current === 'TBA' || current === 'TODO' || placeholderCard.test(current)
     ? `\n\n${card}\n\n`
     : `\n\n${current}\n\n${card}\n\n`;
 
@@ -151,9 +176,26 @@ if (!product.title || !product.image) {
   process.exit(1);
 }
 
+const coverName = existingCover() || `${asin}.${coverExtension(product.image)}`;
+const coverPath = path.join(coversRoot, coverName);
+if (!fs.existsSync(coverPath)) {
+  const coverResponse = await fetch(product.image);
+  if (!coverResponse.ok) {
+    console.error(`Album cover request failed: ${coverResponse.status} ${coverResponse.statusText}`);
+    process.exit(1);
+  }
+  fs.mkdirSync(coversRoot, { recursive: true });
+  fs.writeFileSync(coverPath, Buffer.from(await coverResponse.arrayBuffer()));
+}
+
 const frontmatter = updateAsin(frontmatterMatch[1], [...asins, asin]);
-const body = ensureImageImport(original.slice(frontmatterMatch[0].length));
-const updatedBody = updateAlbumSection(body, albumCard(product));
+const variable = `album${asin}`;
+const body = ensureCoverImport(
+  ensureImageImport(original.slice(frontmatterMatch[0].length)),
+  variable,
+  coverName,
+);
+const updatedBody = updateAlbumSection(body, albumCard(product, variable));
 const updated = `---\n${frontmatter}\n---\n${updatedBody}`;
 const temporaryFile = `${eventFile}.tmp`;
 

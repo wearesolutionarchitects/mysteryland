@@ -16,6 +16,7 @@
     "event:seo": "node src/scripts/event/seo.mjs",
     "event:outbox": "node src/scripts/event/outbox.mjs",
     "event:album": "node src/scripts/event/album.mjs",
+    "event:covers": "node src/scripts/event/localize-album-covers.mjs",
     "artist:sync": "node src/scripts/artist/sync.mjs",
     "script:content:generate-readme": "node src/scripts/content/generate-readme.mjs",
     "script:github:create-labels": "node src/scripts/github/create-label.mjs"

@@ -185,9 +185,19 @@ function videoList(videos) {
     .filter(Boolean))];
 }
 
-function videosBlock(videos) {
+function placeholderCard(title, icon) {
+  return `<Card title=${yamlString(title)} icon=${yamlString(icon)}>
+    TBA
+</Card>`;
+}
+
+function videosBlock(videos, scaffoldEmptySections = false) {
   const ids = videoList(videos);
-  if (!ids.length) return 'TBA';
+  if (!ids.length) {
+    return scaffoldEmptySections
+      ? placeholderCard('Videos', 'youtube')
+      : 'TBA';
+  }
 
   const entries = ids
     .map((id) => `        { id: ${yamlString(id)} },`)
@@ -216,6 +226,9 @@ function frontmatter(event) {
     `description: ${yamlString(event.description)}`,
     `tour: ${yamlString(event.tour || 'TBA')}`,
     `artist: ${frontmatterArray(artists)}`,
+    ...(hasKnownValue(event.performingAs)
+      ? [`performingAs: ${yamlString(event.performingAs)}`]
+      : []),
     `category: ${yamlString(category)}`,
     `ticketCategory: ${yamlString(event.ticketCategory)}`,
     ...frontmatterScalarOrArray('support', event.support),
@@ -246,6 +259,9 @@ function eventFacts(event) {
   const facts = [
     `        { icon: 'lucide:calendar-days', label: 'Datum', value: ${yamlString(displayDate)} },`,
     `        { icon: 'lucide:route', label: 'Tour', value: ${yamlString(event.tour || 'TBA')} },`,
+    ...(hasKnownValue(event.performingAs)
+      ? [`        { icon: 'lucide:venetian-mask', label: 'Auftritt als', value: ${yamlString(event.performingAs)} },`]
+      : []),
     ...(showSupport
       ? [`        { icon: 'lucide:mic-vocal', label: ${yamlString(event.supportLabel || 'Support')}, value: ${yamlString(supportValue)}${factLinks(event.supportLinks)} },`]
       : []),
@@ -268,12 +284,17 @@ export function renderEventMdx(input) {
   const event = normalizeEvent(input);
   const images = Array.isArray(input.images) ? input.images : [];
   const videos = videoList(input.videos);
+  const scaffoldEmptySections = input.scaffoldEmptySections === true;
   const intro = String(event.intro || 'TBA').trim();
   const setlistHeading = stringList(event.artists || event.artist).length > 1
     ? 'Setlists'
     : 'Setlist';
+  const starlightComponents = [
+    'Card',
+    ...(event.externalUrl ? ['LinkCard'] : []),
+  ].join(', ');
   const imports = [
-    "import { Card, LinkCard } from '@astrojs/starlight/components';",
+    `import { ${starlightComponents} } from '@astrojs/starlight/components';`,
     "import { Image } from 'astro:assets';",
     "import EventFacts from '@components/EventFacts.astro';",
     "import Gallery from '@components/Gallery.astro';",
@@ -301,7 +322,7 @@ ${galleryBlock(images)}
 
 ## Videos
 
-${videosBlock(videos)}
+${videosBlock(videos, scaffoldEmptySections)}
 
 ## ${setlistHeading}
 
@@ -311,7 +332,7 @@ ${videosBlock(videos)}
 
 ## Album
 
-TBA
+${scaffoldEmptySections ? placeholderCard('Album', 'seti:audio') : 'TBA'}
 ${externalLink}
 `;
 }

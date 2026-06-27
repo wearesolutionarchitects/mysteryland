@@ -68,6 +68,7 @@ const description = text(data.description);
 const canonical = absoluteUrl(data.canonicalUrl || Astro.url.pathname);
 const image = absoluteUrl(data.ogImage);
 const artists = values(data.artist);
+const performingAs = text(data.performingAs);
 const performers = values([data.artist, data.support, data.guest]);
 const startDate = isoDate(data.pubDate);
 const price = typeof data.price === 'number' && Number.isFinite(data.price) ? data.price : undefined;
@@ -85,6 +86,7 @@ const eventJsonLd = isEvent ? {
   '@type': 'Event',
   ...(eventId ? { '@id': eventId } : {}),
   name: title,
+  ...(performingAs ? { alternateName: performingAs } : {}),
   ...(description ? { description } : {}),
   startDate,
   ...(eventStatus ? { eventStatus } : {}),

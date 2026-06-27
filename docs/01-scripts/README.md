@@ -236,10 +236,20 @@ npm run event:album -- 2014-10-11 B00MU78CTM
 Das Skript:
 
 - liest Titel und Cover des Albums anhand der ASIN von Amazon,
+- speichert jedes Cover zentral unter `src/content/gallery/cover/<ASIN>.<ext>`,
+- verwendet dieselbe Coverdatei in allen Events mit identischer ASIN,
 - ergänzt die ASIN im Frontmatter, falls sie dort noch fehlt,
 - fügt eine Album-Card mit Astro-`Image` ein,
 - unterstützt mehrere Alben durch wiederholte Aufrufe,
 - verhindert doppelte ASINs.
+
+Bereits vorhandene Remote- oder alte eventbezogene Cover lassen sich zentralisieren mit:
+
+```bash
+npm run event:covers
+```
+
+Das Skript migriert Dateien nach `src/content/gallery/cover`, reduziert identische ASINs auf eine kanonische Datei und aktualisiert die Imports aller Event-MDX-Dateien.
 
 ## 7. Setlists ergänzen
 
@@ -281,7 +291,7 @@ Modul: `src/scripts/event/wp.mjs`
 npm run event:wp -- <post-id>
 ```
 
-Der WordPress-Import ist ein alternativer Einstieg für ältere Events und gehört nicht zum normalen Inbox-Workflow. Er verwendet dasselbe MDX-Gerüst wie `event:mdx`, aber ohne Galerie-Bilder. Mit `--force` kann eine vorhandene Eventdatei nach einem automatischen Backup neu erzeugt werden.
+Der WordPress-Import ist ein alternativer Einstieg für ältere Events und gehört nicht zum normalen Inbox-Workflow. Er verwendet dasselbe MDX-Gerüst wie `event:mdx`, aber ohne Galerie-Bilder. Leere Video- und Album-Bereiche werden als bearbeitbare `Card`-Grundgerüste mit `TBA` erzeugt. `event:album` ersetzt den Album-Platzhalter später durch die echte Album-Card. Ein alter WordPress-Link als Block "Mehr Informationen" wird nicht übernommen. Eine im WordPress-Inhalt erkannte ASIN bleibt als Frontmatter-Metadatum erhalten. Mit `--force` kann eine vorhandene Eventdatei nach einem automatischen Backup neu erzeugt werden.
 
 ## Artist-Profile synchronisieren
 
@@ -318,6 +328,15 @@ wikidataId: "TBA"
 canonicalUrl: "/artists/donots/"
 tags: ["Artist", "TBA"]
 ```
+
+Tritt ein Artist unter einem abweichenden Namen auf, bleibt `artist` der kanonische Name für Artist-Profil, Statistik und strukturierte Daten. Der historische Auftrittsname wird am Event separat gepflegt:
+
+```yaml
+artist: ["die ärzte"]
+performingAs: "Nackt unter Kannibalen"
+```
+
+Der zentrale Renderer ergänzt `performingAs` in den `EventFacts`; `EventSeo.astro` gibt den Wert als `alternateName` im JSON-LD aus.
 
 `website` ist die offizielle externe Artist-URL. Unbekannte Websites bleiben `TBA`.
 

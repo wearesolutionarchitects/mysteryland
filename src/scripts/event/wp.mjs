@@ -133,7 +133,7 @@ const content = renderEventMdx({
   price,
   asin,
   tags,
-  externalUrl: post.link,
+  scaffoldEmptySections: true,
 });
 
 fs.mkdirSync(path.dirname(targetFile), { recursive: true });
