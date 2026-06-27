@@ -118,7 +118,7 @@ function ensureImageImport(body) {
 }
 
 function updateAlbumSection(body, card) {
-  const albumHeading = /^## Album\s*$/m;
+  const albumHeading = /^## Album[ \t]*$/m;
   const match = albumHeading.exec(body);
   if (!match) return `${body.trimEnd()}\n\n## Album\n\n${card}\n`;
 
