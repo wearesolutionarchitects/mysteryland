@@ -1,15 +1,15 @@
 ---
-title: "Dave Gahan"
+title: "Dave Gahan live in Düsseldorf, Philipshalle - 14. November 2003"
 sidebar:
   label: "Dave Gahan"
 displayTitle: "Dave Gahan"
 subtitle: "Philipshalle · Düsseldorf · 14. November 2003"
-description: "Eventbericht über das Konzert von Dave Gahan in Philipshalle in Düsseldorf am 14.11.2003."
-tour: "TBA"
+description: "Eventbericht über das Konzert von Dave Gahan auf der Paper Monsters Tour mit The Whyte Seeds in der Philipshalle Düsseldorf am 14. November 2003."
+tour: "Paper Monsters Tour"
 artist: ["Dave Gahan"]
 category: "Konzert"
-ticketCategory: "TBA"
-support: "TBA"
+ticketCategory: "Stehplatz Innenraum"
+support: "The Whyte Seeds"
 status: "completed"
 pubDate: 2003-11-14
 country: "Deutschland"
@@ -17,39 +17,61 @@ city: "Düsseldorf"
 venue: "Philipshalle"
 price: 42.90
 asin: "B00EJ39B5E"
-ogImage: "/apple-touch-icon.png"
+ogImage: "/og/events/2003/2003-11-14.jpg"
 canonicalUrl: "/events/2003/2003-11-14/"
-tags: ["€42.90", "2003", "Dave Gahan", "DBE Köln", "Deutschland", "Düsseldorf", "Marek Lieberberg", "Paper Monsters", "Philipshalle", "Konzert"]
+tags: ["€42.90", "2003", "Dave Gahan", "DBE Köln", "Deutschland", "Düsseldorf", "Marek Lieberberg", "Paper Monsters", "Paper Monsters Tour", "Philipshalle", "The Whyte Seeds", "Konzert"]
 ---
 import { Card } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
 import EventFacts from '@components/EventFacts.astro';
 import Gallery from '@components/Gallery.astro';
+import YouTubeVideos from '@components/YouTubeVideos.astro';
+import img200000 from '../../../gallery/2003/11/14/2003-11-14_20-00-00.jpg';
+import img221528 from '../../../gallery/2003/11/14/2003-11-14_22-15-28.jpg';
+import img223110 from '../../../gallery/2003/11/14/2003-11-14_22-31-10.jpg';
+import img224236 from '../../../gallery/2003/11/14/2003-11-14_22-42-36.jpg';
+import img224935 from '../../../gallery/2003/11/14/2003-11-14_22-49-35.jpg';
+import img224952 from '../../../gallery/2003/11/14/2003-11-14_22-49-52.jpg';
+import albumB00EJ39B5E from '../../../gallery/cover/B00EJ39B5E.jpg';
 
 <EventFacts
     facts={[
         { icon: 'lucide:calendar-days', label: 'Datum', value: "14.11.2003" },
-        { icon: 'lucide:route', label: 'Tour', value: "TBA" },
+        { icon: 'lucide:route', label: 'Tour', value: "Paper Monsters Tour" },
+        { icon: 'lucide:mic-vocal', label: 'Support', value: "The Whyte Seeds", links: [{ label: 'The Whyte Seeds', href: 'http://www.whyteseeds.com/' }] },
         { icon: 'lucide:globe', label: 'Land', value: "Deutschland" },
         { icon: 'lucide:map-pin', label: 'Stadt', value: "Düsseldorf" },
         { icon: 'lucide:landmark', label: 'Venue', value: "Philipshalle" },
         { icon: 'lucide:badge-euro', label: 'Preis', value: "42,90 €" },
-        { icon: 'lucide:ticket-check', label: 'Kategorie', value: "TBA" },
+        { icon: 'lucide:ticket-check', label: 'Kategorie', value: "Stehplatz Innenraum" },
         { icon: 'lucide:tag', label: 'Typ', value: "Konzert" },
     ]}
 />
 
-TBA
+Am 14. November 2003 spielte **Dave Gahan** auf der dritten Etappe seiner **Paper Monsters Tour** in der Philipshalle Düsseldorf. Als Support trat die schwedische Alternative-Rock-Band **The Whyte Seeds** auf.
+
+Neben Songs seines Soloalbums **Paper Monsters** umfasste das Konzert zahlreiche Stücke von Depeche Mode. Die abschließenden akustischen Versionen von **Dream On**, **Policy of Truth** sowie **Enjoy the Silence / Just Can't Get Enough** unterschieden diesen Tourabschnitt vom Hamburger Konzert im Juli.
 
 ## Galerie
 
-TBA
+<Gallery
+    images={[
+        { src: img200000, alt: "Ticket für Dave Gahan mit The Whyte Seeds auf der Paper Monsters Tour in Düsseldorf", title: "Ticket" },
+        { src: img221528, alt: "Dave Gahan auf der Bühne der Philipshalle Düsseldorf", title: "22:15:28 Uhr" },
+        { src: img223110, alt: "Dave Gahan und Band auf der Paper Monsters Tour in Düsseldorf", title: "22:31:10 Uhr" },
+        { src: img224236, alt: "Dave Gahan live vor dem Publikum der Philipshalle", title: "22:42:36 Uhr" },
+        { src: img224935, alt: "Publikum beim Finale von Dave Gahans Düsseldorfer Konzert", title: "22:49:35 Uhr" },
+        { src: img224952, alt: "Dave Gahan beim Abschluss seines Konzerts in der Philipshalle", title: "22:49:52 Uhr" },
+    ]}
+/>
 
 ## Videos
 
-<Card title="Videos" icon="youtube">
-    TBA
-</Card>
+<YouTubeVideos
+    videos={[
+        { id: '_s5qAQyWaDY', title: 'Dave Gahan live in Düsseldorf am 14. November 2003' },
+    ]}
+/>
 
 ## Setlist
 
@@ -80,7 +102,8 @@ TBA
 
 ## Album
 
-<Card title="Album" icon="seti:audio">
-    TBA
+<Card title="Paper Monsters" icon="seti:audio">
+    <a href="https://www.amazon.de/dp/B00EJ39B5E?tag=mysteryland-21" target="_blank" rel="noopener noreferrer">
+        <Image src={albumB00EJ39B5E} alt="Dave Gahan - Paper Monsters" width={300} height={300} />
+    </a>
 </Card>
-
