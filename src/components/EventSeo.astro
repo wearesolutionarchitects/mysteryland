@@ -37,9 +37,9 @@ function schemaEventStatus(value: unknown, pubDate: unknown) {
   if (status === 'cancelled') return 'https://schema.org/EventCancelled';
   if (status === 'postponed') return 'https://schema.org/EventPostponed';
   if (status === 'scheduled') return 'https://schema.org/EventScheduled';
-  if (status === 'completed') return '';
+  if (status === 'completed') return 'https://schema.org/EventCompleted';
 
-  return isFutureDate(pubDate) ? 'https://schema.org/EventScheduled' : '';
+  return isFutureDate(pubDate) ? 'https://schema.org/EventScheduled' : 'https://schema.org/EventCompleted';
 }
 
 function isoDate(value: unknown) {
@@ -63,14 +63,25 @@ function performerType(category: string) {
   return category === 'Lesung' ? 'Person' : 'MusicGroup';
 }
 
+function organizerType(category: string) {
+  return category === 'Lesung' ? 'Person' : 'Organization';
+}
+
+function offerAvailability(eventStatus: string) {
+  return eventStatus === 'https://schema.org/EventScheduled'
+    ? 'https://schema.org/InStock'
+    : 'https://schema.org/SoldOut';
+}
+
 const title = text(data.title);
 const description = text(data.description);
 const canonical = absoluteUrl(data.canonicalUrl || Astro.url.pathname);
-const image = absoluteUrl(data.ogImage);
+const image = absoluteUrl(data.ogImage || '/apple-touch-icon.png');
 const artists = values(data.artist);
 const performingAs = text(data.performingAs);
 const performers = values([data.artist, data.support, data.guest]);
 const startDate = isoDate(data.pubDate);
+const endDate = isoDate(data.endDate || data.pubDate);
 const price = typeof data.price === 'number' && Number.isFinite(data.price) ? data.price : undefined;
 const category = categoryFromData();
 const keywords = values(data.tags);
@@ -78,6 +89,7 @@ const venue = text(data.venue);
 const city = text(data.city);
 const country = text(data.country);
 const ticketCategory = text(data.ticketCategory);
+const organizers = values(data.organizer);
 const eventId = canonical ? `${canonical}#event` : '';
 const eventStatus = schemaEventStatus(data.status, data.pubDate);
 
@@ -89,11 +101,12 @@ const eventJsonLd = isEvent ? {
   ...(performingAs ? { alternateName: performingAs } : {}),
   ...(description ? { description } : {}),
   startDate,
-  ...(eventStatus ? { eventStatus } : {}),
+  endDate,
+  eventStatus,
   eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
   url: canonical,
   ...(route?.lang ? { inLanguage: route.lang } : {}),
-  ...(image ? { image: [image] } : {}),
+  image: [image],
   ...(category ? { additionalType: category } : {}),
   ...(keywords.length ? { keywords: keywords.join(', ') } : {}),
   location: {
@@ -111,12 +124,19 @@ const eventJsonLd = isEvent ? {
       name,
     })),
   } : {}),
+  ...(organizers.length ? {
+    organizer: organizers.map((name) => ({
+      '@type': organizerType(category),
+      name,
+    })),
+  } : {}),
   ...(price !== undefined ? {
     offers: {
       '@type': 'Offer',
       price,
       priceCurrency: 'EUR',
-      availability: 'https://schema.org/InStock',
+      availability: offerAvailability(eventStatus),
+      validFrom: startDate,
       url: canonical,
       ...(ticketCategory ? { name: ticketCategory } : {}),
     },
