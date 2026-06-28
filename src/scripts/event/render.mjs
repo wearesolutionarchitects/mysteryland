@@ -1,5 +1,6 @@
 // src/scripts/event/render.mjs
 // Central MDX renderer for event scaffold generation.
+import { organizersFromTags } from '../../data/organizers.mjs';
 
 export function yamlString(value) {
   return JSON.stringify(String(value || ''));
@@ -150,7 +151,7 @@ function normalizeEvent(input) {
     category: eventCategory(input),
     ticketCategory: input.ticketCategory || 'TBA',
     support: input.support || 'TBA',
-    organizer: input.organizer,
+    organizer: input.organizer || organizersFromTags(input.tags),
     status: input.status || eventStatus(input.pubDate),
     canonicalUrl: input.canonicalUrl || eventCanonicalUrl(input.pubDate),
     ogImage: eventOgImage(input),

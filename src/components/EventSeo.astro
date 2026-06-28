@@ -1,4 +1,6 @@
 ---
+import { organizersFromTags } from '../data/organizers.mjs';
+
 const route = Astro.locals.starlightRoute;
 const entry = route?.entry;
 const data = entry?.data ?? {};
@@ -89,7 +91,8 @@ const venue = text(data.venue);
 const city = text(data.city);
 const country = text(data.country);
 const ticketCategory = text(data.ticketCategory);
-const organizers = values(data.organizer);
+const explicitOrganizers = values(data.organizer);
+const organizers = explicitOrganizers.length ? explicitOrganizers : organizersFromTags(values(data.tags));
 const eventId = canonical ? `${canonical}#event` : '';
 const eventStatus = schemaEventStatus(data.status, data.pubDate);
 
