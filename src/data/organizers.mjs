@@ -14,6 +14,7 @@ export const knownOrganizers = [
   'Marek Lieberberg',
   'MCT Konzertagentur',
   'Prime Entertainment GmbH',
+  'WM-Stadt Gelsenkirchen',
   'Zeltfestival Ruhr',
 ];
 
