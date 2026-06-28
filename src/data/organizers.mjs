@@ -10,6 +10,7 @@ export const knownOrganizers = [
   'Live Nation',
   'Marek Lieberberg',
   'MCT Konzertagentur',
+  'Prime Entertainment GmbH',
   'Zeltfestival Ruhr',
 ];
 
