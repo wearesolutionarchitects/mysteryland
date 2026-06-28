@@ -1,0 +1,71 @@
+---
+interface TopListItem {
+    name: string;
+    total: number;
+}
+
+interface Props {
+    items?: TopListItem[];
+    heading: string;
+    headingId: string;
+    className?: string;
+}
+
+const {
+    items = [],
+    heading,
+    headingId,
+    className = 'top-list',
+} = Astro.props as Props;
+---
+
+{
+    items.length > 0 && (
+        <section class={className} aria-labelledby={headingId}>
+            <h2 id={headingId}>{heading}</h2>
+            <ol>
+                {items.map((item) => (
+                    <li>
+                        <span class="top-list-name">{item.name}</span>
+                        <span class="top-list-count">{item.total}</span>
+                    </li>
+                ))}
+            </ol>
+        </section>
+    )
+}
+
+<style>
+    .top-list {
+        border-top: 1px solid var(--sl-color-gray-5);
+        margin-top: 1rem;
+        padding-top: 1rem;
+    }
+
+    .top-list ol {
+        display: grid;
+        gap: 0.35rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .top-list li {
+        align-items: baseline;
+        display: flex;
+        gap: 0.5rem;
+        justify-content: space-between;
+    }
+
+    .top-list-name {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .top-list-count {
+        color: var(--sl-color-gray-2);
+        font-variant-numeric: tabular-nums;
+    }
+</style>

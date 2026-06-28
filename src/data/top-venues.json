@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Westfalenhalle",
+    "city": "Dortmund",
+    "country": "Deutschland",
+    "total": 26
+  },
+  {
+    "name": "Stadthalle",
+    "city": "Hagen",
+    "country": "Deutschland",
+    "total": 7
+  },
+  {
+    "name": "König-Pilsener-Arena",
+    "city": "Oberhausen",
+    "country": "Deutschland",
+    "total": 4
+  },
+  {
+    "name": "Lanxess-Arena",
+    "city": "Köln",
+    "country": "Deutschland",
+    "total": 3
+  },
+  {
+    "name": "Merkur Spiel-Arena",
+    "city": "Düsseldorf",
+    "country": "Deutschland",
+    "total": 3
+  }
+]

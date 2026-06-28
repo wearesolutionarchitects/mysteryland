@@ -7,6 +7,7 @@ import { parse as parseYaml } from 'yaml';
 const eventsRoot = process.env.EVENTS_ROOT || './src/content/docs/events';
 const artistsRoot = process.env.ARTISTS_ROOT || './src/content/docs/artists';
 const topArtistsFile = process.env.TOP_ARTISTS_FILE || './src/data/top-artists.json';
+const topVenuesFile = process.env.TOP_VENUES_FILE || './src/data/top-venues.json';
 
 const ignoredValues = new Set(['', '-', 'TBA', 'keine Vorband']);
 
@@ -44,6 +45,14 @@ function stringList(value) {
     .split(',')
     .map((item) => item.normalize('NFC').trim())
     .filter((item) => !ignoredValues.has(item));
+}
+
+function scalarValue(value) {
+  return String(value || '')
+    .normalize('NFC')
+    .trim()
+    .replace(/^["']|["']$/g, '')
+    .trim();
 }
 
 function slugify(value) {
@@ -172,6 +181,39 @@ function topArtistsData(artists) {
     .slice(0, 10);
 }
 
+function addVenue(map, data, eventPath) {
+  const venue = scalarValue(frontmatterValue(data, 'venue'));
+  if (!venue || ignoredValues.has(venue)) return;
+
+  const city = scalarValue(frontmatterValue(data, 'city'));
+  const country = scalarValue(frontmatterValue(data, 'country'));
+  const key = [venue, city, country].join('|');
+
+  if (!map.has(key)) {
+    map.set(key, {
+      name: venue,
+      city,
+      country,
+      events: new Set(),
+    });
+  }
+
+  map.get(key).events.add(eventUrl(eventPath));
+}
+
+function topVenuesData(venues) {
+  return [...venues.values()]
+    .map((venue) => ({
+      name: venue.name,
+      city: venue.city,
+      country: venue.country,
+      total: venue.events.size,
+    }))
+    .filter((venue) => venue.total > 0)
+    .sort((a, b) => b.total - a.total || a.name.localeCompare(b.name, 'de-DE'))
+    .slice(0, 5);
+}
+
 function updateArchiveCounts(content, artist) {
   const nextBlock = archiveBlock(artist);
 
@@ -186,9 +228,12 @@ function updateArchiveCounts(content, artist) {
 }
 
 const artists = new Map();
+const venues = new Map();
 
 for (const filePath of walkMdxFiles(eventsRoot)) {
   const data = frontmatter(fs.readFileSync(filePath, 'utf8'));
+
+  addVenue(venues, data, filePath);
 
   for (const name of stringList(frontmatterValue(data, 'artist'))) {
     addArtist(artists, name, 'headliner', filePath);
@@ -284,4 +329,7 @@ for (const artist of [...artists.values()].sort((a, b) => a.slug.localeCompare(b
 fs.mkdirSync(path.dirname(topArtistsFile), { recursive: true });
 fs.writeFileSync(`${topArtistsFile}`, `${JSON.stringify(topArtistsData(artists), null, 2)}\n`, 'utf8');
 console.log(`Updated ${topArtistsFile}`);
+fs.mkdirSync(path.dirname(topVenuesFile), { recursive: true });
+fs.writeFileSync(`${topVenuesFile}`, `${JSON.stringify(topVenuesData(venues), null, 2)}\n`, 'utf8');
+console.log(`Updated ${topVenuesFile}`);
 console.log(`Artist sync complete. Created: ${created}. Existing: ${skipped}. Repaired: ${repaired}.`);
