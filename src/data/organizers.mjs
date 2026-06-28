@@ -1,5 +1,6 @@
 export const knownOrganizers = [
   '1LIVE',
+  'Concertbüro Zahlmann GmbH',
   'Concert Team Düsseldorf',
   'Contra Promotion GmbH',
   'DBE Köln',
