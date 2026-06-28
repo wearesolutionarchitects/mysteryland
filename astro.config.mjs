@@ -168,6 +168,41 @@ export default defineConfig({
                     { autogenerate: { directory: 'events/2010' } },
                 ],
             },
+            {
+                label: '2009',
+                collapsed: true,
+                items: [
+                    { autogenerate: { directory: 'events/2009' } },
+                ],
+            },
+            {
+                label: '2008',
+                collapsed: true,
+                items: [
+                    { autogenerate: { directory: 'events/2008' } },
+                ],
+            },
+            {
+                label: '2007',
+                collapsed: true,
+                items: [
+                    { autogenerate: { directory: 'events/2007' } },
+                ],
+            },
+            {
+                label: '2006',
+                collapsed: true,
+                items: [
+                    { autogenerate: { directory: 'events/2006' } },
+                ],
+            },
+            {
+                label: '2005',
+                collapsed: true,
+                items: [
+                    { autogenerate: { directory: 'events/2005' } },
+                ],
+            },
         {
                 label: '2004',
                 collapsed: true,
