@@ -4,6 +4,7 @@ export const knownOrganizers = [
   'Concert Team Düsseldorf',
   'Contra Promotion GmbH',
   'DBE Köln',
+  'emschertainment GmbH',
   'Karsten Jahnke Konzertdirektion',
   'Kingstar GmbH',
   'KKT',
