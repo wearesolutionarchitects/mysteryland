@@ -36,6 +36,12 @@
     "total": 4
   },
   {
+    "name": "Farin Urlaub Racing Team",
+    "slug": "farin-urlaub-racing-team",
+    "href": "/artists/farin-urlaub-racing-team/",
+    "total": 4
+  },
+  {
     "name": "Herbert Grönemeyer",
     "slug": "herbert-groenemeyer",
     "href": "/artists/herbert-groenemeyer/",
@@ -51,12 +57,6 @@
     "name": "Bonnie Tyler",
     "slug": "bonnie-tyler",
     "href": "/artists/bonnie-tyler/",
-    "total": 3
-  },
-  {
-    "name": "Brings",
-    "slug": "brings",
-    "href": "/artists/brings/",
     "total": 3
   }
 ]
