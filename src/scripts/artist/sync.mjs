@@ -3,6 +3,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { parse as parseYaml } from 'yaml';
+import { canonicalVenue } from '../../data/venues.mjs';
 
 const eventsRoot = process.env.EVENTS_ROOT || './src/content/docs/events';
 const artistsRoot = process.env.ARTISTS_ROOT || './src/content/docs/artists';
@@ -187,13 +188,14 @@ function addVenue(map, data, eventPath) {
 
   const city = scalarValue(frontmatterValue(data, 'city'));
   const country = scalarValue(frontmatterValue(data, 'country'));
-  const key = [venue, city, country].join('|');
+  const canonical = canonicalVenue({ name: venue, city, country });
+  const key = [canonical.name, canonical.city, canonical.country].join('|');
 
   if (!map.has(key)) {
     map.set(key, {
-      name: venue,
-      city,
-      country,
+      name: canonical.name,
+      city: canonical.city,
+      country: canonical.country,
       events: new Set(),
     });
   }

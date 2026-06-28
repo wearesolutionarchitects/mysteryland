@@ -6,27 +6,27 @@
     "total": 26
   },
   {
+    "name": "Mitsubishi Electric Halle",
+    "city": "Düsseldorf",
+    "country": "Deutschland",
+    "total": 7
+  },
+  {
     "name": "Stadthalle",
     "city": "Hagen",
     "country": "Deutschland",
     "total": 7
   },
   {
-    "name": "König-Pilsener-Arena",
-    "city": "Oberhausen",
-    "country": "Deutschland",
-    "total": 4
-  },
-  {
-    "name": "Philipshalle",
+    "name": "Merkur Spiel-Arena",
     "city": "Düsseldorf",
     "country": "Deutschland",
-    "total": 4
+    "total": 6
   },
   {
     "name": "Lanxess-Arena",
     "city": "Köln",
     "country": "Deutschland",
-    "total": 3
+    "total": 5
   }
 ]
