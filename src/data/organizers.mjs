@@ -8,6 +8,7 @@ export const knownOrganizers = [
   'KKT',
   'Lars Berndt EVENTS',
   'Live Nation',
+  'Loft Concerts',
   'Marek Lieberberg',
   'MCT Konzertagentur',
   'Prime Entertainment GmbH',
