@@ -48,15 +48,15 @@
     "total": 4
   },
   {
+    "name": "Rammstein",
+    "slug": "rammstein",
+    "href": "/artists/rammstein/",
+    "total": 4
+  },
+  {
     "name": "Udo Lindenberg",
     "slug": "udo-lindenberg",
     "href": "/artists/udo-lindenberg/",
     "total": 4
-  },
-  {
-    "name": "Bonnie Tyler",
-    "slug": "bonnie-tyler",
-    "href": "/artists/bonnie-tyler/",
-    "total": 3
   }
 ]
