@@ -1,0 +1,123 @@
+---
+import { getCollection } from 'astro:content';
+import topArtists from '@/data/top-artists.json';
+import topVenues from '@/data/top-venues.json';
+
+const events = await getCollection('docs', ({ id }) => id.startsWith('events/'));
+
+const topCities = Array.from(
+  events.reduce((counts, event) => {
+    const city = event.data.city;
+    if (!city) return counts;
+    counts.set(city, (counts.get(city) ?? 0) + 1);
+    return counts;
+  }, new Map<string, number>()),
+  ([name, total]) => ({ name, total }),
+).sort((a, b) => b.total - a.total || a.name.localeCompare(b.name, 'de')).slice(0, 5);
+
+const lists = [
+  { title: 'Top Artists', items: topArtists.slice(0, 5) },
+  { title: 'Top Venues', items: topVenues.slice(0, 5) },
+  { title: 'Top Städte', items: topCities },
+];
+---
+
+<section class="landing-stats" aria-labelledby="landing-stats-title">
+  <div class="landing-section-heading">
+    <p>Aus dem Archiv</p>
+    <h2 id="landing-stats-title">Live-Musik in Zahlen</h2>
+  </div>
+  <div class="landing-stats__grid">
+    {lists.map((list) => (
+      <article class="landing-stats__card">
+        <h3>{list.title}</h3>
+        <ol>
+          {list.items.map((item) => (
+            <li>
+              <span>{item.name}</span>
+              <strong>{item.total}</strong>
+            </li>
+          ))}
+        </ol>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .landing-stats {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .landing-section-heading p {
+    color: var(--color-red);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin: 0 0 0.4rem;
+    text-transform: uppercase;
+  }
+
+  .landing-section-heading h2 {
+    color: var(--sl-color-white);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin: 0;
+  }
+
+  .landing-stats__grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .landing-stats__card {
+    border: 1px solid var(--color-red);
+    padding: 1.25rem;
+  }
+
+  .landing-stats__card h3 {
+    color: var(--sl-color-white);
+    font-size: 1.1rem;
+    margin: 0 0 1rem;
+  }
+
+  .landing-stats__card ol {
+    display: grid;
+    gap: 0.8rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .landing-stats__card li {
+    align-items: baseline;
+    border-top: 1px solid var(--sl-color-gray-5);
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    padding-top: 0.8rem;
+  }
+
+  .landing-stats__card span {
+    color: var(--sl-color-gray-2);
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .landing-stats__card strong {
+    color: var(--sl-color-white);
+    font-size: 1.6rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (max-width: 58rem) {
+    .landing-stats__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,215 @@
+---
+import { getCollection } from 'astro:content';
+import LandingHeader from '@components/LandingHeader.astro';
+import LandingHero from '@components/LandingHero.astro';
+import LandingStats from '@components/LandingStats.astro';
+import TicketSlider from '@components/TicketSlider.astro';
+import '../styles/token.css';
+import '../styles/custom.css';
+import img20260711 from '../content/gallery/2026/07/11/2026-07-11_19-30-00.jpg';
+import img20260717 from '../content/gallery/2026/07/17/2026-07-17_17-30-00.jpg';
+import img20260725 from '../content/gallery/2026/07/25/2026-07-25_13-30-00.jpg';
+import img20260901 from '../content/gallery/2026/09/01/2026-09-01_20-15-00.jpg';
+import img20261225 from '../content/gallery/2026/12/25/2026-12-25_19-00-00.jpg';
+import img20270414 from '../content/gallery/2027/04/14/2027-04-14_19-00-00.jpg';
+import img20271211 from '../content/gallery/2027/12/11/2027-12-11_19-30-00.jpg';
+
+const title = 'Mysteryland - Persönliches Konzertarchiv seit 1979';
+const description = 'Persönliches Konzertarchiv mit Tickets, Fotos, Setlists, Alben und Erinnerungen zu Konzerten, Festivals und Live-Musik seit 1979.';
+const events = await getCollection('docs', ({ id }) => id.startsWith('events/'));
+const years = events
+  .map((event) => Number(event.data.pubDate?.getFullYear?.() ?? String(event.data.pubDate).slice(0, 4)))
+  .filter((year) => Number.isFinite(year));
+const firstYear = Math.min(...years);
+const currentYear = Math.max(...years);
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href="https://mysteryland.biz/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://mysteryland.biz/og/index.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://mysteryland.biz/og/index.jpg" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <script is:inline async defer data-website-id="76cfab5c-bdba-4584-a2f7-1c030b088c66" src="https://analytics.mysteryland.biz/script.js"></script>
+  </head>
+  <body>
+    <LandingHeader />
+
+    <main data-pagefind-body>
+      <LandingHero eventCount={events.length} firstYear={firstYear} currentYear={currentYear} />
+
+      <section class="landing-section" aria-labelledby="next-events-title">
+        <div class="landing-section-heading">
+          <p>Ausblick</p>
+          <h2 id="next-events-title">Nächste Konzerte</h2>
+        </div>
+        <TicketSlider
+          tickets={[
+            {
+              src: img20260711,
+              alt: 'Ticket Broilers in Düsseldorf am 11.07.2026',
+              title: 'Broilers',
+              caption: '11.07.2026 - Düsseldorf@Merkur-Spiel-Arena',
+              event: 'events/2026/2026-07-11',
+            },
+            {
+              src: img20260717,
+              alt: 'Ticket Die Toten Hosen in Köln am 17.07.2026',
+              title: 'Die Toten Hosen',
+              caption: '17.07.2026 - Köln@RheinEnergieStadion',
+              event: 'events/2026/2026-07-17',
+            },
+            {
+              src: img20260725,
+              alt: 'Ticket BOBfest in Mönchengladbach am 25.07.2026',
+              title: 'BOBfest',
+              caption: '25.07.2026 - Mönchengladbach@SparkassenPark',
+              event: 'events/2026/2026-07-25',
+            },
+            {
+              src: img20260901,
+              alt: 'Ticket OMD in Witten am 01.09.2026',
+              title: 'OMD',
+              caption: '01.09.2026 - Witten@Kemnader See',
+              event: 'events/2026/2026-09-01',
+            },
+            {
+              src: img20261225,
+              alt: 'Ticket Broilers in Düsseldorf am 25.12.2026',
+              title: 'Broilers',
+              caption: '25.12.2026 - Düsseldorf@Mitsubishi Electric Halle',
+              event: 'events/2026/2026-12-25',
+            },
+            {
+              src: img20270414,
+              alt: 'Ticket die ärzte in Dortmund am 14.04.2027',
+              title: 'die ärzte',
+              caption: '14.04.2027 - Dortmund@Westfalenhalle',
+              event: 'events/2027/2027-04-14',
+            },
+            {
+              src: img20271211,
+              alt: 'Ticket Sondaschule in Dortmund am 11.12.2027',
+              title: 'Sondaschule',
+              caption: '11.12.2027 - Dortmund@Westfalenhalle',
+              event: 'events/2027/2027-12-11',
+            },
+          ]}
+        />
+      </section>
+
+      <LandingStats />
+
+      <section class="landing-section landing-copy" aria-labelledby="archive-title">
+        <div class="landing-section-heading">
+          <p>Under the hood</p>
+          <h2 id="archive-title">Starlight bleibt das Archiv.</h2>
+        </div>
+        <p>
+          Die Landingpage ist bewusst nur die visuelle Eingangstür. Die eigentlichen Inhalte bleiben als MDX in Starlight:
+          Events, Galerien, Setlists, Alben, strukturierte Daten und interne Verlinkung werden weiterhin zentral gepflegt.
+        </p>
+        <a href="/archiv/">Zum chronologischen Archiv</a>
+      </section>
+    </main>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    background: var(--color-black);
+  }
+
+  body {
+    background: var(--color-black);
+    color: var(--sl-color-white);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    margin: 0;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  main {
+    display: grid;
+    gap: clamp(3rem, 8vw, 7rem);
+    margin: 0 auto;
+    max-width: 1180px;
+    padding: clamp(1rem, 4vw, 3rem);
+  }
+
+  .landing-section {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .landing-section-heading p {
+    color: var(--color-red);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin: 0 0 0.4rem;
+    text-transform: uppercase;
+  }
+
+  .landing-section-heading h2 {
+    color: var(--sl-color-white);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin: 0;
+  }
+
+  .landing-copy {
+    border-top: 1px solid var(--sl-color-gray-5);
+    padding-top: 2rem;
+  }
+
+  .landing-copy p {
+    color: var(--sl-color-gray-2);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin: 0;
+    max-width: 56rem;
+  }
+
+  .landing-copy a {
+    border: 1px solid var(--color-red);
+    color: var(--sl-color-white);
+    display: inline-flex;
+    font-weight: 700;
+    justify-self: start;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+  }
+
+  .landing-copy a:hover,
+  .landing-copy a:focus-visible {
+    background: var(--color-red);
+    color: var(--color-black);
+  }
+
+  .ticket-slider {
+    margin-bottom: 0;
+  }
+
+  .ticket-slider__slide,
+  .ticket-slider__controls button {
+    border-radius: 0;
+  }
+</style>

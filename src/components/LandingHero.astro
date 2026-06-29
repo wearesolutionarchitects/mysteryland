@@ -1,0 +1,121 @@
+---
+interface Props {
+  eventCount: number;
+  firstYear: number;
+  currentYear: number;
+}
+
+const { eventCount, firstYear, currentYear } = Astro.props as Props;
+const archiveYears = currentYear - firstYear;
+---
+
+<section class="landing-hero" aria-labelledby="landing-title">
+  <p class="landing-hero__eyebrow">Persönliches Konzertarchiv seit {firstYear}</p>
+  <h1 id="landing-title">Mysteryland dokumentiert {archiveYears} Jahre Live-Musik.</h1>
+  <p class="landing-hero__intro">
+    Tickets, Fotos, Setlists, Tourdaten, Alben und Erinnerungen aus Konzerten, Festivals und Lesungen.
+    Das Archiv verbindet persönliche Konzertgeschichte mit strukturierten Daten zu Artists, Venues und Städten.
+  </p>
+  <div class="landing-hero__actions" aria-label="Schnelleinstiege">
+    <a href="/archiv/">Archiv öffnen</a>
+    <a href="/events/2026/2026-07-11/">Nächstes Highlight</a>
+  </div>
+  <dl class="landing-hero__facts" aria-label="Archiv Kennzahlen">
+    <div>
+      <dt>{eventCount}</dt>
+      <dd>Events</dd>
+    </div>
+    <div>
+      <dt>{firstYear}</dt>
+      <dd>Startjahr</dd>
+    </div>
+    <div>
+      <dt>{currentYear}</dt>
+      <dd>aktuell gepflegt</dd>
+    </div>
+  </dl>
+</section>
+
+<style>
+  .landing-hero {
+    border: 1px solid var(--color-red);
+    display: grid;
+    gap: 1.5rem;
+    padding: clamp(2rem, 6vw, 5rem);
+  }
+
+  .landing-hero__eyebrow {
+    color: var(--color-red);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  .landing-hero h1 {
+    color: var(--sl-color-white);
+    font-size: clamp(2.5rem, 8vw, 6.5rem);
+    letter-spacing: -0.06em;
+    line-height: 0.95;
+    margin: 0;
+    max-width: 11ch;
+  }
+
+  .landing-hero__intro {
+    color: var(--sl-color-gray-2);
+    font-size: clamp(1.05rem, 2vw, 1.35rem);
+    line-height: 1.65;
+    margin: 0;
+    max-width: 58rem;
+  }
+
+  .landing-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .landing-hero__actions a {
+    border: 1px solid var(--color-red);
+    color: var(--sl-color-white);
+    font-weight: 700;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+  }
+
+  .landing-hero__actions a:hover,
+  .landing-hero__actions a:focus-visible {
+    background: var(--color-red);
+    color: var(--color-black);
+  }
+
+  .landing-hero__facts {
+    display: grid;
+    gap: 1px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: 1rem 0 0;
+  }
+
+  .landing-hero__facts div {
+    border-top: 1px solid var(--sl-color-gray-5);
+    padding-top: 1rem;
+  }
+
+  .landing-hero__facts dt {
+    color: var(--sl-color-white);
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .landing-hero__facts dd {
+    color: var(--sl-color-gray-2);
+    margin: 0.35rem 0 0;
+  }
+
+  @media (max-width: 42rem) {
+    .landing-hero__facts {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -57,6 +57,10 @@ export default defineConfig({
             },
             sidebar: [
             {
+                label: 'Archiv',
+                link: '/archiv/',
+            },
+            {
                 label: '2027',
                 collapsed: true,
                 items: [

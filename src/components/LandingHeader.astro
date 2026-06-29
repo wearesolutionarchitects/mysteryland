@@ -1,0 +1,163 @@
+---
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+import LandingSearch from './LandingSearch.astro';
+import logo from '../assets/mysteryland.png';
+
+const socials = [
+  { icon: 'lucide:github', label: 'GitHub', href: 'https://github.com/wearesolutionarchitects' },
+  { icon: 'lucide:message-circle', label: 'Discord', href: 'https://discord.gg/GEdQ3xg6t6' },
+  { icon: 'lucide:linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/in/hfanieng/' },
+  { icon: 'lucide:twitch', label: 'Twitch', href: 'https://www.twitch.tv/mysteryland1909' },
+  { icon: 'lucide:youtube', label: 'YouTube', href: 'http://www.youtube.com/@mysterylanddotbiz' },
+  { icon: 'lucide:instagram', label: 'Instagram', href: 'https://www.instagram.com/heikofanieng/' },
+  { icon: 'lucide:facebook', label: 'Facebook', href: 'https://www.facebook.com/Mysteryland1909' },
+];
+---
+
+<header class="landing-header">
+  <a class="landing-header__logo" href="/" aria-label="Mysteryland Startseite">
+    <Image src={logo} alt="" width={214} height={80} />
+    <span>Mysteryland</span>
+  </a>
+
+  <LandingSearch />
+
+  <div class="landing-header__right">
+    <nav class="landing-header__socials" aria-label="Social Media">
+      {socials.map((social) => (
+        <a href={social.href} rel="me" aria-label={social.label}>
+          <Icon name={social.icon} size="1rem" aria-hidden="true" />
+        </a>
+      ))}
+    </nav>
+    <label class="landing-theme">
+      <span class="sr-only">Farbschema wählen</span>
+      <Icon name="lucide:moon" size="1rem" aria-hidden="true" />
+      <select data-landing-theme-select autocomplete="off">
+        <option value="dark" selected>Dunkel</option>
+        <option value="light">Hell</option>
+      </select>
+      <Icon name="lucide:chevron-down" size="1rem" aria-hidden="true" />
+    </label>
+  </div>
+</header>
+
+<script>
+  const themeSelect = document.querySelector<HTMLSelectElement>('[data-landing-theme-select]');
+  const storedTheme = localStorage.getItem('starlight-theme');
+  const initialTheme = storedTheme === 'light' ? 'light' : 'dark';
+
+  document.documentElement.dataset.theme = initialTheme;
+  if (themeSelect) themeSelect.value = initialTheme;
+
+  themeSelect?.addEventListener('change', (event) => {
+    const target = event.currentTarget;
+    if (!(target instanceof HTMLSelectElement)) return;
+
+    const value = target.value === 'light' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = value;
+    localStorage.setItem('starlight-theme', value);
+  });
+</script>
+
+<style>
+  .landing-header {
+    align-items: center;
+    border-bottom: 1px solid var(--sl-color-gray-5);
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: minmax(9rem, 14rem) minmax(16rem, 42rem) auto;
+    padding: 1rem clamp(1rem, 4vw, 3rem);
+  }
+
+  .landing-header__logo {
+    align-items: center;
+    display: inline-flex;
+    text-decoration: none;
+  }
+
+  .landing-header__logo img {
+    display: block;
+    height: auto;
+    width: clamp(9rem, 12vw, 13.5rem);
+  }
+
+  .landing-header__logo span {
+    clip: rect(0 0 0 0);
+    border: 0;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
+  .landing-header__right {
+    align-items: center;
+    display: flex;
+    gap: 1rem;
+    justify-content: end;
+  }
+
+  .landing-header__socials {
+    align-items: center;
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .landing-header__socials a {
+    color: var(--color-red);
+    display: inline-flex;
+  }
+
+  .landing-header__socials a:hover,
+  .landing-header__socials a:focus-visible {
+    color: var(--sl-color-white);
+  }
+
+  .landing-theme {
+    align-items: center;
+    border-left: 1px solid var(--sl-color-gray-5);
+    color: var(--sl-color-gray-2);
+    display: flex;
+    gap: 0.35rem;
+    padding-left: 1rem;
+  }
+
+  .landing-theme select {
+    appearance: none;
+    background: transparent;
+    border: 0;
+    color: inherit;
+    font: inherit;
+  }
+
+  .sr-only {
+    clip: rect(0 0 0 0);
+    border: 0;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
+  @media (max-width: 58rem) {
+    .landing-header {
+      grid-template-columns: 1fr auto;
+    }
+
+    .landing-header__right {
+      justify-content: end;
+    }
+
+    .landing-header__socials {
+      display: none;
+    }
+  }
+</style>
