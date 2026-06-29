@@ -18,10 +18,48 @@ interface Props {
 }
 
 const { facts } = Astro.props;
+const factOrder = new Map([
+  ['Land', 10],
+  ['Stadt', 20],
+  ['Venue', 30],
+  ['Datum', 40],
+  ['Typ', 50],
+  ['Auftritt als', 55],
+  ['Tour', 60],
+  ['Support', 70],
+  ['Preis', 80],
+  ['Kategorie', 90],
+  ['Veranstalter', 100],
+]);
+
+function formatFactValue(label: string, value?: string) {
+  if (label !== 'Datum' || !value) return value;
+
+  const match = value.match(/^(\d{2})\.(\d{2})\.(\d{4})$/);
+  if (!match) return value;
+
+  return new Intl.DateTimeFormat('de-DE', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  }).format(new Date(`${match[3]}-${match[2]}-${match[1]}T00:00:00Z`));
+}
+
+const orderedFacts = facts
+  .map((fact, index) => ({
+    ...fact,
+    value: formatFactValue(fact.label, fact.value),
+    index,
+  }))
+  .sort((a, b) =>
+    (factOrder.get(a.label) ?? 1000) - (factOrder.get(b.label) ?? 1000)
+    || a.index - b.index
+  );
 ---
 
 <dl class="event-facts">
-  {facts.map(({ icon, label, value, links = [] }) => (
+  {orderedFacts.map(({ icon, label, value, links = [] }) => (
     <div class="event-fact">
       <Icon name={icon} size="1.25rem" aria-hidden="true" />
       <dt>{label}</dt>
