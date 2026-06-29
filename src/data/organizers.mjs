@@ -19,6 +19,7 @@ export const knownOrganizers = [
   'Peter Rieger Konzertagentur',
   'Prime Entertainment GmbH',
   'Semmel Concerts GmbH',
+  'Skalar Entertainment GmbH',
   'Westfalen Events GmbH',
   'Westfalen Concerts GmbH',
   'WM-Stadt Gelsenkirchen',

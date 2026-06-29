@@ -12,6 +12,12 @@
     "total": 8
   },
   {
+    "name": "Mitsubishi Electric Halle",
+    "city": "Düsseldorf",
+    "country": "Deutschland",
+    "total": 8
+  },
+  {
     "name": "Stadthalle",
     "city": "Hagen",
     "country": "Deutschland",
@@ -20,12 +26,6 @@
   {
     "name": "Lanxess-Arena",
     "city": "Köln",
-    "country": "Deutschland",
-    "total": 7
-  },
-  {
-    "name": "Mitsubishi Electric Halle",
-    "city": "Düsseldorf",
     "country": "Deutschland",
     "total": 7
   }
