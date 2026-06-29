@@ -15,7 +15,7 @@
     "name": "Die Toten Hosen",
     "slug": "die-toten-hosen",
     "href": "/artists/die-toten-hosen/",
-    "total": 10
+    "total": 11
   },
   {
     "name": "Farin Urlaub Racing Team",
@@ -36,6 +36,12 @@
     "total": 6
   },
   {
+    "name": "Broilers",
+    "slug": "broilers",
+    "href": "/artists/broilers/",
+    "total": 5
+  },
+  {
     "name": "Lenny Kravitz",
     "slug": "lenny-kravitz",
     "href": "/artists/lenny-kravitz/",
@@ -46,12 +52,6 @@
     "slug": "rammstein",
     "href": "/artists/rammstein/",
     "total": 5
-  },
-  {
-    "name": "Broilers",
-    "slug": "broilers",
-    "href": "/artists/broilers/",
-    "total": 4
   },
   {
     "name": "Udo Lindenberg",
