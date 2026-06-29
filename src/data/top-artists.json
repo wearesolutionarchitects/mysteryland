@@ -42,15 +42,15 @@
     "total": 5
   },
   {
-    "name": "Broilers",
-    "slug": "broilers",
-    "href": "/artists/broilers/",
-    "total": 4
-  },
-  {
     "name": "Rammstein",
     "slug": "rammstein",
     "href": "/artists/rammstein/",
+    "total": 5
+  },
+  {
+    "name": "Broilers",
+    "slug": "broilers",
+    "href": "/artists/broilers/",
     "total": 4
   },
   {
