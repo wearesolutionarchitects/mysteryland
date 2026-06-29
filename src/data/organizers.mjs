@@ -16,6 +16,7 @@ export const knownOrganizers = [
   'Peter Rieger Konzertagentur',
   'Prime Entertainment GmbH',
   'WM-Stadt Gelsenkirchen',
+  'WWRY Musical GmbH',
   'Zeltfestival Ruhr',
 ];
 

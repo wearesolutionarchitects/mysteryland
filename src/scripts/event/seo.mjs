@@ -165,6 +165,15 @@ function generatedDescription(data, eventDate) {
     ].join('');
   }
 
+  if (category === 'Musical') {
+    return [
+      `Eventbericht über das Musical ${title}`,
+      location,
+      date ? ` am ${date}` : '',
+      '.',
+    ].join('');
+  }
+
   return [
     `Eventbericht über das Konzert von ${title}`,
     tour ? ` auf der ${tour}` : '',

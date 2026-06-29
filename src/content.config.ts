@@ -28,7 +28,7 @@ const docsCollection = defineCollection({
       website: z.string().optional(),
       musicbrainzId: z.string().optional(),
       wikidataId: z.string().optional(),
-      category: z.enum(['Konzert', 'Festival', 'Lesung', 'TBA']).optional(),
+      category: z.enum(['Konzert', 'Festival', 'Lesung', 'Musical', 'TBA']).optional(),
       ticketCategory: z.string().optional(),
       support: z.union([z.string(), z.array(z.string())]).optional(),
       guest: z.union([z.string(), z.array(z.string())]).optional(),
