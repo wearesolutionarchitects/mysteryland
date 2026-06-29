@@ -1,40 +1,51 @@
-/* Dark mode colors. */
+/* Bridge Mysteryland design tokens into Starlight. */
 :root {
-	--sl-color-accent-low: #000000;
-	--sl-color-accent: #007aff;
-	--sl-color-accent-high: #d6d6d6;
-	--sl-color-white: #ffffff;
-	--sl-color-gray-1: #636366;
-	--sl-color-gray-2: #8e8e93;
-	--sl-color-gray-3: #aeaeb2;
-	--sl-color-gray-4: #d1d1d6;
-	--sl-color-gray-5: #e5e5ea;
-	--sl-color-gray-6: #000000;
-	--sl-color-black: #000000;
+	--sl-color-accent-low: var(--color-accent-soft);
+	--sl-color-accent: var(--color-accent);
+	--sl-color-accent-high: var(--color-accent-strong);
+	--sl-color-white: var(--color-text);
+	--sl-color-gray-1: var(--color-text-subtle);
+	--sl-color-gray-2: var(--color-text-muted);
+	--sl-color-gray-3: var(--primitive-silver-300);
+	--sl-color-gray-4: var(--primitive-silver-600);
+	--sl-color-gray-5: var(--color-border);
+	--sl-color-gray-6: var(--color-bg);
+	--sl-color-gray-7: var(--color-bg);
+	--sl-color-black: var(--color-bg);
 }
-/* Light mode colors. */
+
 :root[data-theme='light'] {
-	--sl-color-accent-low: #e5f0ff;
-	--sl-color-accent: #007aff;
-	--sl-color-accent-high: #0040dd;
-	--sl-color-white: #1c1c1e;
-	--sl-color-gray-1: #2c2c2e;
-	--sl-color-gray-2: #3a3a3c;
-	--sl-color-gray-3: #636366;
-	--sl-color-gray-4: #8e8e93;
-	--sl-color-gray-5: #c7c7cc;
-	--sl-color-gray-6: #e5e5ea;
-	--sl-color-gray-7: #f2f2f7;
-	--sl-color-black: #ffffff;
+	--sl-color-accent-low: var(--color-accent-soft);
+	--sl-color-accent: var(--color-accent);
+	--sl-color-accent-high: var(--color-accent-strong);
+	--sl-color-white: var(--color-text);
+	--sl-color-gray-1: var(--color-text-subtle);
+	--sl-color-gray-2: var(--color-text-muted);
+	--sl-color-gray-3: var(--primitive-silver-600);
+	--sl-color-gray-4: var(--primitive-silver-300);
+	--sl-color-gray-5: var(--color-border);
+	--sl-color-gray-6: var(--color-bg);
+	--sl-color-gray-7: var(--color-bg);
+	--sl-color-black: var(--color-bg);
 }
 
 :root:not([data-theme='light']) .sl-markdown-content strong {
-  color: #ffffff;
+  color: var(--primitive-white);
   font-weight: 800;
 }
 
 :root:not([data-theme='light']) .sl-markdown-content a strong {
   color: inherit;
+}
+
+@layer starlight.components {
+  .sl-markdown-content .card {
+    border-color: var(--color-accent);
+  }
+
+  .sl-markdown-content .card .icon {
+    border-color: var(--color-accent);
+  }
 }
 
 .site-title img {

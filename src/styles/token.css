@@ -1,0 +1,61 @@
+:root {
+  color-scheme: light;
+
+  --primitive-white: #ffffff;
+  --primitive-silver-25: #fafafa;
+  --primitive-silver-50: #f3f3f3;
+  --primitive-silver-100: #dedede;
+  --primitive-silver-300: #b7b7b7;
+  --primitive-silver-600: #606060;
+  --primitive-silver-800: #292929;
+  --primitive-black: #000000;
+  --primitive-red: #ef4136;
+
+  --color-bg: var(--primitive-white);
+  --color-surface: var(--primitive-white);
+  --color-surface-muted: var(--primitive-silver-50);
+  --color-surface-elevated: var(--primitive-white);
+  --color-text: var(--primitive-black);
+  --color-text-subtle: var(--primitive-silver-800);
+  --color-text-muted: var(--primitive-silver-600);
+  --color-border: var(--primitive-silver-100);
+  --color-accent: var(--primitive-red);
+  --color-accent-strong: var(--primitive-red);
+  --color-accent-dark: var(--primitive-black);
+  --color-accent-soft: var(--primitive-silver-50);
+  --color-on-accent: var(--primitive-black);
+  --color-backdrop: rgb(0 0 0 / 0.6);
+
+  --shadow-card: 0 0.5rem 1.5rem rgb(0 0 0 / 0.06);
+  --shadow-drawer: 0 1.5rem 4rem rgb(0 0 0 / 0.28);
+  --radius-small: 0;
+  --radius-medium: 0;
+  --radius-large: 0;
+  --container: 72rem;
+  --container-narrow: 48rem;
+  --sidebar-width: 17.5rem;
+  --topbar-height: 4rem;
+  --transition-fast: 160ms ease;
+
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: none;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --color-bg: var(--primitive-black);
+  --color-surface: var(--primitive-black);
+  --color-surface-muted: var(--primitive-black);
+  --color-surface-elevated: var(--primitive-black);
+  --color-text: #f7f7f7;
+  --color-text-subtle: #d2d2d2;
+  --color-text-muted: #a4a4a4;
+  --color-border: #363636;
+  --color-accent: var(--primitive-red);
+  --color-accent-strong: var(--primitive-red);
+  --color-accent-dark: #ffffff;
+  --color-accent-soft: #232323;
+  --color-on-accent: var(--primitive-black);
+  --color-backdrop: rgb(0 0 0 / 0.7);
+  --shadow-card: 0 1rem 2.5rem rgb(0 0 0 / 0.32);
+}

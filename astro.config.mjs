@@ -33,7 +33,7 @@ export default defineConfig({
                 { tag: 'script', attrs: { async: true, defer: true, 'data-website-id': '76cfab5c-bdba-4584-a2f7-1c030b088c66', src: 'https://analytics.mysteryland.biz/script.js' } },
             ],
             customCss: [
-                // Relative path to your custom CSS file
+                './src/styles/token.css',
                 './src/styles/custom.css',
             ],
             components: {

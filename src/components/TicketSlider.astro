@@ -184,7 +184,7 @@ const slides = tickets.map((ticket) => {
     align-items: center;
     background: var(--sl-color-gray-6);
     border: 1px solid var(--sl-color-gray-5);
-    border-radius: 999px;
+    border-radius: var(--radius-large);
     color: var(--sl-color-white);
     cursor: pointer;
     display: inline-flex;
@@ -237,7 +237,7 @@ const slides = tickets.map((ticket) => {
   .ticket-slider__slide {
     background: var(--sl-color-black);
     border: 1px solid var(--sl-color-gray-5);
-    border-radius: 0.75rem;
+    border-radius: var(--radius-large);
     color: inherit;
     display: flex;
     flex: 0 0 calc((100% - var(--ticket-slider-gap)) / 2);
