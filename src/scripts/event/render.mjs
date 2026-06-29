@@ -133,13 +133,8 @@ function titleParts(input) {
     venue,
     date ? `- ${date}` : '',
   ].filter(Boolean).join(' ');
-  const subtitle = input.subtitle || [
-    venue,
-    city,
-    date,
-  ].filter(Boolean).join(' · ');
 
-  return { title, displayTitle, subtitle };
+  return { title, displayTitle };
 }
 
 function normalizeEvent(input) {
@@ -224,7 +219,6 @@ function frontmatter(event) {
     'sidebar:',
     `  label: ${yamlString(sidebarLabel)}`,
     `displayTitle: ${yamlString(event.displayTitle)}`,
-    `subtitle: ${yamlString(event.subtitle)}`,
     `description: ${yamlString(event.description)}`,
     `tour: ${yamlString(event.tour || 'TBA')}`,
     `artist: ${frontmatterArray(artists)}`,
@@ -254,27 +248,32 @@ function frontmatter(event) {
 }
 
 function eventFacts(event) {
-  const [year, month, day] = String(event.pubDate || '').split('-');
-  const displayDate = event.displayDate || `${day}.${month}.${year}`;
+  const displayDate = event.displayDate || dateLongLabel(event.pubDate) || 'TBA';
   const showSupport = hasKnownValue(event.support) || isScheduledEvent(event);
   const supportValue = hasKnownValue(event.support)
     ? knownValues(event.support).join(', ')
     : 'TBA';
+  const organizerValue = hasKnownValue(event.organizer)
+    ? knownValues(event.organizer).join(', ')
+    : 'TBA';
   const facts = [
-    `        { icon: 'lucide:calendar-days', label: 'Datum', value: ${yamlString(displayDate)} },`,
-    `        { icon: 'lucide:route', label: 'Tour', value: ${yamlString(event.tour || 'TBA')} },`,
-    ...(hasKnownValue(event.performingAs)
-      ? [`        { icon: 'lucide:venetian-mask', label: 'Auftritt als', value: ${yamlString(event.performingAs)} },`]
-      : []),
-    ...(showSupport
-      ? [`        { icon: 'lucide:mic-vocal', label: ${yamlString(event.supportLabel || 'Support')}, value: ${yamlString(supportValue)}${factLinks(event.supportLinks)} },`]
-      : []),
     `        { icon: 'lucide:globe', label: 'Land', value: ${yamlString(event.country || 'TBA')} },`,
     `        { icon: 'lucide:map-pin', label: 'Stadt', value: ${yamlString(event.city || 'TBA')} },`,
     `        { icon: 'lucide:landmark', label: 'Venue', value: ${yamlString(event.venue || 'TBA')} },`,
+    `        { icon: 'lucide:calendar-days', label: 'Datum', value: ${yamlString(displayDate)} },`,
+    `        { icon: 'lucide:tag', label: 'Typ', value: ${yamlString(eventCategory(event))} },`,
+    ...(hasKnownValue(event.performingAs)
+      ? [`        { icon: 'lucide:venetian-mask', label: 'Auftritt als', value: ${yamlString(event.performingAs)} },`]
+      : []),
+    `        { icon: 'lucide:route', label: 'Tour', value: ${yamlString(event.tour || 'TBA')} },`,
+    ...(showSupport
+      ? [`        { icon: 'lucide:mic-vocal', label: ${yamlString(event.supportLabel || 'Support')}, value: ${yamlString(supportValue)}${factLinks(event.supportLinks)} },`]
+      : []),
     `        { icon: 'lucide:badge-euro', label: 'Preis', value: ${yamlString(priceValue(event.price))} },`,
     `        { icon: 'lucide:ticket-check', label: 'Kategorie', value: ${yamlString(event.ticketCategory)} },`,
-    `        { icon: 'lucide:tag', label: 'Typ', value: ${yamlString(eventCategory(event))} },`,
+    ...(hasKnownValue(event.organizer)
+      ? [`        { icon: 'lucide:building-2', label: 'Veranstalter', value: ${yamlString(organizerValue)} },`]
+      : []),
   ].join('\n');
 
   return `<EventFacts

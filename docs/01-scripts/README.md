@@ -35,7 +35,6 @@ title: "Sondaschule live in Dortmund, Westfalenhalle - 11. Dezember 2027"
 sidebar:
   label: "Sondaschule"
 displayTitle: "Sondaschule"
-subtitle: "Westfalenhalle · Dortmund · 11. Dezember 2027"
 description: "Eventbericht über das Konzert von Sondaschule in der Westfalenhalle Dortmund am 11.12.2027."
 tour: "25 Jahre - Mega Circle Pott"
 artist: ["Sondaschule"]
@@ -59,7 +58,7 @@ Konventionen:
 - `title`: aussagekräftiger Seitentitel für Browser-Title, Open Graph und JSON-LD, z.B. `Sondaschule live in Dortmund, Westfalenhalle - 11. Dezember 2027`
 - `sidebar.label`: kompaktes Menülabel, in der Regel der Headliner oder Festivalname
 - `displayTitle`: kompakte sichtbare H1, in der Regel der Headliner oder Festivalname
-- `subtitle`: sichtbare Kontextzeile unter der H1, in der Regel `Venue · Stadt · Datum`
+- Kontext wie Land, Stadt, Venue und Datum steht im zentralen `EventFacts`-Block. Ein separates `subtitle`-Feld wird nicht mehr erzeugt.
 - Für Festivals und TV-Shows wird der Eventname bevorzugt, z.B. `BOB!Fest in Mönchengladbach, SparkassenPark - 25. Juli 2026`.
 - `category`: `Konzert`, `Festival`, `Lesung` oder `TBA`
 - `status`: `scheduled`, `postponed`, `cancelled`, `completed` oder `TBA`

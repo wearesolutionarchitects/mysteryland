@@ -1,12 +1,10 @@
 ---
 const data = Astro.locals.starlightRoute.entry.data;
 const title = String(data.displayTitle || data.title || '').trim();
-const subtitle = String(data.subtitle || '').trim();
 ---
 
 <header class="event-page-title">
   <h1 id="_top">{title}</h1>
-  {subtitle && <p>{subtitle}</p>}
 </header>
 
 <style>
@@ -23,12 +21,5 @@ const subtitle = String(data.subtitle || '').trim();
       color: var(--sl-color-white);
     }
 
-    .event-page-title p {
-      margin: 0.45rem 0 0;
-      max-width: 42rem;
-      color: var(--sl-color-gray-3);
-      font-size: var(--sl-text-lg);
-      line-height: var(--sl-line-height);
-    }
   }
 </style>
