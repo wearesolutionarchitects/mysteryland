@@ -308,13 +308,13 @@ const slides = tickets.map((ticket) => {
     font-size: 0.82rem;
   }
 
-  @media (max-width: 42rem) {
+  @media (max-width: 58rem) {
     .ticket-slider {
       margin: 1.5rem 0 2rem;
     }
 
     .ticket-slider__frame {
-      padding-inline: 2.75rem;
+      padding-inline: 3rem;
     }
 
     .ticket-slider__controls button {
@@ -336,6 +336,12 @@ const slides = tickets.map((ticket) => {
 
     .ticket-slider__image img {
       max-height: 8rem;
+    }
+  }
+
+  @media (max-width: 42rem) {
+    .ticket-slider__frame {
+      padding-inline: 2.75rem;
     }
   }
 </style>

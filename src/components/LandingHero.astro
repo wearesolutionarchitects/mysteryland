@@ -1,16 +1,23 @@
 ---
 interface Props {
-  eventCount: number;
+  counters: Array<{
+    displayValue: string;
+    format: 'currency' | 'number';
+    label: string;
+    value: number;
+  }>;
   firstYear: number;
   currentYear: number;
 }
 
-const { eventCount, firstYear, currentYear } = Astro.props as Props;
+const { counters, firstYear, currentYear } = Astro.props as Props;
 const archiveYears = currentYear - firstYear;
 ---
 
 <section class="landing-hero" aria-labelledby="landing-title">
-  <p class="landing-hero__eyebrow">Persönliches Konzertarchiv seit {firstYear}</p>
+  <p class="landing-hero__eyebrow">
+    Persönliches Konzertarchiv von <a href="http://www.fanieng.com">Heiko Fanieng</a> seit {firstYear}
+  </p>
   <h1 id="landing-title">Mysteryland dokumentiert {archiveYears} Jahre Live-Musik.</h1>
   <p class="landing-hero__intro">
     Tickets, Fotos, Setlists, Tourdaten, Alben und Erinnerungen aus Konzerten, Festivals und Lesungen.
@@ -21,35 +28,94 @@ const archiveYears = currentYear - firstYear;
     <a href="/events/2026/2026-07-11/">Nächstes Highlight</a>
   </div>
   <dl class="landing-hero__facts" aria-label="Archiv Kennzahlen">
-    <div>
-      <dt>{eventCount}</dt>
-      <dd>Events</dd>
-    </div>
-    <div>
-      <dt>{firstYear}</dt>
-      <dd>Startjahr</dd>
-    </div>
-    <div>
-      <dt>{currentYear}</dt>
-      <dd>aktuell gepflegt</dd>
-    </div>
+    {counters.map((counter) => (
+      <div>
+        <dt
+          data-counter
+          data-counter-format={counter.format}
+          data-counter-to={counter.value}
+        >
+          {counter.displayValue}
+        </dt>
+        <dd>{counter.label}</dd>
+      </div>
+    ))}
   </dl>
 </section>
 
+<script>
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const counters = Array.from(document.querySelectorAll<HTMLElement>('[data-counter]'));
+  const numberFormatter = new Intl.NumberFormat('de-DE');
+  const currencyFormatter = new Intl.NumberFormat('de-DE', {
+    currency: 'EUR',
+    maximumFractionDigits: 0,
+    style: 'currency',
+  });
+
+  const formatCounter = (value: number, format: string | undefined) => {
+    if (format === 'currency') return currencyFormatter.format(value);
+    return numberFormatter.format(value);
+  };
+
+  const animateCounter = (counter: HTMLElement) => {
+    const target = Number(counter.dataset.counterTo);
+    if (!Number.isFinite(target)) return;
+
+    const format = counter.dataset.counterFormat;
+    const duration = 2600;
+    const start = performance.now();
+
+    const tick = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const easedProgress = 1 - Math.pow(1 - progress, 3);
+      counter.textContent = formatCounter(Math.round(target * easedProgress), format);
+
+      if (progress < 1) window.requestAnimationFrame(tick);
+    };
+
+    counter.textContent = formatCounter(0, format);
+    window.requestAnimationFrame(tick);
+  };
+
+  if (!prefersReducedMotion) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const counter = entry.target;
+        if (!(counter instanceof HTMLElement)) return;
+
+        observer.unobserve(counter);
+        animateCounter(counter);
+      });
+    }, { threshold: 0.35 });
+
+    counters.forEach((counter) => observer.observe(counter));
+  }
+</script>
+
 <style>
   .landing-hero {
-    border: 1px solid var(--color-red);
     display: grid;
     gap: 1.5rem;
-    padding: clamp(2rem, 6vw, 5rem);
+    padding: clamp(1rem, 3vw, 2.5rem) 0 0;
   }
 
   .landing-hero__eyebrow {
     color: var(--color-red);
     font-weight: 700;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.02em;
     margin: 0;
-    text-transform: uppercase;
+  }
+
+  .landing-hero__eyebrow a {
+    color: var(--color-red);
+    text-decoration: none;
+  }
+
+  .landing-hero__eyebrow a:hover,
+  .landing-hero__eyebrow a:focus-visible {
+    color: var(--sl-color-white);
   }
 
   .landing-hero h1 {
@@ -111,6 +177,12 @@ const archiveYears = currentYear - firstYear;
   .landing-hero__facts dd {
     color: var(--sl-color-gray-2);
     margin: 0.35rem 0 0;
+  }
+
+  @media (max-width: 58rem) {
+    .landing-hero__facts {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
   }
 
   @media (max-width: 42rem) {

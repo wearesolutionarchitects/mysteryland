@@ -22,10 +22,32 @@ const years = events
   .filter((year) => Number.isFinite(year));
 const firstYear = Math.min(...years);
 const currentYear = Math.max(...years);
+const archiveYears = currentYear - firstYear;
+const artists = new Set(events.flatMap((event) => event.data.artist ?? []));
+const cities = new Set(events.map((event) => event.data.city).filter(Boolean));
+const venues = new Set(events.map((event) => event.data.venue).filter(Boolean));
+const ticketCosts = events.reduce((total, event) => {
+  const price = event.data.price;
+  return total + (typeof price === 'number' && Number.isFinite(price) ? price : 0);
+}, 0);
+const counterFormatter = new Intl.NumberFormat('de-DE');
+const currencyFormatter = new Intl.NumberFormat('de-DE', {
+  currency: 'EUR',
+  maximumFractionDigits: 0,
+  style: 'currency',
+});
+const heroCounters = [
+  { value: events.length, displayValue: counterFormatter.format(events.length), label: 'Events', format: 'number' as const },
+  { value: archiveYears, displayValue: counterFormatter.format(archiveYears), label: 'Jahre', format: 'number' as const },
+  { value: artists.size, displayValue: counterFormatter.format(artists.size), label: 'Artists', format: 'number' as const },
+  { value: cities.size, displayValue: counterFormatter.format(cities.size), label: 'Städte', format: 'number' as const },
+  { value: venues.size, displayValue: counterFormatter.format(venues.size), label: 'Venues', format: 'number' as const },
+  { value: Math.round(ticketCosts), displayValue: currencyFormatter.format(ticketCosts), label: 'Ticket-Kosten', format: 'currency' as const },
+];
 ---
 
 <!doctype html>
-<html lang="de">
+<html lang="de" data-theme="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -46,7 +68,7 @@ const currentYear = Math.max(...years);
     <LandingHeader />
 
     <main data-pagefind-body>
-      <LandingHero eventCount={events.length} firstYear={firstYear} currentYear={currentYear} />
+      <LandingHero counters={heroCounters} firstYear={firstYear} currentYear={currentYear} />
 
       <section class="landing-section" aria-labelledby="next-events-title">
         <div class="landing-section-heading">
@@ -110,17 +132,6 @@ const currentYear = Math.max(...years);
 
       <LandingStats />
 
-      <section class="landing-section landing-copy" aria-labelledby="archive-title">
-        <div class="landing-section-heading">
-          <p>Under the hood</p>
-          <h2 id="archive-title">Starlight bleibt das Archiv.</h2>
-        </div>
-        <p>
-          Die Landingpage ist bewusst nur die visuelle Eingangstür. Die eigentlichen Inhalte bleiben als MDX in Starlight:
-          Events, Galerien, Setlists, Alben, strukturierte Daten und interne Verlinkung werden weiterhin zentral gepflegt.
-        </p>
-        <a href="/archiv/">Zum chronologischen Archiv</a>
-      </section>
     </main>
   </body>
 </html>
@@ -131,11 +142,11 @@ const currentYear = Math.max(...years);
   }
 
   html {
-    background: var(--color-black);
+    background: var(--sl-color-black);
   }
 
   body {
-    background: var(--color-black);
+    background: var(--sl-color-black);
     color: var(--sl-color-white);
     font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     margin: 0;
@@ -149,8 +160,9 @@ const currentYear = Math.max(...years);
     display: grid;
     gap: clamp(3rem, 8vw, 7rem);
     margin: 0 auto;
-    max-width: 1180px;
+    max-width: 74rem;
     padding: clamp(1rem, 4vw, 3rem);
+    padding-top: clamp(1.25rem, 3vw, 2rem);
   }
 
   .landing-section {
@@ -173,35 +185,6 @@ const currentYear = Math.max(...years);
     letter-spacing: -0.04em;
     line-height: 1;
     margin: 0;
-  }
-
-  .landing-copy {
-    border-top: 1px solid var(--sl-color-gray-5);
-    padding-top: 2rem;
-  }
-
-  .landing-copy p {
-    color: var(--sl-color-gray-2);
-    font-size: 1.1rem;
-    line-height: 1.7;
-    margin: 0;
-    max-width: 56rem;
-  }
-
-  .landing-copy a {
-    border: 1px solid var(--color-red);
-    color: var(--sl-color-white);
-    display: inline-flex;
-    font-weight: 700;
-    justify-self: start;
-    padding: 0.75rem 1rem;
-    text-decoration: none;
-  }
-
-  .landing-copy a:hover,
-  .landing-copy a:focus-visible {
-    background: var(--color-red);
-    color: var(--color-black);
   }
 
   .ticket-slider {
