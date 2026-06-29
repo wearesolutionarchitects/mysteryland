@@ -23,6 +23,9 @@
   --color-accent-strong: var(--primitive-red);
   --color-accent-dark: var(--primitive-black);
   --color-accent-soft: var(--primitive-silver-50);
+  --color-red: var(--primitive-red);
+  --color-black: var(--primitive-black);
+  --color-white: var(--primitive-white);
   --color-on-accent: var(--primitive-black);
   --color-backdrop: rgb(0 0 0 / 0.6);
 
