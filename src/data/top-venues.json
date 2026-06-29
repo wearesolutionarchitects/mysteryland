@@ -6,14 +6,14 @@
     "total": 26
   },
   {
-    "name": "Mitsubishi Electric Halle",
-    "city": "Düsseldorf",
-    "country": "Deutschland",
-    "total": 7
-  },
-  {
     "name": "Stadthalle",
     "city": "Hagen",
+    "country": "Deutschland",
+    "total": 8
+  },
+  {
+    "name": "Mitsubishi Electric Halle",
+    "city": "Düsseldorf",
     "country": "Deutschland",
     "total": 7
   },
