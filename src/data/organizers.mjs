@@ -13,6 +13,7 @@ export const knownOrganizers = [
   'Loft Concerts',
   'Marek Lieberberg',
   'MCT Konzertagentur',
+  'Peter Rieger Konzertagentur',
   'Prime Entertainment GmbH',
   'WM-Stadt Gelsenkirchen',
   'Zeltfestival Ruhr',
