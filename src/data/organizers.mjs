@@ -8,6 +8,7 @@ export const knownOrganizers = [
   'Karsten Jahnke Konzertdirektion',
   'Kingstar GmbH',
   'KKT',
+  'Konzertbüro Schoneberg',
   'Lars Berndt EVENTS',
   'Live Nation',
   'Loft Concerts',
