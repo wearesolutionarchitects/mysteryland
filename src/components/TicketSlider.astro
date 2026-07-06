@@ -72,6 +72,15 @@ const slides = tickets.map((ticket) => {
   <div class="ticket-slider__frame">
     <div class="ticket-slider__controls" aria-label="Slider Navigation">
       <button type="button" data-ticket-slider-prev aria-label="Vorheriges Ticket">&lsaquo;</button>
+      <button
+        type="button"
+        class="ticket-slider__pause"
+        data-ticket-slider-toggle
+        aria-label="Automatischen Wechsel pausieren"
+        aria-pressed="false"
+      >
+        Pause
+      </button>
       <button type="button" data-ticket-slider-next aria-label="Nächstes Ticket">&rsaquo;</button>
     </div>
 
@@ -108,12 +117,14 @@ const slides = tickets.map((ticket) => {
     const track = slider.querySelector<HTMLElement>('[data-ticket-slider-track]');
     const prev = slider.querySelector<HTMLButtonElement>('[data-ticket-slider-prev]');
     const next = slider.querySelector<HTMLButtonElement>('[data-ticket-slider-next]');
+    const toggle = slider.querySelector<HTMLButtonElement>('[data-ticket-slider-toggle]');
 
-    if (!track || !prev || !next) return;
+    if (!track || !prev || !next || !toggle) return;
 
     const slides = Array.from(track.querySelectorAll<HTMLElement>('.ticket-slider__slide'));
     let activeIndex = 0;
     let autoplay: number | undefined;
+    let paused = false;
     let scrollFrame: number | undefined;
 
     const updateActiveIndex = () => {
@@ -140,12 +151,25 @@ const slides = tickets.map((ticket) => {
     };
 
     const startAutoplay = () => {
+      if (paused) return;
       stopAutoplay();
       autoplay = window.setInterval(() => scrollToSlide(activeIndex + 1), 5000);
     };
 
+    const updateToggle = () => {
+      toggle.textContent = paused ? 'Weiter' : 'Pause';
+      toggle.setAttribute('aria-label', paused ? 'Automatischen Wechsel fortsetzen' : 'Automatischen Wechsel pausieren');
+      toggle.setAttribute('aria-pressed', String(paused));
+    };
+
     prev.addEventListener('click', () => scrollToSlide(activeIndex - 1));
     next.addEventListener('click', () => scrollToSlide(activeIndex + 1));
+    toggle.addEventListener('click', () => {
+      paused = !paused;
+      if (paused) stopAutoplay();
+      else startAutoplay();
+      updateToggle();
+    });
     track.addEventListener('scroll', () => {
       if (scrollFrame) window.cancelAnimationFrame(scrollFrame);
       scrollFrame = window.requestAnimationFrame(updateActiveIndex);
@@ -157,6 +181,7 @@ const slides = tickets.map((ticket) => {
       if (!slider.contains(event.relatedTarget as Node | null)) startAutoplay();
     });
 
+    updateToggle();
     startAutoplay();
   });
 </script>
@@ -206,6 +231,18 @@ const slides = tickets.map((ticket) => {
 
   .ticket-slider__controls [data-ticket-slider-next] {
     right: 0;
+  }
+
+  .ticket-slider__pause {
+    bottom: 0;
+    font-size: 0.8rem;
+    height: auto;
+    left: 50%;
+    min-height: 2rem;
+    padding: 0.25rem 0.65rem;
+    top: auto;
+    transform: translateX(-50%);
+    width: auto;
   }
 
   .ticket-slider__controls button:hover,

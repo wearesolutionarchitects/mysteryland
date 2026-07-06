@@ -28,30 +28,32 @@ const socials: Array<{ icon: BrandIcon; label: string; href: string }> = [
 ---
 
 <header class="landing-header">
-  <a class="landing-header__logo" href="/" aria-label="Mysteryland Startseite">
-    <Image src={logo} alt="" width={214} height={80} />
-    <span>Mysteryland</span>
-  </a>
+  <div class="landing-header__inner">
+    <a class="landing-header__logo" href="/" aria-label="Mysteryland Startseite">
+      <Image src={logo} alt="" width={214} height={80} />
+      <span>Mysteryland</span>
+    </a>
 
-  <LandingSearch />
+    <LandingSearch />
 
-  <div class="landing-header__right">
-    <nav class="landing-header__socials" aria-label="Social Media">
-      {socials.map((social) => (
-        <a href={social.href} rel="me" aria-label={social.label}>
-          <svg aria-hidden="true" viewBox="0 0 24 24" set:html={brandIcons[social.icon]} />
-        </a>
-      ))}
-    </nav>
-    <label class="landing-theme">
-      <span class="sr-only">Farbschema wählen</span>
-      <Icon name="lucide:moon" size="1rem" aria-hidden="true" />
-      <select data-landing-theme-select autocomplete="off">
-        <option value="dark" selected>Dunkel</option>
-        <option value="light">Hell</option>
-      </select>
-      <Icon name="lucide:chevron-down" size="1rem" aria-hidden="true" />
-    </label>
+    <div class="landing-header__right">
+      <nav class="landing-header__socials" aria-label="Social Media">
+        {socials.map((social) => (
+          <a href={social.href} rel="me" aria-label={social.label}>
+            <svg aria-hidden="true" viewBox="0 0 24 24" set:html={brandIcons[social.icon]} />
+          </a>
+        ))}
+      </nav>
+      <label class="landing-theme">
+        <span class="sr-only">Farbschema wählen</span>
+        <Icon name="lucide:moon" size="1rem" aria-hidden="true" />
+        <select data-landing-theme-select autocomplete="off">
+          <option value="dark" selected>Dunkel</option>
+          <option value="light">Hell</option>
+        </select>
+        <Icon name="lucide:chevron-down" size="1rem" aria-hidden="true" />
+      </label>
+    </div>
   </div>
 </header>
 
@@ -75,13 +77,40 @@ const socials: Array<{ icon: BrandIcon; label: string; href: string }> = [
 
 <style>
   .landing-header {
-    align-items: center;
     background: var(--sl-color-black);
     display: grid;
+    grid-template-columns: minmax(9rem, 14rem) minmax(0, 74rem) max-content;
     gap: 1rem;
-    grid-template-columns: minmax(9rem, 14rem) minmax(16rem, 42rem) auto;
     min-height: 4rem;
     padding: 0.75rem clamp(1rem, 4vw, 3rem);
+  }
+
+  .landing-header__inner {
+    align-items: center;
+    background: var(--sl-color-black);
+    display: contents;
+  }
+
+  :global(.landing-search) {
+    justify-self: start;
+  }
+
+  @media (min-width: 86rem) {
+    :global(.landing-search) {
+      margin-left: clamp(1rem, 4vw, 3rem);
+    }
+  }
+
+  @media (max-width: 58rem) {
+    .landing-header {
+      grid-template-columns: 1fr auto;
+    }
+
+    :global(.landing-search) {
+      grid-column: 1 / -1;
+      margin-left: 0;
+      width: 100%;
+    }
   }
 
   .landing-header__logo {
@@ -113,6 +142,7 @@ const socials: Array<{ icon: BrandIcon; label: string; href: string }> = [
     display: flex;
     gap: 1rem;
     justify-content: end;
+    min-width: 0;
   }
 
   .landing-header__socials {
@@ -168,10 +198,6 @@ const socials: Array<{ icon: BrandIcon; label: string; href: string }> = [
   }
 
   @media (max-width: 58rem) {
-    .landing-header {
-      grid-template-columns: 1fr auto;
-    }
-
     .landing-header__right {
       justify-content: end;
     }

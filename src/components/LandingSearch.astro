@@ -90,7 +90,8 @@ import { Icon } from 'astro-icon/components';
 
 <style>
   .landing-search {
-    min-width: min(42rem, 42vw);
+    min-width: 0;
+    width: min(42rem, 42vw);
   }
 
   .landing-search button[data-landing-search-open] {
@@ -178,7 +179,6 @@ import { Icon } from 'astro-icon/components';
 
   @media (max-width: 58rem) {
     .landing-search {
-      min-width: 100%;
       order: 3;
       width: 100%;
     }
