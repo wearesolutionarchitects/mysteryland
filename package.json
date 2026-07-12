@@ -1,12 +1,22 @@
 {
   "name": "mysteryland",
+  "private": true,
   "type": "module",
   "version": "1.0.0",
+  "packageManager": "npm@11.17.0",
+  "engines": {
+    "node": ">=26",
+    "npm": ">=11"
+  },
   "scripts": {
     "dev": "NODE_OPTIONS=--disable-warning=ExperimentalWarning astro dev",
     "build": "NODE_OPTIONS=--disable-warning=ExperimentalWarning astro build",
     "preview": "NODE_OPTIONS=--disable-warning=ExperimentalWarning astro preview",
     "astro": "NODE_OPTIONS=--disable-warning=ExperimentalWarning astro",
+    "check": "astro check",
+    "typecheck:ts": "tsc --noEmit",
+    "verify": "npm run check && npm run typecheck:ts && npm run build",
+    "deploy:ssh": "node scripts/deploy/ssh-deploy-astro.mjs",
     "postinstall": "patch-package",
     "event:wp": "node src/scripts/event/wp.mjs",
     "event:setlist": "node src/scripts/event/setlist.mjs",
@@ -22,6 +32,7 @@
     "script:github:create-labels": "node src/scripts/github/create-label.mjs"
   },
   "dependencies": {
+    "@astrojs/preact": "^6.0.1",
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.7.3",
     "@astrojs/starlight": "^0.41.1",
@@ -29,11 +40,13 @@
     "astro": "^7.0.3",
     "astro-icon": "^1.1.5",
     "glightbox": "^3.3.1",
+    "preact": "^10.29.7",
     "sharp": "^0.34.1"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
+    "@types/node": "^26.1.1",
     "patch-package": "^8.0.1",
-    "typescript": "^6.0.3"
+    "typescript": "npm:@typescript/typescript6@^6.0.2"
   }
 }

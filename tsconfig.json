@@ -3,6 +3,10 @@
   "include": [".astro/types.d.ts", "**/*"],
   "exclude": ["dist"],
   "compilerOptions": {
+    "target": "ES2022",
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact",
+    "types": ["node"],
     "strictNullChecks": true,
     "paths": {
       "@/*": ["./src/*"],
