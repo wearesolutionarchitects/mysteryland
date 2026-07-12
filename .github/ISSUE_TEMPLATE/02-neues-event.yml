@@ -1,0 +1,31 @@
+name: Neues Event
+description: Event-Eintrag für mysteryland.biz anlegen oder vervollständigen
+title: "Event: "
+labels:
+  - event
+body:
+  - type: textarea
+    id: event
+    attributes:
+      label: Eventdaten
+      description: Datum, Künstler oder Eventname, Venue und Stadt; unbekannte Werte als TBA markieren.
+      placeholder: |
+        Datum: YYYY-MM-DD
+        Künstler/Event:
+        Venue:
+        Stadt:
+    validations:
+      required: true
+
+  - type: textarea
+    id: sources
+    attributes:
+      label: Quellen und Medien
+      description: Verlässliche URLs sowie vorhandene Tickets, Fotos, Setlists oder Alben.
+      placeholder: Links oder kurze Hinweise; keine Zugangsdaten einfügen.
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Hinweise
+      description: Besonderheiten, gewünschte Ergänzungen oder klare Abgrenzungen.

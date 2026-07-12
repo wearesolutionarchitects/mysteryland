@@ -2,6 +2,7 @@
 // src/components/Gallery.astro
 import { Image, getImage, type LocalImageProps } from 'astro:assets';
 import 'glightbox/dist/css/glightbox.min.css';
+import GalleryLightboxIsland from './GalleryLightboxIsland';
 
 type ImportedImage = Exclude<LocalImageProps['src'], Promise<unknown>>;
 
@@ -72,103 +73,7 @@ const galleryImages = await Promise.all(images.map(async (img) => {
 }
 </style>
 
-<script>
-  type GalleryLightbox = {
-    destroy: () => void;
-    openAt: (index?: number) => void;
-  };
-
-  type GalleryLightboxFactory = (options: Record<string, unknown>) => GalleryLightbox;
-
-  type GalleryState = {
-    mysterylandGalleryLightboxes?: Map<string, GalleryLightbox>;
-    mysterylandGalleryLightboxImport?: Promise<GalleryLightboxFactory>;
-    mysterylandGalleryClickBound?: boolean;
-  };
-
-  const galleryState = () => globalThis as typeof globalThis & GalleryState;
-
-  const loadGLightbox = () => {
-    const state = galleryState();
-    state.mysterylandGalleryLightboxImport ??= import('glightbox').then((module) => module.default as GalleryLightboxFactory);
-    return state.mysterylandGalleryLightboxImport;
-  };
-
-  const initGalleryLightbox = async () => {
-    const state = galleryState();
-    const GLightbox = await loadGLightbox();
-
-    state.mysterylandGalleryLightboxes ??= new Map();
-
-    document.querySelectorAll<HTMLElement>('[data-gallery-id]').forEach((gallery) => {
-      const galleryId = gallery.dataset.galleryId;
-      if (!galleryId) return;
-
-      state.mysterylandGalleryLightboxes?.get(galleryId)?.destroy();
-
-      const lightbox = GLightbox({
-        selector: `[data-gallery-id="${galleryId}"] .glightbox`,
-        touchNavigation: true,
-        loop: true,
-        zoomable: true,
-        openEffect: 'zoom',
-        closeEffect: 'fade',
-        slideEffect: 'slide',
-      }) as GalleryLightbox;
-
-      state.mysterylandGalleryLightboxes?.set(galleryId, lightbox);
-    });
-  };
-
-  const scheduleGalleryLightboxInit = () => {
-    void initGalleryLightbox();
-    requestAnimationFrame(() => void initGalleryLightbox());
-    setTimeout(() => void initGalleryLightbox(), 100);
-  };
-
-  const bindGalleryLightboxClick = () => {
-    const state = galleryState();
-    if (state.mysterylandGalleryClickBound) return;
-    state.mysterylandGalleryClickBound = true;
-
-    document.addEventListener('click', async (event) => {
-      const target = event.target instanceof Element
-        ? event.target.closest<HTMLAnchorElement>('a.glightbox')
-        : null;
-      if (!target) return;
-
-      const gallery = target.closest<HTMLElement>('[data-gallery-id]');
-      const galleryId = gallery?.dataset.galleryId;
-      if (!galleryId) return;
-
-      event.preventDefault();
-      event.stopPropagation();
-
-      try {
-        await initGalleryLightbox();
-        const index = Number(target.dataset.index || '0');
-        galleryState().mysterylandGalleryLightboxes?.get(galleryId)?.openAt(index);
-      } catch (error) {
-        console.error('Failed to open gallery lightbox', error);
-      }
-    }, { capture: true });
-  };
-
-  const bootGalleryLightbox = () => {
-    bindGalleryLightboxClick();
-    scheduleGalleryLightboxInit();
-  };
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', bootGalleryLightbox, { once: true });
-  } else {
-    bootGalleryLightbox();
-  }
-
-  document.addEventListener('astro:page-load', bootGalleryLightbox);
-</script>
-
-<div class="gallery" data-gallery-id={galleryId}>
+<div id={galleryId} class="gallery" data-gallery-id={galleryId}>
   {galleryImages.map((img, index) => (
     <a href={img.lightboxSrc} class="glightbox" data-gallery={galleryId} data-type="image" data-title={img.title || img.alt} data-index={index}>
       <Image
@@ -182,4 +87,5 @@ const galleryImages = await Promise.all(images.map(async (img) => {
       />
     </a>
   ))}
+  <GalleryLightboxIsland galleryId={galleryId} client:only="preact" />
 </div>

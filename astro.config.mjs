@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import preact from '@astrojs/preact';
 import sitemap from '@astrojs/sitemap';
 import starlight from '@astrojs/starlight';
 import icon from 'astro-icon';
@@ -12,6 +13,7 @@ export default defineConfig({
         domains: ['m.media-amazon.com'],
     },
     integrations: [
+        preact(),
         sitemap({
             filter: (page) => !new URL(page).pathname.startsWith('/artists/'),
         }),

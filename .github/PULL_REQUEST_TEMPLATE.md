@@ -1,56 +1,16 @@
+## Ziel
 
-# Mysteryland.biz Pull Request Template
+<!-- Gewünschtes Ergebnis in 1–3 Sätzen. -->
 
-**Bitte fülle die folgenden Abschnitte aus, um den Pull Request zu erstellen.**
+## Änderungen
 
-## 📝 Beschreibung
+<!-- Wesentliche Änderungen als kurze Liste. Keine Dateiliste wiederholen. -->
 
-<!-- Beschreibe kurz und prägnant, was in diesem Pull Request umgesetzt wurde -->
+## Validierung
 
----
+- [ ] `npm run verify`
+- [ ] Relevante UI-Änderungen lokal geprüft oder nicht anwendbar
 
-## 🔍 Motivation und Kontext
+## Hinweise
 
-<!-- Warum wurde diese Änderung vorgenommen? Gibt es einen Bezug zu einem Issue oder Feature? -->
-
----
-
-## ✅ Art der Änderung
-
-<!-- Bitte zutreffendes ankreuzen -->
-
-- [ ] 🆕 Neuer Content
-- [ ] 🐞 Bugfix
-- [ ] ✨ Neue Funktion
-- [ ] 🔁 Refactoring
-- [ ] 🧪 Tests
-- [ ] 📚 Dokumentation
-- [ ] 💡 Sonstiges
-
----
-
-## 🔄 Geänderte Bereiche
-
-<!-- Liste betroffene Komponenten, Module oder Dateien auf -->
-
----
-
-## 🧪 Tests
-
-- [ ] Lokale Tests erfolgreich durchgeführt
-- [ ] Bestehende Tests nicht beeinträchtigt
-- [ ] Neue Tests hinzugefügt (falls notwendig)
-
-## 📸 Screenshots (optional)
-
-<!-- Screenshots oder GIFs zur Veranschaulichung -->
-
----
-
-## 📚 Weiterführende Hinweise
-
-<!-- Relevante Links, offene Fragen oder Anmerkungen -->
-
----
-
-_**Hinweis:** Bitte auf Deutsch verfassen._
+<!-- Verknüpfte Issues, Risiken, Deployment-Hinweise oder "Keine". -->
