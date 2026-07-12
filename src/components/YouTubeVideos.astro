@@ -1,7 +1,7 @@
 ---
 interface YouTubeVideo {
   id: string;
-  title: string;
+  title?: string;
 }
 
 interface Props {
@@ -19,19 +19,19 @@ for (const video of videos) {
 ---
 
 <div class="youtube-videos">
-  {videos.map(({ id, title }) => (
+  {videos.map(({ id, title }, index) => (
     <figure>
       <div class="video-frame">
         <iframe
           src={`https://www.youtube-nocookie.com/embed/${id}`}
-          title={title || 'YouTube-Video'}
+          title={title || `YouTube-Video ${index + 1}`}
           loading="lazy"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerpolicy="strict-origin-when-cross-origin"
           allowfullscreen
         />
       </div>
-      <figcaption>{title}</figcaption>
+      {title && <figcaption>{title}</figcaption>}
     </figure>
   ))}
 </div>
