@@ -1,7 +1,7 @@
 ---
 interface YouTubeVideo {
   id: string;
-  title: string;
+  title?: string;
 }
 
 interface Props {
@@ -31,7 +31,7 @@ for (const video of videos) {
           allowfullscreen
         />
       </div>
-      <figcaption>{title}</figcaption>
+      {title && <figcaption>{title}</figcaption>}
     </figure>
   ))}
 </div>
