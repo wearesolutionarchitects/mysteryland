@@ -19,6 +19,7 @@ interface TicketSlide {
 }
 
 const { tickets = [] } = Astro.props as { tickets?: TicketSlide[] };
+const sliderId = `ticket-slider-${crypto.randomUUID()}`;
 
 const events = await getCollection('docs', ({ id }) => id.startsWith('events/'));
 const eventsById = new Map(events.map((event) => [event.id.replace(/\/index$/, ''), event]));
@@ -69,8 +70,7 @@ const slides = tickets.map((ticket) => {
 });
 ---
 
-<section class="ticket-slider" aria-label="Konzerttickets">
-  <TicketSliderIsland client:load />
+<section id={sliderId} class="ticket-slider" aria-label="Konzerttickets">
   <div class="ticket-slider__frame">
     <div class="ticket-slider__controls" aria-label="Slider Navigation">
       <button type="button" data-ticket-slider-prev aria-label="Vorheriges Ticket">&lsaquo;</button>
@@ -103,6 +103,7 @@ const slides = tickets.map((ticket) => {
       </div>
     </div>
   </div>
+  <TicketSliderIsland sliderId={sliderId} client:only="preact" />
 </section>
 
 <style>

@@ -1,10 +1,12 @@
-import { useEffect, useRef } from 'preact/hooks';
+import { useEffect } from 'preact/hooks';
 
-export default function TicketSliderIsland() {
-  const marker = useRef<HTMLSpanElement>(null);
+interface Props {
+  sliderId: string;
+}
 
+export default function TicketSliderIsland({ sliderId }: Props) {
   useEffect(() => {
-    const slider = marker.current?.closest('.ticket-slider');
+    const slider = document.getElementById(sliderId);
     const track = slider?.querySelector<HTMLElement>('[data-ticket-slider-track]');
     const prev = slider?.querySelector<HTMLButtonElement>('[data-ticket-slider-prev]');
     const next = slider?.querySelector<HTMLButtonElement>('[data-ticket-slider-next]');
@@ -63,7 +65,7 @@ export default function TicketSliderIsland() {
       slider.removeEventListener('focusin', stopAutoplay);
       slider.removeEventListener('focusout', onFocusOut);
     };
-  }, []);
+  }, [sliderId]);
 
-  return <span ref={marker} hidden />;
+  return null;
 }
