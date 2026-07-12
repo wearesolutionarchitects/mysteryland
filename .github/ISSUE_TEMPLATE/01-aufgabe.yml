@@ -1,0 +1,31 @@
+name: Aufgabe
+description: Klar abgegrenzte Änderung für Menschen oder Agents
+title: ""
+labels: []
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: Ziel
+      description: Was soll nach Abschluss anders oder möglich sein?
+      placeholder: Kurze, überprüfbare Beschreibung des gewünschten Ergebnisses.
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Kontext
+      description: Relevante Dateien, URLs, Beispiele oder Randbedingungen.
+      placeholder: Optionaler Kontext; keine Zugangsdaten oder privaten Inhalte einfügen.
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Abnahmekriterien
+      description: Woran ist eindeutig erkennbar, dass die Aufgabe erledigt ist?
+      placeholder: |
+        - [ ] Erwartetes Verhalten ist umgesetzt
+        - [ ] Relevante Checks sind erfolgreich
+    validations:
+      required: true
