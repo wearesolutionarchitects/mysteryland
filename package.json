@@ -25,6 +25,7 @@
     "event:og": "node src/scripts/event/og.mjs",
     "event:seo": "node src/scripts/event/seo.mjs",
     "event:outbox": "node src/scripts/event/outbox.mjs",
+    "event:social": "node src/scripts/event/social.mjs",
     "event:album": "node src/scripts/event/album.mjs",
     "event:covers": "node src/scripts/event/localize-album-covers.mjs",
     "artist:sync": "node src/scripts/artist/sync.mjs",

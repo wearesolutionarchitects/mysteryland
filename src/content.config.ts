@@ -41,6 +41,12 @@ const docsCollection = defineCollection({
       pubDate: z.coerce.date().optional(),
       endDate: z.coerce.date().optional(),
       updatedDate: z.coerce.date().optional(),
+      social: z.object({
+        enabled: z.boolean().default(true),
+        lead: z.string(),
+        hashtags: z.array(z.string()).default([]),
+        images: z.array(z.string()).min(1),
+      }).optional(),
     }),
   }),
 });
