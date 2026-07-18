@@ -72,7 +72,8 @@
 @media (min-width: 72rem) {
   :root {
     --sl-sidebar-width: 16rem;
-    --sl-content-width: 52rem;
+    /* Use wide desktop space without forcing long lines at smaller widths. */
+    --sl-content-width: clamp(52rem, 60vw, 64rem);
   }
 
   site-search button[data-open-modal] {

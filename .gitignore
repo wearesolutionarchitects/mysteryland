@@ -14,6 +14,8 @@ pnpm-debug.log*
 
 # local backups
 .backups/
+social-outbox/
+.social/
 
 
 # environment variables
