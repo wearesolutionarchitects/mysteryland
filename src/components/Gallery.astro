@@ -84,8 +84,8 @@ const galleryImages = await Promise.all(images.map(async (img) => {
         sizes="(max-width: 600px) 100vw, 600px"
         format="webp"
         quality={78}
-        loading={index < 4 ? 'eager' : 'lazy'}
-        fetchpriority={index === 0 ? 'high' : 'auto'}
+        loading="lazy"
+        fetchpriority="auto"
       />
     </a>
   ))}
