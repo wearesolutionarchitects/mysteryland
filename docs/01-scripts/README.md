@@ -128,7 +128,37 @@ Das Skript:
 - setzt noch unbekannte Inhalte auf `TBA`,
 - bricht ab, wenn die Event-MDX bereits existiert.
 
-## 3. Open-Graph-Bild erzeugen
+## 3. Galerie einer bestehenden Event-MDX synchronisieren
+
+Modul: `src/scripts/event/gallery.mjs`
+
+```bash
+npm run event:gallery -- <YYYY-MM-DD>
+```
+
+Beispiel:
+
+```bash
+npm run event:gallery -- 2026-07-17
+```
+
+Das Skript ist für die Nachpflege nach einem Event gedacht. Es:
+
+- liest alle Bilder aus `src/content/gallery/YYYY/MM/DD/`,
+- ergänzt fehlende Bild-Imports in der bereits vorhandenen Event-MDX,
+- synchronisiert den `<Gallery>`-Block in chronologischer Reihenfolge,
+- erhält individuell gepflegte `alt`- und `title`-Texte vorhandener Bilder,
+- erzeugt für neue Konzertfotos zunächst Alt-Text und Uhrzeit aus Eventtitel und Dateiname,
+- verändert weder Frontmatter noch Bericht, Videos, Setlist oder Album,
+- kann wiederholt ausgeführt werden, ohne Duplikate zu erzeugen.
+
+Eine Vorschau ohne Schreibzugriff ist möglich mit:
+
+```bash
+npm run event:gallery -- 2026-07-17 --dry-run
+```
+
+## 4. Open-Graph-Bild erzeugen
 
 Modul: `src/scripts/event/og.mjs`
 
@@ -155,7 +185,7 @@ npm run event:og -- 2027-12-11 src/content/gallery/2027/12/11/2027-12-11_19-30-0
 
 Die Galerie bleibt bewusst in `src/content/gallery`. Nur das abgeleitete OG-Bild liegt öffentlich in `public/og/events`.
 
-## 4. Event-SEO prüfen und nachziehen
+## 5. Event-SEO prüfen und nachziehen
 
 Modul: `src/scripts/event/seo.mjs`
 
@@ -178,7 +208,7 @@ Das Skript:
 - ersetzt nur eindeutig schwache Import-Descriptions wie `Artist am YYYY-MM-DD in Stadt, Venue.`,
 - überschreibt keine bereits individuell gepflegten Event-Descriptions.
 
-## 5. Social-Outbox erzeugen
+## 6. Social-Outbox erzeugen
 
 Modul: `src/scripts/event/outbox.mjs`
 
@@ -218,7 +248,7 @@ npm run event:outbox -- 2027-12-11
 
 Die Outbox ist bewusst nicht öffentliches Site-Output-Verzeichnis, sondern ein Arbeitsbereich für Uploads zu Facebook, Instagram und WhatsApp.
 
-## 6. Album ergänzen
+## 7. Album ergänzen
 
 Modul: `src/scripts/event/album.mjs`
 
@@ -250,7 +280,7 @@ npm run event:covers
 
 Das Skript migriert Dateien nach `src/content/gallery/cover`, reduziert identische ASINs auf eine kanonische Datei und aktualisiert die Imports aller Event-MDX-Dateien.
 
-## 7. Setlists ergänzen
+## 8. Setlists ergänzen
 
 Modul: `src/scripts/event/setlist.mjs`
 
