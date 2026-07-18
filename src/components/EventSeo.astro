@@ -1,5 +1,6 @@
 ---
 import { organizersFromTags } from '../data/organizers.mjs';
+import { googleEventStatus, isoDate, isCurrentOrFutureEvent } from '../scripts/lib/event-schema.mjs';
 
 const route = Astro.locals.starlightRoute;
 const entry = route?.entry;
@@ -25,28 +26,6 @@ function absoluteUrl(value: unknown) {
   if (/^https?:\/\//i.test(url)) return url;
 
   return new URL(url.startsWith('/') ? url : `/${url}`, Astro.site ?? Astro.url).href;
-}
-
-function isFutureDate(value: unknown) {
-  const iso = isoDate(value);
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(iso)) return false;
-
-  return iso > new Date().toISOString().slice(0, 10);
-}
-
-function schemaEventStatus(value: unknown, pubDate: unknown) {
-  const status = String(value || '').toLowerCase();
-  if (status === 'cancelled') return 'https://schema.org/EventCancelled';
-  if (status === 'postponed') return 'https://schema.org/EventPostponed';
-  if (status === 'scheduled') return 'https://schema.org/EventScheduled';
-  if (status === 'completed') return 'https://schema.org/EventCompleted';
-
-  return isFutureDate(pubDate) ? 'https://schema.org/EventScheduled' : 'https://schema.org/EventCompleted';
-}
-
-function isoDate(value: unknown) {
-  if (value instanceof Date) return value.toISOString().slice(0, 10);
-  return String(value || '').slice(0, 10);
 }
 
 function categoryFromData() {
@@ -94,9 +73,13 @@ const ticketCategory = text(data.ticketCategory);
 const explicitOrganizers = values(data.organizer);
 const organizers = explicitOrganizers.length ? explicitOrganizers : organizersFromTags(values(data.tags));
 const eventId = canonical ? `${canonical}#event` : '';
-const eventStatus = schemaEventStatus(data.status, data.pubDate);
+const eventStatus = googleEventStatus(data.status);
+const isGoogleEvent = isEvent && isCurrentOrFutureEvent(endDate);
 
-const eventJsonLd = isEvent ? {
+// Google event rich results are intended for events people can still attend.
+// Archive pages keep their regular metadata, but no longer advertise a past,
+// non-bookable event or the unsupported EventCompleted status to Google.
+const eventJsonLd = isGoogleEvent ? {
   '@context': 'https://schema.org',
   '@type': 'Event',
   ...(eventId ? { '@id': eventId } : {}),

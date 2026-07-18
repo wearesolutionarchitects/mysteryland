@@ -9,13 +9,14 @@
     "npm": ">=11"
   },
   "scripts": {
-    "dev": "NODE_OPTIONS=--disable-warning=ExperimentalWarning astro dev",
-    "build": "NODE_OPTIONS=--disable-warning=ExperimentalWarning astro build",
-    "preview": "NODE_OPTIONS=--disable-warning=ExperimentalWarning astro preview",
-    "astro": "NODE_OPTIONS=--disable-warning=ExperimentalWarning astro",
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
     "check": "astro check",
     "typecheck:ts": "tsc --noEmit",
-    "verify": "npm run check && npm run typecheck:ts && npm run build",
+    "test:seo": "node --test tests/seo/*.test.mjs",
+    "verify": "npm run check && npm run typecheck:ts && npm run test:seo && npm run build",
     "deploy:ssh": "node scripts/deploy/ssh-deploy-astro.mjs",
     "postinstall": "patch-package",
     "event:wp": "node src/scripts/event/wp.mjs",
@@ -36,9 +37,9 @@
     "@astrojs/preact": "^6.0.1",
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.7.3",
-    "@astrojs/starlight": "^0.41.1",
+    "@astrojs/starlight": "^0.41.3",
     "@iconify-json/lucide": "^1.2.111",
-    "astro": "^7.0.3",
+    "astro": "7.0.7",
     "astro-icon": "^1.1.5",
     "glightbox": "^3.3.1",
     "preact": "^10.29.7",
@@ -46,8 +47,9 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
+    "@astrojs/markdown-remark": "^7.2.1",
     "@types/node": "^26.1.1",
     "patch-package": "^8.0.1",
-    "typescript": "npm:@typescript/typescript6@^6.0.2"
+    "typescript": "^5.9.3"
   }
 }
