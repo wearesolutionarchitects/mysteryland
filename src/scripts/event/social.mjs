@@ -85,8 +85,8 @@ function copyText(data, url) {
 export async function createSocialPack(eventDate) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(eventDate)) throw new Error('eventDate must use YYYY-MM-DD');
   const { filePath, data } = readEvent(eventDate);
-  if (!data.social?.enabled) throw new Error(`Social publishing is not enabled in ${filePath}`);
-  if (!data.social.lead || !data.social.images?.length) throw new Error(`social.lead and social.images are required in ${filePath}`);
+  if (!data.social || data.social.enabled === false) throw new Error(`Social publishing is not enabled in ${filePath}`);
+  if (!data.social.lead || !Array.isArray(data.social.images) || data.social.images.length === 0) throw new Error(`social.lead and social.images are required in ${filePath}`);
 
   const targetRoot = path.join(OUTBOX_ROOT, eventDate);
   fs.rmSync(targetRoot, { recursive: true, force: true });
