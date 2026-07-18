@@ -66,9 +66,13 @@ async function renderImage(source, target, { width, height }) {
 }
 
 function copyText(data, url) {
-  const social = data.social;
+  const social = data.social ?? {};
   const artist = Array.isArray(data.artist) ? data.artist.join(', ') : data.artist;
-  const hashtags = social.hashtags.map(cleanHashtag).filter(Boolean).map((tag) => `#${tag}`).join(' ');
+  const hashtags = (Array.isArray(social.hashtags) ? social.hashtags : [])
+    .map(cleanHashtag)
+    .filter(Boolean)
+    .map((tag) => `#${tag}`)
+    .join(' ');
   const heading = `${artist} – ${data.tour || data.displayTitle || data.title}`;
   return {
     facebook: `${heading}\n\n${social.lead}\n\nDen vollständigen Konzertbericht mit Galerie, Videos und Setlist gibt es auf Mysteryland:\n${url}\n\n${hashtags}`,
