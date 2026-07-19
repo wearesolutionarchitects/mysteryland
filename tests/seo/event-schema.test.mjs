@@ -1,6 +1,10 @@
 import assert from 'node:assert/strict';
+import { readdir, readFile } from 'node:fs/promises';
+import path from 'node:path';
 import test from 'node:test';
+import YAML from 'yaml';
 
+import { organizersFromTags } from '../../src/data/organizers.mjs';
 import {
   googleEventStatus,
   isCurrentOrFutureEvent,
@@ -27,3 +31,37 @@ test('only Google-supported event status values are emitted', () => {
   assert.equal(googleEventStatus('scheduled'), 'https://schema.org/EventScheduled');
   assert.equal(googleEventStatus('completed'), 'https://schema.org/EventScheduled');
 });
+
+test('every current or future event has an organizer for Google event markup', async () => {
+  const eventsRoot = path.resolve('src/content/docs/events');
+  const yearDirectories = await readdir(eventsRoot, { withFileTypes: true });
+  const missingOrganizers = [];
+
+  for (const yearDirectory of yearDirectories.filter((entry) => entry.isDirectory())) {
+    const yearRoot = path.join(eventsRoot, yearDirectory.name);
+    const eventFiles = (await readdir(yearRoot)).filter((file) => file.endsWith('.mdx'));
+
+    for (const eventFile of eventFiles) {
+      const source = await readFile(path.join(yearRoot, eventFile), 'utf8');
+      const frontmatter = source.match(/^---\s*\n([\s\S]*?)\n---/);
+      assert.ok(frontmatter, `Missing frontmatter in ${yearDirectory.name}/${eventFile}`);
+
+      const data = YAML.parse(frontmatter[1]);
+      if (!isCurrentOrFutureEvent(data.endDate ?? data.pubDate)) continue;
+
+      const explicitOrganizers = values(data.organizer);
+      const inferredOrganizers = organizersFromTags(data.tags ?? []);
+      if (explicitOrganizers.length === 0 && inferredOrganizers.length === 0) {
+        missingOrganizers.push(`${yearDirectory.name}/${eventFile}`);
+      }
+    }
+  }
+
+  assert.deepEqual(missingOrganizers, []);
+});
+
+function values(value) {
+  return (Array.isArray(value) ? value : [value])
+    .map((item) => String(item ?? '').trim())
+    .filter(Boolean);
+}

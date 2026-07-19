@@ -1,7 +1,9 @@
 export const knownOrganizers = [
   '1LIVE',
+  'RADIO BOB GmbH & Co. KG',
   'Concertbüro Zahlmann GmbH',
   'Concert Team Düsseldorf',
+  'concert team Düsseldorf GmbH',
   'Contra Promotion GmbH',
   'DBE Köln',
   'Dirk Becker Entertainment GmbH',
@@ -22,9 +24,11 @@ export const knownOrganizers = [
   'Skalar Entertainment GmbH',
   'Westfalen Events GmbH',
   'Westfalen Concerts GmbH',
+  'HockeyPark Betriebs GmbH & Co. KG',
   'WM-Stadt Gelsenkirchen',
   'WWRY Musical GmbH',
   'Zeltfestival Ruhr',
+  'ZFR Event GmbH & Co. KG',
 ];
 
 function normalize(value) {
