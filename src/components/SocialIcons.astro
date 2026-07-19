@@ -1,0 +1,33 @@
+---
+import DefaultSocialIcons from '@astrojs/starlight/components/SocialIcons.astro';
+import { Icon } from 'astro-icon/components';
+---
+
+<a
+  href="https://fanieng.com/ueber-mich/"
+  rel="me"
+  class="about-link sl-flex"
+>
+  <span class="sr-only">Über mich</span>
+  <Icon name="lucide:user-round" aria-hidden="true" />
+</a>
+<DefaultSocialIcons />
+
+<style>
+  @layer starlight.core {
+    .about-link {
+      color: var(--sl-color-text-accent);
+      padding: 0.5em;
+      margin: -0.5em;
+    }
+
+    .about-link:hover {
+      color: var(--sl-color-white);
+    }
+
+    .about-link :global(svg) {
+      width: 1em;
+      height: 1em;
+    }
+  }
+</style>
