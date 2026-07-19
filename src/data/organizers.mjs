@@ -36,6 +36,7 @@ const organizerUrls = new Map([
   ['HockeyPark Betriebs GmbH & Co. KG', 'https://sparkassenpark.de/'],
   ['ZFR Event GmbH & Co. KG', 'https://www.zeltfestivalruhr.de/'],
   ['concert team Düsseldorf GmbH', 'https://www.concertteam.de/'],
+  ['Concert Team Düsseldorf', 'https://www.concertteam.de/'],
   ['Kingstar GmbH', 'https://www.kingstar-music.com/'],
 ].map(([name, url]) => [normalize(name), url]));
 
