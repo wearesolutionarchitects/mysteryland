@@ -1,6 +1,5 @@
 import assert from 'node:assert/strict';
 import { access, readdir, readFile } from 'node:fs/promises';
-import path from 'node:path';
 import test from 'node:test';
 import YAML from 'yaml';
 
@@ -79,18 +78,6 @@ test('every current or future event has all required Google event fields', async
 
     for (const eventFile of eventFiles) {
       const source = await readFile(new URL(eventFile, yearRoot), 'utf8');
-      const frontmatter = source.match(/^---\s*\n([\s\S]*?)\n---/);
-      assert.ok(frontmatter, `Missing frontmatter in ${yearDirectory.name}/${eventFile}`);
-
-  const organizersWithoutUrls = [];
-  const missingImages = [];
-
-  for (const yearDirectory of yearDirectories.filter((entry) => entry.isDirectory())) {
-    const yearRoot = path.join(eventsRoot, yearDirectory.name);
-    const eventFiles = (await readdir(yearRoot)).filter((file) => file.endsWith('.mdx'));
-
-    for (const eventFile of eventFiles) {
-      const source = await readFile(path.join(yearRoot, eventFile), 'utf8');
       const frontmatter = source.match(/^---\s*\n([\s\S]*?)\n---/);
       assert.ok(frontmatter, `Missing frontmatter in ${yearDirectory.name}/${eventFile}`);
 
