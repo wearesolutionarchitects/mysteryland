@@ -8,6 +8,7 @@ import { organizerUrl, organizersFromTags } from '../../src/data/organizers.mjs'
 import {
   googleEventOffer,
   googleEventStatus,
+  isoDate,
   isCurrentOrFutureEvent,
 } from '../../src/scripts/lib/event-schema.mjs';
 
@@ -66,6 +67,7 @@ test('offers without a finite price or valid validFrom date are omitted', () => 
 test('every current or future event has all required Google event fields', async () => {
   const eventsRoot = path.resolve('src/content/docs/events');
   const yearDirectories = await readdir(eventsRoot, { withFileTypes: true });
+  const eventsWithInvalidDates = [];
   const eventsWithoutSupportedStatus = [];
   const missingOrganizers = [];
   const organizersWithoutUrls = [];
@@ -82,6 +84,16 @@ test('every current or future event has all required Google event fields', async
 
       const data = YAML.parse(frontmatter[1]);
       if (!isCurrentOrFutureEvent(data.endDate ?? data.pubDate)) continue;
+
+      const startDate = isoDate(data.pubDate);
+      const endDate = isoDate(data.endDate ?? data.pubDate);
+      if (
+        !/^\d{4}-\d{2}-\d{2}$/.test(startDate)
+        || !/^\d{4}-\d{2}-\d{2}$/.test(endDate)
+        || endDate < startDate
+      ) {
+        eventsWithInvalidDates.push(`${yearDirectory.name}/${eventFile}: ${startDate}–${endDate}`);
+      }
 
       const status = String(data.status ?? '').trim().toLowerCase();
       if (!['scheduled', 'cancelled', 'postponed'].includes(status)) {
@@ -111,6 +123,7 @@ test('every current or future event has all required Google event fields', async
     }
   }
 
+  assert.deepEqual(eventsWithInvalidDates, []);
   assert.deepEqual(eventsWithoutSupportedStatus, []);
   assert.deepEqual(missingOrganizers, []);
   assert.deepEqual(organizersWithoutUrls, []);
