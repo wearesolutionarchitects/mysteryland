@@ -1,6 +1,11 @@
 ---
-import { organizersFromTags } from '../data/organizers.mjs';
-import { googleEventStatus, isoDate, isCurrentOrFutureEvent } from '../scripts/lib/event-schema.mjs';
+import { organizerUrl, organizersFromTags } from '../data/organizers.mjs';
+import {
+  googleEventOffer,
+  googleEventStatus,
+  isoDate,
+  isCurrentOrFutureEvent,
+} from '../scripts/lib/event-schema.mjs';
 
 const route = Astro.locals.starlightRoute;
 const entry = route?.entry;
@@ -48,12 +53,6 @@ function organizerType(category: string) {
   return category === 'Lesung' ? 'Person' : 'Organization';
 }
 
-function offerAvailability(eventStatus: string) {
-  return eventStatus === 'https://schema.org/EventScheduled'
-    ? 'https://schema.org/InStock'
-    : 'https://schema.org/SoldOut';
-}
-
 const title = text(data.title);
 const description = text(data.description);
 const canonical = absoluteUrl(data.canonicalUrl || Astro.url.pathname);
@@ -74,6 +73,13 @@ const explicitOrganizers = values(data.organizer);
 const organizers = explicitOrganizers.length ? explicitOrganizers : organizersFromTags(values(data.tags));
 const eventId = canonical ? `${canonical}#event` : '';
 const eventStatus = googleEventStatus(data.status);
+const offer = googleEventOffer({
+  price,
+  eventStatus,
+  startDate,
+  url: canonical,
+  name: ticketCategory,
+});
 const isGoogleEvent = isEvent && isCurrentOrFutureEvent(endDate);
 
 // Google event rich results are intended for events people can still attend.
@@ -111,22 +117,17 @@ const eventJsonLd = isGoogleEvent ? {
     })),
   } : {}),
   ...(organizers.length ? {
-    organizer: organizers.map((name) => ({
-      '@type': organizerType(category),
-      name,
-    })),
+    organizer: organizers.map((name) => {
+      const url = organizerUrl(name);
+
+      return {
+        '@type': organizerType(category),
+        name,
+        ...(url ? { url } : {}),
+      };
+    }),
   } : {}),
-  ...(price !== undefined ? {
-    offers: {
-      '@type': 'Offer',
-      price,
-      priceCurrency: 'EUR',
-      availability: offerAvailability(eventStatus),
-      validFrom: startDate,
-      url: canonical,
-      ...(ticketCategory ? { name: ticketCategory } : {}),
-    },
-  } : {}),
+  ...(offer ? { offers: offer } : {}),
 } : null;
 ---
 

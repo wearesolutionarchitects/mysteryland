@@ -1,8 +1,13 @@
 import assert from 'node:assert/strict';
+import { access, readdir, readFile } from 'node:fs/promises';
 import test from 'node:test';
+import YAML from 'yaml';
 
+import { organizerUrl, organizersFromTags } from '../../src/data/organizers.mjs';
 import {
+  googleEventOffer,
   googleEventStatus,
+  isoDate,
   isCurrentOrFutureEvent,
 } from '../../src/scripts/lib/event-schema.mjs';
 
@@ -27,3 +32,116 @@ test('only Google-supported event status values are emitted', () => {
   assert.equal(googleEventStatus('scheduled'), 'https://schema.org/EventScheduled');
   assert.equal(googleEventStatus('completed'), 'https://schema.org/EventScheduled');
 });
+
+test('event offers always contain a validFrom date', () => {
+  const offer = googleEventOffer({
+    price: 79.5,
+    eventStatus: googleEventStatus('scheduled'),
+    startDate: new Date('2027-04-12T18:30:00Z'),
+    url: 'https://mysteryland.biz/events/2027/2027-04-12/',
+    name: 'Innenraum',
+  });
+
+  assert.deepEqual(offer, {
+    '@type': 'Offer',
+    price: 79.5,
+    priceCurrency: 'EUR',
+    availability: 'https://schema.org/InStock',
+    validFrom: '2027-04-12',
+    url: 'https://mysteryland.biz/events/2027/2027-04-12/',
+    name: 'Innenraum',
+  });
+});
+
+test('offers without a finite price or validFrom date are omitted', () => {
+  const baseOffer = {
+    eventStatus: googleEventStatus('scheduled'),
+    url: 'https://mysteryland.biz/events/2027/2027-04-12/',
+  };
+
+  assert.equal(googleEventOffer({ ...baseOffer, price: undefined, startDate: '2027-04-12' }), null);
+  assert.equal(googleEventOffer({ ...baseOffer, price: 79.5, startDate: '' }), null);
+});
+
+test('every current or future event has all required Google event fields', async () => {
+  const eventsRoot = new URL('../../src/content/docs/events/', import.meta.url);
+  const yearDirectories = await readdir(eventsRoot, { withFileTypes: true });
+  const eventsWithInvalidDates = [];
+  const eventsWithoutSupportedStatus = [];
+  const missingOrganizers = [];
+  const organizersWithoutUrls = [];
+  const missingImages = [];
+
+  for (const yearDirectory of yearDirectories.filter((entry) => entry.isDirectory())) {
+    const yearRoot = new URL(`${yearDirectory.name}/`, eventsRoot);
+    const eventFiles = (await readdir(yearRoot)).filter((file) => file.endsWith('.mdx'));
+
+    for (const eventFile of eventFiles) {
+      const source = await readFile(new URL(eventFile, yearRoot), 'utf8');
+      const frontmatter = source.match(/^---\s*\n([\s\S]*?)\n---/);
+      assert.ok(frontmatter, `Missing frontmatter in ${yearDirectory.name}/${eventFile}`);
+
+      const data = YAML.parse(frontmatter[1]);
+      if (!isCurrentOrFutureEvent(data.endDate ?? data.pubDate)) continue;
+
+      const startDate = isoDate(data.pubDate);
+      const endDate = isoDate(data.endDate ?? data.pubDate);
+      if (
+        !/^\d{4}-\d{2}-\d{2}$/.test(startDate)
+        || !/^\d{4}-\d{2}-\d{2}$/.test(endDate)
+        || endDate < startDate
+      ) {
+        eventsWithInvalidDates.push(`${yearDirectory.name}/${eventFile}: ${startDate}–${endDate}`);
+      }
+
+      const status = String(data.status ?? '').trim().toLowerCase();
+      if (!['scheduled', 'cancelled', 'postponed'].includes(status)) {
+        eventsWithoutSupportedStatus.push(`${yearDirectory.name}/${eventFile}: ${status || 'missing'}`);
+      }
+
+      const explicitOrganizers = values(data.organizer);
+      const inferredOrganizers = organizersFromTags(data.tags ?? []);
+      if (explicitOrganizers.length === 0 && inferredOrganizers.length === 0) {
+        missingOrganizers.push(`${yearDirectory.name}/${eventFile}`);
+      }
+
+      for (const organizer of explicitOrganizers.length ? explicitOrganizers : inferredOrganizers) {
+        if (!organizerUrl(organizer)) {
+          organizersWithoutUrls.push(`${yearDirectory.name}/${eventFile}: ${organizer}`);
+        }
+      }
+
+      const image = String(data.ogImage ?? '').trim();
+      const imagePath = image.startsWith('/')
+        ? new URL(`../../public${image}`, import.meta.url)
+        : '';
+
+      if (!imagePath || !await fileExists(imagePath)) {
+        missingImages.push(`${yearDirectory.name}/${eventFile}`);
+      }
+    }
+  }
+
+  assert.deepEqual(eventsWithInvalidDates, []);
+  assert.deepEqual(eventsWithoutSupportedStatus, []);
+  assert.deepEqual(missingOrganizers, []);
+  assert.deepEqual(organizersWithoutUrls, []);
+  assert.deepEqual(missingImages, []);
+});
+
+async function fileExists(file) {
+  try {
+    await access(file);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function values(value) {
+  return [...new Set((Array.isArray(value) ? value : [value])
+    .flatMap((item) => String(item || '').split(','))
+    .map((item) => item.trim())
+    .filter(Boolean)
+    .filter((item) => item !== 'TBA'))];
+}

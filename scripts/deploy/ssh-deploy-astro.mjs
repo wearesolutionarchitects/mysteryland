@@ -15,6 +15,9 @@ const options = {
 };
 
 if (!existsSync(join(options.distPath, 'index.html'))) throw new Error('Missing Astro build output in dist');
+if (!existsSync(join(options.distPath, '.htaccess'))) {
+  throw new Error('Missing canonical host redirect in dist/.htaccess');
+}
 if (!options.targetPath.startsWith('/') || !options.releaseRoot.startsWith('/')) throw new Error('Deploy paths must be absolute');
 if (!Number.isInteger(options.keepReleases) || options.keepReleases < 1 || options.keepReleases > 30) {
   throw new Error('DEPLOY_KEEP_RELEASES must be between 1 and 30');
