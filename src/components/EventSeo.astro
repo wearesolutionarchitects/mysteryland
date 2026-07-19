@@ -1,5 +1,5 @@
 ---
-import { organizersFromTags } from '../data/organizers.mjs';
+import { organizerUrl, organizersFromTags } from '../data/organizers.mjs';
 import {
   googleEventOffer,
   googleEventStatus,
@@ -117,10 +117,15 @@ const eventJsonLd = isGoogleEvent ? {
     })),
   } : {}),
   ...(organizers.length ? {
-    organizer: organizers.map((name) => ({
-      '@type': organizerType(category),
-      name,
-    })),
+    organizer: organizers.map((name) => {
+      const url = organizerUrl(name);
+
+      return {
+        '@type': organizerType(category),
+        name,
+        ...(url ? { url } : {}),
+      };
+    }),
   } : {}),
   ...(offer ? { offers: offer } : {}),
 } : null;

@@ -4,7 +4,7 @@ import path from 'node:path';
 import test from 'node:test';
 import YAML from 'yaml';
 
-import { organizersFromTags } from '../../src/data/organizers.mjs';
+import { organizerUrl, organizersFromTags } from '../../src/data/organizers.mjs';
 import {
   googleEventOffer,
   googleEventStatus,
@@ -63,10 +63,11 @@ test('offers without a finite price or valid validFrom date are omitted', () => 
   assert.equal(googleEventOffer({ ...baseOffer, price: 79.5, startDate: '' }), null);
 });
 
-test('every current or future event has an organizer and image for Google event markup', async () => {
+test('every current or future event has a linked organizer and image for Google event markup', async () => {
   const eventsRoot = path.resolve('src/content/docs/events');
   const yearDirectories = await readdir(eventsRoot, { withFileTypes: true });
   const missingOrganizers = [];
+  const organizersWithoutUrls = [];
   const missingImages = [];
 
   for (const yearDirectory of yearDirectories.filter((entry) => entry.isDirectory())) {
@@ -87,6 +88,12 @@ test('every current or future event has an organizer and image for Google event 
         missingOrganizers.push(`${yearDirectory.name}/${eventFile}`);
       }
 
+      for (const organizer of explicitOrganizers.length ? explicitOrganizers : inferredOrganizers) {
+        if (!organizerUrl(organizer)) {
+          organizersWithoutUrls.push(`${yearDirectory.name}/${eventFile}: ${organizer}`);
+        }
+      }
+
       const image = String(data.ogImage ?? '').trim();
       const imagePath = image.startsWith('/')
         ? path.resolve('public', image.slice(1))
@@ -99,6 +106,7 @@ test('every current or future event has an organizer and image for Google event 
   }
 
   assert.deepEqual(missingOrganizers, []);
+  assert.deepEqual(organizersWithoutUrls, []);
   assert.deepEqual(missingImages, []);
 });
 

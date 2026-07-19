@@ -31,6 +31,14 @@ export const knownOrganizers = [
   'ZFR Event GmbH & Co. KG',
 ];
 
+const organizerUrls = new Map([
+  ['RADIO BOB GmbH & Co. KG', 'https://www.radiobob.de/'],
+  ['HockeyPark Betriebs GmbH & Co. KG', 'https://sparkassenpark.de/'],
+  ['ZFR Event GmbH & Co. KG', 'https://www.zeltfestivalruhr.de/'],
+  ['concert team Düsseldorf GmbH', 'https://www.concertteam.de/'],
+  ['Kingstar GmbH', 'https://www.kingstar-music.com/'],
+].map(([name, url]) => [normalize(name), url]));
+
 function normalize(value) {
   return String(value || '').trim().toLocaleLowerCase('de-DE');
 }
@@ -42,4 +50,8 @@ export function organizersFromTags(tags) {
     .filter(Boolean));
 
   return knownOrganizers.filter((organizer) => tagSet.has(normalize(organizer)));
+}
+
+export function organizerUrl(organizer) {
+  return organizerUrls.get(normalize(organizer)) ?? '';
 }
