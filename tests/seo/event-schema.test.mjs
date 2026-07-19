@@ -140,7 +140,9 @@ async function fileExists(file) {
 }
 
 function values(value) {
-  return (Array.isArray(value) ? value : [value])
-    .map((item) => String(item ?? '').trim())
-    .filter(Boolean);
+  return [...new Set((Array.isArray(value) ? value : [value])
+    .flatMap((item) => String(item || '').split(','))
+    .map((item) => item.trim())
+    .filter(Boolean)
+    .filter((item) => item !== 'TBA'))];
 }
