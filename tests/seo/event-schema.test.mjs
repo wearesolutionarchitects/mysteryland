@@ -126,7 +126,7 @@ test('every current or future event has all required Google event fields', async
 
       const image = String(data.ogImage ?? '').trim();
       const imagePath = image.startsWith('/')
-        ? path.resolve('public', image.slice(1))
+        ? new URL(`../../public${image}`, import.meta.url)
         : '';
 
       if (!imagePath || !await fileExists(imagePath)) {
