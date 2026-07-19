@@ -65,11 +65,23 @@ test('offers without a finite price or validFrom date are omitted', () => {
 });
 
 test('every current or future event has all required Google event fields', async () => {
-  const eventsRoot = path.resolve('src/content/docs/events');
+  const eventsRoot = new URL('../../src/content/docs/events/', import.meta.url);
   const yearDirectories = await readdir(eventsRoot, { withFileTypes: true });
   const eventsWithInvalidDates = [];
   const eventsWithoutSupportedStatus = [];
   const missingOrganizers = [];
+  const organizersWithoutUrls = [];
+  const missingImages = [];
+
+  for (const yearDirectory of yearDirectories.filter((entry) => entry.isDirectory())) {
+    const yearRoot = new URL(`${yearDirectory.name}/`, eventsRoot);
+    const eventFiles = (await readdir(yearRoot)).filter((file) => file.endsWith('.mdx'));
+
+    for (const eventFile of eventFiles) {
+      const source = await readFile(new URL(eventFile, yearRoot), 'utf8');
+      const frontmatter = source.match(/^---\s*\n([\s\S]*?)\n---/);
+      assert.ok(frontmatter, `Missing frontmatter in ${yearDirectory.name}/${eventFile}`);
+
   const organizersWithoutUrls = [];
   const missingImages = [];
 
