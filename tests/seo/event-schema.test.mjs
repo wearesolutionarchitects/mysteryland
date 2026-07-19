@@ -34,7 +34,7 @@ test('only Google-supported event status values are emitted', () => {
   assert.equal(googleEventStatus('completed'), 'https://schema.org/EventScheduled');
 });
 
-test('event offers always contain a valid validFrom date', () => {
+test('event offers always contain a validFrom date', () => {
   const offer = googleEventOffer({
     price: 79.5,
     eventStatus: googleEventStatus('scheduled'),
