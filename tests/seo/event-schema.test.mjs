@@ -54,7 +54,7 @@ test('event offers always contain a validFrom date', () => {
   });
 });
 
-test('offers without a finite price or valid validFrom date are omitted', () => {
+test('offers without a finite price or validFrom date are omitted', () => {
   const baseOffer = {
     eventStatus: googleEventStatus('scheduled'),
     url: 'https://mysteryland.biz/events/2027/2027-04-12/',
