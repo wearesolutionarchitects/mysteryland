@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { readdir, readFile } from 'node:fs/promises';
+import { access, readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
 import YAML from 'yaml';
@@ -63,10 +63,11 @@ test('offers without a finite price or valid validFrom date are omitted', () => 
   assert.equal(googleEventOffer({ ...baseOffer, price: 79.5, startDate: '' }), null);
 });
 
-test('every current or future event has an organizer for Google event markup', async () => {
+test('every current or future event has an organizer and image for Google event markup', async () => {
   const eventsRoot = path.resolve('src/content/docs/events');
   const yearDirectories = await readdir(eventsRoot, { withFileTypes: true });
   const missingOrganizers = [];
+  const missingImages = [];
 
   for (const yearDirectory of yearDirectories.filter((entry) => entry.isDirectory())) {
     const yearRoot = path.join(eventsRoot, yearDirectory.name);
@@ -85,11 +86,30 @@ test('every current or future event has an organizer for Google event markup', a
       if (explicitOrganizers.length === 0 && inferredOrganizers.length === 0) {
         missingOrganizers.push(`${yearDirectory.name}/${eventFile}`);
       }
+
+      const image = String(data.ogImage ?? '').trim();
+      const imagePath = image.startsWith('/')
+        ? path.resolve('public', image.slice(1))
+        : '';
+
+      if (!imagePath || !await fileExists(imagePath)) {
+        missingImages.push(`${yearDirectory.name}/${eventFile}`);
+      }
     }
   }
 
   assert.deepEqual(missingOrganizers, []);
+  assert.deepEqual(missingImages, []);
 });
+
+async function fileExists(file) {
+  try {
+    await access(file);
+    return true;
+  } catch {
+    return false;
+  }
+}
 
 function values(value) {
   return (Array.isArray(value) ? value : [value])
