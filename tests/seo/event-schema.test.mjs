@@ -63,9 +63,10 @@ test('offers without a finite price or valid validFrom date are omitted', () => 
   assert.equal(googleEventOffer({ ...baseOffer, price: 79.5, startDate: '' }), null);
 });
 
-test('every current or future event has a linked organizer and image for Google event markup', async () => {
+test('every current or future event has all required Google event fields', async () => {
   const eventsRoot = path.resolve('src/content/docs/events');
   const yearDirectories = await readdir(eventsRoot, { withFileTypes: true });
+  const eventsWithoutSupportedStatus = [];
   const missingOrganizers = [];
   const organizersWithoutUrls = [];
   const missingImages = [];
@@ -81,6 +82,11 @@ test('every current or future event has a linked organizer and image for Google 
 
       const data = YAML.parse(frontmatter[1]);
       if (!isCurrentOrFutureEvent(data.endDate ?? data.pubDate)) continue;
+
+      const status = String(data.status ?? '').trim().toLowerCase();
+      if (!['scheduled', 'cancelled', 'postponed'].includes(status)) {
+        eventsWithoutSupportedStatus.push(`${yearDirectory.name}/${eventFile}: ${status || 'missing'}`);
+      }
 
       const explicitOrganizers = values(data.organizer);
       const inferredOrganizers = organizersFromTags(data.tags ?? []);
@@ -105,6 +111,7 @@ test('every current or future event has a linked organizer and image for Google 
     }
   }
 
+  assert.deepEqual(eventsWithoutSupportedStatus, []);
   assert.deepEqual(missingOrganizers, []);
   assert.deepEqual(organizersWithoutUrls, []);
   assert.deepEqual(missingImages, []);
