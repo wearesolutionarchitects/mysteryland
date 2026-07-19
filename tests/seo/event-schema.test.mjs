@@ -6,6 +6,7 @@ import YAML from 'yaml';
 
 import { organizersFromTags } from '../../src/data/organizers.mjs';
 import {
+  googleEventOffer,
   googleEventStatus,
   isCurrentOrFutureEvent,
 } from '../../src/scripts/lib/event-schema.mjs';
@@ -30,6 +31,36 @@ test('only Google-supported event status values are emitted', () => {
   assert.equal(googleEventStatus('postponed'), 'https://schema.org/EventPostponed');
   assert.equal(googleEventStatus('scheduled'), 'https://schema.org/EventScheduled');
   assert.equal(googleEventStatus('completed'), 'https://schema.org/EventScheduled');
+});
+
+test('event offers always contain a valid validFrom date', () => {
+  const offer = googleEventOffer({
+    price: 79.5,
+    eventStatus: googleEventStatus('scheduled'),
+    startDate: new Date('2027-04-12T18:30:00Z'),
+    url: 'https://mysteryland.biz/events/2027/2027-04-12/',
+    name: 'Innenraum',
+  });
+
+  assert.deepEqual(offer, {
+    '@type': 'Offer',
+    price: 79.5,
+    priceCurrency: 'EUR',
+    availability: 'https://schema.org/InStock',
+    validFrom: '2027-04-12',
+    url: 'https://mysteryland.biz/events/2027/2027-04-12/',
+    name: 'Innenraum',
+  });
+});
+
+test('offers without a finite price or valid validFrom date are omitted', () => {
+  const baseOffer = {
+    eventStatus: googleEventStatus('scheduled'),
+    url: 'https://mysteryland.biz/events/2027/2027-04-12/',
+  };
+
+  assert.equal(googleEventOffer({ ...baseOffer, price: undefined, startDate: '2027-04-12' }), null);
+  assert.equal(googleEventOffer({ ...baseOffer, price: 79.5, startDate: '' }), null);
 });
 
 test('every current or future event has an organizer for Google event markup', async () => {
