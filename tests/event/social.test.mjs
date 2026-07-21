@@ -60,7 +60,7 @@ social:
     }
   });
 
-  const scriptUrl = new URL(`../../src/scripts/event/social.mjs?test=${Date.now()}`, import.meta.url);
+  const scriptUrl = new URL('../../src/scripts/event/social.mjs', import.meta.url);
   const { createSocialPack } = await import(scriptUrl.href);
   const result = await createSocialPack('2026-07-17');
 
