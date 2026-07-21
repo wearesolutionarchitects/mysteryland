@@ -28,8 +28,7 @@ canonicalUrl: "/events/2026/2026-07-17/"
 social:
   enabled: true
   lead: "Ein besonderer Abend in Köln."
-  hashtags: ["#DieTotenHosen", "Köln", "Live-Musik"]
-  images: ["21-44-15"]
+  hashtags: ["DieTotenHosen", "Köln", "Live-Musik"]
 ---
 `);
 
