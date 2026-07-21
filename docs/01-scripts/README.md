@@ -248,7 +248,41 @@ npm run event:outbox -- 2027-12-11
 
 Die Outbox ist bewusst nicht öffentliches Site-Output-Verzeichnis, sondern ein Arbeitsbereich für Uploads zu Facebook, Instagram und WhatsApp.
 
-## 7. Album ergänzen
+## 7. Veröffentlichungs-Paket für ein Event erzeugen
+
+Modul: `src/scripts/event/social.mjs`
+
+```bash
+npm run event:social -- <YYYY-MM-DD>
+```
+
+Beispiel:
+
+```bash
+npm run event:social -- 2026-07-17
+```
+
+Anders als die allgemeine Event-Outbox verwendet dieses Skript eine redaktionelle Bildauswahl und fertige Begleittexte für genau ein Event. Die Auswahl wird direkt im Frontmatter der Event-MDX gepflegt:
+
+```yaml
+social:
+  enabled: true
+  lead: "Drei Jahre Pause, volle Stadionkulisse und ein besonderer Gastmoment."
+  hashtags: ["DieTotenHosen", "Köln", "RheinEnergieStadion", "Mysteryland"]
+  images: ["20-56-41", "21-44-15", "22-12-20"]
+```
+
+Die Einträge unter `images` sind eindeutige Bestandteile der Dateinamen im Galerieordner des Events. Das Skript:
+
+- erzeugt die ausgewählten Motive für Facebook (1200x630), Instagram (1080x1350) und WhatsApp (1080x1920),
+- erhält das vollständige Foto vor einem abgedunkelten, weichgezeichneten Hintergrund,
+- schreibt plattformspezifische Texte mit Lead, Hashtags und kanonischer Event-URL,
+- legt ein Manifest mit Quellen, Ausgabeformaten und Zielpfaden an,
+- ersetzt nur das Paket des ausgewählten Events unter `social-outbox/<YYYY-MM-DD>/`.
+
+`social-outbox/` ist in Git ignoriert. Die Inhalte sind lokale, reproduzierbare Upload-Artefakte und werden nicht mit der Website veröffentlicht.
+
+## 8. Album ergänzen
 
 Modul: `src/scripts/event/album.mjs`
 
@@ -280,7 +314,7 @@ npm run event:covers
 
 Das Skript migriert Dateien nach `src/content/gallery/cover`, reduziert identische ASINs auf eine kanonische Datei und aktualisiert die Imports aller Event-MDX-Dateien.
 
-## 8. Setlists ergänzen
+## 9. Setlists ergänzen
 
 Modul: `src/scripts/event/setlist.mjs`
 
