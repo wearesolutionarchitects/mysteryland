@@ -29,6 +29,7 @@ social:
   enabled: true
   lead: "Ein besonderer Abend in Köln."
   hashtags: ["DieTotenHosen", "Köln", "Live-Musik"]
+  images: ["21-44-15"]
 ---
 `);
 
