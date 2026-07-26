@@ -17,6 +17,11 @@ const docsCollection = defineCollection({
       country: z.string().optional(),
       tour: z.string().optional(),
       artist: z.array(z.string()).optional(),
+      runningOrder: z.array(z.object({
+        artist: z.string(),
+        start: z.string().regex(/^\d{2}:\d{2}$/),
+        end: z.string().regex(/^\d{2}:\d{2}$/).optional(),
+      })).optional(),
       performingAs: z.string().optional(),
       artistName: z.string().optional(),
       artistPage: z.string().optional(),

@@ -15,7 +15,7 @@ for (const label of labels) {
   const name = String(label.name || '').trim();
   const color = String(label.color || '').trim();
   const description = String(label.description || '').trim();
-  console.log(`Create label: ${name}`);
+  console.log(`Synchronize label: ${name}`);
   runOrThrow('gh', [
     'label',
     'create',
@@ -26,5 +26,6 @@ for (const label of labels) {
     color,
     '--description',
     description,
+    '--force',
   ]);
 }

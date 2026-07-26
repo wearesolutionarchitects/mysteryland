@@ -1,19 +1,122 @@
 name: Neues Event
-description: Event-Eintrag für mysteryland.biz anlegen oder vervollständigen
-title: "Event: "
+description: Genau einen Event-Eintrag für mysteryland.biz anlegen oder vervollständigen
+title: "Event: YYYY-MM-DD – "
 labels:
   - event
+  - "type: event"
+  - "area: content"
+  - "status: needs-triage"
 body:
-  - type: textarea
-    id: event
+  - type: markdown
     attributes:
-      label: Eventdaten
-      description: Datum, Künstler oder Eventname, Venue und Stadt; unbekannte Werte als TBA markieren.
+      value: |
+        ## Ein Issue entspricht genau einem Event
+
+        Dieses Issue ist der kanonische Startpunkt für die Event-MDX und alle folgenden Arbeitsschritte. Bitte das Datum im Titel ersetzen und für ein weiteres Event ein separates Issue anlegen.
+
+  - type: input
+    id: event_date
+    attributes:
+      label: Eventdatum
+      description: Datum im maschinenlesbaren ISO-Format.
+      placeholder: YYYY-MM-DD
+    validations:
+      required: true
+
+  - type: input
+    id: event_name
+    attributes:
+      label: Künstler oder Eventname
+      description: Bei Festivals den Eventnamen, sonst den Headliner eintragen.
+      placeholder: BOB!Fest
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Kategorie
+      options:
+        - Konzert
+        - Festival
+        - Lesung
+        - Musical
+        - TBA
+    validations:
+      required: true
+
+  - type: input
+    id: city
+    attributes:
+      label: Stadt
+      placeholder: Mönchengladbach oder TBA
+    validations:
+      required: true
+
+  - type: input
+    id: venue
+    attributes:
+      label: Venue
+      placeholder: SparkassenPark oder TBA
+    validations:
+      required: true
+
+  - type: input
+    id: country
+    attributes:
+      label: Land
+      placeholder: Deutschland oder TBA
+    validations:
+      required: true
+
+  - type: input
+    id: artists
+    attributes:
+      label: Line-up
+      description: Mehrere Künstler durch Kommas trennen; unbekannte Angaben als TBA markieren.
+      placeholder: Alice Cooper, Danko Jones, H-BLOCKX
+    validations:
+      required: true
+
+  - type: input
+    id: tour
+    attributes:
+      label: Tour oder Motto
+      placeholder: Tourname oder TBA
+    validations:
+      required: true
+
+  - type: textarea
+    id: running_order
+    attributes:
+      label: Running Order
+      description: Bei Festivals eine Zeile je Auftritt im Format `HH:MM-HH:MM | Künstler`; leer lassen, wenn noch unbekannt.
       placeholder: |
-        Datum: YYYY-MM-DD
-        Künstler/Event:
-        Venue:
-        Stadt:
+        13:45-14:20 | The Gems
+        14:40-15:20 | Phil Campbell’s Bastard Sons
+
+  - type: dropdown
+    id: event_status
+    attributes:
+      label: Eventstatus
+      options:
+        - scheduled
+        - completed
+        - postponed
+        - cancelled
+        - TBA
+    validations:
+      required: true
+
+  - type: dropdown
+    id: phase
+    attributes:
+      label: Bearbeitungsphase
+      description: Steuert die erste Einordnung für Board und spätere Automationen.
+      options:
+        - Event vorbereiten
+        - Event nachbereiten
+        - Bestehenden Eintrag pflegen
     validations:
       required: true
 
@@ -23,9 +126,33 @@ body:
       label: Quellen und Medien
       description: Verlässliche URLs sowie vorhandene Tickets, Fotos, Setlists oder Alben.
       placeholder: Links oder kurze Hinweise; keine Zugangsdaten einfügen.
+    validations:
+      required: true
 
   - type: textarea
     id: notes
     attributes:
       label: Hinweise
       description: Besonderheiten, gewünschte Ergänzungen oder klare Abgrenzungen.
+
+  - type: checkboxes
+    id: deliverables
+    attributes:
+      label: Gewünschte Ergebnisse
+      description: Die Auswahl bildet den Arbeitsumfang ab und kann später von Actions ausgewertet werden.
+      options:
+        - label: Event-MDX aus den strukturierten Issue-Daten erzeugen
+        - label: Eventdaten und Status aktualisieren
+        - label: Fotos importieren und Galerie synchronisieren
+        - label: Bericht verfassen oder vervollständigen
+        - label: Setlists und Videos ergänzen
+        - label: SEO und Open-Graph-Bild prüfen
+        - label: Social-Paket erzeugen
+
+  - type: checkboxes
+    id: single_event
+    attributes:
+      label: Issue-Zuschnitt
+      options:
+        - label: Dieses Issue beschreibt genau ein Event.
+          required: true

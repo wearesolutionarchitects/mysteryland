@@ -2,7 +2,9 @@
 // Adds the setlist.fm songs to an existing event MDX by event date.
 import fs from 'node:fs';
 import path from 'node:path';
+import YAML from 'yaml';
 import { ensureDateArg, loadEnv } from '../lib/core.mjs';
+import { createSetlistClient, orderArtists, sameArtist, sortSetlistCards } from './setlist-api.mjs';
 
 loadEnv();
 
@@ -10,6 +12,8 @@ const eventDate = process.argv[2];
 const apiKey = process.env.SETLIST_API_KEY || '';
 const userAgent = process.env.SETLIST_USER_AGENT || 'heiko@fanieng.com';
 const eventsRoot = process.env.EVENTS_ROOT || './src/content/docs/events';
+const requestDelayMs = Number(process.env.SETLIST_REQUEST_DELAY_MS || 1000);
+const maxRetries = Number(process.env.SETLIST_MAX_RETRIES || 3);
 
 ensureDateArg(eventDate, 'Usage: npm run event:setlist -- YYYY-MM-DD');
 
@@ -21,14 +25,13 @@ if (!apiKey) {
 function readFrontmatter(file) {
   const content = fs.readFileSync(file, 'utf8');
   const block = content.match(/^---\n([\s\S]*?)\n---/)?.[1] || '';
-  const value = (key) => block.match(new RegExp(`^${key}:\\s*(.+)$`, 'm'))?.[1]?.trim() || '';
-  const unquote = (input) => input.replace(/^["']|["']$/g, '');
-  const artists = value('artist').match(/"([^"]+)"/g)?.map(unquote) || [];
+  const data = YAML.parse(block) || {};
+  const artists = Array.isArray(data.artist) ? data.artist.map(String) : [];
 
   return {
-    artists: artists.length ? artists : [unquote(value('title'))],
-    city: unquote(value('city')),
-    venue: unquote(value('venue')),
+    artists: orderArtists(artists.length ? artists : [String(data.title || '')], data.runningOrder),
+    city: String(data.city || ''),
+    venue: String(data.venue || ''),
   };
 }
 
@@ -68,15 +71,15 @@ if (!sectionMatch) {
 }
 
 const placeholderCard = /<Card title="Songs" icon="list-format">\s*(?:TBA|TODO)\s*<\/Card>/;
-const existingTitles = new Set(
+const existingTitles = (
   [...sectionMatch[2].matchAll(/<Card title="([^"]+)" icon="list-format">/g)]
-    .map((match) => normalize(match[1]))
+    .map((match) => match[1])
     .filter(Boolean),
 );
 const pendingArtists = event.artists.filter((artist) => {
   const exists = event.artists.length === 1
-    ? existingTitles.has('songs') && !placeholderCard.test(sectionMatch[2])
-    : existingTitles.has(normalize(artist));
+    ? existingTitles.some((title) => normalize(title) === 'songs') && !placeholderCard.test(sectionMatch[2])
+    : existingTitles.some((title) => sameArtist(title, artist));
   if (exists) console.log(`Setlist already present for ${artist}`);
   return !exists;
 });
@@ -90,25 +93,12 @@ const baseUrl = new URL('https://api.setlist.fm/rest/1.0/search/setlists');
 baseUrl.searchParams.set('date', `${day}-${month}-${yearPart}`);
 if (event.city) baseUrl.searchParams.set('cityName', event.city);
 
-async function fetchSetlists(url, context = '') {
-  const response = await fetch(url, {
-    headers: {
-      Accept: 'application/json',
-      'x-api-key': apiKey,
-      'User-Agent': userAgent,
-    },
-  });
-
-  if (!response.ok) {
-    const suffix = context ? ` for ${context}` : '';
-    console.error(
-      `Setlist.fm request failed${suffix}: ${response.status} ${response.statusText}`,
-    );
-    process.exit(1);
-  }
-
-  return response.json();
-}
+const fetchSetlists = createSetlistClient({
+  apiKey,
+  userAgent,
+  requestDelayMs: Number.isFinite(requestDelayMs) ? Math.max(0, requestDelayMs) : 1000,
+  maxRetries: Number.isInteger(maxRetries) ? Math.max(0, maxRetries) : 3,
+});
 
 function songsFromSetlist(setlist) {
   const sets = Array.isArray(setlist?.sets?.set) ? setlist.sets.set : [];
@@ -117,7 +107,7 @@ function songsFromSetlist(setlist) {
 
 function selectSetlist(setlists, artist) {
   const matches = setlists.filter((setlist) =>
-    normalize(setlist.artist?.name) === normalize(artist)
+    sameArtist(setlist.artist?.name, artist)
     && songsFromSetlist(setlist).length
   );
 
@@ -127,6 +117,7 @@ function selectSetlist(setlists, artist) {
 }
 
 const found = new Map();
+let apiUnavailable = false;
 let page = 1;
 let total = 0;
 let itemsPerPage = 20;
@@ -134,7 +125,14 @@ let itemsPerPage = 20;
 do {
   const url = new URL(baseUrl);
   if (page > 1) url.searchParams.set('p', String(page));
-  const data = await fetchSetlists(url);
+  let data;
+  try {
+    data = await fetchSetlists(url);
+  } catch (error) {
+    console.error(error instanceof Error ? error.message : String(error));
+    apiUnavailable = true;
+    break;
+  }
   const setlists = Array.isArray(data.setlist) ? data.setlist : [];
   total = Number(data.total) || setlists.length;
   itemsPerPage = Number(data.itemsPerPage) || itemsPerPage;
@@ -152,6 +150,7 @@ do {
 );
 
 for (const artist of pendingArtists) {
+  if (apiUnavailable) break;
   if (found.has(artist)) continue;
 
   const url = new URL('https://api.setlist.fm/rest/1.0/search/setlists');
@@ -159,7 +158,14 @@ for (const artist of pendingArtists) {
   url.searchParams.set('date', `${day}-${month}-${yearPart}`);
   if (event.city) url.searchParams.set('cityName', event.city);
 
-  const data = await fetchSetlists(url, artist);
+  let data;
+  try {
+    data = await fetchSetlists(url, artist);
+  } catch (error) {
+    console.warn(error instanceof Error ? error.message : String(error));
+    apiUnavailable = true;
+    break;
+  }
   const selected = selectSetlist(
     Array.isArray(data.setlist) ? data.setlist : [],
     artist,
@@ -199,12 +205,17 @@ for (const artist of pendingArtists) {
 }
 
 if (!additions.length) {
-  console.error(`No setlists with songs found for: ${missing.join(', ')}`);
+  console.error(apiUnavailable
+    ? 'Keine Setlists geschrieben; setlist.fm ist nach allen Wiederholungen weiterhin nicht verfügbar.'
+    : `No setlists with songs found for: ${missing.join(', ')}`);
   process.exit(1);
 }
 
 const existingContent = sectionMatch[2].replace(placeholderCard, '').trim();
-const sectionContent = [existingContent, ...additions].filter(Boolean).join('\n\n');
+const sectionContent = sortSetlistCards(
+  [existingContent, ...additions].filter(Boolean).join('\n\n'),
+  event.artists,
+);
 const heading = event.artists.length > 1 ? '## Setlists\n' : sectionMatch[1];
 const replacement = `${heading}\n${sectionContent}\n`;
 const updated = original.replace(setlistSectionPattern, replacement);

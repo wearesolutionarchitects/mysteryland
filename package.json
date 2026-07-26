@@ -20,10 +20,9 @@
     "verify": "npm run check && npm run typecheck:ts && npm test && npm run build",
     "deploy:ssh": "node scripts/deploy/ssh-deploy-astro.mjs",
     "postinstall": "patch-package",
-    "event:wp": "node src/scripts/event/wp.mjs",
+    "event": "node src/scripts/event/cli.mjs",
     "event:setlist": "node src/scripts/event/setlist.mjs",
     "event:media": "node src/scripts/event/media.mjs",
-    "event:mdx": "node src/scripts/event/mdx.mjs",
     "event:gallery": "node src/scripts/event/gallery.mjs",
     "event:og": "node src/scripts/event/og.mjs",
     "event:seo": "node src/scripts/event/seo.mjs",
@@ -32,7 +31,6 @@
     "event:album": "node src/scripts/event/album.mjs",
     "event:covers": "node src/scripts/event/localize-album-covers.mjs",
     "artist:sync": "node src/scripts/artist/sync.mjs",
-    "script:content:generate-readme": "node src/scripts/content/generate-readme.mjs",
     "script:github:create-labels": "node src/scripts/github/create-label.mjs"
   },
   "dependencies": {

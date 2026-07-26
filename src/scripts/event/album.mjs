@@ -3,6 +3,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { loadEnv } from '../lib/core.mjs';
+import { findDuplicateCover } from './album-cover.mjs';
 
 loadEnv();
 
@@ -184,8 +185,14 @@ if (!fs.existsSync(coverPath)) {
     console.error(`Album cover request failed: ${coverResponse.status} ${coverResponse.statusText}`);
     process.exit(1);
   }
+  const coverBuffer = Buffer.from(await coverResponse.arrayBuffer());
+  const duplicate = findDuplicateCover(coversRoot, asin, coverBuffer);
+  if (duplicate) {
+    console.error(`Album cover for ${asin} is identical to ${duplicate}. The product image was not saved; verify the Amazon product data.`);
+    process.exit(1);
+  }
   fs.mkdirSync(coversRoot, { recursive: true });
-  fs.writeFileSync(coverPath, Buffer.from(await coverResponse.arrayBuffer()));
+  fs.writeFileSync(coverPath, coverBuffer);
 }
 
 const frontmatter = updateAsin(frontmatterMatch[1], [...asins, asin]);
