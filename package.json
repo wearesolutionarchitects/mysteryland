@@ -20,6 +20,7 @@
     "verify": "npm run check && npm run typecheck:ts && npm test && npm run build",
     "deploy:ssh": "node scripts/deploy/ssh-deploy-astro.mjs",
     "postinstall": "patch-package",
+    "event": "node src/scripts/event/cli.mjs",
     "event:wp": "node src/scripts/event/wp.mjs",
     "event:setlist": "node src/scripts/event/setlist.mjs",
     "event:media": "node src/scripts/event/media.mjs",

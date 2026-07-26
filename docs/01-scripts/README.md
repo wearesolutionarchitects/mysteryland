@@ -2,6 +2,18 @@
 
 Der normale Workflow verarbeitet zuerst die Bilder aus der Inbox und erzeugt danach schrittweise die Event-MDX. Die Skripte ändern jeweils nur ihren eigenen Bereich.
 
+## Interaktiver Event-Assistent
+
+Alle Arbeitsschritte lassen sich über ein gemeinsames Auswahlmenü starten:
+
+```bash
+npm run event
+```
+
+Der Assistent fragt die jeweils benötigten Parameter ab, validiert Datumswerte, ASINs und WordPress-IDs und zeigt das konkrete npm-Kommando vor der Ausführung an. Schreibende Optionen wie `--write` und `--force` müssen ausdrücklich bestätigt werden. Nach jedem Schritt kann direkt der nächste ausgewählt werden.
+
+Die einzelnen Kommandos unter `event:*` bleiben für Automationen, Dokumentation und direkte Aufrufe erhalten.
+
 Das gemeinsame MDX-Gerüst wird zentral in `src/scripts/event/render.mjs` erzeugt. `event:mdx` und `event:wp` verwenden denselben Renderer, damit neue Events immer dieselben Imports, `EventFacts`, Galerie-, Video-, Setlist-, Album- und SEO-Felder erhalten.
 
 Event-Seiten sollen strukturiertes Frontmatter besitzen, damit `src/components/EventSeo.astro` daraus JSON-LD, Open-Graph- und Twitter-Metadaten erzeugen kann.
