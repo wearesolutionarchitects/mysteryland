@@ -71,11 +71,9 @@ if (!sectionMatch) {
 }
 
 const placeholderCard = /<Card title="Songs" icon="list-format">\s*(?:TBA|TODO)\s*<\/Card>/;
-const existingTitles = (
-  [...sectionMatch[2].matchAll(/<Card title="([^"]+)" icon="list-format">/g)]
-    .map((match) => match[1])
-    .filter(Boolean),
-);
+const existingTitles = [...sectionMatch[2].matchAll(/<Card title="([^"]+)" icon="list-format">/g)]
+  .map((match) => match[1])
+  .filter(Boolean);
 const pendingArtists = event.artists.filter((artist) => {
   const exists = event.artists.length === 1
     ? existingTitles.some((title) => normalize(title) === 'songs') && !placeholderCard.test(sectionMatch[2])
