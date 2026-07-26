@@ -73,7 +73,8 @@ async function askYesNo(readline, label, defaultValue = false) {
 }
 
 function runCommand(command, args) {
-  console.log(`\n→ npm run ${command.script}${args.length ? ` -- ${args.join(' ')}` : ''}\n`);
+  const quotedArgs = args.map((arg) => JSON.stringify(String(arg))).join(' ');
+  console.log(`\n→ npm run ${command.script}${args.length ? ` -- ${quotedArgs}` : ''}\n`);
   const result = spawnSync('npm', ['run', command.script, ...(args.length ? ['--', ...args] : [])], {
     cwd: process.cwd(),
     env: process.env,

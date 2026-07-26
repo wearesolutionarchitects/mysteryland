@@ -71,15 +71,15 @@ if (!sectionMatch) {
 }
 
 const placeholderCard = /<Card title="Songs" icon="list-format">\s*(?:TBA|TODO)\s*<\/Card>/;
-const existingTitles = new Set(
+const existingTitles = (
   [...sectionMatch[2].matchAll(/<Card title="([^"]+)" icon="list-format">/g)]
-    .map((match) => normalize(match[1]))
+    .map((match) => match[1])
     .filter(Boolean),
 );
 const pendingArtists = event.artists.filter((artist) => {
   const exists = event.artists.length === 1
-    ? existingTitles.has('songs') && !placeholderCard.test(sectionMatch[2])
-    : existingTitles.has(normalize(artist));
+    ? existingTitles.some((title) => normalize(title) === 'songs') && !placeholderCard.test(sectionMatch[2])
+    : existingTitles.some((title) => sameArtist(title, artist));
   if (exists) console.log(`Setlist already present for ${artist}`);
   return !exists;
 });
