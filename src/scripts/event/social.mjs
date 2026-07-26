@@ -28,6 +28,37 @@ function cleanHashtag(value) {
   return String(value).replace(/^#/, '').replace(/[^\p{L}\p{N}_]/gu, '');
 }
 
+function hashtagText(values) {
+  return (Array.isArray(values) ? values : [])
+    .map(cleanHashtag)
+    .filter(Boolean)
+    .map((tag) => `#${tag}`)
+    .join(' ');
+}
+
+function platformSocial(social, platform) {
+  return {
+    lead: social?.[platform]?.lead ?? social?.lead,
+    hashtags: social?.[platform]?.hashtags ?? social?.hashtags ?? [],
+    images: social?.[platform]?.images ?? social?.images ?? [],
+  };
+}
+
+export function validateInstagramConfig(config) {
+  if (!config.lead || !Array.isArray(config.images) || config.images.length === 0) {
+    throw new Error('social.instagram.lead and social.instagram.images are required');
+  }
+  if (config.images.length > 10) {
+    throw new Error('social.instagram.images supports at most 10 images');
+  }
+  if (!Array.isArray(config.hashtags)) {
+    throw new Error('social.instagram.hashtags must be an array');
+  }
+  if (config.hashtags.length > 5) {
+    throw new Error('social.instagram.hashtags supports at most 5 hashtags');
+  }
+}
+
 function eventUrl(data) {
   const canonical = data.canonicalUrl || `/events/${String(data.pubDate).slice(0, 4)}/${String(data.pubDate).slice(0, 10)}/`;
   return new URL(canonical, `${SITE_URL}/`).href;
@@ -67,16 +98,15 @@ async function renderImage(source, target, { width, height }) {
 
 function copyText(data, url) {
   const social = data.social ?? {};
+  const facebook = platformSocial(social, 'facebook');
+  const instagram = platformSocial(social, 'instagram');
   const artist = Array.isArray(data.artist) ? data.artist.join(', ') : data.artist;
-  const hashtags = (Array.isArray(social.hashtags) ? social.hashtags : [])
-    .map(cleanHashtag)
-    .filter(Boolean)
-    .map((tag) => `#${tag}`)
-    .join(' ');
+  const facebookHashtags = hashtagText(facebook.hashtags);
+  const instagramHashtags = hashtagText(instagram.hashtags);
   const heading = `${artist} – ${data.tour || data.displayTitle || data.title}`;
   return {
-    facebook: `${heading}\n\n${social.lead}\n\nDen vollständigen Konzertbericht mit Galerie, Videos und Setlist gibt es auf Mysteryland:\n${url}\n\n${hashtags}`,
-    instagram: `${heading} 🤘\n\n${social.lead}\n\nDen vollständigen Konzertbericht mit Galerie, Videos und Setlist findet ihr auf mysteryland.biz.\n\n${hashtags}`,
+    facebook: `${heading}\n\n${facebook.lead}\n\nDen vollständigen Konzertbericht mit Galerie, Videos und Setlist gibt es auf Mysteryland:\n${url}\n\n${facebookHashtags}`,
+    instagram: `${heading} 🤘\n\n${instagram.lead}\n\nDen vollständigen Konzertbericht mit Galerie, Videos und Setlist findet ihr auf mysteryland.biz.\n\n${instagramHashtags}`,
     whatsappStatus: `${heading}\n\n${social.lead}\n\nMehr auf mysteryland.biz`,
     whatsappMessage: `${heading}\n\n${social.lead}\n\nKonzertbericht, Bilder, Videos und Setlist:\n${url}`,
   };
@@ -87,6 +117,8 @@ export async function createSocialPack(eventDate) {
   const { filePath, data } = readEvent(eventDate);
   if (!data.social || data.social.enabled === false) throw new Error(`Social publishing is not enabled in ${filePath}`);
   if (!data.social.lead || !Array.isArray(data.social.images) || data.social.images.length === 0) throw new Error(`social.lead and social.images are required in ${filePath}`);
+  const instagram = platformSocial(data.social, 'instagram');
+  validateInstagramConfig(instagram);
 
   const targetRoot = path.join(OUTBOX_ROOT, eventDate);
   fs.rmSync(targetRoot, { recursive: true, force: true });
@@ -96,7 +128,8 @@ export async function createSocialPack(eventDate) {
   for (const [platform, preset] of Object.entries(presets)) {
     const directory = path.join(targetRoot, platform);
     fs.mkdirSync(directory, { recursive: true });
-    for (const [index, imageId] of data.social.images.entries()) {
+    const platformImages = platformSocial(data.social, platform).images;
+    for (const [index, imageId] of platformImages.entries()) {
       const source = findSourceImage(eventDate, imageId);
       const target = path.join(directory, `${String(index + 1).padStart(2, '0')}.jpg`);
       await renderImage(source, target, preset);

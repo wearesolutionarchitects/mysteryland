@@ -30,6 +30,10 @@ social:
   lead: "Ein besonderer Abend in Köln."
   hashtags: ["DieTotenHosen", "Köln", "Live-Musik"]
   images: ["21-44-15"]
+  instagram:
+    lead: "Instagram: ein besonderer Abend in Köln."
+    hashtags: ["DieTotenHosen", "Köln"]
+    images: ["21-44-15"]
 ---
 `);
 
@@ -81,7 +85,26 @@ social:
   assert.match(facebookPost, /https:\/\/mysteryland\.biz\/events\/2026\/2026-07-17\//);
   assert.match(facebookPost, /#DieTotenHosen #Köln #LiveMusik/);
 
+  const instagramCaption = fs.readFileSync(path.join(outboxRoot, '2026-07-17', 'instagram', 'caption.txt'), 'utf8');
+  assert.match(instagramCaption, /Instagram: ein besonderer Abend in Köln\./);
+  assert.match(instagramCaption, /#DieTotenHosen #Köln/);
+  assert.doesNotMatch(instagramCaption, /#LiveMusik/);
+
   const manifest = JSON.parse(fs.readFileSync(path.join(outboxRoot, '2026-07-17', 'manifest.json'), 'utf8'));
   assert.equal(manifest.eventDate, '2026-07-17');
   assert.equal(manifest.outputs.length, 3);
+});
+
+test('enforces Instagram carousel and hashtag limits', async () => {
+  const scriptUrl = new URL('../../src/scripts/event/social.mjs', import.meta.url);
+  const { validateInstagramConfig } = await import(scriptUrl.href);
+
+  assert.throws(
+    () => validateInstagramConfig({ lead: 'Lead', images: Array.from({ length: 11 }, (_, index) => String(index)), hashtags: [] }),
+    /at most 10 images/,
+  );
+  assert.throws(
+    () => validateInstagramConfig({ lead: 'Lead', images: ['one'], hashtags: ['one', 'two', 'three', 'four', 'five', 'six'] }),
+    /at most 5 hashtags/,
+  );
 });
