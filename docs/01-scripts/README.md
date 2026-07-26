@@ -305,7 +305,8 @@ Das Skript:
 - ergänzt die ASIN im Frontmatter, falls sie dort noch fehlt,
 - fügt eine Album-Card mit Astro-`Image` ein,
 - unterstützt mehrere Alben durch wiederholte Aufrufe,
-- verhindert doppelte ASINs.
+- verhindert doppelte ASINs,
+- stoppt vor dem Schreiben, wenn Amazon für eine neue ASIN bytegleich ein bereits verwendetes Cover liefert.
 
 Bereits vorhandene Remote- oder alte eventbezogene Cover lassen sich zentralisieren mit:
 
