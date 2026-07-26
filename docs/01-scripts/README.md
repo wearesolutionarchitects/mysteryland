@@ -1,6 +1,18 @@
 # Event-Workflow
 
-Der normale Workflow verarbeitet zuerst die Bilder aus der Inbox und erzeugt danach schrittweise die Event-MDX. Die Skripte ändern jeweils nur ihren eigenen Bereich.
+Jedes neue Event beginnt mit genau einem strukturierten GitHub Issue. Das Issue ist der kanonische Intake für die Event-MDX; die lokalen Skripte übernehmen anschließend klar abgegrenzte Medien- und Veröffentlichungsschritte.
+
+## Event-Issue als Einstieg
+
+Das Formular `Neues Event` unter `.github/ISSUE_TEMPLATE/02-neues-event.yml` erfasst Datum, Eventname, Kategorie, Ort, Line-up, Tour, Status, Bearbeitungsphase und Quellen in getrennten Feldern. Dadurch können Menschen, Agents und spätere GitHub Actions dieselbe strukturierte Quelle verwenden.
+
+Verbindliche Regeln:
+
+- Ein Issue beschreibt genau ein Event.
+- Ein weiteres Event erhält ein eigenes Issue.
+- Die Event-MDX wird aus den Issue-Daten erstellt oder vervollständigt.
+- Unbekannte Werte werden als `TBA` festgehalten und nicht geraten.
+- Medien-, Setlist-, Album-, SEO- und Social-Schritte bleiben nachgelagerte, wiederholbare Aufgaben desselben Issues.
 
 ## Interaktiver Event-Assistent
 
@@ -10,24 +22,23 @@ Alle Arbeitsschritte lassen sich über ein gemeinsames Auswahlmenü starten:
 npm run event
 ```
 
-Der Assistent fragt die jeweils benötigten Parameter ab, validiert Datumswerte, ASINs und WordPress-IDs und zeigt das konkrete npm-Kommando vor der Ausführung an. Schreibende Optionen wie `--write` und `--force` müssen ausdrücklich bestätigt werden. Nach jedem Schritt kann direkt der nächste ausgewählt werden.
+Der Assistent fragt die jeweils benötigten Parameter ab, validiert Datumswerte und ASINs und zeigt das konkrete npm-Kommando vor der Ausführung an. Schreibende Optionen wie `--write` müssen ausdrücklich bestätigt werden. Nach jedem Schritt kann direkt der nächste ausgewählt werden.
 
 Die einzelnen Kommandos unter `event:*` bleiben für Automationen, Dokumentation und direkte Aufrufe erhalten.
 
-Das gemeinsame MDX-Gerüst wird zentral in `src/scripts/event/render.mjs` erzeugt. `event:mdx` und `event:wp` verwenden denselben Renderer, damit neue Events immer dieselben Imports, `EventFacts`, Galerie-, Video-, Setlist-, Album- und SEO-Felder erhalten.
+Das gemeinsame MDX-Gerüst bleibt zentral in `src/scripts/event/render.mjs`. Eine spätere Issue-Automation soll diesen Renderer verwenden, damit Imports, `EventFacts`, Galerie-, Video-, Setlist-, Album- und SEO-Felder nicht an mehreren Stellen implementiert werden.
 
 Event-Seiten sollen strukturiertes Frontmatter besitzen, damit `src/components/EventSeo.astro` daraus JSON-LD, Open-Graph- und Twitter-Metadaten erzeugen kann.
 
 ## Voraussetzungen
 
 - Node.js und npm
-- `exiftool` für Medien- und MDX-Schritt (`brew install exiftool` unter macOS)
+- `exiftool` für den Medienschritt (`brew install exiftool` unter macOS)
 - `.env` mit `SETLIST_API_KEY` für den Setlist-Schritt
 
 Optionale Konfiguration:
 
 ```dotenv
-WP_BASE_URL=https://fanieng.com
 GALLERY_ROOT=./src/content/gallery
 GALLERY_INBOX=./src/content/gallery/inbox
 GALLERY_OUTBOX=./src/content/gallery/outbox
@@ -72,7 +83,7 @@ Konventionen:
 - `displayTitle`: kompakte sichtbare H1, in der Regel der Headliner oder Festivalname
 - Kontext wie Land, Stadt, Venue und Datum steht im zentralen `EventFacts`-Block. Ein separates `subtitle`-Feld wird nicht mehr erzeugt.
 - Für Festivals und TV-Shows wird der Eventname bevorzugt, z.B. `BOB!Fest in Mönchengladbach, SparkassenPark - 25. Juli 2026`.
-- `category`: `Konzert`, `Festival`, `Lesung` oder `TBA`
+- `category`: `Konzert`, `Festival`, `Lesung`, `Musical` oder `TBA`
 - `status`: `scheduled`, `postponed`, `cancelled`, `completed` oder `TBA`
 - `ticketCategory`: z.B. `Stehplatz Innenraum`, `Sitzplatz`, `Front of Stage`, `TBA`
 - `support` und `guest`: String oder Array, unbekannt als `TBA`
@@ -112,35 +123,7 @@ IMG_1234.JPG -> 2014/10/11/2014-10-11_19-00-01.jpg
 
 Dateien ohne verwertbares Datum bleiben in der Inbox. Das Skript beendet den Lauf dann mit einem Fehler.
 
-## 2. Event-MDX erzeugen
-
-Modul: `src/scripts/event/mdx.mjs`
-
-```bash
-npm run event:mdx -- <YYYY-MM-DD>
-```
-
-Beispiel:
-
-```bash
-npm run event:mdx -- 2014-10-11
-```
-
-Das Skript:
-
-- liest alle Bilder aus `src/content/gallery/YYYY/MM/DD/`,
-- ermittelt Artist, Stadt und Venue aus der `Image Description`,
-- erwartet den Titel im Format `DD.MM.YYYY - Artist@City/Venue`,
-- übernimmt unter anderem Schlagwörter, Tour, Land und Preis aus den Metadaten,
-- erstellt `src/content/docs/events/YYYY/YYYY-MM-DD.mdx`,
-- bindet alle gefundenen Bilder über die `Gallery`-Komponente ein,
-- erzeugt automatisch ein öffentliches OG-Bild unter `public/og/events/YYYY/YYYY-MM-DD.jpg`,
-- setzt `ogImage` und `canonicalUrl` im Frontmatter,
-- setzt SEO-relevante Felder wie `category`, `ticketCategory`, `support` und `status`,
-- setzt noch unbekannte Inhalte auf `TBA`,
-- bricht ab, wenn die Event-MDX bereits existiert.
-
-## 3. Galerie einer bestehenden Event-MDX synchronisieren
+## 2. Galerie einer bestehenden Event-MDX synchronisieren
 
 Modul: `src/scripts/event/gallery.mjs`
 
@@ -170,7 +153,7 @@ Eine Vorschau ohne Schreibzugriff ist möglich mit:
 npm run event:gallery -- 2026-07-17 --dry-run
 ```
 
-## 4. Open-Graph-Bild erzeugen
+## 3. Open-Graph-Bild erzeugen
 
 Modul: `src/scripts/event/og.mjs`
 
@@ -197,7 +180,7 @@ npm run event:og -- 2027-12-11 src/content/gallery/2027/12/11/2027-12-11_19-30-0
 
 Die Galerie bleibt bewusst in `src/content/gallery`. Nur das abgeleitete OG-Bild liegt öffentlich in `public/og/events`.
 
-## 5. Event-SEO prüfen und nachziehen
+## 4. Event-SEO prüfen und nachziehen
 
 Modul: `src/scripts/event/seo.mjs`
 
@@ -220,7 +203,7 @@ Das Skript:
 - ersetzt nur eindeutig schwache Import-Descriptions wie `Artist am YYYY-MM-DD in Stadt, Venue.`,
 - überschreibt keine bereits individuell gepflegten Event-Descriptions.
 
-## 6. Social-Outbox erzeugen
+## 5. Social-Outbox erzeugen
 
 Modul: `src/scripts/event/outbox.mjs`
 
@@ -260,7 +243,7 @@ npm run event:outbox -- 2027-12-11
 
 Die Outbox ist bewusst nicht öffentliches Site-Output-Verzeichnis, sondern ein Arbeitsbereich für Uploads zu Facebook, Instagram und WhatsApp.
 
-## 7. Veröffentlichungs-Paket für ein Event erzeugen
+## 6. Veröffentlichungs-Paket für ein Event erzeugen
 
 Modul: `src/scripts/event/social.mjs`
 
@@ -294,7 +277,7 @@ Die Einträge unter `images` sind eindeutige Bestandteile der Dateinamen im Gale
 
 `social-outbox/` ist in Git ignoriert. Die Inhalte sind lokale, reproduzierbare Upload-Artefakte und werden nicht mit der Website veröffentlicht.
 
-## 8. Album ergänzen
+## 7. Album ergänzen
 
 Modul: `src/scripts/event/album.mjs`
 
@@ -326,7 +309,7 @@ npm run event:covers
 
 Das Skript migriert Dateien nach `src/content/gallery/cover`, reduziert identische ASINs auf eine kanonische Datei und aktualisiert die Imports aller Event-MDX-Dateien.
 
-## 9. Setlists ergänzen
+## 8. Setlists ergänzen
 
 Modul: `src/scripts/event/setlist.mjs`
 
@@ -357,16 +340,6 @@ Beispiel:
 ```yaml
 artist: ["Alice Cooper", "Danko Jones", "H-BLOCKX", "The New Roses", "Thundermother", "Ugly Kid Joe"]
 ```
-
-## Optional: WordPress importieren
-
-Modul: `src/scripts/event/wp.mjs`
-
-```bash
-npm run event:wp -- <post-id>
-```
-
-Der WordPress-Import ist ein alternativer Einstieg für ältere Events und gehört nicht zum normalen Inbox-Workflow. Er verwendet dasselbe MDX-Gerüst wie `event:mdx`, aber ohne Galerie-Bilder. Leere Video- und Album-Bereiche werden als bearbeitbare `Card`-Grundgerüste mit `TBA` erzeugt. `event:album` ersetzt den Album-Platzhalter später durch die echte Album-Card. Ein alter WordPress-Link als Block "Mehr Informationen" wird nicht übernommen. Eine im WordPress-Inhalt erkannte ASIN bleibt als Frontmatter-Metadatum erhalten. Mit `--force` kann eine vorhandene Eventdatei nach einem automatischen Backup neu erzeugt werden.
 
 ## Artist-Profile synchronisieren
 
@@ -446,7 +419,6 @@ npm run build
 Diese Skripte gehören nicht zum normalen Event-Workflow:
 
 ```bash
-npm run script:content:generate-readme
 npm run script:github:create-labels
 ```
 

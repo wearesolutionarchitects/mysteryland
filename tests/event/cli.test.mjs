@@ -10,14 +10,12 @@ test('defines every event workflow command exactly once', () => {
     'event:album',
     'event:covers',
     'event:gallery',
-    'event:mdx',
     'event:media',
     'event:og',
     'event:outbox',
     'event:seo',
     'event:setlist',
     'event:social',
-    'event:wp',
   ]);
 });
 

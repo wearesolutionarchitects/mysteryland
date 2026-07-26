@@ -21,15 +21,16 @@ This project follows a structured and modular development approach with a focus 
 - `displayTitle` ist die kompakte sichtbare H1. `subtitle` ist die sichtbare Kontextzeile unter der H1, in der Regel `Venue · Stadt · Datum`.
 - Für Festivals und TV-Shows wird im `title` und `displayTitle` der Eventname bevorzugt, nicht der erste Artist aus dem Line-up.
 - Verwende `TBA` für noch unbekannte Inhalte. Erfinde keine Setlists, Supports, Kategorien oder Preise.
-- `category` ist einer von `Konzert`, `Festival`, `Lesung` oder `TBA`.
+- `category` ist einer von `Konzert`, `Festival`, `Lesung`, `Musical` oder `TBA`.
 - `status` ist einer von `scheduled`, `postponed`, `cancelled`, `completed` oder `TBA`.
 - Gallery-Bilder bleiben in `src/content/gallery/YYYY/MM/DD/` und werden in MDX über Astro-Imports und die `Gallery`-Komponente eingebunden.
 - Öffentliche Open-Graph-Bilder liegen separat unter `public/og/events/YYYY/YYYY-MM-DD.jpg`.
 - `ogImage` soll auf diesen öffentlichen Pfad zeigen, z.B. `/og/events/2027/2027-12-11.jpg`.
 - `canonicalUrl` folgt dem Muster `/events/YYYY/YYYY-MM-DD/`.
 - `src/components/EventSeo.astro` rendert JSON-LD aus dem Frontmatter. Änderungen am Frontmatter-Schema müssen mit dieser Komponente und `src/content.config.ts` konsistent bleiben.
-- Neue Event-MDX-Dateien sollen über den zentralen Renderer `src/scripts/event/render.mjs` erzeugt oder an dessen Ausgabeformat angelehnt werden.
-- Das OG-Bild wird über `npm run event:og -- YYYY-MM-DD` erzeugt oder automatisch durch `npm run event:mdx -- YYYY-MM-DD`.
+- Jedes neue Event beginnt mit genau einem strukturierten GitHub Issue aus `02-neues-event.yml`; ein Issue darf nicht mehrere Events bündeln.
+- Neue Event-MDX-Dateien sollen die strukturierten Issue-Daten und den zentralen Renderer `src/scripts/event/render.mjs` verwenden oder an dessen Ausgabeformat angelehnt werden.
+- Das OG-Bild wird nach Anlage der Event-MDX über `npm run event:og -- YYYY-MM-DD` erzeugt.
 
 ## Artist Content
 

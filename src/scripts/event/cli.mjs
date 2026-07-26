@@ -6,11 +6,9 @@ import { createInterface } from 'node:readline/promises';
 
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 const ASIN_PATTERN = /^[A-Z0-9]{10}$/;
-const POST_ID_PATTERN = /^\d+$/;
 
 export const commands = [
   { id: 'media', label: 'Fotos aus der Inbox importieren', script: 'event:media' },
-  { id: 'mdx', label: 'Neue Event-MDX erzeugen', script: 'event:mdx', inputs: [{ name: 'date', label: 'Eventdatum (YYYY-MM-DD)', required: true, pattern: DATE_PATTERN }] },
   { id: 'gallery', label: 'Galerie einer Event-MDX synchronisieren', script: 'event:gallery', inputs: [{ name: 'date', label: 'Eventdatum (YYYY-MM-DD)', required: true, pattern: DATE_PATTERN }], flag: { label: 'Nur Vorschau (dry-run)', value: '--dry-run', defaultValue: true } },
   { id: 'og', label: 'Open-Graph-Bild erzeugen', script: 'event:og', inputs: [{ name: 'date', label: 'Eventdatum (YYYY-MM-DD)', required: true, pattern: DATE_PATTERN }, { name: 'source', label: 'Optionales Quellbild', required: false }] },
   { id: 'setlist', label: 'Setlists ergänzen', script: 'event:setlist', inputs: [{ name: 'date', label: 'Eventdatum (YYYY-MM-DD)', required: true, pattern: DATE_PATTERN }] },
@@ -18,10 +16,8 @@ export const commands = [
   { id: 'social', label: 'Social-Paket für ein Event erzeugen', script: 'event:social', inputs: [{ name: 'date', label: 'Eventdatum (YYYY-MM-DD)', required: true, pattern: DATE_PATTERN }] },
   { id: 'outbox', label: 'Allgemeine Event-Outbox erzeugen', script: 'event:outbox', inputs: [{ name: 'date', label: 'Optional nur dieses Eventdatum (YYYY-MM-DD)', required: false, pattern: DATE_PATTERN }] },
   { id: 'seo', label: 'Event-SEO prüfen oder aktualisieren', script: 'event:seo', flag: { label: 'Änderungen schreiben', value: '--write', defaultValue: false } },
-  { id: 'wp', label: 'Event aus WordPress importieren', script: 'event:wp', inputs: [{ name: 'postId', label: 'WordPress-Post-ID', required: true, pattern: POST_ID_PATTERN }], flag: { label: 'Vorhandene Eventdatei mit Backup ersetzen', value: '--force', defaultValue: false } },
   { id: 'covers', label: 'Albumcover lokalisieren', script: 'event:covers' },
   { id: 'artists', label: 'Artist-Profile und Statistiken synchronisieren', script: 'artist:sync' },
-  { id: 'readme', label: 'Eventübersicht in README aktualisieren', script: 'script:content:generate-readme' },
   { id: 'verify', label: 'Vollständige Projektprüfung ausführen', script: 'verify' },
 ];
 

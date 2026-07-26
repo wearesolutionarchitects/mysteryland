@@ -1,190 +1,121 @@
-# Mysterland.biz Repository
+# Mysteryland
+
+[![CI](https://github.com/wearesolutionarchitects/mysteryland/actions/workflows/ci.yml/badge.svg)](https://github.com/wearesolutionarchitects/mysteryland/actions/workflows/ci.yml)
+[![Website](https://img.shields.io/badge/Website-mysteryland.biz-0b7285)](https://mysteryland.biz)
+[![License: MIT](https://img.shields.io/badge/Code-MIT-2f9e44.svg)](./LICENSE)
 
-![Mysterland](/public/mysteryland.png)
+![Mysteryland – persönliches Konzertarchiv](./public/og/index.jpg)
 
-📆 Event-Übersicht – Freitag, 5. Juni 2026 um 13:24:38 MESZ
+Mysteryland ist ein öffentliches, quellenbasiertes Konzertarchiv mit persönlichen Erinnerungen seit 1979. Die Website verbindet strukturierte Eventdaten, Künstlerprofile, Tickets, Fotos, Setlists und Alben zu einer langfristig wartbaren digitalen Chronik.
+
+Das Repository dokumentiert nicht nur das Ergebnis auf [mysteryland.biz](https://mysteryland.biz), sondern auch den technischen und redaktionellen Prozess dahinter: von den Metadaten in Apple Fotos über reproduzierbare Import- und Medienabläufe bis zur geprüften Veröffentlichung mit Astro und GitHub Actions.
 
-## 2026
+## Was dieses Projekt auszeichnet
 
-### 🎸 [25.07.2026 - BOB!Fest@Mönchengladbach/SparkassenPark](./src/content/docs/events/2026/2026-07-25.mdx)
+- **Strukturierte Inhalte:** Events und Künstler werden als typisierte MDX-Content-Collections gepflegt.
+- **Nachvollziehbare Herkunft:** Foto- und Eventmetadaten werden aus einer definierten Quelle übernommen; unbekannte Angaben bleiben ausdrücklich `TBA`, statt geraten zu werden.
+- **Konsistente Darstellung:** Ein zentraler Renderer erzeugt ein einheitliches Event-Gerüst mit Fakten, Galerie, Videos, Setlists, Alben und SEO-Daten.
+- **Technisches SEO:** Canonical URLs, Open Graph, Twitter Cards, Sitemap und statusabhängige Event-JSON-LD-Daten werden zentral erzeugt.
+- **Nachvollziehbarer Intake:** Genau ein strukturiertes GitHub Issue bildet den kanonischen Startpunkt für jedes Event und seine MDX-Datei.
+- **Reproduzierbare Workflows:** Einzelne, kombinierbare Node.js-Skripte automatisieren Medienimport, Galeriepflege, OG-Bilder, Setlists, Alben und Social-Media-Entwürfe.
+- **Qualität vor Deployment:** Astro-, TypeScript-, Test- und Build-Prüfungen laufen lokal und in der CI, bevor die Website veröffentlicht wird.
 
-[Externer Link 🔗](https://fanieng.com/2026/07/25/2026-07-25-bob-fest-moenchengladbach-sparkassenpark)
+## Technischer Überblick
 
----
+| Bereich | Umsetzung |
+| --- | --- |
+| Framework | Astro 7 mit Starlight und Preact |
+| Inhalte | MDX Content Collections mit Schema-Validierung |
+| Medien | Sharp, EXIF-Metadaten und lokale Bildbestände |
+| SEO | Zentrale Metadaten, Event JSON-LD, Sitemap und Open Graph |
+| Automatisierung | Node.js-ESM-Skripte und GitHub Actions |
+| Qualität | Astro Check, TypeScript, Node Test Runner und Produktions-Build |
+| Betrieb | Verifiziertes SSH-Release-Deployment nach `main` |
 
-### 🎸 [2026-07-17](./src/content/docs/events/2026/2026-07-17.mdx)
+## Lokaler Einstieg
 
-[Externer Link 🔗](https://fanieng.com/2026/07/17/2026-07-17)
+Vorausgesetzt werden Node.js 26 oder neuer und npm 11 oder neuer. Für den Foto-Workflow wird zusätzlich `exiftool` benötigt.
 
----
+```bash
+git clone https://github.com/wearesolutionarchitects/mysteryland.git
+cd mysteryland
+npm ci
+npm run dev
+```
 
-### 🎸 [2026-06-05](./src/content/docs/events/2026/2026-06-05.mdx)
+Der Entwicklungsserver ist anschließend standardmäßig unter `http://localhost:4321` erreichbar.
 
-[Externer Link 🔗](https://fanieng.com/2026/06/05/2026-06-05)
+## Wichtige Kommandos
 
----
+| Kommando | Zweck |
+| --- | --- |
+| `npm run event` | Interaktiven Assistenten für den vollständigen Event-Workflow starten |
+| `npm run verify` | Astro, TypeScript, Tests und Produktions-Build prüfen |
+| `npm run build` | Produktionsversion nach `dist/` bauen |
+| `npm run preview` | Den Produktions-Build lokal anzeigen |
+| `npm run artist:sync` | Künstlerprofile und Statistiken synchronisieren |
+| `npm run script:github:create-labels` | Kanonische GitHub-Labels synchronisieren |
 
-### 🎸 [03.06.2026 - Linkin Park@Hamburg/Volksparkstadion](./src/content/docs/events/2026/2026-06-03.mdx)
+Die granularen `event:*`-Kommandos bleiben bewusst erhalten. Sie können direkt, aus dem Assistenten oder später aus weiteren Automationen aufgerufen werden.
 
-[Externer Link 🔗](https://fanieng.com/2026/06/03/2026-06-03-linkin-park-hamburg-volksparkstadion)
+## Event-Workflow
 
----
+Apple Fotos ist die fachliche Quelle für Bildtitel, Beschreibungen und Schlagwörter. Exportierte Dateien werden lokal verarbeitet; die Skripte verändern jeweils nur ihren klar abgegrenzten Bereich.
 
-## 2025
+```text
+Event-Issue ──► Event-MDX ─────────────────────┐
+                                              │
+Apple Fotos ──► Galerie-Inbox ──► Medienimport ┤
+                                              │
+                                              ├─► Galerie synchronisieren
+                                              ├─► Open-Graph-Bild erzeugen
+                                              ├─► Setlists und Alben ergänzen
+                                              ├─► Social-Entwürfe vorbereiten
+                                              └─► prüfen, bauen, veröffentlichen
+```
 
-### 🎸 [30.11.2025 - Kraftwerk@Bochum/RuhrCongress](./src/content/docs/events/2025/2025-11-30.mdx)
+Ein neues Event beginnt im strukturierten [Event-Issue-Formular](https://github.com/wearesolutionarchitects/mysteryland/issues/new?template=02-neues-event.yml). Dabei gilt verbindlich: ein Issue entspricht genau einem Event. Nach Anlage der Event-MDX unterstützt der lokale Assistent die nachgelagerten Medien- und Veröffentlichungsschritte:
 
-[Externer Link 🔗](https://fanieng.com/2025/11/30/2025-11-30-kraftwerk-bochum-ruhrcongress)
+```bash
+npm run event
+```
 
----
+Der Assistent fragt notwendige Parameter ab, validiert Eingaben und zeigt das konkrete npm-Kommando vor der Ausführung. Schreibende Optionen wie `--write` müssen ausdrücklich bestätigt werden.
 
-### 🎸 [26.07.2025 - BOBfest@Mönchengladbach/SparkassenPark - Alice Cooper | Danko Jones | H-BLOCKX | The New Roses | Thundermother | Ugly Kid Joe](./src/content/docs/events/2025/2025-07-26.mdx)
+Eine vollständige Beschreibung der einzelnen Schritte und der erwarteten Event-Metadaten steht in der [Workflow-Dokumentation](./docs/01-scripts/README.md).
 
-[Externer Link 🔗](https://fanieng.com/2025/07/26/2025-07-26-bobfest-moenchengladbach-sparkassenpark)
+## Repository-Struktur
 
----
+```text
+.
+├── .github/                 # CI, Deployment, Issue- und PR-Vorlagen
+├── docs/                    # Prozess- und Automatisierungsdokumentation
+├── public/                  # Statische und abgeleitete öffentliche Assets
+├── scripts/deploy/          # Deployment-Werkzeuge
+├── src/components/          # Wiederverwendbare Astro-Komponenten
+├── src/content/docs/events/ # Kanonische Event-MDX-Dateien
+├── src/content/docs/artists/# Generierte und gepflegte Künstlerprofile
+├── src/content/gallery/     # Lokaler, ereignisbezogener Bildbestand
+└── src/scripts/             # Event-, Artist- und GitHub-Automationen
+```
 
-### 🎸 [24.06.2025 - Duran Duran@Düsseldorf/PSD Bank Dome](./src/content/docs/events/2025/2025-06-24.mdx)
+## Qualität und Veröffentlichung
 
-[Externer Link 🔗](https://fanieng.com/2025/06/24/2025-06-24-duran-duran-duesseldorf-psd)
+`npm run verify` ist das gemeinsame Qualitäts-Gate für lokale Entwicklung, Pull Requests und Deployments. Es umfasst:
 
----
+1. Astro- und Content-Schema-Prüfung,
+2. TypeScript-Typprüfung,
+3. automatisierte Tests,
+4. vollständigen Produktions-Build.
 
-### 🎸 [17.05.2025 - Holly Johnson@Bochum/RuhrCongress](./src/content/docs/events/2025/2025-05-17.mdx)
+Pull Requests verwenden dieselbe Prüfung in GitHub Actions. Änderungen an `main` werden erst nach erfolgreichem Verify-Schritt als Release auf [mysteryland.biz](https://mysteryland.biz) ausgerollt.
 
-[Externer Link 🔗](https://fanieng.com/2025/05/17/2025-05-17-holly-johnson-bochum-ruhrcongress)
+## Planung und Beiträge
 
----
+Arbeit wird über strukturierte GitHub Issues, präfixierte Steuerungslabels und Pull Requests nachvollziehbar gemacht. Die kanonische Labeldefinition liegt im Repository und kann idempotent synchronisiert werden. Das vorgesehene Zusammenspiel von Labels, GitHub Projects und künftigen Actions ist in der [GitHub-Planungsdokumentation](./docs/01-scripts/github-planning.md) beschrieben.
 
-## 2024
+Fehlerberichte und konkrete Verbesserungsvorschläge sind als [GitHub Issue](https://github.com/wearesolutionarchitects/mysteryland/issues/new/choose) willkommen. Pull Requests sollten fokussiert bleiben und `npm run verify` erfolgreich durchlaufen.
 
-### 🎸 [12.10.2024 - Nena@Bochum/RuhrCongress - Sakias Kerner](./src/content/docs/events/2024/2024-10-12.mdx)
+## Lizenz und Inhalte
 
-[Externer Link 🔗](https://fanieng.com/2024/10/12/2024-10-12-nena-bochum-ruhrcongress)
-
----
-
-### 🎸 [26.07.2024 - Rammstein@Gelsenkirchen/VELTINS-Arena](./src/content/docs/events/2024/2024-07-26.mdx)
-
-[Externer Link 🔗](https://fanieng.com/2024/07/26/2024-07-26-rammstein-gelsenkirchen-veltins-arena)
-
----
-
-### 🎸 [2024-06-23](./src/content/docs/events/2024/2024-06-23.mdx)
-
-[Externer Link 🔗](https://fanieng.com/2024/06/23/2024-06-23)
-
----
-
-### 🎸 [05.04.2024 - Depeche Mode@Köln/LANXESS arena](./src/content/docs/events/2024/2024-04-05.mdx)
-
-[Externer Link 🔗](https://fanieng.com/2024/04/05/2024-04-05-depeche-mode-koeln-lanxess)
-
----
-
-### 🎸 [01.02.2024 - OMD@Düsseldorf/Mitsubishi Electric HALLE](./src/content/docs/events/2024/2024-02-01.mdx)
-
-[Externer Link 🔗](https://fanieng.com/2024/02/01/2024-02-01-omd-duesseldorf-mitsubishi)
-
----
-
-## 2023
-
-### 🎸 [12.09.2023 - die ärzte - Herbst des Lebens @Oberhausen/Turbinenhalle](./src/content/docs/events/2023/2023-10-12.mdx)
-
-[Externer Link 🔗](https://fanieng.com/2023/09/12/2023-09-12-die-aerzte-oberhausen-turbinenhalle)
-
----
-
-### 🎸 [17.09.2023 - die ärzte@Köln/Palladium](./src/content/docs/events/2023/2023-09-17.mdx)
-
-[Externer Link 🔗](https://fanieng.com/2023/09/17/2023-09-17-die-aerzte-koeln-palladium)
-
----
-
-### 🎸 [04.06.2023 - Depeche Mode@Düsseldorf/MERKUR SPIEL ARENA](./src/content/docs/events/2023/2023-06-04.mdx)
-
-[Externer Link 🔗](https://fanieng.com/2023/06/04/2023-06-04-depeche-mode-duesseldorf-merkur)
-
----
-
-### 🎸 [02.06.2023 - Peter Maffay@Gelsenkirchen/Amphitheater](./src/content/docs/events/2023/2023-06-02.mdx)
-
-[Externer Link 🔗](https://fanieng.com/2023/06/02/2023-06-02-peter-maffay-gelsenkirchen-amphitheater)
-
----
-
-### 🎸 [19.05.2023 - Herbert Grönemeyer@Dortmund/Westfalenhalle](./src/content/docs/events/2023/2023-05-19.mdx)
-
-[Externer Link 🔗](https://fanieng.com/2023/05/19/2023-05-19-herbert-groenemeyer-dortmund-westfalenhalle)
-
----
-
-### 🎸 [01.04.2023 - Abwärts@Berlin/SO 36](./src/content/docs/events/2023/2023-04-01.mdx)
-
-[Externer Link 🔗](https://fanieng.com/2023/04/01/2023-04-01-abwaerts-berlin-so)
-
----
-
-## 2022
-
-### 🎸 [28.12.2022 - Extrabreit@Berlin/Lido](./src/content/docs/events/2022/2022-12-28.mdx)
-
-[Externer Link 🔗](https://fanieng.com/2022/12/28/2022-12-28-extrabreit-berlin-lido)
-
----
-
-### 🎸 [23.12.2022 - Broilers@MitsubishiElectricHalle](./src/content/docs/events/2022/2022-12-23.mdx)
-
-[Externer Link 🔗](https://fanieng.com/2022/12/23/2022-12-23-broilers-mitsubishielectrichalle)
-
----
-
-### 🎸 [10.12.2022 - Extrabreit@Hagen/Stadthalle](./src/content/docs/events/2022/2022-12-10.mdx)
-
-[Externer Link 🔗](https://fanieng.com/2022/12/10/2022-12-10-extrabreit-hagen-stadthalle)
-
----
-
-### 🎸 [16.09.2022 - Sondaschule@Köln/E-Werk](./src/content/docs/events/2022/2022-09-16.mdx)
-
-[Externer Link 🔗](https://fanieng.com/2022/09/16/2022-09-16-sondaschule-koeln-e-werk)
-
----
-
-### 🎸 [28.08.2022 - die ärzte@Berlin/Flughafen Tempelhof](./src/content/docs/events/2022/2022-08-28.mdx)
-
-[Externer Link 🔗](https://fanieng.com/2022/08/28/2022-08-28-die-aerzte-berlin-flughafen)
-
----
-
-### 🎸 [25.06.2022 - Die Toten Hosen - @Düsseldorf/MERKUR SPIEL ARENA](./src/content/docs/events/2022/2022-06-25.mdx)
-
-[Externer Link 🔗](https://fanieng.com/2022/06/25/2022-06-25-die-toten-hosen-duesseldorf-merkur)
-
----
-
-### 🎸 [07.06.2022 - Udo Lindenberg@Dortmund/Westfalenhalle](./src/content/docs/events/2022/2022-06-07.mdx)
-
-[Externer Link 🔗](https://fanieng.com/2022/06/07/2022-06-07-udo-lindenberg-dortmund-westfalenhalle)
-
----
-
-### 🎸 [06.06.2022 - die ärzte@Berlin/Zitadelle Spandau](./src/content/docs/events/2022/2022-06-06.mdx)
-
-[Externer Link 🔗](https://fanieng.com/2022/06/06/2022-06-06-die-aerzte-berlin-zitadelle)
-
----
-
-### 🎸 [04.06.2022 - die ärzte@Köln/RHEIN ENERGIE STADION](./src/content/docs/events/2022/2022-06-04.mdx)
-
-[Externer Link 🔗](https://fanieng.com/2022/06/04/2022-06-04-die-aerzte-koeln-rhein)
-
----
-
-### 🎸 [23.04.2022 - Brings@Hagen/Stadthalle](./src/content/docs/events/2022/2022-04-23.mdx)
-
-[Externer Link 🔗](https://fanieng.com/2022/04/23/2022-04-23-brings-hagen-stadthalle)
-
----
-
+Der Quellcode steht unter der [MIT-Lizenz](./LICENSE). Fotos, Texte, Tickets, Marken und sonstige redaktionelle Inhalte können eigenen Rechten oder Rechten Dritter unterliegen; die MIT-Lizenz erteilt dafür keine zusätzliche Nutzungserlaubnis.
