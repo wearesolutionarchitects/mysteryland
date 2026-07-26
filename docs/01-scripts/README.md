@@ -45,6 +45,8 @@ GALLERY_OUTBOX=./src/content/gallery/outbox
 EVENTS_ROOT=./src/content/docs/events
 EXIFTOOL_PATH=/opt/homebrew/bin/exiftool
 SETLIST_USER_AGENT=heiko@fanieng.com
+SETLIST_REQUEST_DELAY_MS=1000
+SETLIST_MAX_RETRIES=3
 AMAZON_HOST=www.amazon.de
 AMAZON_AFFILIATE_TAG=mysteryland-21
 ```
@@ -61,6 +63,9 @@ displayTitle: "Sondaschule"
 description: "Eventbericht über das Konzert von Sondaschule in der Westfalenhalle Dortmund am 11.12.2027."
 tour: "25 Jahre - Mega Circle Pott"
 artist: ["Sondaschule"]
+runningOrder:
+  - artist: "Sondaschule"
+    start: "20:00"
 category: "Konzert"
 ticketCategory: "Stehplatz Innenraum"
 support: "TBA"
@@ -87,6 +92,7 @@ Konventionen:
 - `status`: `scheduled`, `postponed`, `cancelled`, `completed` oder `TBA`
 - `ticketCategory`: z.B. `Stehplatz Innenraum`, `Sitzplatz`, `Front of Stage`, `TBA`
 - `support` und `guest`: String oder Array, unbekannt als `TBA`
+- `runningOrder`: bei Festivals die belegte zeitliche Reihenfolge mit Künstler, Beginn und optionalem Ende; nicht aus der Reihenfolge des `artist`-Arrays ableiten
 - `canonicalUrl`: `/events/YYYY/YYYY-MM-DD/`
 - `ogImage`: öffentlicher Pfad unter `/og/events/YYYY/YYYY-MM-DD.jpg`
 
@@ -330,10 +336,14 @@ Bei einem Einzelkonzert wird eine Card mit dem Titel `Songs` erzeugt. Bei einem 
 Für Festivals gilt:
 
 - Jeder auftretende Künstler muss als eigener Eintrag im Frontmatter-Array `artist` stehen.
+- Die Ausgabe folgt `runningOrder`. Ohne dieses Feld bleibt die Reihenfolge des `artist`-Arrays erhalten.
 - Bereits vorhandene Künstler-Cards bleiben erhalten.
 - Das Skript ergänzt nur noch fehlende Setlists und kann erneut ausgeführt werden.
 - Künstler ohne gefundene Setlist werden am Ende gemeldet und verhindern nicht, dass andere Treffer gespeichert werden.
 - Die Suche erfolgt zunächst gemeinsam nach Datum und Stadt. Weitere API-Seiten und gezielte Artist-Abfragen werden nur abgerufen, wenn noch Künstler fehlen.
+- Schreibvarianten wie `Phil Campbell’s Bastard Sons` und `Phil Campbell and the Bastard Sons` werden normalisiert, bevor eine zusätzliche Artist-Abfrage ausgelöst wird.
+- API-Anfragen werden standardmäßig um eine Sekunde gedrosselt. Bei HTTP 429 respektiert das Skript `Retry-After` und versucht die Anfrage mit Backoff erneut.
+- Bereits gefundene Setlists werden auch dann geschrieben, wenn eine spätere Artist-Abfrage nach allen Wiederholungen fehlschlägt. Ein erneuter Lauf ergänzt nur die noch fehlenden Künstler.
 
 Beispiel:
 

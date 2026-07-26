@@ -44,6 +44,19 @@ function frontmatterScalarOrArray(key, value) {
   ];
 }
 
+function frontmatterRunningOrder(value) {
+  if (!Array.isArray(value) || !value.length) return [];
+
+  return [
+    'runningOrder:',
+    ...value.flatMap(({ artist, start, end }) => [
+      `  - artist: ${yamlString(artist)}`,
+      `    start: ${yamlString(start)}`,
+      ...(end ? [`    end: ${yamlString(end)}`] : []),
+    ]),
+  ];
+}
+
 function factLinks(value) {
   const links = Array.isArray(value) ? value : [];
   if (!links.length) return '';
@@ -222,6 +235,7 @@ function frontmatter(event) {
     `description: ${yamlString(event.description)}`,
     `tour: ${yamlString(event.tour || 'TBA')}`,
     `artist: ${frontmatterArray(artists)}`,
+    ...frontmatterRunningOrder(event.runningOrder),
     ...(hasKnownValue(event.performingAs)
       ? [`performingAs: ${yamlString(event.performingAs)}`]
       : []),

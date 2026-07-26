@@ -86,6 +86,15 @@ body:
     validations:
       required: true
 
+  - type: textarea
+    id: running_order
+    attributes:
+      label: Running Order
+      description: Bei Festivals eine Zeile je Auftritt im Format `HH:MM-HH:MM | Künstler`; leer lassen, wenn noch unbekannt.
+      placeholder: |
+        13:45-14:20 | The Gems
+        14:40-15:20 | Phil Campbell’s Bastard Sons
+
   - type: dropdown
     id: event_status
     attributes:

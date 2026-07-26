@@ -20,6 +20,7 @@ This project follows a structured and modular development approach with a focus 
 - `sidebar.label` bleibt kompakt für die Navigation, in der Regel Headliner oder Festivalname.
 - `displayTitle` ist die kompakte sichtbare H1. `subtitle` ist die sichtbare Kontextzeile unter der H1, in der Regel `Venue · Stadt · Datum`.
 - Für Festivals und TV-Shows wird im `title` und `displayTitle` der Eventname bevorzugt, nicht der erste Artist aus dem Line-up.
+- Festival-Spielzeiten werden als `runningOrder` mit `artist`, `start` und optionalem `end` gepflegt. Die Reihenfolge darf nicht aus Headliner-Priorität oder API-Antworten geraten werden.
 - Verwende `TBA` für noch unbekannte Inhalte. Erfinde keine Setlists, Supports, Kategorien oder Preise.
 - `category` ist einer von `Konzert`, `Festival`, `Lesung`, `Musical` oder `TBA`.
 - `status` ist einer von `scheduled`, `postponed`, `cancelled`, `completed` oder `TBA`.

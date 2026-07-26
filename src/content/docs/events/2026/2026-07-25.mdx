@@ -29,6 +29,26 @@ price: 106.50
 
 artist: ["Airbourne", "Judas Priest", "The Gems", "Phil Campbell’s Bastard Sons", "Nestor", "Beyond The Black"]
 
+runningOrder:
+  - artist: "The Gems"
+    start: "13:45"
+    end: "14:20"
+  - artist: "Phil Campbell’s Bastard Sons"
+    start: "14:40"
+    end: "15:20"
+  - artist: "Nestor"
+    start: "15:40"
+    end: "16:40"
+  - artist: "Beyond The Black"
+    start: "17:10"
+    end: "18:10"
+  - artist: "Airbourne"
+    start: "18:45"
+    end: "19:45"
+  - artist: "Judas Priest"
+    start: "20:30"
+    end: "22:00"
+
 asin: ["B07WGJJGGG", "B0CKR1BW3C", "B0CL5KZKG8", "B0C8WZSC47", "B0CZ3S5TG6", "B0FJQCXVJ3"]
 
 ogImage: "/og/events/2026/2026-07-25.jpg"
@@ -42,8 +62,10 @@ import { Image } from 'astro:assets';
 import EventFacts from '@components/EventFacts.astro';
 import Gallery from '@components/Gallery.astro';
 import YouTubeVideos from '@components/YouTubeVideos.astro';
-import img0000 from '../../../gallery/2026/07/25/2026-07-25_00-00-00.jpg';
 import img1330 from '../../../gallery/2026/07/25/2026-07-25_13-30-00.jpg';
+import img134500 from '../../../gallery/2026/07/25/2026-07-25_13-45-00.jpg';
+import img135807 from '../../../gallery/2026/07/25/2026-07-25_13-58-07.jpg';
+import img141432 from '../../../gallery/2026/07/25/2026-07-25_14-14-32.jpg';
 import albumB07WGJJGGG from '../../../gallery/cover/B07WGJJGGG.jpg';
 import albumB0CKR1BW3C from '../../../gallery/cover/B0CKR1BW3C.jpg';
 import albumB0CL5KZKG8 from '../../../gallery/cover/B0CL5KZKG8.jpg';
@@ -69,26 +91,131 @@ import albumB0FJQCXVJ3 from '../../../gallery/cover/B0FJQCXVJ3.jpg';
 
 <Gallery
     images={[
-        { src: img0000, alt: 'Plakat', title: 'Plakat' },
         { src: img1330, alt: 'Ticket', title: 'Ticket' },
+        { src: img134500, alt: 'Running Order', title: 'Running Order' },
+        { src: img135807, alt: 'The Gems', title: '13:58 - The Gems' },
+        { src: img141432, alt: 'The Gems', title: '14:14 - The Gems' },
     ]}
 />
 
-## Videos
+## Video
 
-TBA
-
-{/* <YouTubeVideos
+<YouTubeVideos
     videos={[
-        { id: '4c_jaWmL2SU'},
-        { id: 'TIqzp0NWPUA' },
+        { id: '_rDdtbjfG88' }
     ]}
-/> */}
+/>
 
-## Setlisten
+## Setlists
 
-<Card title="Songs" icon="list-format">
-    TBA
+<Card title="The Gems" icon="list-format">
+    <ol>
+        <li>Queens</li>
+        <li>Send Me to the Wolves</li>
+        <li>Live and Let Go</li>
+        <li>Stars</li>
+        <li>Firebird</li>
+        <li>Diamond in the Rough</li>
+        <li>Like a Phoenix</li>
+    </ol>
+
+    <a href="https://www.setlist.fm/setlist/the-gems/2026/sparkassenpark-monchengladbach-germany-234a7047.html" target="_blank" rel="noopener noreferrer">Setlist auf setlist.fm</a>
+</Card>
+
+<Card title="Phil Campbell and the Bastard Sons" icon="list-format">
+    <ol>
+        <li>Phil Campbell Guitar Solo</li>
+        <li>We're the Bastards</li>
+        <li>Going to Brazil</li>
+        <li>These Old Boots</li>
+        <li>Rock Out</li>
+        <li>High Rule</li>
+        <li>Ace of Spades</li>
+        <li>Strike the Match</li>
+        <li>Born to Raise Hell</li>
+        <li>Killed by Death</li>
+    </ol>
+
+    <a href="https://www.setlist.fm/setlist/phil-campbell-and-the-bastard-sons/2026/sparkassenpark-monchengladbach-germany-7b770e5c.html" target="_blank" rel="noopener noreferrer">Setlist auf setlist.fm</a>
+</Card>
+
+<Card title="Nestor" icon="list-format">
+    <ol>
+        <li>We Come Alive</li>
+        <li>Kids in a Ghost Town</li>
+        <li>In the Name of Rock 'n' Roll</li>
+        <li>Stone Cold Eyes</li>
+        <li>Unchain My Heart</li>
+        <li>Caroline</li>
+        <li>Signed in Blood</li>
+        <li>These Days</li>
+        <li>Firesign</li>
+        <li>On the Run</li>
+        <li>Teenage Rebel</li>
+        <li>1989</li>
+    </ol>
+
+    <a href="https://www.setlist.fm/setlist/nestor/2026/sparkassenpark-monchengladbach-germany-734a72ad.html" target="_blank" rel="noopener noreferrer">Setlist auf setlist.fm</a>
+</Card>
+
+<Card title="Beyond the Black" icon="list-format">
+    <ol>
+        <li>Break the Silence</li>
+        <li>Hysteria</li>
+        <li>Heart of the Hurricane</li>
+        <li>Reincarnation</li>
+        <li>Ravens</li>
+        <li>The Flood</li>
+        <li>Let There Be Rain</li>
+        <li>In the Shadows</li>
+        <li>When Angels Fall</li>
+        <li>Shine and Shade</li>
+        <li>Hallelujah</li>
+    </ol>
+
+    <a href="https://www.setlist.fm/setlist/beyond-the-black/2026/sparkassenpark-monchengladbach-germany-3b4868e4.html" target="_blank" rel="noopener noreferrer">Setlist auf setlist.fm</a>
+</Card>
+
+<Card title="Airbourne" icon="list-format">
+    <ol>
+        <li>GUTSY</li>
+        <li>Too Much, Too Young, Too Fast</li>
+        <li>Hungry</li>
+        <li>Back in the Game</li>
+        <li>Ready to Rock</li>
+        <li>Breakin' Outta Hell</li>
+        <li>Live It Up</li>
+        <li>Alive After Death (Last Plane Out)</li>
+        <li>Runnin' Wild (with Paranoid snippet)</li>
+    </ol>
+
+    <a href="https://www.setlist.fm/setlist/airbourne/2026/sparkassenpark-monchengladbach-germany-6b4c8296.html" target="_blank" rel="noopener noreferrer">Setlist auf setlist.fm</a>
+</Card>
+
+<Card title="Judas Priest" icon="list-format">
+    <ol>
+        <li>War Pigs (Cutoff halfway)</li>
+        <li>You've Got Another Thing Comin'</li>
+        <li>Metal Gods</li>
+        <li>Breaking the Law</li>
+        <li>The Ripper (First performance since March 21, 2019)</li>
+        <li>The Sentinel</li>
+        <li>Desert Plains</li>
+        <li>Lightning Strike</li>
+        <li>Turbo Lover</li>
+        <li>Steeler</li>
+        <li>Delivering the Goods (First performance since March 21, 2019)</li>
+        <li>Panic Attack</li>
+        <li>Victim of Changes</li>
+        <li>Halls of Valhalla</li>
+        <li>Painkiller</li>
+        <li>The Hellion</li>
+        <li>Electric Eye</li>
+        <li>Hell Bent for Leather</li>
+        <li>Living After Midnight</li>
+    </ol>
+
+    <a href="https://www.setlist.fm/setlist/judas-priest/2026/sparkassenpark-monchengladbach-germany-634c829f.html" target="_blank" rel="noopener noreferrer">Setlist auf setlist.fm</a>
 </Card>
 
 ## Alben
