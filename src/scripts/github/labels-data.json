@@ -683,5 +683,95 @@
     "name": "zdf",
     "color": "6f42c1",
     "description": "Kategorie für den Veranstalter ZDF (Zweites Deutsches Fernsehen)"
+  },
+  {
+    "name": "type: event",
+    "color": "5319e7",
+    "description": "Event anlegen, nachbereiten oder redaktionell pflegen"
+  },
+  {
+    "name": "type: maintenance",
+    "color": "cfd3d7",
+    "description": "Technische oder redaktionelle Wartungsarbeit"
+  },
+  {
+    "name": "type: automation",
+    "color": "1d76db",
+    "description": "Automatisierung mit GitHub Actions oder Projects"
+  },
+  {
+    "name": "area: content",
+    "color": "0075ca",
+    "description": "Eventberichte, Metadaten und redaktionelle Inhalte"
+  },
+  {
+    "name": "area: media",
+    "color": "006b75",
+    "description": "Fotos, Galerie, Videos, Alben oder Social Assets"
+  },
+  {
+    "name": "area: seo",
+    "color": "0e8a16",
+    "description": "SEO, strukturierte Daten, Open Graph oder Canonical URLs"
+  },
+  {
+    "name": "area: github",
+    "color": "24292f",
+    "description": "GitHub-Konfiguration, Issues, Projects und Actions"
+  },
+  {
+    "name": "status: needs-triage",
+    "color": "fbca04",
+    "description": "Umfang, Zuständigkeit oder nächste Schritte klären"
+  },
+  {
+    "name": "status: ready",
+    "color": "0e8a16",
+    "description": "Ausreichend geklärt und bereit zur Bearbeitung"
+  },
+  {
+    "name": "status: blocked",
+    "color": "b60205",
+    "description": "Durch fehlende Informationen oder Abhängigkeiten blockiert"
+  },
+  {
+    "name": "priority: p1",
+    "color": "b60205",
+    "description": "Hohe Priorität oder zeitkritisch"
+  },
+  {
+    "name": "priority: p2",
+    "color": "ff9f1c",
+    "description": "Normale Priorität"
+  },
+  {
+    "name": "priority: p3",
+    "color": "cfd3d7",
+    "description": "Niedrige Priorität oder später einplanen"
+  },
+  {
+    "name": "stage: event-prep",
+    "color": "bfdadc",
+    "description": "Event wird vor dem Termin vorbereitet"
+  },
+  {
+    "name": "stage: post-event",
+    "color": "d4c5f9",
+    "description": "Fotos, Bericht und Metadaten nach dem Event nachbereiten"
+  },
+  {
+    "name": "stage: published",
+    "color": "0e8a16",
+    "description": "Eventinhalt ist vollständig geprüft und veröffentlicht"
+  },
+  {
+    "name": "automation: labels",
+    "color": "1d76db",
+    "description": "Synchronisation oder Auswertung von Labels"
+  },
+  {
+    "name": "automation: project",
+    "color": "1d76db",
+    "description": "Automatische Aufnahme oder Feldpflege in GitHub Projects"
   }
 ]

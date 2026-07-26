@@ -437,3 +437,5 @@ Diese Skripte gehören nicht zum normalen Event-Workflow:
 npm run script:content:generate-readme
 npm run script:github:create-labels
 ```
+
+Die Label-Taxonomie, der idempotente Sync und das empfohlene GitHub-Projects-Setup sind in [GitHub-Planung und Automatisierung](./github-planning.md) beschrieben.

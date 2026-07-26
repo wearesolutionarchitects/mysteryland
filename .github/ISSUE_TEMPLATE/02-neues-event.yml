@@ -3,6 +3,9 @@ description: Event-Eintrag für mysteryland.biz anlegen oder vervollständigen
 title: "Event: "
 labels:
   - event
+  - "type: event"
+  - "area: content"
+  - "status: needs-triage"
 body:
   - type: textarea
     id: event
@@ -14,6 +17,18 @@ body:
         Künstler/Event:
         Venue:
         Stadt:
+    validations:
+      required: true
+
+  - type: dropdown
+    id: phase
+    attributes:
+      label: Bearbeitungsphase
+      description: Steuert die erste Einordnung für Board und spätere Automationen.
+      options:
+        - Event vorbereiten
+        - Event nachbereiten
+        - Bestehenden Eintrag pflegen
     validations:
       required: true
 
@@ -29,3 +44,16 @@ body:
     attributes:
       label: Hinweise
       description: Besonderheiten, gewünschte Ergänzungen oder klare Abgrenzungen.
+
+  - type: checkboxes
+    id: deliverables
+    attributes:
+      label: Gewünschte Ergebnisse
+      description: Die Auswahl bildet den Arbeitsumfang ab und kann später von Actions ausgewertet werden.
+      options:
+        - label: Eventdaten und Status aktualisieren
+        - label: Fotos importieren und Galerie synchronisieren
+        - label: Bericht verfassen oder vervollständigen
+        - label: Setlists und Videos ergänzen
+        - label: SEO und Open-Graph-Bild prüfen
+        - label: Social-Paket erzeugen
