@@ -332,6 +332,14 @@ npm run event:setlist -- 2025-07-26
 
 Das Skript liest Datum, Stadt, Venue und das vollständige `artist`-Array aus der vorhandenen Event-MDX. Es sucht die Setlists bei setlist.fm und schreibt sie direkt in den Abschnitt `## Setlist`, `## Setlists` oder `## Setlisten`.
 
+Ist die konkrete Setlist bereits bekannt, kann sie direkt per URL abgerufen werden:
+
+```bash
+npm run event:setlist -- 2026-09-01 --url https://www.setlist.fm/setlist/orchestral-manoeuvres-in-the-dark/2026/kemnader-see-bochum-germany-4b4a13b6.html
+```
+
+Dies umgeht abweichende Ortsbezeichnungen (z. B. Witten/Bochum). Datum und Artist müssen weiterhin zum Event passen; `OMD` wird als Alias von `Orchestral Manoeuvres in the Dark` erkannt. Der API-Key bleibt erforderlich. Vorhandene Setlists werden nicht überschrieben.
+
 Bei einem Einzelkonzert wird eine Card mit dem Titel `Songs` erzeugt. Bei einem Festival wird für jeden Artist mit gefundener Setlist eine eigene Card angelegt und die Überschrift auf `## Setlists` vereinheitlicht.
 
 Für Festivals gilt:

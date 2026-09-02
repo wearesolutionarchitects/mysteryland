@@ -17,7 +17,31 @@ export function artistKey(value = '') {
 }
 
 export function sameArtist(left, right) {
-  return artistKey(left) === artistKey(right);
+  const canonical = (value) => {
+    const key = artistKey(value);
+    return key === 'omd' ? artistKey('Orchestral Manoeuvres in the Dark') : key;
+  };
+  return canonical(left) === canonical(right);
+}
+
+export function setlistIdFromUrl(value) {
+  const url = new URL(value);
+  const id = url.pathname.match(/^\/setlist\/.+\/\d{4}\/.+-([a-f0-9]{8})\.html$/i)?.[1];
+  if (url.protocol !== 'https:' || !['www.setlist.fm', 'setlist.fm'].includes(url.hostname)
+    || url.username || url.password || url.port || !id) {
+    throw new Error('Expected an HTTPS setlist.fm setlist URL.');
+  }
+  return id.toLowerCase();
+}
+
+export function directSetlistArtist(setlist, eventDate, artists) {
+  const [year, month, day] = eventDate.split('-');
+  if (setlist.eventDate !== `${day}-${month}-${year}`) {
+    throw new Error(`Setlist date does not match event ${eventDate}.`);
+  }
+  const artist = artists.find((name) => sameArtist(setlist.artist?.name, name));
+  if (!artist) throw new Error('Setlist artist does not match the event artists.');
+  return artist;
 }
 
 export function orderArtists(artists = [], runningOrder = []) {

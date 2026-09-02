@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import YAML from 'yaml';
 import { ensureDateArg, loadEnv } from '../lib/core.mjs';
-import { createSetlistClient, orderArtists, sameArtist, sortSetlistCards } from './setlist-api.mjs';
+import { createSetlistClient, directSetlistArtist, orderArtists, sameArtist, setlistIdFromUrl, sortSetlistCards } from './setlist-api.mjs';
 
 loadEnv();
 
@@ -15,7 +15,22 @@ const eventsRoot = process.env.EVENTS_ROOT || './src/content/docs/events';
 const requestDelayMs = Number(process.env.SETLIST_REQUEST_DELAY_MS || 1000);
 const maxRetries = Number(process.env.SETLIST_MAX_RETRIES || 3);
 
-ensureDateArg(eventDate, 'Usage: npm run event:setlist -- YYYY-MM-DD');
+const usage = 'Usage: npm run event:setlist -- YYYY-MM-DD [--url https://www.setlist.fm/setlist/...]';
+ensureDateArg(eventDate, usage);
+const options = process.argv.slice(3);
+let directId;
+if (options.length) {
+  if (options.length !== 2 || options[0] !== '--url') {
+    console.error(usage);
+    process.exit(1);
+  }
+  try {
+    directId = setlistIdFromUrl(options[1]);
+  } catch (error) {
+    console.error(error instanceof Error ? error.message : String(error));
+    process.exit(1);
+  }
+}
 
 if (!apiKey) {
   console.error('Missing SETLIST_API_KEY in .env');
@@ -116,59 +131,74 @@ function selectSetlist(setlists, artist) {
 
 const found = new Map();
 let apiUnavailable = false;
-let page = 1;
-let total = 0;
-let itemsPerPage = 20;
-
-do {
-  const url = new URL(baseUrl);
-  if (page > 1) url.searchParams.set('p', String(page));
-  let data;
+if (directId) {
   try {
-    data = await fetchSetlists(url);
+    const selected = await fetchSetlists(new URL(`https://api.setlist.fm/rest/1.0/setlist/${directId}`));
+    const artist = directSetlistArtist(selected, eventDate, event.artists);
+    if (!pendingArtists.includes(artist)) {
+      console.log(`Setlist already present for ${artist}`);
+      process.exit(0);
+    }
+    found.set(artist, selected);
   } catch (error) {
     console.error(error instanceof Error ? error.message : String(error));
-    apiUnavailable = true;
-    break;
+    process.exit(1);
   }
-  const setlists = Array.isArray(data.setlist) ? data.setlist : [];
-  total = Number(data.total) || setlists.length;
-  itemsPerPage = Number(data.itemsPerPage) || itemsPerPage;
+} else {
+  let page = 1;
+  let total = 0;
+  let itemsPerPage = 20;
+
+  do {
+    const url = new URL(baseUrl);
+    if (page > 1) url.searchParams.set('p', String(page));
+    let data;
+    try {
+      data = await fetchSetlists(url);
+    } catch (error) {
+      console.error(error instanceof Error ? error.message : String(error));
+      apiUnavailable = true;
+      break;
+    }
+    const setlists = Array.isArray(data.setlist) ? data.setlist : [];
+    total = Number(data.total) || setlists.length;
+    itemsPerPage = Number(data.itemsPerPage) || itemsPerPage;
+
+    for (const artist of pendingArtists) {
+      if (found.has(artist)) continue;
+      const selected = selectSetlist(setlists, artist);
+      if (selected) found.set(artist, selected);
+    }
+
+    page += 1;
+  } while (
+    found.size < pendingArtists.length
+    && (page - 1) * itemsPerPage < total
+  );
 
   for (const artist of pendingArtists) {
+    if (apiUnavailable) break;
     if (found.has(artist)) continue;
-    const selected = selectSetlist(setlists, artist);
+
+    const url = new URL('https://api.setlist.fm/rest/1.0/search/setlists');
+    url.searchParams.set('artistName', artist);
+    url.searchParams.set('date', `${day}-${month}-${yearPart}`);
+    if (event.city) url.searchParams.set('cityName', event.city);
+
+    let data;
+    try {
+      data = await fetchSetlists(url, artist);
+    } catch (error) {
+      console.warn(error instanceof Error ? error.message : String(error));
+      apiUnavailable = true;
+      break;
+    }
+    const selected = selectSetlist(
+      Array.isArray(data.setlist) ? data.setlist : [],
+      artist,
+    );
     if (selected) found.set(artist, selected);
   }
-
-  page += 1;
-} while (
-  found.size < pendingArtists.length
-  && (page - 1) * itemsPerPage < total
-);
-
-for (const artist of pendingArtists) {
-  if (apiUnavailable) break;
-  if (found.has(artist)) continue;
-
-  const url = new URL('https://api.setlist.fm/rest/1.0/search/setlists');
-  url.searchParams.set('artistName', artist);
-  url.searchParams.set('date', `${day}-${month}-${yearPart}`);
-  if (event.city) url.searchParams.set('cityName', event.city);
-
-  let data;
-  try {
-    data = await fetchSetlists(url, artist);
-  } catch (error) {
-    console.warn(error instanceof Error ? error.message : String(error));
-    apiUnavailable = true;
-    break;
-  }
-  const selected = selectSetlist(
-    Array.isArray(data.setlist) ? data.setlist : [],
-    artist,
-  );
-  if (selected) found.set(artist, selected);
 }
 
 const additions = [];
