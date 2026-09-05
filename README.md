@@ -45,15 +45,48 @@ npm run dev
 
 Der Entwicklungsserver ist anschließend standardmäßig unter `http://localhost:4321` erreichbar.
 
-## Wichtige Kommandos
+## Alle npm-Kommandos
+
+Die folgende Übersicht umfasst alle Skripte aus [`package.json`](./package.json). Alle Kommandos werden im Repository-Hauptverzeichnis ausgeführt. `npm run` zeigt die aktuell verfügbaren Skripte; Argumente werden nach `--` übergeben.
+
+### Entwicklung und Qualität
+
+| Kommando | Zweck |
+| --- | --- |
+| `npm run dev` | Lokalen Entwicklungsserver starten |
+| `npm run build` | Produktionsversion nach `dist/` bauen |
+| `npm run preview` | Den Produktions-Build lokal anzeigen |
+| `npm run astro -- --help` | Astro-CLI und ihre Optionen anzeigen |
+| `npm run check` | Astro-Komponenten und Content-Schemas prüfen |
+| `npm run typecheck:ts` | TypeScript ohne Dateiausgabe prüfen |
+| `npm run test` | Alle vorhandenen Node-Tests ausführen |
+| `npm run test:seo` | SEO-Tests ausführen |
+| `npm run verify` | Astro, TypeScript, Tests und Produktions-Build nacheinander prüfen |
+| `npm run postinstall` | Dependency-Patches anwenden; läuft auch automatisch nach der Installation |
+
+### Events, Bilder und Künstler
+
+`YYYY-MM-DD` steht für das Eventdatum, `ASIN` für die Amazon-Albumkennung.
 
 | Kommando | Zweck |
 | --- | --- |
 | `npm run event` | Interaktiven Assistenten für den vollständigen Event-Workflow starten |
-| `npm run verify` | Astro, TypeScript, Tests und Produktions-Build prüfen |
-| `npm run build` | Produktionsversion nach `dist/` bauen |
-| `npm run preview` | Den Produktions-Build lokal anzeigen |
+| `npm run event:media` | Neue Bilder aus `src/content/gallery/inbox/` in die datierten Galerieordner importieren |
+| `npm run event:gallery -- YYYY-MM-DD` | Bilder in die Galerie einer bestehenden Event-MDX übernehmen; Vorschau mit `--dry-run` |
+| `npm run event:og -- YYYY-MM-DD` | Open-Graph-Bild für ein Event erzeugen |
+| `npm run event:seo` | Event-SEO-Metadaten prüfen; Änderungen mit `npm run event:seo -- --write` anwenden |
+| `npm run event:setlist -- YYYY-MM-DD` | Setlist ergänzen; eine konkrete Quelle kann mit `--url URL` angegeben werden |
+| `npm run event:album -- YYYY-MM-DD ASIN` | Album einschließlich lokalem Cover ergänzen |
+| `npm run event:covers` | Vorhandene externe Amazon-Cover lokalisieren und die Verweise aktualisieren |
+| `npm run event:outbox -- YYYY-MM-DD` | Event-Outbox für die weitere Verarbeitung vorbereiten |
+| `npm run event:social -- YYYY-MM-DD` | Plattformspezifische Social-Media-Texte und Bilder erzeugen |
 | `npm run artist:sync` | Künstlerprofile und Statistiken synchronisieren |
+
+### Betrieb und GitHub
+
+| Kommando | Zweck |
+| --- | --- |
+| `npm run deploy:ssh` | SSH-Release-Deployment mit konfiguriertem Ziel und Zugang ausführen |
 | `npm run script:github:create-labels` | Kanonische GitHub-Labels synchronisieren |
 
 Die granularen `event:*`-Kommandos bleiben bewusst erhalten. Sie können direkt, aus dem Assistenten oder später aus weiteren Automationen aufgerufen werden.
@@ -83,6 +116,26 @@ npm run event
 Der Assistent fragt notwendige Parameter ab, validiert Eingaben und zeigt das konkrete npm-Kommando vor der Ausführung. Schreibende Optionen wie `--write` müssen ausdrücklich bestätigt werden.
 
 Eine vollständige Beschreibung der einzelnen Schritte und der erwarteten Event-Metadaten steht in der [Workflow-Dokumentation](./docs/01-scripts/README.md).
+
+### Neue Bilder aus der Inbox importieren
+
+Exportierte JPG/JPEG-, PNG- oder WebP-Dateien werden in [`src/content/gallery/inbox/`](./src/content/gallery/inbox/) abgelegt. Für den Import muss `exiftool` verfügbar sein. Anschließend im Repository-Hauptverzeichnis ausführen:
+
+```bash
+npm run event:media
+```
+
+Das Kommando verarbeitet die gesamte Inbox und **verschiebt** die Bilder nach `src/content/gallery/YYYY/MM/DD/`. Datum und Uhrzeit stammen bevorzugt aus einem passenden Dateinamen, danach aus den EXIF-Erstellungsdaten und ersatzweise aus dem Bildtitel. Die Zieldateien heißen `YYYY-MM-DD_HH-MM-SS.ext`; `.jpeg` wird zu `.jpg` normalisiert. Vorhandene Zieldateien werden nicht überschrieben. Dateien ohne ermittelbares Datum oder mit Zielkonflikten bleiben in der Inbox; der Lauf meldet dann einen Fehler, auch wenn andere Bilder bereits importiert wurden.
+
+Damit die importierten Bilder auf einer bestehenden Eventseite erscheinen, anschließend deren Galerie synchronisieren. Beispiel für OMD am 1. September 2026:
+
+```bash
+npm run event:gallery -- 2026-09-01 --dry-run
+npm run event:gallery -- 2026-09-01
+npm run verify
+```
+
+Die Galerie-Synchronisation ergänzt Bild-Imports und den `<Gallery>`-Block der Event-MDX. Danach die neuen Bildbeschreibungen prüfen und die Seite mit `npm run dev` ansehen. Weitere Details stehen unter [Bilder importieren](./docs/01-scripts/README.md#1-bilder-importieren).
 
 ## Repository-Struktur
 

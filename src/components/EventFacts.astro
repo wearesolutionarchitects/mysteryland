@@ -14,10 +14,37 @@ interface Fact {
 }
 
 interface Props {
-  facts: Fact[];
+  facts?: Fact[];
 }
 
-const { facts } = Astro.props;
+// With no explicit facts, use the same collection data as EventSeo.
+// Keep empty strings: an intentionally blank fact must retain its label.
+const data = Astro.locals.starlightRoute.entry.data;
+const facts: Fact[] = Astro.props.facts ?? [
+  { icon: 'lucide:globe', label: 'Land', value: data.country },
+  { icon: 'lucide:map-pin', label: 'Stadt', value: data.city },
+  { icon: 'lucide:landmark', label: 'Venue', value: data.venue },
+  {
+    icon: 'lucide:calendar-days', label: 'Datum',
+    value: data.pubDate?.toLocaleDateString('de-DE', {
+      day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC',
+    }),
+  },
+  { icon: 'lucide:tag', label: 'Typ', value: data.category },
+  { icon: 'lucide:venetian-mask', label: 'Auftritt als', value: data.performingAs },
+  { icon: 'lucide:route', label: 'Tour', value: data.tour },
+  {
+    icon: 'lucide:mic-vocal', label: 'Support',
+    value: Array.isArray(data.support) ? data.support.join(', ') : data.support,
+  },
+  {
+    icon: 'lucide:badge-euro', label: 'Preis',
+    value: data.price === undefined ? undefined : new Intl.NumberFormat('de-DE', {
+      style: 'currency', currency: 'EUR',
+    }).format(data.price),
+  },
+  { icon: 'lucide:ticket-check', label: 'Kategorie', value: data.ticketCategory },
+].filter((fact) => fact.value !== undefined);
 const factOrder = new Map([
   ['Land', 10],
   ['Stadt', 20],

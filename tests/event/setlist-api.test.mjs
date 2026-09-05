@@ -1,6 +1,26 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { artistKey, createSetlistClient, orderArtists, retryDelay, sameArtist, sortSetlistCards } from '../../src/scripts/event/setlist-api.mjs';
+import { artistKey, createSetlistClient, directSetlistArtist, orderArtists, retryDelay, sameArtist, setlistIdFromUrl, sortSetlistCards } from '../../src/scripts/event/setlist-api.mjs';
+
+test('resolves a direct setlist URL and the OMD alias despite a different city label', () => {
+  assert.equal(setlistIdFromUrl('https://www.setlist.fm/setlist/orchestral-manoeuvres-in-the-dark/2026/kemnader-see-bochum-germany-4b4a13b6.html'), '4b4a13b6');
+  const setlist = {
+    eventDate: '01-09-2026',
+    artist: { name: 'Orchestral Manoeuvres in the Dark' },
+    venue: { city: { name: 'Bochum' } },
+  };
+  assert.equal(directSetlistArtist(setlist, '2026-09-01', ['OMD']), 'OMD');
+  assert.equal(sameArtist('OMD', setlist.artist.name), true);
+  assert.equal(sameArtist(setlist.artist.name, 'OMD'), true);
+  assert.throws(() => directSetlistArtist(setlist, '2026-09-02', ['OMD']), /date does not match/);
+  assert.throws(() => directSetlistArtist(setlist, '2026-09-01', ['Broilers']), /artist does not match/);
+});
+
+test('rejects foreign URLs and non-setlist pages', () => {
+  for (const url of ['https://example.com/setlist/artist/2026/show-4b4a13b6.html', 'https://www.setlist.fm/', 'http://www.setlist.fm/setlist/artist/2026/show-4b4a13b6.html']) {
+    assert.throws(() => setlistIdFromUrl(url), /setlist.fm setlist URL/);
+  }
+});
 
 test('matches festival artist spelling variants without extra API requests', () => {
   assert.equal(artistKey('Phil Campbell’s Bastard Sons'), 'philcampbellbastardsons');
