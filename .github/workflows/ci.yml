@@ -9,6 +9,11 @@ on:
 permissions:
   contents: read
 
+# Superseded PR runs can stop; a main run keeps its build and release together.
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   verify:
     name: Verify Astro and TypeScript
@@ -23,5 +28,74 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci
+      # npm ci clears node_modules, so restore the image cache afterwards.
+      # Astro keys each variant by source content and transform options.
+      - name: Restore and save Astro image cache
+        uses: actions/cache@v5
+        with:
+          path: node_modules/.astro/assets
+          key: ${{ runner.os }}-astro-images-v1-${{ hashFiles('package-lock.json', 'astro.config.mjs') }}-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-astro-images-v1-${{ hashFiles('package-lock.json', 'astro.config.mjs') }}-
       - name: Verify
         run: npm run verify
+      - name: Upload verified site
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v7
+        with:
+          name: astro-dist-${{ github.sha }}
+          path: dist/
+          # Apache's .htaccess is part of the public release.
+          include-hidden-files: true
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 3
+
+  deploy:
+    name: Deploy Astro to mysteryland.biz
+    needs: verify
+    if: github.ref == 'refs/heads/main'
+    concurrency:
+      group: mysteryland-production
+      cancel-in-progress: false
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://mysteryland.biz
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          # Image sources are unnecessary when deploying the verified artifact.
+          sparse-checkout: scripts/deploy
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 26
+      - name: Download verified site
+        uses: actions/download-artifact@v8
+        with:
+          name: astro-dist-${{ github.sha }}
+          path: dist/
+      - name: Configure SSH
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          test -n "$DEPLOY_SSH_KEY"
+          test -n "$DEPLOY_KNOWN_HOSTS"
+          mkdir -p ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/mysteryland_deploy
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/mysteryland_deploy ~/.ssh/known_hosts
+      - name: Deploy release
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+          DEPLOY_SSH_KEY_PATH: /home/runner/.ssh/mysteryland_deploy
+          DEPLOY_TARGET_PATH: /var/www/vhosts/fanieng.com/mysteryland.biz/httpdocs
+          DEPLOY_RELEASE_ROOT: /var/www/vhosts/fanieng.com/mysteryland.biz/releases
+          DEPLOY_PRESERVE_ENTRIES: .well-known
+          DEPLOY_KEEP_RELEASES: '8'
+        run: node scripts/deploy/ssh-deploy-astro.mjs

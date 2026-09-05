@@ -161,7 +161,11 @@ Die Galerie-Synchronisation ergänzt Bild-Imports und den `<Gallery>`-Block der 
 3. automatisierte Tests,
 4. vollständigen Produktions-Build.
 
-Pull Requests verwenden dieselbe Prüfung in GitHub Actions. Änderungen an `main` werden erst nach erfolgreichem Verify-Schritt als Release auf [mysteryland.biz](https://mysteryland.biz) ausgerollt.
+Der gemeinsame [CI/CD-Workflow](./.github/workflows/ci.yml) führt `verify` einmal pro Lauf aus. Pull Requests werden geprüft; ein erfolgreicher Lauf auf `main` übergibt anschließend das fertige `dist/` als commitgebundenes Artefakt an den Deployment-Job. Dieser übernimmt auch `.htaccess` und veröffentlicht genau diesen Build per SSH, ohne erneute Installation oder Bildgenerierung. Das Artefakt bleibt drei Tage verfügbar. Ein manueller Start erfolgt über den Workflow **CI** auf `main`; zum Wiederholen eines fehlgeschlagenen Deployments genügt innerhalb dieser Frist „Re-run failed jobs“.
+
+Astros Bild-Cache (`node_modules/.astro/assets`) wird nach `npm ci` wiederhergestellt und nach erfolgreichem Lauf gespeichert. Unveränderte Bildvarianten werden wiederverwendet; neue Bilder oder andere Transformationsoptionen erzeugen neue Varianten. Änderungen an Lockfile oder Astro-Konfiguration beginnen einen neuen Cache. PRs können den Cache von `main` lesen; ihr eigener Cache wird nicht für Veröffentlichungen auf `main` verwendet. Beim ersten Lauf, nach Cache-Verdrängung oder einer solchen Änderung ist daher ein vollständiger Bilddurchlauf zu erwarten. Die unterschiedlichen Größen für Vorschaubilder und Lightbox bleiben erhalten.
+
+Die [GitHub-Dokumentation zu Cache-Grenzen](https://docs.github.com/en/actions/reference/workflows-and-actions/dependency-caching#restrictions-for-accessing-a-cache) beschreibt diese Trennung. Die Artefaktübergabe verwendet [upload-artifact](https://github.com/actions/upload-artifact) und [download-artifact](https://github.com/actions/download-artifact).
 
 ## Planung und Beiträge
 
