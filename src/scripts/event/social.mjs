@@ -96,7 +96,7 @@ async function renderImage(source, target, { width, height }) {
     .toFile(target);
 }
 
-function copyText(data, url) {
+export function copyText(data, url) {
   const social = data.social ?? {};
   const facebook = platformSocial(social, 'facebook');
   const instagram = platformSocial(social, 'instagram');
@@ -104,11 +104,19 @@ function copyText(data, url) {
   const facebookHashtags = hashtagText(facebook.hashtags);
   const instagramHashtags = hashtagText(instagram.hashtags);
   const heading = `${artist} – ${data.tour || data.displayTitle || data.title}`;
+  const announcement = data.status === 'scheduled';
+  const facebookCta = announcement
+    ? 'Alle Infos zum kommenden Konzert auf Mysteryland:'
+    : 'Den vollständigen Konzertbericht mit Galerie, Videos und Setlist gibt es auf Mysteryland:';
+  const instagramCta = announcement
+    ? 'Alle Infos zum kommenden Konzert findet ihr auf mysteryland.biz.'
+    : 'Den vollständigen Konzertbericht mit Galerie, Videos und Setlist findet ihr auf mysteryland.biz.';
+  const messageCta = announcement ? 'Alle Konzertinfos:' : 'Konzertbericht, Bilder, Videos und Setlist:';
   return {
-    facebook: `${heading}\n\n${facebook.lead}\n\nDen vollständigen Konzertbericht mit Galerie, Videos und Setlist gibt es auf Mysteryland:\n${url}\n\n${facebookHashtags}`,
-    instagram: `${heading} 🤘\n\n${instagram.lead}\n\nDen vollständigen Konzertbericht mit Galerie, Videos und Setlist findet ihr auf mysteryland.biz.\n\n${instagramHashtags}`,
-    whatsappStatus: `${heading}\n\n${social.lead}\n\nMehr auf mysteryland.biz`,
-    whatsappMessage: `${heading}\n\n${social.lead}\n\nKonzertbericht, Bilder, Videos und Setlist:\n${url}`,
+    facebook: `${heading}\n\n${facebook.lead}\n\n${facebookCta}\n${url}\n\n${facebookHashtags}`,
+    instagram: `${heading} 🤘\n\n${instagram.lead}\n\n${instagramCta}\n\n${instagramHashtags}`,
+    whatsappStatus: `${heading}\n\n${social.lead}\n\n${url}`,
+    whatsappMessage: `${heading}\n\n${social.lead}\n\n${messageCta}\n${url}`,
   };
 }
 

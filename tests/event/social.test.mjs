@@ -108,3 +108,12 @@ test('enforces Instagram carousel and hashtag limits', async () => {
     /at most 5 hashtags/,
   );
 });
+
+test('announcements promote event information without promising a concert report', async () => {
+  const { copyText } = await import('../../src/scripts/event/social.mjs');
+  const url = 'https://mysteryland.biz/events/2027/2027-02-21/';
+  const copy = copyText({ status: 'scheduled', artist: ['Thundermother'], tour: 'Tour 2027', social: { lead: '21.02.2027 in Bochum', hashtags: ['Thundermother'] } }, url);
+  for (const text of Object.values(copy)) assert.doesNotMatch(text, /Konzertbericht|Videos und Setlist/);
+  assert.ok(copy.facebook.includes(url));
+  assert.ok(copy.whatsappStatus.includes(url));
+});

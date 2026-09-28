@@ -9,6 +9,7 @@ import path from 'path';
 // https://astro.build/config
 export default defineConfig({
     site: 'https://mysteryland.biz',
+    server: { port: 4322 },
     image: {
         domains: ['m.media-amazon.com'],
     },
@@ -349,6 +350,7 @@ export default defineConfig({
         }),
     ],
     vite: {
+        server: { strictPort: true },
         resolve: {
             alias: {
                 '@': path.resolve('./src'),

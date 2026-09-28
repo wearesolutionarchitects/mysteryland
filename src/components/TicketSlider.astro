@@ -2,6 +2,9 @@
 import { getCollection } from 'astro:content';
 import { Image, type LocalImageProps } from 'astro:assets';
 import TicketSliderIsland from './TicketSliderIsland';
+import EmptyState from '@hfanieng/ui/empty-state';
+import fallbackImage from '../assets/mysteryland.png';
+import { upcomingEvents } from '../scripts/lib/upcoming-events.mjs';
 
 type ImportedImage = Exclude<LocalImageProps['src'], Promise<unknown>>;
 
@@ -18,11 +21,34 @@ interface TicketSlide {
   variant?: 'logo' | 'ticket';
 }
 
-const { tickets = [] } = Astro.props as { tickets?: TicketSlide[] };
+const { tickets } = Astro.props as { tickets?: TicketSlide[] };
 const sliderId = `ticket-slider-${crypto.randomUUID()}`;
 
 const events = await getCollection('docs', ({ id }) => id.startsWith('events/'));
 const eventsById = new Map(events.map((event) => [event.id.replace(/\/index$/, ''), event]));
+const galleryImages = import.meta.glob<{ default: ImportedImage }>('../content/gallery/**/*.{jpg,jpeg,png,webp}');
+const gallery = tickets ? [] : await getCollection('gallery');
+
+// Without an explicit selection, derive the complete upcoming programme from events.
+const selectedTickets: TicketSlide[] = tickets ?? await Promise.all(upcomingEvents(events).map(async (event) => {
+  const date = event.data.pubDate!;
+  const day = date.toISOString().slice(0, 10);
+  const directory = `../content/gallery/${day.replaceAll('-', '/')}/`;
+  const images = Object.keys(galleryImages).filter((name) => name.startsWith(directory)).sort();
+  const ticketImage = images.find((name) => gallery.some(({ data }) =>
+    data.filename === name.slice(directory.length) && data.tags?.includes('Ticket')));
+  const imagePath = ticketImage ?? images[0];
+  const src = imagePath ? (await galleryImages[imagePath]()).default : fallbackImage;
+  const title = event.data.displayTitle || event.data.artist?.join(', ') || event.data.title;
+  const dateLabel = date.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'UTC' });
+  return {
+    src,
+    alt: imagePath ? `Eventbild ${title} am ${dateLabel}` : 'Mysteryland',
+    title,
+    caption: `${dateLabel} - ${[event.data.city, event.data.venue].filter(Boolean).join('@')}`,
+    event: event.id,
+  };
+}));
 
 function eventIdFromSlide(ticket: TicketSlide) {
   return ticket.event?.replace(/^\/+/, '').replace(/\/+$/, '');
@@ -52,7 +78,7 @@ function eventType(tags: string[] | undefined) {
   return '';
 }
 
-const slides = tickets.map((ticket) => {
+const slides = selectedTickets.map((ticket) => {
   const eventId = eventIdFromSlide(ticket);
   const event = eventId ? eventsById.get(eventId) : undefined;
   const price = formatPrice(ticket.price ?? event?.data.price);
@@ -70,7 +96,7 @@ const slides = tickets.map((ticket) => {
 });
 ---
 
-<section id={sliderId} class="ticket-slider" aria-label="Konzerttickets">
+{slides.length === 0 ? <EmptyState title="Keine kommenden Konzerte geplant" /> : <section id={sliderId} class="ticket-slider" aria-label="Konzerttickets">
   <div class="ticket-slider__frame">
     <div class="ticket-slider__controls" aria-label="Slider Navigation">
       <button type="button" data-ticket-slider-prev aria-label="Vorheriges Ticket">&lsaquo;</button>
@@ -104,7 +130,7 @@ const slides = tickets.map((ticket) => {
     </div>
   </div>
   <TicketSliderIsland sliderId={sliderId} client:only="preact" />
-</section>
+</section>}
 
 <style>
   .ticket-slider {

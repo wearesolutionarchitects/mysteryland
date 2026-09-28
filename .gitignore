@@ -29,3 +29,11 @@ social-outbox/
 .idea/
 setlist_api.sh
 response_debug.json
+
+# Local terminal transcripts
+/.local/
+
+# Playwright output
+/playwright-report/
+/test-results/
+/.playwright-mcp/
