@@ -114,14 +114,14 @@ export function syncEventGallery(eventDate, options = {}) {
   if (existingImports.length) {
     const first = existingImports[0];
     const last = existingImports.at(-1);
-    updated = `${updated.slice(0, first.index)}${importLines.join('\n')}${updated.slice(last.index + last[0].length)}`;
+    updated = `${updated.slice(0, first.index)}${importLines.join('\n')}\n\n${updated.slice(last.index + last[0].length).trimStart()}`;
   } else {
     const galleryImport = updated.match(/^import Gallery from ['"]@components\/Gallery\.astro['"];\s*$/m);
     if (!galleryImport || galleryImport.index === undefined) {
       throw new Error(`Gallery component import not found: ${eventFile}`);
     }
     const insertAt = galleryImport.index + galleryImport[0].length;
-    updated = `${updated.slice(0, insertAt)}\n${importLines.join('\n')}${updated.slice(insertAt)}`;
+    updated = `${updated.slice(0, insertAt)}\n${importLines.join('\n')}\n\n${updated.slice(insertAt).trimStart()}`;
   }
 
   const refreshedBlock = findGalleryBlock(updated);

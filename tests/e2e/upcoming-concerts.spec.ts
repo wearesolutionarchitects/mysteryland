@@ -17,6 +17,7 @@ test('Startseiten-Slider entspricht automatisch den geplanten zukünftigen Event
   await expect(slides).toHaveCount(expected.length);
   expect(await slides.evaluateAll(items => items.map(item => item.getAttribute('href')))).toEqual(expected);
   for (const image of await slides.locator('img').all()) {
+    await image.scrollIntoViewIfNeeded();
     await expect(image).toHaveJSProperty('complete', true);
     expect(await image.evaluate(img => (img as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
   }
