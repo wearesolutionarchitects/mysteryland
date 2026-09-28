@@ -1,5 +1,6 @@
 ---
 import StatusBadge from '@hfanieng/ui/status-badge';
+import { isFutureEvent } from '../scripts/lib/upcoming-events.mjs';
 const data = Astro.locals.starlightRoute.entry.data;
 const title = String(data.displayTitle || data.title || '').trim();
 const isEvent = Astro.locals.starlightRoute.id.startsWith('events/');
@@ -10,10 +11,8 @@ const statuses = {
   completed: { label: 'Vergangen', tone: 'neutral' },
   TBA: { label: 'Status offen', tone: 'neutral' },
 } as const;
-const today = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Berlin' }).format(new Date());
-const eventDate = data.pubDate?.toISOString().slice(0, 10);
 const showStatus = isEvent && data.status
-  && (data.status !== 'scheduled' || (eventDate !== undefined && eventDate > today));
+  && (data.status !== 'scheduled' || isFutureEvent(data.pubDate));
 const status = showStatus && data.status ? statuses[data.status] : undefined;
 ---
 
