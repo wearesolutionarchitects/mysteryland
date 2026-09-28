@@ -58,6 +58,27 @@
   max-height: 48px;
 }
 
+/* Starlight shell, Heiko theme: keep search visible in either color scheme. */
+site-search button[data-open-modal] {
+  background: var(--color-search-background);
+  border-color: var(--color-search-border);
+  color: var(--color-text);
+}
+
+.sl-markdown-content .button {
+  text-decoration: none;
+}
+
+.event-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.event-links > .button {
+  margin: 0;
+}
+
 @media (min-width: 50rem) {
   :root {
     --sl-nav-height: clamp(4rem, 5vw, 5rem);

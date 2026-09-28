@@ -3,6 +3,7 @@ export const knownOrganizers = [
   'RADIO BOB GmbH & Co. KG',
   'Concertbüro Zahlmann GmbH',
   'Concert Team Düsseldorf',
+  'Concertteam NRW',
   'concert team Düsseldorf GmbH',
   'Contra Promotion GmbH',
   'DBE Köln',
@@ -37,6 +38,7 @@ const organizerUrls = new Map([
   ['ZFR Event GmbH & Co. KG', 'https://www.zeltfestivalruhr.de/'],
   ['concert team Düsseldorf GmbH', 'https://www.concertteam.de/'],
   ['Concert Team Düsseldorf', 'https://www.concertteam.de/'],
+  ['Concertteam NRW', 'https://www.concertteam.de/'],
   ['Kingstar GmbH', 'https://www.kingstar-music.com/'],
 ].map(([name, url]) => [normalize(name), url]));
 

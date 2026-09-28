@@ -32,7 +32,63 @@ Das Repository dokumentiert nicht nur das Ergebnis auf [mysteryland.biz](https:/
 | Qualität | Astro Check, TypeScript, Node Test Runner und Produktions-Build |
 | Betrieb | Verifiziertes SSH-Release-Deployment nach `main` |
 
+## Lokale Dev-Ports
+
+| Projekt | Port |
+| --- | --- |
+| Heiko | 4321 |
+| Mysteryland | 4322 |
+| Karriere-Cockpit | 4323 |
+| TGE SDS/EPOS (`tge-sds-epos`) | 4324 |
+| ProDJ Beats | 4325 |
+
+Heikos interne Dev-Laufzeit verwendet zusätzlich 4331. Separate Test-/Preview-Ports
+bleiben davon unabhängig. Bei belegtem Dev-Port bricht der Start ab; kein
+automatisches Ausweichen auf den Port eines Schwesterprojekts. Bereits laufende
+Server übernehmen die neue Zuordnung erst nach einem Neustart durch den Benutzer.
+
 ## Lokaler Einstieg
+
+### Sichtbare Chrome-Prüfung mit Playwright
+
+Den Dev-Server startet der Benutzer mit `npm run dev`. Playwright startet keinen
+eigenen Server. Standardziel ist `http://localhost:4322`. Bei einer ausdrücklich abweichenden
+Server-URL kann `PLAYWRIGHT_BASE_URL` das Ziel überschreiben.
+
+```sh
+# macOS / Linux: URL durch die Ausgabe des eigenen Dev-Servers ersetzen
+export PLAYWRIGHT_BASE_URL=http://localhost:4322
+npm run test:e2e:ui
+```
+
+```powershell
+# Windows PowerShell
+$env:PLAYWRIGHT_BASE_URL = 'http://localhost:4322'
+npm run test:e2e:ui
+```
+
+Google Chrome muss installiert sein. `test:e2e:ui` öffnet die Playwright-Oberfläche;
+`test:e2e:debug` führt die Tests mit sichtbarem Chrome und Inspector schrittweise
+aus. Zusätzlich die Eventseite im normalen Chrome geöffnet lassen, um die Website
+auch nach Testende nachvollziehen zu können. `test:e2e` ist der automatisierte Lauf.
+Die Tests laufen sequenziell; Fehlerartefakte liegen in `test-results/`, der Bericht
+in `playwright-report/`. Beide Verzeichnisse sind vom Commit ausgeschlossen.
+
+### Gemeinsame UI aus Heiko
+
+Mysteryland konsumiert `@hfanieng/ui` 0.6.1 als versioniertes Archiv unter
+`vendor/hfanieng-ui-0.6.1.tgz`. Quelle: `heiko/packages/ui` im Commit
+`b605616f` (committed Stand, ohne die lokalen Änderungen für 0.6.2).
+Das Archiv und die Lockdatei gehören zusammen ins Repository; `npm ci` benötigt
+keinen benachbarten Heiko-Checkout. Änderungen an gemeinsamen Komponenten erfolgen
+im Heiko-Repo, anschließend wird ein neues versioniertes Paket übernommen.
+
+Die Eventüberschrift verwendet `StatusBadge`; neue Event-Inhalte können
+`LinkButton` und `EmptyState` direkt aus dem Paket verwenden. `EventFacts` bleibt
+die zentrale, fachliche Darstellung der Event-Metadaten. Starlight übernimmt
+weiter Navigation und Inhaltsverzeichnis. `src/styles/token.css` bildet das
+aktuelle Heiko-Farb-, Typografie- und Fokuskonzept auf das Mysteryland-Theme ab.
+Die Starlight-Anpassungen liegen in `src/styles/custom.css`.
 
 Vorausgesetzt werden Node.js 26 oder neuer und npm 11 oder neuer. Für den Foto-Workflow wird zusätzlich `exiftool` benötigt.
 
@@ -43,7 +99,7 @@ npm ci
 npm run dev
 ```
 
-Der Entwicklungsserver ist anschließend standardmäßig unter `http://localhost:4321` erreichbar.
+Der Entwicklungsserver ist anschließend standardmäßig unter `http://localhost:4322` erreichbar.
 
 ## Alle npm-Kommandos
 

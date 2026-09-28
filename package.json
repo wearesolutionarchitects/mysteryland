@@ -17,6 +17,9 @@
     "typecheck:ts": "tsc --noEmit",
     "test": "node --test tests/**/*.test.mjs",
     "test:seo": "node --test tests/seo/*.test.mjs",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:debug": "playwright test --debug",
     "verify": "npm run check && npm run typecheck:ts && npm test && npm run build",
     "deploy:ssh": "node scripts/deploy/ssh-deploy-astro.mjs",
     "postinstall": "patch-package",
@@ -38,6 +41,7 @@
     "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.4",
     "@astrojs/starlight": "^0.42.4",
+    "@hfanieng/ui": "file:vendor/hfanieng-ui-0.6.1.tgz",
     "@iconify-json/lucide": "^1.2.111",
     "astro": "^7.3.5",
     "astro-icon": "^1.1.5",
@@ -49,6 +53,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
     "@astrojs/markdown-remark": "^7.3.1",
+    "@playwright/test": "^1.63.0",
     "@types/node": "^26.1.1",
     "patch-package": "^8.0.1",
     "typescript": "^5.9.3"
