@@ -29,3 +29,6 @@ social-outbox/
 .idea/
 setlist_api.sh
 response_debug.json
+
+# Local terminal transcripts
+/.local/
