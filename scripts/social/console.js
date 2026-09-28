@@ -4,6 +4,10 @@ let selection;
 let busy = false;
 const destinations = { facebook: 'https://www.facebook.com/', instagram: 'https://www.instagram.com/', whatsapp: 'https://web.whatsapp.com/' };
 const names = { facebook: 'Facebook', instagram: 'Instagram', whatsapp: 'WhatsApp-Status' };
+const facebookAccounts = [
+  { label: 'Heiko Fanieng · Privatprofil', url: 'https://www.facebook.com/heiko.fanieng' },
+  { label: 'Mysteryland1909 · Page', url: 'https://www.facebook.com/Mysteryland1909' },
+];
 const endpoint = () => `/__social/draft?date=${encodeURIComponent(selection.date)}&phase=${selection.phase}`;
 async function request(url, input) {
   const result = await fetch(url, input ? { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(input) } : {});
@@ -24,6 +28,21 @@ function el(tag, text, parent) { const node = document.createElement(tag); if (t
 function field(title, value, parent, multiline = false) {
   const label = el('label', title, parent); const input = el(multiline ? 'textarea' : 'input', '', label); input.value = value; if (multiline) input.rows = 7; return input;
 }
+function accountField(platform, value, parent) {
+  if (platform !== 'facebook') return field('Zielprofil / Konto', value, parent);
+  const label = el('label', 'Zielprofil / Konto', parent);
+  const select = el('select', '', label);
+  el('option', 'Bitte Facebook-Ziel auswählen', select).value = '';
+  for (const account of facebookAccounts) el('option', account.label, select).value = account.url;
+  // Preserve previously saved free-text values without silently choosing a different account.
+  if (value && !facebookAccounts.some(account => account.url === value)) {
+    const previous = el('option', `Bisheriger Wert: ${value} · bitte neu auswählen`, select);
+    previous.value = value;
+    previous.disabled = true;
+  }
+  select.value = value;
+  return select;
+}
 function render() {
   $('generator').hidden = Boolean(draft);
   $('posts').replaceChildren();
@@ -37,7 +56,7 @@ function render() {
     el('h2', names[platform], section);
     el('p', post.publication ? `Veröffentlicht · ${post.publication.receipt}` : post.approval ? 'Freigegeben · gespeicherter Stand' : 'Entwurf · Freigabe ausstehend', section).className = 'state';
     const text = field('Beitrag inklusive Hashtags und Links', post.text, section, true);
-    const account = field('Zielprofil / Konto', post.account, section);
+    const account = accountField(platform, post.account, section);
     const visibility = field('Sichtbarkeit / Empfängerkreis', post.visibility, section);
     const media = el('div', '', section); media.className = 'media';
     post.media.forEach((file, index) => { const a = el('a', '', media); a.href = `/__social/media?file=${encodeURIComponent(file)}`; a.download = `${platform}-${index + 1}.jpg`; const img = el('img', '', a); img.src = a.href; img.alt = `${names[platform]} · Medium ${index + 1} herunterladen`; });
@@ -45,7 +64,7 @@ function render() {
     const save = el('button', 'Änderungen speichern', actions);
     const approve = el('button', 'Diesen Stand freigeben', actions);
     const copy = el('button', 'Freigegebenen Text kopieren', actions);
-    const open = el('a', 'Plattform in Chrome öffnen', actions); open.className = 'action'; open.href = destinations[platform]; open.target = '_blank'; open.rel = 'noreferrer';
+    const open = el('a', 'Plattform in Chrome öffnen', actions); open.className = 'action'; open.href = platform === 'facebook' ? facebookAccounts.find(account => account.url === post.account)?.url ?? destinations.facebook : destinations[platform]; open.target = '_blank'; open.rel = 'noreferrer';
     const receipt = field('Nach Veröffentlichung: Beitragslink oder Status-Bestätigung', '', section);
     const record = el('button', 'Veröffentlichung dokumentieren', section);
     const controls = [approve, copy, record];
