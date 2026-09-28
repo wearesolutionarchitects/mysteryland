@@ -89,7 +89,7 @@ export function createWorkspace(root) {
       }
       post.approval = null;
     } else if (input.action === 'approve') {
-      if (!post.text || !post.account || !post.visibility) throw new Error('Text, Zielprofil und Sichtbarkeit vor der Freigabe ausfüllen und speichern.');
+      if (!post.text || !post.account) throw new Error('Text und Zielprofil vor der Freigabe ausfüllen und speichern.');
       post.approval = { fingerprint: fingerprint(post), at: new Date().toISOString() };
     } else if (input.action === 'record') {
       if (!post.approval || post.approval.fingerprint !== fingerprint(post)) throw new Error('Aktuelle Freigabe erforderlich; Text oder Medien wurden geändert.');

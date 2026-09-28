@@ -57,7 +57,8 @@ function render() {
     el('p', post.publication ? `Veröffentlicht · ${post.publication.receipt}` : post.approval ? 'Freigegeben · gespeicherter Stand' : 'Entwurf · Freigabe ausstehend', section).className = 'state';
     const text = field('Beitrag inklusive Hashtags und Links', post.text, section, true);
     const account = accountField(platform, post.account, section);
-    const visibility = field('Sichtbarkeit / Empfängerkreis', post.visibility, section);
+    const visibility = field('Sichtbarkeit / Empfängerkreis (optional)', post.visibility, section);
+    visibility.placeholder = 'Leer lassen: bestehende Plattform-Einstellung verwenden';
     const media = el('div', '', section); media.className = 'media';
     post.media.forEach((file, index) => { const a = el('a', '', media); a.href = `/__social/media?file=${encodeURIComponent(file)}`; a.download = `${platform}-${index + 1}.jpg`; const img = el('img', '', a); img.src = a.href; img.alt = `${names[platform]} · Medium ${index + 1} herunterladen`; });
     const actions = el('div', '', section); actions.className = 'actions';

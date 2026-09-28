@@ -5,7 +5,7 @@ Im vom Benutzer gestarteten Mysteryland-Dev-Server: <http://localhost:4322/__soc
 1. Event und Phase auswählen: Ankündigung vor dem Event oder Rückblick danach.
 2. Eigene Texte, bis zu fünf Hashtags und Galeriebilder auswählen. Vorhandene Social-Vorgaben dienen nur bei Ankündigungen als Ausgangspunkt; Rückblicke beginnen ohne übernommene Ankündigung.
 3. Medien und Texte erzeugen. Die Werkstatt verwendet den bestehenden `event:social`-Generator mit den Formaten für Facebook, Instagram und WhatsApp.
-4. Je Plattform den vollständigen Text, das Zielprofil und die Sichtbarkeit kuratieren und speichern. Bilder anklicken, um sie herunterzuladen.
+4. Je Plattform den vollständigen Text und das Zielprofil kuratieren und speichern. Sichtbarkeit/Empfängerkreis ist optional: leer bedeutet, die bestehende Plattform-Einstellung zu verwenden. Bilder anklicken, um sie herunterzuladen.
 5. Den gespeicherten Stand ausdrücklich freigeben. Änderungen am Text oder Ziel heben die Freigabe auf. Die Freigabe enthält auch Prüfsummen der Medien.
 6. Text kopieren, Plattform in Chrome öffnen und dort den Beitrag mit den freigegebenen Medien und dem festgelegten Publikum vorbereiten. Die Werkstatt klickt nicht automatisch auf „Veröffentlichen“. Bei Agent-Unterstützung gilt weiterhin die ausdrückliche Freigabe des konkreten Beitrags vor dem finalen Klick. Chrome-/Playwright-Unterstützung erfolgt separat im bestehenden Browserablauf; keine Zugangsdaten in der Werkstatt speichern.
 7. Nach tatsächlicher Veröffentlichung den Beitragslink hinterlegen. Für einen WhatsApp-Status ohne dauerhaften Link eine eindeutige Bestätigung mit Ziel/Empfängerkreis hinterlegen. Das ist eine manuelle Dokumentation, kein automatischer Plattformnachweis.

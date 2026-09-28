@@ -351,6 +351,7 @@ export default defineConfig({
         }),
     ],
     vite: {
+        // Local editing and approvals are served only by the existing dev server.
         plugins: [socialDevPlugin(process.cwd())],
         server: { strictPort: true },
         resolve: {
