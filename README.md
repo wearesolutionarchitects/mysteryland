@@ -138,6 +138,11 @@ Die folgende Übersicht umfasst alle Skripte aus [`package.json`](./package.json
 | `npm run event:social -- YYYY-MM-DD` | Plattformspezifische Social-Media-Texte und Bilder erzeugen |
 | `npm run artist:sync` | Künstlerprofile und Statistiken synchronisieren |
 
+Die [lokale Social-Werkstatt](docs/01-scripts/social-workspace.md) unter
+`http://localhost:4322/__social/` unterstützt getrennte Ankündigungen und Rückblicke,
+Medienvorschau, Kuration, Freigabe und die Übergabe an Chrome. Sie ist ausschließlich
+im Dev-Server verfügbar; ihre lokalen Daten werden nicht mit mysteryland.biz veröffentlicht.
+
 ### Betrieb und GitHub
 
 | Kommando | Zweck |

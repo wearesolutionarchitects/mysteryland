@@ -1,0 +1,74 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import test from 'node:test';
+import sharp from 'sharp';
+import { createWorkspace } from '../../scripts/social/workspace.mjs';
+import { isLocalRequest } from '../../scripts/social/dev-plugin.mjs';
+import { checkPublicBuild } from '../../scripts/social/check-public-build.mjs';
+
+test('phases stay separate, stale edits fail and changes invalidate approval', async context => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'social-workspace-'));
+  context.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const event = path.join(root, 'src/content/docs/events/2027');
+  const gallery = path.join(root, 'src/content/gallery/2027/02/21');
+  fs.mkdirSync(event, { recursive: true }); fs.mkdirSync(gallery, { recursive: true });
+  const source = '---\ntitle: Thundermother\nartist: [Thundermother]\npubDate: 2027-02-21\nstatus: scheduled\n---\n';
+  fs.writeFileSync(path.join(event, '2027-02-21.mdx'), source);
+  await sharp({ create: { width: 8, height: 8, channels: 3, background: '#fff' } }).jpeg().toFile(path.join(gallery, 'ticket.jpg'));
+  const workspace = createWorkspace(root);
+  const input = { lead: 'Eigener Text', images: ['ticket.jpg'], hashtags: [] };
+  let before = await workspace.generate('2027-02-21', 'before', input);
+  const after = await workspace.generate('2027-02-21', 'after', input);
+  assert.match(before.posts.facebook.text, /kommenden Konzert/);
+  assert.match(after.posts.facebook.text, /Konzertbericht/);
+  assert.notDeepEqual(before.posts.facebook.media, after.posts.facebook.media);
+  await assert.rejects(workspace.generate('2027-02-21', 'before', input), /existiert/);
+  const mutate = (action, extra = {}) => workspace.mutate('2027-02-21', 'before', { revision: before.revision, platform: 'facebook', action, ...extra });
+  assert.throws(() => mutate('approve'), /Zielprofil/);
+  before = mutate('save', { text: 'Kuratierter Text', account: 'Mein Profil', visibility: 'Freunde' });
+  before = mutate('approve');
+  assert.ok(before.posts.facebook.approval);
+  const oldRevision = before.revision;
+  before = mutate('save', { text: 'Geänderter Text', account: 'Mein Profil', visibility: 'Freunde' });
+  assert.equal(before.posts.facebook.approval, null);
+  assert.throws(() => mutate('record', { receipt: 'Beitrag online' }), /Freigabe/);
+  assert.throws(() => mutate('approve', { revision: oldRevision }), /neu laden/);
+  before = mutate('approve');
+  fs.appendFileSync(workspace.mediaPath(before.posts.facebook.media[0]), 'changed');
+  assert.throws(() => mutate('record', { receipt: 'Beitrag online' }), /Medien/);
+  before = mutate('save', { text: 'Neu geprüft', account: 'Mein Profil', visibility: 'Freunde' });
+  before = mutate('approve');
+  before = mutate('record', { receipt: 'https://facebook.com/example/posts/123' });
+  assert.ok(before.posts.facebook.publication);
+  assert.throws(() => mutate('save'), /unverändert/);
+  assert.equal(workspace.read('2027-02-21', 'after').revision, after.revision);
+  assert.equal(mutate('archive'), null);
+  assert.equal(workspace.read('2027-02-21', 'before'), null);
+  const history = path.join(root, '.social/2027-02-21/history');
+  const archived = JSON.parse(fs.readFileSync(path.join(history, fs.readdirSync(history)[0]), 'utf8'));
+  assert.ok(archived.posts.facebook.publication);
+  assert.ok(fs.existsSync(workspace.mediaPath(archived.posts.facebook.media[0])));
+  assert.equal(fs.readFileSync(path.join(event, '2027-02-21.mdx'), 'utf8'), source);
+  assert.throws(() => workspace.mediaPath('../../package.json'), /Ungültiges Medium/);
+});
+
+test('local console rejects remote hosts, origins and missing mutation origin', () => {
+  const request = (headers, address = '127.0.0.1', method = 'POST') => ({ headers, socket: { remoteAddress: address }, method });
+  assert.equal(isLocalRequest(request({ host: 'localhost:4322', origin: 'http://localhost:4322' })), true);
+  assert.equal(isLocalRequest(request({ host: '127.0.0.1:4322' }, '::1', 'GET')), true);
+  assert.equal(isLocalRequest(request({ host: 'localhost:4322' })), false);
+  assert.equal(isLocalRequest(request({ host: 'localhost:4322', origin: 'https://evil.example' })), false);
+  assert.equal(isLocalRequest(request({ host: 'evil.example' }, '127.0.0.1', 'GET')), false);
+  assert.equal(isLocalRequest(request({ host: 'localhost:4322' }, '192.168.1.2', 'GET')), false);
+});
+
+test('public build guard catches accidental console assets and references', context => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'social-dist-'));
+  context.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  fs.writeFileSync(path.join(root, 'index.html'), '<h1>Event</h1>');
+  assert.equal(checkPublicBuild(root), true);
+  fs.writeFileSync(path.join(root, 'index.html'), '<a href="/__social/">Entwürfe</a>');
+  assert.throws(() => checkPublicBuild(root), /Lokale Social-Inhalte/);
+});

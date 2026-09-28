@@ -15,8 +15,9 @@ const presets = {
   whatsapp: { width: 1080, height: 1920 },
 };
 
-function readEvent(eventDate) {
-  const filePath = path.join(EVENTS_ROOT, eventDate.slice(0, 4), `${eventDate}.mdx`);
+export function readEvent(eventDate, eventsRoot = EVENTS_ROOT) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(eventDate)) throw new Error('Invalid event date');
+  const filePath = path.join(eventsRoot, eventDate.slice(0, 4), `${eventDate}.mdx`);
   if (!fs.existsSync(filePath)) throw new Error(`Event not found: ${filePath}`);
   const content = fs.readFileSync(filePath, 'utf8');
   const raw = content.match(/^---\n([\s\S]*?)\n---/)?.[1];
@@ -64,13 +65,13 @@ function eventUrl(data) {
   return new URL(canonical, `${SITE_URL}/`).href;
 }
 
-function galleryDirectory(eventDate) {
+function galleryDirectory(eventDate, galleryRoot = GALLERY_ROOT) {
   const [year, month, day] = eventDate.split('-');
-  return path.join(GALLERY_ROOT, year, month, day);
+  return path.join(galleryRoot, year, month, day);
 }
 
-function findSourceImage(eventDate, imageId) {
-  const directory = galleryDirectory(eventDate);
+function findSourceImage(eventDate, imageId, galleryRoot) {
+  const directory = galleryDirectory(eventDate, galleryRoot);
   const files = fs.existsSync(directory) ? fs.readdirSync(directory) : [];
   const match = files.find((name) => /\.(jpe?g|png|webp)$/i.test(name) && name.includes(imageId));
   if (!match) throw new Error(`Social image "${imageId}" not found in ${directory}`);
@@ -96,7 +97,7 @@ async function renderImage(source, target, { width, height }) {
     .toFile(target);
 }
 
-export function copyText(data, url) {
+export function copyText(data, url, phase) {
   const social = data.social ?? {};
   const facebook = platformSocial(social, 'facebook');
   const instagram = platformSocial(social, 'instagram');
@@ -104,7 +105,7 @@ export function copyText(data, url) {
   const facebookHashtags = hashtagText(facebook.hashtags);
   const instagramHashtags = hashtagText(instagram.hashtags);
   const heading = `${artist} – ${data.tour || data.displayTitle || data.title}`;
-  const announcement = data.status === 'scheduled';
+  const announcement = phase ? phase === 'before' : data.status === 'scheduled';
   const facebookCta = announcement
     ? 'Alle Infos zum kommenden Konzert auf Mysteryland:'
     : 'Den vollständigen Konzertbericht mit Galerie, Videos und Setlist gibt es auf Mysteryland:';
@@ -120,15 +121,17 @@ export function copyText(data, url) {
   };
 }
 
-export async function createSocialPack(eventDate) {
+export async function createSocialPack(eventDate, options = {}) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(eventDate)) throw new Error('eventDate must use YYYY-MM-DD');
-  const { filePath, data } = readEvent(eventDate);
+  const event = readEvent(eventDate, options.eventsRoot);
+  const filePath = event.filePath;
+  const data = options.data ?? event.data;
   if (!data.social || data.social.enabled === false) throw new Error(`Social publishing is not enabled in ${filePath}`);
   if (!data.social.lead || !Array.isArray(data.social.images) || data.social.images.length === 0) throw new Error(`social.lead and social.images are required in ${filePath}`);
   const instagram = platformSocial(data.social, 'instagram');
   validateInstagramConfig(instagram);
 
-  const targetRoot = path.join(OUTBOX_ROOT, eventDate);
+  const targetRoot = path.join(options.outboxRoot ?? OUTBOX_ROOT, eventDate);
   fs.rmSync(targetRoot, { recursive: true, force: true });
   fs.mkdirSync(targetRoot, { recursive: true });
   const outputs = [];
@@ -138,7 +141,7 @@ export async function createSocialPack(eventDate) {
     fs.mkdirSync(directory, { recursive: true });
     const platformImages = platformSocial(data.social, platform).images;
     for (const [index, imageId] of platformImages.entries()) {
-      const source = findSourceImage(eventDate, imageId);
+      const source = findSourceImage(eventDate, imageId, options.galleryRoot);
       const target = path.join(directory, `${String(index + 1).padStart(2, '0')}.jpg`);
       await renderImage(source, target, preset);
       outputs.push({ platform, source, target, ...preset });
@@ -146,13 +149,13 @@ export async function createSocialPack(eventDate) {
   }
 
   const url = eventUrl(data);
-  const text = copyText(data, url);
+  const text = copyText(data, url, options.phase);
   fs.writeFileSync(path.join(targetRoot, 'facebook', 'post.txt'), `${text.facebook}\n`);
   fs.writeFileSync(path.join(targetRoot, 'instagram', 'caption.txt'), `${text.instagram}\n`);
   fs.writeFileSync(path.join(targetRoot, 'whatsapp', 'status.txt'), `${text.whatsappStatus}\n`);
   fs.writeFileSync(path.join(targetRoot, 'whatsapp', 'message.txt'), `${text.whatsappMessage}\n`);
   fs.writeFileSync(path.join(targetRoot, 'manifest.json'), `${JSON.stringify({ eventDate, source: filePath, url, generatedAt: new Date().toISOString(), outputs }, null, 2)}\n`);
-  return { targetRoot, outputs };
+  return { targetRoot, outputs, text, url };
 }
 
 const isCli = process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1]);

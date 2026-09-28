@@ -5,6 +5,7 @@ import sitemap from '@astrojs/sitemap';
 import starlight from '@astrojs/starlight';
 import icon from 'astro-icon';
 import path from 'path';
+import socialDevPlugin from './scripts/social/dev-plugin.mjs';
 
 // https://astro.build/config
 export default defineConfig({
@@ -350,6 +351,7 @@ export default defineConfig({
         }),
     ],
     vite: {
+        plugins: [socialDevPlugin(process.cwd())],
         server: { strictPort: true },
         resolve: {
             alias: {

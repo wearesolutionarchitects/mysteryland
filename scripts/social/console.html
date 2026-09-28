@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Social-Werkstatt · Mysteryland lokal</title><link rel="stylesheet" href="/__social/console.css"><script type="module" src="/__social/console.js"></script></head>
+<body data-social-local-console><main>
+<p class="eyebrow">MYSTERYLAND · NUR LOKAL</p><h1>Social-Werkstatt</h1>
+<p>Ankündigungen und Rückblicke für WhatsApp, Instagram und Facebook vorbereiten, prüfen und zur Veröffentlichung in Chrome übergeben.</p>
+<div class="row"><label>Event<select id="event"></select></label><label>Phase<select id="phase"><option value="before">Vor dem Event · Ankündigung</option><option value="after">Nach dem Event · Rückblick</option></select></label><button id="load">Entwurf laden</button></div>
+<p id="notice" role="status" aria-live="polite"></p>
+<section id="generator" hidden><h2>Beitrag vorbereiten</h2><p>Für einen Rückblick bitte eigene Eindrücke und passende Fotos auswählen. Die öffentliche Eventseite bleibt unverändert.</p>
+<label>Beitragstext<textarea id="lead" rows="5"></textarea></label><label>Hashtags (höchstens fünf, durch Komma getrennt)<input id="tags"></label>
+<fieldset><legend>Medien aus der Eventgalerie</legend><div id="images"></div></fieldset><button id="generate">Entwürfe und Medien erzeugen</button></section>
+<div id="posts"></div>
+<p class="foot">Freigaben gelten für den gespeicherten Text, die Medien, das Zielprofil und die Sichtbarkeit. Änderungen heben die Freigabe auf. Diese Werkstatt veröffentlicht selbst keine Beiträge.</p>
+</main></body></html>
