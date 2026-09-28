@@ -47,8 +47,8 @@ test('Mobile Eventseite und Navigation', async ({ page }) => {
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   const menu = page.getByRole('button', { name: 'Menü', exact: true });
   await menu.click();
-  await expect(menu).toHaveAttribute('aria-expanded', 'true');
+  await expect(page.locator('#starlight__sidebar')).toBeVisible();
   await expect(page.locator('nav').getByRole('link', { name: 'Thundermother', exact: true })).toBeVisible();
   await menu.click();
-  await expect(menu).toHaveAttribute('aria-expanded', 'false');
+  await expect(page.locator('#starlight__sidebar')).toBeHidden();
 });
