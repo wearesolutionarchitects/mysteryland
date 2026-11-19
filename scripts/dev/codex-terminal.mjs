@@ -1,5 +1,5 @@
 import { spawn } from 'node:child_process';
-import { appendFileSync, mkdirSync, openSync, closeSync, readSync, statSync } from 'node:fs';
+import { appendFileSync, mkdirSync, openSync, closeSync, readSync, fstatSync, renameSync, writeFileSync, unlinkSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { StringDecoder } from 'node:string_decoder';
@@ -8,16 +8,55 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const log = resolve(root, '.local/codex-terminal.log');
 mkdirSync(dirname(log), { recursive: true });
 appendFileSync(log, '', { mode: 0o600 });
+const maxLogBytes = 16 * 1024 * 1024;
+const retainedBytes = maxLogBytes / 2;
+
+function appendLog(chunk) {
+  const bytes = Buffer.from(chunk);
+  const fd = openSync(log, 'r+');
+  try {
+    const { size } = fstatSync(fd);
+    if (size + bytes.length <= maxLogBytes) {
+      appendFileSync(log, bytes);
+      return;
+    }
+
+    const start = Math.max(0, size - retainedBytes);
+    const tail = Buffer.alloc(size - start);
+    const count = readSync(fd, tail, 0, tail.length, start);
+    const firstNewline = start ? tail.subarray(0, count).indexOf(10) : -1;
+    const recent = start && firstNewline === -1
+      ? Buffer.alloc(0)
+      : tail.subarray(firstNewline + 1, count);
+    const output = Buffer.concat([recent, bytes]);
+    const temp = `${log}.${process.pid}.tmp`;
+    writeFileSync(temp, output.subarray(Math.max(0, output.length - maxLogBytes)), { mode: 0o600, flag: 'wx' });
+    try {
+      renameSync(temp, log);
+    } catch (error) {
+      unlinkSync(temp);
+      throw error;
+    }
+  } finally {
+    closeSync(fd);
+  }
+}
+
 const [mode, ...args] = process.argv.slice(2);
 if (mode === 'watch') {
   console.log(`Codex Terminal live: ${root}\nWarte auf Befehle. Beenden: Ctrl+C\n`);
   let offset = 0;
   let decoder = new StringDecoder('utf8');
+  let inode;
   const read = () => {
-    const size = statSync(log).size;
-    if (size < offset) { offset = 0; decoder = new StringDecoder('utf8'); }
     const fd = openSync(log, 'r');
     try {
+      const { size, ino } = fstatSync(fd);
+      if (ino !== inode || size < offset) {
+        offset = 0;
+        decoder = new StringDecoder('utf8');
+        inode = ino;
+      }
       while (offset < size) {
         const buffer = Buffer.alloc(Math.min(65536, size - offset));
         const count = readSync(fd, buffer, 0, buffer.length, offset);
@@ -33,7 +72,7 @@ if (mode === 'watch') {
   if (args[0] === '--') args.shift();
   if (!args.length) throw new Error('Befehl fehlt');
   const id = `${Date.now()}-${process.pid}`;
-  const write = (chunk) => appendFileSync(log, chunk);
+  const write = appendLog;
   write(`\n[${new Date().toISOString()}] START ${id}\ncwd: ${process.cwd()}\ncommand: ${args.map(a => JSON.stringify(a)).join(' ')}\n`);
   const child = spawn(args[0], args.slice(1), { stdio: ['inherit', 'pipe', 'pipe'], shell: false });
   child.stdout.on('data', data => { write(data); process.stdout.write(data); });
