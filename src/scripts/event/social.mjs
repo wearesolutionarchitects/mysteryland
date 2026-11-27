@@ -3,7 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { replaceExportDirectory } from '../lib/export-directory.mjs';
 import sharp from 'sharp';
-import { parse as parseYaml } from 'yaml';
+import { readFrontmatter } from '../lib/frontmatter.mjs';
 
 const SITE_URL = (process.env.SITE_URL || 'https://mysteryland.biz').replace(/\/$/, '');
 const EVENTS_ROOT = process.env.EVENTS_ROOT || './src/content/docs/events';
@@ -20,10 +20,9 @@ export function readEvent(eventDate, eventsRoot = EVENTS_ROOT) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(eventDate)) throw new Error('Invalid event date');
   const filePath = path.join(eventsRoot, eventDate.slice(0, 4), `${eventDate}.mdx`);
   if (!fs.existsSync(filePath)) throw new Error(`Event not found: ${filePath}`);
-  const content = fs.readFileSync(filePath, 'utf8');
-  const raw = content.match(/^---\n([\s\S]*?)\n---/)?.[1];
-  if (!raw) throw new Error(`Frontmatter missing: ${filePath}`);
-  return { filePath, data: parseYaml(raw) || {} };
+  const frontmatter = readFrontmatter(filePath);
+  if (!frontmatter) throw new Error(`Frontmatter missing: ${filePath}`);
+  return { filePath, data: frontmatter.data };
 }
 
 function cleanHashtag(value) {

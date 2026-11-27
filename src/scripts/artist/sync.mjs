@@ -2,7 +2,7 @@
 // Creates missing artist profile pages from event frontmatter.
 import fs from 'node:fs';
 import path from 'node:path';
-import { parse as parseYaml } from 'yaml';
+import { readFrontmatter } from '../lib/frontmatter.mjs';
 import { canonicalVenue } from '../../data/venues.mjs';
 
 const eventsRoot = process.env.EVENTS_ROOT || './src/content/docs/events';
@@ -22,38 +22,13 @@ function walkMdxFiles(directory) {
   });
 }
 
-function frontmatter(content) {
-  return content.match(/^---\n([\s\S]*?)\n---/)?.[1] || '';
-}
-
-function frontmatterValue(frontmatterContent, key) {
-  return frontmatterContent.match(new RegExp(`^${key}:\\s*(.+)$`, 'm'))?.[1]?.trim() || '';
-}
-
 function stringList(value) {
-  const raw = String(value || '').trim();
-  if (!raw) return [];
-
-  if (raw.startsWith('[')) {
-    return [...raw.matchAll(/"([^"]+)"|'([^']+)'/g)]
-      .map((match) => match[1] || match[2])
-      .map((item) => item.normalize('NFC').trim())
-      .filter((item) => !ignoredValues.has(item));
-  }
-
-  return raw
-    .replace(/^["']|["']$/g, '')
-    .split(',')
-    .map((item) => item.normalize('NFC').trim())
-    .filter((item) => !ignoredValues.has(item));
+  const items = Array.isArray(value) ? value : String(value ?? '').split(',');
+  return items.map(scalarValue).filter(item => !ignoredValues.has(item));
 }
 
 function scalarValue(value) {
-  return String(value || '')
-    .normalize('NFC')
-    .trim()
-    .replace(/^["']|["']$/g, '')
-    .trim();
+  return String(value ?? '').normalize('NFC').trim();
 }
 
 function slugify(value) {
@@ -183,11 +158,11 @@ function topArtistsData(artists) {
 }
 
 function addVenue(map, data, eventPath) {
-  const venue = scalarValue(frontmatterValue(data, 'venue'));
+  const venue = scalarValue(data.venue);
   if (!venue || ignoredValues.has(venue)) return;
 
-  const city = scalarValue(frontmatterValue(data, 'city'));
-  const country = scalarValue(frontmatterValue(data, 'country'));
+  const city = scalarValue(data.city);
+  const country = scalarValue(data.country);
   const canonical = canonicalVenue({ name: venue, city, country });
   const key = [canonical.name, canonical.city, canonical.country].join('|');
 
@@ -233,24 +208,23 @@ const artists = new Map();
 const venues = new Map();
 
 for (const filePath of walkMdxFiles(eventsRoot)) {
-  const data = frontmatter(fs.readFileSync(filePath, 'utf8'));
+  const data = readFrontmatter(filePath)?.data ?? {};
 
   addVenue(venues, data, filePath);
 
-  for (const name of stringList(frontmatterValue(data, 'artist'))) {
+  for (const name of stringList(data.artist)) {
     addArtist(artists, name, 'headliner', filePath);
   }
-  for (const name of stringList(frontmatterValue(data, 'support'))) {
+  for (const name of stringList(data.support)) {
     addArtist(artists, name, 'support', filePath);
   }
-  for (const name of stringList(frontmatterValue(data, 'guest'))) {
+  for (const name of stringList(data.guest)) {
     addArtist(artists, name, 'guest', filePath);
   }
 }
 
 for (const filePath of walkMdxFiles(artistsRoot)) {
-  const data = frontmatter(fs.readFileSync(filePath, 'utf8'));
-  const artistData = parseYaml(data) || {};
+  const artistData = readFrontmatter(filePath)?.data ?? {};
   const groupName = artistData.artistName || artistData.title;
   const members = Array.isArray(artistData.members) ? artistData.members : [];
   const group = artists.get(slugify(groupName));

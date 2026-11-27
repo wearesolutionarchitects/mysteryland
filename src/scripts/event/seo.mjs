@@ -3,7 +3,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { createEventOgImage, eventOgFilePath, eventOgPublicPath, firstEventImage } from './og.mjs';
-import { stringList, yamlString } from './render.mjs';
+import { readFrontmatter, updateStringFields } from '../lib/frontmatter.mjs';
 
 const eventsRoot = './src/content/docs/events';
 
@@ -17,73 +17,6 @@ function eventFiles(dir = eventsRoot) {
       return entry.isFile() && entry.name.endsWith('.mdx') ? [filePath] : [];
     })
     .sort();
-}
-
-function splitFrontmatter(content) {
-  const match = content.match(/^---\n([\s\S]*?)\n---\n?/);
-  if (!match) return null;
-
-  return {
-    raw: match[1],
-    body: content.slice(match[0].length),
-    fullMatch: match[0],
-  };
-}
-
-function parseScalar(value) {
-  const trimmed = String(value || '').trim();
-  if (!trimmed) return '';
-
-  try {
-    return JSON.parse(trimmed);
-  } catch {
-    return trimmed.replace(/^['"]|['"]$/g, '');
-  }
-}
-
-function parseArray(value) {
-  const trimmed = String(value || '').trim();
-  if (!trimmed) return [];
-
-  try {
-    const parsed = JSON.parse(trimmed);
-    return Array.isArray(parsed) ? parsed.map(String) : [String(parsed)];
-  } catch {
-    return trimmed
-      .replace(/^\[|\]$/g, '')
-      .split(',')
-      .map((item) => parseScalar(item))
-      .filter(Boolean);
-  }
-}
-
-function parseFrontmatter(raw) {
-  const data = {};
-
-  for (const line of raw.split('\n')) {
-    const match = line.match(/^([A-Za-z][A-Za-z0-9_-]*):\s*(.*)$/);
-    if (!match) continue;
-
-    const [, key, value] = match;
-    data[key] = value.trim().startsWith('[') ? parseArray(value) : parseScalar(value);
-  }
-
-  return data;
-}
-
-function replaceFrontmatterField(raw, key, value) {
-  const line = `${key}: ${yamlString(value)}`;
-  const pattern = new RegExp(`^${key}:.*$`, 'm');
-
-  if (pattern.test(raw)) return raw.replace(pattern, line);
-
-  const lines = raw.split('\n');
-  const insertAfter = key === 'ogImage'
-    ? Math.max(lines.findIndex((item) => item.startsWith('asin:')), lines.findIndex((item) => item.startsWith('price:')))
-    : lines.findIndex((item) => item.startsWith('title:'));
-  const index = insertAfter >= 0 ? insertAfter + 1 : lines.length;
-  lines.splice(index, 0, line);
-  return lines.join('\n');
 }
 
 function eventDateFromFile(filePath, data) {
@@ -120,7 +53,8 @@ function knownText(value) {
 }
 
 function listText(value) {
-  return stringList(value).filter((item) => !['TBA', '-'].includes(item));
+  const items = Array.isArray(value) ? value : String(value ?? '').split(',');
+  return [...new Set(items.map(knownText).filter(Boolean))];
 }
 
 function joinGermanList(items) {
@@ -193,15 +127,14 @@ function isWeakDescription(value) {
 }
 
 async function updateEvent(filePath, { write }) {
-  const content = fs.readFileSync(filePath, 'utf8');
-  const frontmatter = splitFrontmatter(content);
+  const frontmatter = readFrontmatter(filePath);
   if (!frontmatter) return { filePath, skipped: 'missing frontmatter' };
 
-  const data = parseFrontmatter(frontmatter.raw);
+  const { data } = frontmatter;
   const eventDate = eventDateFromFile(filePath, data);
   if (!eventDate) return { filePath, skipped: 'missing event date' };
 
-  let nextRaw = frontmatter.raw;
+  const updates = {};
   const changes = [];
   const expectedOgImage = eventOgPublicPath(eventDate);
   const currentOgImage = knownText(data.ogImage);
@@ -212,20 +145,20 @@ async function updateEvent(filePath, { write }) {
     if (write && !fs.existsSync(targetOgImage)) {
       await createEventOgImage({ eventDate, sourceImage });
     }
-    nextRaw = replaceFrontmatterField(nextRaw, 'ogImage', expectedOgImage);
+    updates.ogImage = expectedOgImage;
     changes.push(fs.existsSync(targetOgImage) || write ? 'ogImage' : 'ogImage target missing');
   } else if (!currentOgImage) {
-    nextRaw = replaceFrontmatterField(nextRaw, 'ogImage', '/apple-touch-icon.png');
+    updates.ogImage = '/apple-touch-icon.png';
     changes.push('ogImage fallback');
   }
 
   if (isWeakDescription(data.description)) {
-    nextRaw = replaceFrontmatterField(nextRaw, 'description', generatedDescription(data, eventDate));
+    updates.description = generatedDescription(data, eventDate);
     changes.push('description');
   }
 
-  if (write && nextRaw !== frontmatter.raw) {
-    fs.writeFileSync(filePath, `---\n${nextRaw}\n---\n${frontmatter.body}`, 'utf8');
+  if (write && changes.length) {
+    fs.writeFileSync(filePath, updateStringFields(frontmatter, updates), 'utf8');
   }
 
   return { filePath, changes, sourceImage };
