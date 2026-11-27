@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { createHash, randomUUID } from 'node:crypto';
 import { readEvent, createSocialPack } from '../../src/scripts/event/social.mjs';
+import { createPost, updatePost } from './post.mjs';
 
 export const platforms = ['facebook', 'instagram', 'whatsapp'];
 export function validateKey(date, phase) {
@@ -33,9 +34,8 @@ export function createWorkspace(root) {
     if (!absolute.startsWith(`${local}${path.sep}`) || !absolute.endsWith('.jpg')) throw new Error('Ungültiges Medium.');
     return absolute;
   }
-  function fingerprint(post) {
-    const images = post.media.map(media => createHash('sha256').update(fs.readFileSync(mediaPath(media))).digest('hex'));
-    return createHash('sha256').update(JSON.stringify({ text: post.text, account: post.account, visibility: post.visibility, media: post.media, images })).digest('hex');
+  function mediaDigest(media) {
+    return createHash('sha256').update(fs.readFileSync(mediaPath(media))).digest('hex');
   }
   function list() {
     return fs.readdirSync(eventsRoot, { recursive: true }).filter(name => /\d{4}-\d{2}-\d{2}\.mdx$/.test(name)).map(name => {
@@ -44,11 +44,14 @@ export function createWorkspace(root) {
       return { date, title: data.displayTitle || data.title };
     }).sort((a, b) => b.date.localeCompare(a.date));
   }
+  function galleryImages(date) {
+    const directory = path.join(galleryRoot, ...date.split('-'));
+    return fs.existsSync(directory) ? fs.readdirSync(directory).filter(name => /\.(jpg|jpeg|png|webp)$/i.test(name)) : [];
+  }
   function detail(date, phase) {
     validateKey(date, phase);
     const { data } = readEvent(date, eventsRoot);
-    const directory = path.join(galleryRoot, ...date.split('-'));
-    const images = fs.existsSync(directory) ? fs.readdirSync(directory).filter(name => /\.(jpg|jpeg|png|webp)$/i.test(name)) : [];
+    const images = galleryImages(date);
     // Retrospectives must receive their own copy and media selection.
     const social = phase === 'before' ? data.social ?? {} : {};
     return { title: data.displayTitle || data.title, images, lead: social.lead || '', hashtags: social.hashtags || [], selected: social.images || [], draft: read(date, phase) };
@@ -56,18 +59,19 @@ export function createWorkspace(root) {
   async function generate(date, phase, input) {
     validateKey(date, phase);
     if (read(date, phase)) throw new Error('Entwurf existiert bereits. Bearbeite ihn oder wähle die andere Phase.');
-    const info = detail(date, phase);
     if (typeof input.lead !== 'string' || !input.lead.trim()) throw new Error('Bitte einen eigenen Beitragstext eingeben.');
-    if (!Array.isArray(input.images) || !input.images.length || input.images.some(name => !info.images.includes(name))) throw new Error('Bitte vorhandene Galeriebilder auswählen.');
-    const { data } = readEvent(date, eventsRoot);
+    const images = galleryImages(date);
+    if (!Array.isArray(input.images) || !input.images.length || input.images.some(name => !images.includes(name))) throw new Error('Bitte vorhandene Galeriebilder auswählen.');
     const outboxRoot = path.join(local, 'packs', randomUUID());
-    const result = await createSocialPack(date, { eventsRoot, galleryRoot, outboxRoot, phase, data: { ...data, social: { enabled: true, lead: input.lead.trim(), hashtags: input.hashtags || [], images: input.images } } });
-    const posts = Object.fromEntries(platforms.map(platform => [platform, {
-      text: result.text[platform === 'whatsapp' ? 'whatsappStatus' : platform],
-      account: '', visibility: '',
-      media: result.outputs.filter(output => output.platform === platform).map(output => path.relative(local, output.target)),
-      approval: null, publication: null,
-    }]));
+    const result = await createSocialPack(date, {
+      eventsRoot, galleryRoot, outboxRoot, phase,
+      social: { enabled: true, lead: input.lead.trim(), hashtags: input.hashtags || [], images: input.images },
+    });
+    const posts = Object.fromEntries(platforms.map(platform => {
+      const text = result.text[platform === 'whatsapp' ? 'whatsappStatus' : platform];
+      const media = result.outputs.filter(output => output.platform === platform).map(output => path.relative(local, output.target));
+      return [platform, createPost(text, media)];
+    }));
     return write({ date, phase, url: result.url, revision: randomUUID(), posts });
   }
   function mutate(date, phase, input) {
@@ -80,22 +84,7 @@ export function createWorkspace(root) {
       return null;
     }
     if (!platforms.includes(input.platform)) throw new Error('Plattform ungültig.');
-    const post = draft.posts[input.platform];
-    if (post.publication) throw new Error('Veröffentlichter Stand bleibt unverändert dokumentiert.');
-    if (input.action === 'save') {
-      for (const key of ['text', 'account', 'visibility']) {
-        if (typeof input[key] !== 'string' || input[key].length > 20000) throw new Error('Ungültige Eingabe.');
-        post[key] = input[key].trim();
-      }
-      post.approval = null;
-    } else if (input.action === 'approve') {
-      if (!post.text || !post.account) throw new Error('Text und Zielprofil vor der Freigabe ausfüllen und speichern.');
-      post.approval = { fingerprint: fingerprint(post), at: new Date().toISOString() };
-    } else if (input.action === 'record') {
-      if (!post.approval || post.approval.fingerprint !== fingerprint(post)) throw new Error('Aktuelle Freigabe erforderlich; Text oder Medien wurden geändert.');
-      if (typeof input.receipt !== 'string' || !input.receipt.trim() || input.receipt.length > 2000) throw new Error('Beitragslink oder Bestätigung des veröffentlichten Status eingeben.');
-      post.publication = { receipt: input.receipt.trim(), at: new Date().toISOString() };
-    } else throw new Error('Aktion ungültig.');
+    draft.posts[input.platform] = updatePost(draft.posts[input.platform], input, mediaDigest);
     draft.revision = randomUUID();
     return write(draft);
   }

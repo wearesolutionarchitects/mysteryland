@@ -8,17 +8,32 @@ import { createWorkspace } from '../../scripts/social/workspace.mjs';
 import { isLocalRequest } from '../../scripts/social/dev-plugin.mjs';
 import { checkPublicBuild } from '../../scripts/social/check-public-build.mjs';
 
-test('phases stay separate, stale edits fail and changes invalidate approval', async context => {
+async function workspaceFixture(context) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'social-workspace-'));
   context.after(() => fs.rmSync(root, { recursive: true, force: true }));
   const event = path.join(root, 'src/content/docs/events/2027');
   const gallery = path.join(root, 'src/content/gallery/2027/02/21');
   fs.mkdirSync(event, { recursive: true }); fs.mkdirSync(gallery, { recursive: true });
   const source = '---\ntitle: Thundermother\nartist: [Thundermother]\npubDate: 2027-02-21\nstatus: scheduled\n---\n';
-  fs.writeFileSync(path.join(event, '2027-02-21.mdx'), source);
+  const eventFile = path.join(event, '2027-02-21.mdx');
+  fs.writeFileSync(eventFile, source);
   await sharp({ create: { width: 8, height: 8, channels: 3, background: '#fff' } }).jpeg().toFile(path.join(gallery, 'ticket.jpg'));
   const workspace = createWorkspace(root);
   const input = { lead: 'Eigener Text', images: ['ticket.jpg'], hashtags: [] };
+  return { root, eventFile, source, workspace, input };
+}
+
+test('generating a social pack reads the event MDX exactly once', async context => {
+  const { eventFile, workspace, input } = await workspaceFixture(context);
+  const reads = context.mock.method(fs, 'readFileSync');
+  const draft = await workspace.generate('2027-02-21', 'before', input);
+  assert.equal(reads.mock.calls.filter(call => call.arguments[0] === eventFile).length, 1);
+  assert.match(draft.posts.facebook.text, /Thundermother/);
+  assert.ok(draft.posts.facebook.text.includes(input.lead));
+});
+
+test('phases stay separate, stale edits fail and changes invalidate approval', async context => {
+  const { root, eventFile, source, workspace, input } = await workspaceFixture(context);
   let before = await workspace.generate('2027-02-21', 'before', input);
   const after = await workspace.generate('2027-02-21', 'after', input);
   assert.match(before.posts.facebook.text, /kommenden Konzert/);
@@ -50,7 +65,7 @@ test('phases stay separate, stale edits fail and changes invalidate approval', a
   const archived = JSON.parse(fs.readFileSync(path.join(history, fs.readdirSync(history)[0]), 'utf8'));
   assert.ok(archived.posts.facebook.publication);
   assert.ok(fs.existsSync(workspace.mediaPath(archived.posts.facebook.media[0])));
-  assert.equal(fs.readFileSync(path.join(event, '2027-02-21.mdx'), 'utf8'), source);
+  assert.equal(fs.readFileSync(eventFile, 'utf8'), source);
   assert.throws(() => workspace.mediaPath('../../package.json'), /Ungültiges Medium/);
 });
 

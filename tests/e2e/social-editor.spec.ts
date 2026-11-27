@@ -36,6 +36,10 @@ test('saving one channel preserves the other editor and advances its revision', 
   const receipt = instagram.getByLabel('Nach Veröffentlichung', { exact: false });
   await text.fill('Instagram in Arbeit');
   await receipt.fill('Beleg in Arbeit');
+  const account = facebook.getByRole('button', { name: 'Zielprofil / Konto' });
+  await account.click();
+  await page.getByRole('searchbox', { name: 'Auswahl filtern' }).fill('Mysteryland1909');
+  await page.getByRole('option', { name: 'Mysteryland1909 · Page' }).click();
   await facebook.getByLabel('Beitrag inklusive Hashtags und Links').fill('Facebook fertig');
   await facebook.getByRole('button', { name: 'Änderungen speichern' }).click();
   await expect(page.locator('#load')).toBeEnabled();
@@ -44,7 +48,7 @@ test('saving one channel preserves the other editor and advances its revision', 
   await instagram.getByRole('button', { name: 'Änderungen speichern' }).click();
   await expect(page.locator('#load')).toBeEnabled();
   expect(writes).toEqual([
-    expect.objectContaining({ platform: 'facebook', revision: '1', text: 'Facebook fertig' }),
+    expect.objectContaining({ platform: 'facebook', revision: '1', text: 'Facebook fertig', account: 'https://www.facebook.com/Mysteryland1909' }),
     expect.objectContaining({ platform: 'instagram', revision: '2', text: 'Instagram in Arbeit' }),
   ]);
 });
@@ -62,7 +66,8 @@ test('a failed switch blocks generation until the selected event loads successfu
     await route.fulfill({ json: { ...info, lead: date } });
   });
   await expect(page.locator('#lead')).toHaveValue(first);
-  await page.locator('#event').selectOption(second);
+  await page.getByRole('button', { name: 'Event', exact: true }).click();
+  await page.getByRole('option', { name: `${second} · ${second}` }).click();
   await expect(page.getByRole('status')).toHaveText('Ladefehler');
   await expect(page.locator('#generator')).toBeHidden();
   await expect(page.locator('#generate')).toBeDisabled();

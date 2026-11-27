@@ -125,7 +125,8 @@ export async function createSocialPack(eventDate, options = {}) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(eventDate)) throw new Error('eventDate must use YYYY-MM-DD');
   const event = readEvent(eventDate, options.eventsRoot);
   const filePath = event.filePath;
-  const data = options.data ?? event.data;
+  const baseData = options.data ?? event.data;
+  const data = { ...baseData, social: options.social ?? baseData.social };
   if (!data.social || data.social.enabled === false) throw new Error(`Social publishing is not enabled in ${filePath}`);
   if (!data.social.lead || !Array.isArray(data.social.images) || data.social.images.length === 0) throw new Error(`social.lead and social.images are required in ${filePath}`);
   const instagram = platformSocial(data.social, 'instagram');
