@@ -48,7 +48,7 @@ export default defineConfig({
                 TableOfContents: './src/components/TableOfContents.astro',
             },
             social: [
-                {icon: 'github', label:'github', href: 'https://github.com/wearesolutionarchitects'},
+                {icon: 'github', label:'github', href: 'https://github.com/hfanieng/mysteryland'},
                 {icon: 'discord', label:'discord', href: 'https://discord.gg/GEdQ3xg6t6'},
                 {icon: 'linkedin', label: 'linkedin', href: 'https://www.linkedin.com/in/hfanieng/'},
                 {icon: 'twitch', label: 'twitch', href: 'https://www.twitch.tv/mysteryland1909'},

@@ -1,6 +1,6 @@
 # Mysteryland
 
-[![CI](https://github.com/wearesolutionarchitects/mysteryland/actions/workflows/ci.yml/badge.svg)](https://github.com/wearesolutionarchitects/mysteryland/actions/workflows/ci.yml)
+[![CI](https://github.com/hfanieng/mysteryland/actions/workflows/ci.yml/badge.svg)](https://github.com/hfanieng/mysteryland/actions/workflows/ci.yml)
 [![Website](https://img.shields.io/badge/Website-mysteryland.biz-0b7285)](https://mysteryland.biz)
 [![License: MIT](https://img.shields.io/badge/Code-MIT-2f9e44.svg)](./LICENSE)
 
@@ -94,7 +94,7 @@ Die Starlight-Anpassungen liegen in `src/styles/custom.css`.
 Vorausgesetzt werden Node.js 26 oder neuer und npm 11 oder neuer. Für den Foto-Workflow wird zusätzlich `exiftool` benötigt.
 
 ```bash
-git clone https://github.com/wearesolutionarchitects/mysteryland.git
+git clone https://github.com/hfanieng/mysteryland.git
 cd mysteryland
 npm ci
 npm run dev
@@ -169,7 +169,7 @@ Apple Fotos ──► Galerie-Inbox ──► Medienimport ┤
                                               └─► prüfen, bauen, veröffentlichen
 ```
 
-Ein neues Event beginnt im strukturierten [Event-Issue-Formular](https://github.com/wearesolutionarchitects/mysteryland/issues/new?template=02-neues-event.yml). Dabei gilt verbindlich: ein Issue entspricht genau einem Event. Nach Anlage der Event-MDX unterstützt der lokale Assistent die nachgelagerten Medien- und Veröffentlichungsschritte:
+Ein neues Event beginnt im strukturierten [Event-Issue-Formular](https://github.com/hfanieng/mysteryland/issues/new?template=02-neues-event.yml). Dabei gilt verbindlich: ein Issue entspricht genau einem Event. Nach Anlage der Event-MDX unterstützt der lokale Assistent die nachgelagerten Medien- und Veröffentlichungsschritte:
 
 ```bash
 npm run event
@@ -233,7 +233,7 @@ Die [GitHub-Dokumentation zu Cache-Grenzen](https://docs.github.com/en/actions/r
 
 Arbeit wird über strukturierte GitHub Issues, präfixierte Steuerungslabels und Pull Requests nachvollziehbar gemacht. Die kanonische Labeldefinition liegt im Repository und kann idempotent synchronisiert werden. Das vorgesehene Zusammenspiel von Labels, GitHub Projects und künftigen Actions ist in der [GitHub-Planungsdokumentation](./docs/01-scripts/github-planning.md) beschrieben.
 
-Fehlerberichte und konkrete Verbesserungsvorschläge sind als [GitHub Issue](https://github.com/wearesolutionarchitects/mysteryland/issues/new/choose) willkommen. Pull Requests sollten fokussiert bleiben und `npm run verify` erfolgreich durchlaufen.
+Fehlerberichte und konkrete Verbesserungsvorschläge sind als [GitHub Issue](https://github.com/hfanieng/mysteryland/issues/new/choose) willkommen. Pull Requests sollten fokussiert bleiben und `npm run verify` erfolgreich durchlaufen.
 
 ## Lizenz und Inhalte
 

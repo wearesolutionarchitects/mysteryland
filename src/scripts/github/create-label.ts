@@ -5,7 +5,7 @@ import { loadEnv, runOrThrow } from '../lib/core.ts';
 
 loadEnv();
 
-const repo = process.env.REPO || 'wearesolutionarchitects/mysteryland';
+const repo = process.env.REPO || 'hfanieng/mysteryland';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const labelsPath = path.join(__dirname, 'labels-data.json');
