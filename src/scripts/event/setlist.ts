@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import YAML from 'yaml';
 import { ensureDateArg, loadEnv } from '../lib/core.ts';
+import { writeEventRevision } from '../lib/write-event-revision.ts';
 import { type Setlist, createSetlistClient, directSetlistArtist, orderArtists, sameArtist, setlistIdFromUrl, sortSetlistCards } from './setlist-api.ts';
 
 loadEnv();
@@ -37,8 +38,7 @@ if (!apiKey) {
   process.exit(1);
 }
 
-function readFrontmatter(file: string) {
-  const content = fs.readFileSync(file, 'utf8');
+function parseFrontmatter(content: string) {
   const block = content.match(/^---\n([\s\S]*?)\n---/)?.[1] || '';
   const data = YAML.parse(block) || {};
   const artists = Array.isArray(data.artist) ? data.artist.map(String) : [];
@@ -74,8 +74,9 @@ if (!fs.existsSync(eventFile)) {
   process.exit(1);
 }
 
-const original = fs.readFileSync(eventFile, 'utf8');
-const event = readFrontmatter(eventFile);
+const revision = fs.readFileSync(eventFile);
+const original = revision.toString('utf8');
+const event = parseFrontmatter(original);
 const [yearPart, month, day] = eventDate.split('-');
 const setlistSectionPattern = /(^## (?:Setlist|Setlists|Setlisten)[ \t]*\n)([\s\S]*?)(?=\n## |(?![\s\S]))/m;
 const sectionMatch = original.match(setlistSectionPattern);
@@ -247,9 +248,6 @@ const sectionContent = sortSetlistCards(
 const heading = event.artists.length > 1 ? '## Setlists\n' : sectionMatch[1];
 const replacement = `${heading}\n${sectionContent}\n`;
 const updated = original.replace(setlistSectionPattern, replacement);
-const temporaryFile = `${eventFile}.tmp`;
-
-fs.writeFileSync(temporaryFile, updated, 'utf8');
-fs.renameSync(temporaryFile, eventFile);
+writeEventRevision(eventFile, revision, updated);
 console.log(`Added ${additions.length} setlist(s) to ${eventFile}`);
 if (missing.length) console.warn(`No setlists with songs found for: ${missing.join(', ')}`);

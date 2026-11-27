@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { loadEnv } from '../lib/core.ts';
 import { findDuplicateCover } from './album-cover.ts';
+import { writeEventRevision } from '../lib/write-event-revision.ts';
 
 loadEnv();
 
@@ -145,7 +146,8 @@ if (!fs.existsSync(eventFile)) {
   process.exit(1);
 }
 
-const original = fs.readFileSync(eventFile, 'utf8');
+const revision = fs.readFileSync(eventFile);
+const original = revision.toString('utf8');
 const frontmatterMatch = original.match(/^---\n([\s\S]*?)\n---\n?/);
 if (!frontmatterMatch) {
   console.error(`Invalid MDX frontmatter: ${eventFile}`);
@@ -204,8 +206,5 @@ const body = ensureCoverImport(
 );
 const updatedBody = updateAlbumSection(body, albumCard(product, variable));
 const updated = `---\n${frontmatter}\n---\n${updatedBody}`;
-const temporaryFile = `${eventFile}.tmp`;
-
-fs.writeFileSync(temporaryFile, updated, 'utf8');
-fs.renameSync(temporaryFile, eventFile);
+writeEventRevision(eventFile, revision, updated);
 console.log(`Added ${product.title} (${asin}) to ${eventFile}`);
