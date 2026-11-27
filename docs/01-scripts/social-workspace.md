@@ -12,6 +12,20 @@ Im vom Benutzer gestarteten Mysteryland-Dev-Server: <http://localhost:4322/__soc
 
 „Neue Beitragsrunde“ archiviert den bisherigen Stand einschließlich Freigaben und Veröffentlichungsbelegen. Danach können andere Medien und Texte erzeugt werden. Bestehende Bildpakete bleiben erhalten. Veröffentlichte Einzelbeiträge sind unveränderlich; die andere Phase bleibt unabhängig.
 
+## Instagram: Feed → Story → Highlight
+
+„Konzerte“ und „Pflanzen“ sind Story-Highlights, keine Kategorien für Feed-Beiträge. Feed-Veröffentlichung, Story-Veröffentlichung und Highlight-Zuordnung sind drei getrennte Schritte. Eine Feed-Freigabe oder ein gespeicherter Feed-Link bestätigt weder eine Story noch ein Highlight. Threads ist ein weiteres, separat freizugebendes Veröffentlichungsziel.
+
+Am 28.09.2026 in Chrome bei `@heikofanieng` geprüft: Das WebUI bietet für bestehende Highlights **Menü → Bearbeiten → Weiter → Stories** mit Auswahl aus dem Story-Archiv. Im Teilen-Dialog des Feed-Beitrags wird **„Zu deiner Story hinzufügen“ nicht angeboten**. Die Verfügbarkeit ist konto- und versionsabhängig; bei jeder Durchführung erneut prüfen. Highlight-Bearbeitung im Web bedeutet nicht, dass auch Beitrag-zu-Story im Web unterstützt wird.
+
+1. Den veröffentlichten Feed-Beitrag öffnen, zum Beispiel [Thundermother](https://www.instagram.com/p/Dd2BZCeEXB9/).
+2. Falls die Story-Option im Web fehlt: denselben Beitrag in der Instagram-App öffnen → Papierflieger/Teilen → „Zu deiner Story hinzufügen“. Die Beschriftung kann je App-Version abweichen.
+3. Story gestalten und Publikum prüfen. Bei Agent-Unterstützung die konkrete Vorschau einschließlich Zielkonto und Publikum separat freigeben lassen; erst dann veröffentlichen. Der Feed-Beitrag bleibt erhalten.
+4. Die veröffentlichte Story öffnen → „Highlight“ → „Konzerte“. Alternativ im Web das Profil öffnen → „Konzerte“ → Menü → „Bearbeiten“ → „Weiter“ → „Stories“ → gewünschte verfügbare Story auswählen → Änderung abschließen. Bestehende Auswahlen beibehalten. Für eine spätere Auswahl muss die Story im Story-Archiv verfügbar sein.
+5. Sichtbare Story und Aufnahme in „Konzerte“ getrennt verifizieren. Nicht allein aus einem Klick auf Erfolg schließen.
+
+Der Instagram-Bereich der lokalen Werkstatt zeigt diese Anleitung auch nach der Feed-Veröffentlichung. Die Werkstatt automatisiert weder mobile Aktionen noch Story-/Highlight-Veröffentlichungen. Der unveränderliche Feed-Beleg bleibt erhalten. Zusätzliche tatsächliche Nachweise können vorerst separat unter `.social/<Eventdatum>/instagram-followup.md` dokumentiert werden (Phase, Feed-Link, Zielkonto, Story-Freigabe/Publikum, Veröffentlichungszeit, Highlight-Name/Link und jeweiliger Prüfstand). Nicht durchgeführte Schritte ausdrücklich als offen kennzeichnen; keine Zugangsdaten speichern. Diese lokale Notiz wird nicht mit Git versioniert oder auf die Website ausgeliefert.
+
 ## Trennung von mysteryland.biz
 
 - Die Werkstatt ist ein Vite-Plugin mit `apply: 'serve'` und ausschließlich `configureServer`; sie erzeugt keine Astro-Seite und keine Produktionsroute. Es gibt keine Links dazu auf der öffentlichen Website.

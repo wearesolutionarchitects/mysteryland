@@ -54,6 +54,19 @@ function render() {
   for (const [platform, post] of Object.entries(draft.posts)) {
     const section = el('section', '', $('posts')); section.setAttribute('aria-label', names[platform]);
     el('h2', names[platform], section);
+    if (platform === 'instagram') {
+      const guide = el('details', '', section);
+      el('summary', 'Feed-Beitrag → Story → Highlight „Konzerte“', guide);
+      el('p', 'Highlights enthalten Stories, keine Feed-Beiträge. Ein veröffentlichter Beitrag wird nicht automatisch als Story oder auf Threads geteilt.', guide);
+      const steps = el('ol', '', guide);
+      for (const step of [
+        'Veröffentlichten Beitrag öffnen. Fehlt im Web unter Teilen die Option „Zu deiner Story hinzufügen“, den Beitrag in der Instagram-App öffnen und dort über das Papierflieger-Symbol zur Story hinzufügen.',
+        'Story-Vorschau und Publikum prüfen und die konkrete Story separat freigeben, bevor sie veröffentlicht wird. Der Feed-Beitrag bleibt bestehen.',
+        'Die veröffentlichte Story in der App über „Highlight“ dem Highlight „Konzerte“ zuordnen. Alternativ im Web: Profil → Konzerte → Menü → Bearbeiten → Weiter → Stories; die verfügbare Story auswählen und die Änderung abschließen.',
+        'Bei späterer Zuordnung muss die Story im Story-Archiv verfügbar sein. Veröffentlichung der Story und Aufnahme ins Highlight getrennt prüfen; der gespeicherte Feed-Beleg bestätigt diese Schritte nicht.',
+      ]) el('li', step, steps);
+      el('p', 'WebUI bei @heikofanieng am 28.09.2026 geprüft: Highlight-Bearbeitung vorhanden, Beitrag-zu-Story im Teilen-Dialog nicht angeboten. Verfügbarkeit bei jeder Durchführung prüfen.', guide);
+    }
     el('p', post.publication ? `Veröffentlicht · ${post.publication.receipt}` : post.approval ? 'Freigegeben · gespeicherter Stand' : 'Entwurf · Freigabe ausstehend', section).className = 'state';
     const text = field('Beitrag inklusive Hashtags und Links', post.text, section, true);
     const account = accountField(platform, post.account, section);
