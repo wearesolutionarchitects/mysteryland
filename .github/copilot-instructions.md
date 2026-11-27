@@ -30,7 +30,7 @@ This project follows a structured and modular development approach with a focus 
 - `canonicalUrl` folgt dem Muster `/events/YYYY/YYYY-MM-DD/`.
 - `src/components/EventSeo.astro` rendert JSON-LD aus dem Frontmatter. Änderungen am Frontmatter-Schema müssen mit dieser Komponente und `src/content.config.ts` konsistent bleiben.
 - Jedes neue Event beginnt mit genau einem strukturierten GitHub Issue aus `02-neues-event.yml`; ein Issue darf nicht mehrere Events bündeln.
-- Neue Event-MDX-Dateien sollen die strukturierten Issue-Daten und den zentralen Renderer `src/scripts/event/render.mjs` verwenden oder an dessen Ausgabeformat angelehnt werden.
+- Neue Event-MDX-Dateien sollen die strukturierten Issue-Daten und den zentralen Renderer `src/scripts/event/render.ts` verwenden oder an dessen Ausgabeformat angelehnt werden.
 - Das OG-Bild wird nach Anlage der Event-MDX über `npm run event:og -- YYYY-MM-DD` erzeugt.
 
 ## Artist Content
@@ -49,9 +49,9 @@ This project follows a structured and modular development approach with a focus 
 - Use **camelCase** for variables and functions.
 - Use **PascalCase** for class names.
 - Use **snake_case** for file and database table names.
-- Follow **Prettier** for JavaScript and **YAML linting** for configuration files.
+- Follow **Prettier** for TypeScript and JavaScript and **YAML linting** for configuration files.
 - Ensure **HTML5 and CSS3** compliance for web-related code.
-- Prefer **ES6+ syntax** for JavaScript.
+- Write Node scripts and tests as TypeScript ES modules with explicit `.ts` extensions on relative imports. Node 26 runs them directly.
 
 ---
 

@@ -1,6 +1,6 @@
 ---
 import StatusBadge from '@hfanieng/ui/status-badge';
-import { isFutureEvent } from '../scripts/lib/upcoming-events.mjs';
+import { isFutureEvent } from '../scripts/lib/upcoming-events.ts';
 const data = Astro.locals.starlightRoute.entry.data;
 const title = String(data.displayTitle || data.title || '').trim();
 const isEvent = Astro.locals.starlightRoute.id.startsWith('events/');

@@ -6,7 +6,7 @@
       "type": "process",
       "command": "node",
       "args": [
-        "${workspaceFolder}/scripts/dev/codex-terminal.mjs",
+        "${workspaceFolder}/scripts/dev/codex-terminal.ts",
         "watch"
       ],
       "options": {

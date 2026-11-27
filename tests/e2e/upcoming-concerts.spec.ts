@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 import { readdir, readFile } from 'node:fs/promises';
 import { parse } from 'yaml';
-import { upcomingEvents } from '../../src/scripts/lib/upcoming-events.mjs';
+import { upcomingEvents } from '../../src/scripts/lib/upcoming-events.ts';
 
 test('Startseiten-Slider entspricht automatisch den geplanten zukünftigen Events', async ({ page }) => {
   const root = new URL('../../src/content/docs/events/', import.meta.url);

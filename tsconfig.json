@@ -1,13 +1,15 @@
 {
   "extends": "astro/tsconfigs/strict",
   "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"],
+  "exclude": ["dist", "test-results", "playwright-report", "node_modules"],
   "compilerOptions": {
     "target": "ES2022",
     "jsx": "react-jsx",
     "jsxImportSource": "preact",
     "types": ["node"],
     "strictNullChecks": true,
+    "allowImportingTsExtensions": true,
+    "erasableSyntaxOnly": true,
     "paths": {
       "@/*": ["./src/*"],
       "@components/*": ["./src/components/*"],

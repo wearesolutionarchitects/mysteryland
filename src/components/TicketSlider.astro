@@ -4,7 +4,7 @@ import { Image, type LocalImageProps } from 'astro:assets';
 import TicketSliderIsland from './TicketSliderIsland';
 import EmptyState from '@hfanieng/ui/empty-state';
 import fallbackImage from '../assets/mysteryland.png';
-import { upcomingEvents } from '../scripts/lib/upcoming-events.mjs';
+import { upcomingEvents } from '../scripts/lib/upcoming-events.ts';
 
 type ImportedImage = Exclude<LocalImageProps['src'], Promise<unknown>>;
 

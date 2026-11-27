@@ -28,7 +28,7 @@ Das Repository dokumentiert nicht nur das Ergebnis auf [mysteryland.biz](https:/
 | Inhalte | MDX Content Collections mit Schema-Validierung |
 | Medien | Sharp, EXIF-Metadaten und lokale Bildbestände |
 | SEO | Zentrale Metadaten, Event JSON-LD, Sitemap und Open Graph |
-| Automatisierung | Node.js-ESM-Skripte und GitHub Actions |
+| Automatisierung | TypeScript-ES-Module unter Node.js 26 und GitHub Actions |
 | Qualität | Astro Check, TypeScript, Node Test Runner und Produktions-Build |
 | Betrieb | Verifiziertes SSH-Release-Deployment nach `main` |
 

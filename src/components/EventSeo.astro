@@ -1,11 +1,11 @@
 ---
-import { organizerUrl, organizersFromTags } from '../data/organizers.mjs';
+import { organizerUrl, organizersFromTags } from '../data/organizers.ts';
 import {
   googleEventOffer,
   googleEventStatus,
   isoDate,
   isCurrentOrFutureEvent,
-} from '../scripts/lib/event-schema.mjs';
+} from '../scripts/lib/event-schema.ts';
 
 const route = Astro.locals.starlightRoute;
 const entry = route?.entry;

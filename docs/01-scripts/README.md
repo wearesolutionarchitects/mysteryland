@@ -26,7 +26,7 @@ Der Assistent fragt die jeweils benötigten Parameter ab, validiert Datumswerte 
 
 Die einzelnen Kommandos unter `event:*` bleiben für Automationen, Dokumentation und direkte Aufrufe erhalten.
 
-Das gemeinsame MDX-Gerüst bleibt zentral in `src/scripts/event/render.mjs`. Eine spätere Issue-Automation soll diesen Renderer verwenden, damit Imports, `EventFacts`, Galerie-, Video-, Setlist-, Album- und SEO-Felder nicht an mehreren Stellen implementiert werden.
+Das gemeinsame MDX-Gerüst bleibt zentral in `src/scripts/event/render.ts`. Eine spätere Issue-Automation soll diesen Renderer verwenden, damit Imports, `EventFacts`, Galerie-, Video-, Setlist-, Album- und SEO-Felder nicht an mehreren Stellen implementiert werden.
 
 Event-Seiten sollen strukturiertes Frontmatter besitzen, damit `src/components/EventSeo.astro` daraus JSON-LD, Open-Graph- und Twitter-Metadaten erzeugen kann.
 
@@ -100,7 +100,7 @@ Konventionen:
 
 ## 1. Bilder importieren
 
-Modul: `src/scripts/event/media.mjs`
+Modul: `src/scripts/event/media.ts`
 
 ```bash
 npm run event:media
@@ -131,7 +131,7 @@ Dateien ohne verwertbares Datum bleiben in der Inbox. Das Skript beendet den Lau
 
 ## 2. Galerie einer bestehenden Event-MDX synchronisieren
 
-Modul: `src/scripts/event/gallery.mjs`
+Modul: `src/scripts/event/gallery.ts`
 
 ```bash
 npm run event:gallery -- <YYYY-MM-DD>
@@ -161,7 +161,7 @@ npm run event:gallery -- 2026-07-17 --dry-run
 
 ## 3. Open-Graph-Bild erzeugen
 
-Modul: `src/scripts/event/og.mjs`
+Modul: `src/scripts/event/og.ts`
 
 ```bash
 npm run event:og -- <YYYY-MM-DD>
@@ -188,7 +188,7 @@ Die Galerie bleibt bewusst in `src/content/gallery`. Nur das abgeleitete OG-Bild
 
 ## 4. Event-SEO prüfen und nachziehen
 
-Modul: `src/scripts/event/seo.mjs`
+Modul: `src/scripts/event/seo.ts`
 
 ```bash
 npm run event:seo
@@ -211,7 +211,7 @@ Das Skript:
 
 ## 5. Social-Outbox erzeugen
 
-Modul: `src/scripts/event/outbox.mjs`
+Modul: `src/scripts/event/outbox.ts`
 
 ```bash
 npm run event:outbox
@@ -251,7 +251,7 @@ Die Outbox ist bewusst nicht öffentliches Site-Output-Verzeichnis, sondern ein 
 
 ## 6. Veröffentlichungs-Paket für ein Event erzeugen
 
-Modul: `src/scripts/event/social.mjs`
+Modul: `src/scripts/event/social.ts`
 
 ```bash
 npm run event:social -- <YYYY-MM-DD>
@@ -292,7 +292,7 @@ zurückverschieben. Das verwaiste Arbeitsverzeichnis anschließend entfernen.
 
 ## 7. Album ergänzen
 
-Modul: `src/scripts/event/album.mjs`
+Modul: `src/scripts/event/album.ts`
 
 ```bash
 npm run event:album -- <YYYY-MM-DD> <ASIN>
@@ -325,7 +325,7 @@ Das Skript migriert Dateien nach `src/content/gallery/cover`, reduziert identisc
 
 ## 8. Setlists ergänzen
 
-Modul: `src/scripts/event/setlist.mjs`
+Modul: `src/scripts/event/setlist.ts`
 
 ```bash
 npm run event:setlist -- <YYYY-MM-DD>
@@ -369,7 +369,7 @@ artist: ["Alice Cooper", "Danko Jones", "H-BLOCKX", "The New Roses", "Thundermot
 
 ## Artist-Profile synchronisieren
 
-Modul: `src/scripts/artist/sync.mjs`
+Modul: `src/scripts/artist/sync.ts`
 
 ```bash
 npm run artist:sync

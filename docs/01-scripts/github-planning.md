@@ -45,7 +45,7 @@ Damit bleiben die Verantwortlichkeiten klar:
 
 - Das Issue ist die kanonische Planungs- und Intake-Einheit.
 - Die MDX-Datei ist die kanonische veröffentlichte Inhaltsquelle.
-- `src/scripts/event/render.mjs` bleibt die zentrale Ausgabe-Logik.
+- `src/scripts/event/render.ts` bleibt die zentrale Ausgabe-Logik.
 - Nachgelagerte Skripte ergänzen nur ihren jeweiligen Bereich.
 - Eine spätere Action darf die Event-MDX aus dem Issue erzeugen, soll aber keine zweite Render-Implementierung enthalten.
 
