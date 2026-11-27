@@ -28,7 +28,7 @@ async function run(action) {
     $('generate').disabled = !selection;
   }
 }
-function el(tag, text, parent) { const node = document.createElement(tag); if (text) node.textContent = text; parent?.append(node); return node; }
+function el(tag, text, parent) { const node = document.createElement(tag); if (tag === 'button') node.className = 'button'; if (text) node.textContent = text; parent?.append(node); return node; }
 function field(title, value, parent, multiline = false) {
   const label = el('label', title, parent); const input = el(multiline ? 'textarea' : 'input', '', label); input.value = value; if (multiline) input.rows = 7; return input;
 }
@@ -86,7 +86,7 @@ function renderPost(platform, post) {
   const save = el('button', 'Änderungen speichern', actions);
   const approve = el('button', 'Diesen Stand freigeben', actions);
   const copy = el('button', 'Freigegebenen Text kopieren', actions);
-  const open = el('a', 'Plattform öffnen', actions); open.className = 'action'; open.href = platform === 'facebook' ? facebookAccounts.find(account => account.url === post.account)?.url ?? destinations.facebook : destinations[platform]; open.target = '_blank'; open.rel = 'noreferrer';
+  const open = el('a', 'Plattform öffnen', actions); open.className = 'button button--secondary'; open.href = platform === 'facebook' ? facebookAccounts.find(account => account.url === post.account)?.url ?? destinations.facebook : destinations[platform]; open.target = '_blank'; open.rel = 'noreferrer';
   const receipt = field('Nach Veröffentlichung: Beitragslink oder Status-Bestätigung', '', section);
   const record = el('button', 'Veröffentlichung dokumentieren', section);
   const controls = [approve, copy, record];

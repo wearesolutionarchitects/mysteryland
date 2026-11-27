@@ -4,6 +4,8 @@ test('local social workspace offers separate announcements and retrospectives wi
   await page.goto('/__social/');
   await expect(page.getByRole('heading', { name: 'Social-Werkstatt', exact: true })).toBeVisible();
   await expect(page.locator('#event')).toBeEnabled();
+  await expect(page.locator('#load')).toHaveCSS('min-height', '44px');
+  await expect(page.locator('#event')).toHaveCSS('min-height', '44px');
   await page.locator('#event').selectOption('2027-02-21');
   await expect(page.locator('#event')).toBeEnabled();
   await expect(page.locator('#images')).toContainText('2027-02-21_00-00-00.jpg');

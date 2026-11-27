@@ -76,9 +76,10 @@ in `playwright-report/`. Beide Verzeichnisse sind vom Commit ausgeschlossen.
 
 ### Gemeinsame UI aus Heiko
 
-Mysteryland konsumiert `@hfanieng/ui` 0.6.1 als versioniertes Archiv unter
-`vendor/hfanieng-ui-0.6.1.tgz`. Quelle: `heiko/packages/ui` im Commit
-`b605616f` (committed Stand, ohne die lokalen Änderungen für 0.6.2).
+Mysteryland verwendet `@hfanieng/ui` 0.7.8 aus dem lokalen Heiko-Arbeitsbaum.
+Das Archiv `vendor/hfanieng-ui-0.7.8.tgz` enthält auch die beim Packen offenen
+Änderungen an `EditDialog.astro` und `searchableSelect.ts`. Die Social-Werkstatt
+verwendet die gemeinsamen Formular-, Button- und Fokusstile des Pakets.
 Das Archiv und die Lockdatei gehören zusammen ins Repository; `npm ci` benötigt
 keinen benachbarten Heiko-Checkout. Änderungen an gemeinsamen Komponenten erfolgen
 im Heiko-Repo, anschließend wird ein neues versioniertes Paket übernommen.
