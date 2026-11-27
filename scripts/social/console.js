@@ -8,7 +8,7 @@ const facebookAccounts = [
   { label: 'Heiko Fanieng · Privatprofil', url: 'https://www.facebook.com/heiko.fanieng' },
   { label: 'Mysteryland1909 · Page', url: 'https://www.facebook.com/Mysteryland1909' },
 ];
-const endpoint = () => `/__social/draft?date=${encodeURIComponent(selection.date)}&phase=${selection.phase}`;
+const endpoint = (key = selection) => `/__social/draft?date=${encodeURIComponent(key.date)}&phase=${key.phase}`;
 async function request(url, input) {
   const result = await fetch(url, input ? { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(input) } : {});
   const data = await result.json();
@@ -22,7 +22,11 @@ async function run(action) {
   $('notice').textContent = 'Wird verarbeitet …';
   try { await action(); $('notice').textContent = 'Bereit. Bitte Beiträge und Medien sorgfältig prüfen.'; }
   catch (error) { $('notice').textContent = error.message; }
-  finally { busy = false; for (const id of ['event', 'phase', 'load', 'generate']) $(id).disabled = false; }
+  finally {
+    busy = false;
+    for (const id of ['event', 'phase', 'load']) $(id).disabled = false;
+    $('generate').disabled = !selection;
+  }
 }
 function el(tag, text, parent) { const node = document.createElement(tag); if (text) node.textContent = text; parent?.append(node); return node; }
 function field(title, value, parent, multiline = false) {
@@ -52,51 +56,63 @@ function render() {
   const restart = el('button', 'Neue Beitragsrunde · bisherigen Stand archivieren', $('posts'));
   restart.onclick = () => run(async () => { await request(endpoint(), { action: 'archive', revision: draft.revision }); await load(); });
   for (const [platform, post] of Object.entries(draft.posts)) {
-    const section = el('section', '', $('posts')); section.setAttribute('aria-label', names[platform]);
-    el('h2', names[platform], section);
-    if (platform === 'instagram') {
-      const guide = el('details', '', section);
-      el('summary', 'Feed-Beitrag → Story → Highlight „Konzerte“', guide);
-      el('p', 'Highlights enthalten Stories, keine Feed-Beiträge. Ein veröffentlichter Beitrag wird nicht automatisch als Story oder auf Threads geteilt.', guide);
-      const steps = el('ol', '', guide);
-      for (const step of [
-        'Veröffentlichten Beitrag öffnen. Fehlt im Web unter Teilen die Option „Zu deiner Story hinzufügen“, den Beitrag in der Instagram-App öffnen und dort über das Papierflieger-Symbol zur Story hinzufügen.',
-        'Story-Vorschau und Publikum prüfen und die konkrete Story separat freigeben, bevor sie veröffentlicht wird. Der Feed-Beitrag bleibt bestehen.',
-        'Die veröffentlichte Story in der App über „Highlight“ dem Highlight „Konzerte“ zuordnen. Alternativ im Web: Profil → Konzerte → Menü → Bearbeiten → Weiter → Stories; die verfügbare Story auswählen und die Änderung abschließen.',
-        'Bei späterer Zuordnung muss die Story im Story-Archiv verfügbar sein. Veröffentlichung der Story und Aufnahme ins Highlight getrennt prüfen; der gespeicherte Feed-Beleg bestätigt diese Schritte nicht.',
-      ]) el('li', step, steps);
-      el('p', 'WebUI bei @heikofanieng am 28.09.2026 geprüft: Highlight-Bearbeitung vorhanden, Beitrag-zu-Story im Teilen-Dialog nicht angeboten. Verfügbarkeit bei jeder Durchführung prüfen.', guide);
-    }
-    el('p', post.publication ? `Veröffentlicht · ${post.publication.receipt}` : post.approval ? 'Freigegeben · gespeicherter Stand' : 'Entwurf · Freigabe ausstehend', section).className = 'state';
-    const text = field('Beitrag inklusive Hashtags und Links', post.text, section, true);
-    const account = accountField(platform, post.account, section);
-    const visibility = field('Sichtbarkeit / Empfängerkreis (optional)', post.visibility, section);
-    visibility.placeholder = 'Leer lassen: bestehende Plattform-Einstellung verwenden';
-    const media = el('div', '', section); media.className = 'media';
-    post.media.forEach((file, index) => { const a = el('a', '', media); a.href = `/__social/media?file=${encodeURIComponent(file)}`; a.download = `${platform}-${index + 1}.jpg`; const img = el('img', '', a); img.src = a.href; img.alt = `${names[platform]} · Medium ${index + 1} herunterladen`; });
-    const actions = el('div', '', section); actions.className = 'actions';
-    const save = el('button', 'Änderungen speichern', actions);
-    const approve = el('button', 'Diesen Stand freigeben', actions);
-    const copy = el('button', 'Freigegebenen Text kopieren', actions);
-    const open = el('a', 'Plattform in Chrome öffnen', actions); open.className = 'action'; open.href = platform === 'facebook' ? facebookAccounts.find(account => account.url === post.account)?.url ?? destinations.facebook : destinations[platform]; open.target = '_blank'; open.rel = 'noreferrer';
-    const receipt = field('Nach Veröffentlichung: Beitragslink oder Status-Bestätigung', '', section);
-    const record = el('button', 'Veröffentlichung dokumentieren', section);
-    const controls = [approve, copy, record];
-    approve.disabled = Boolean(post.publication || post.approval);
-    copy.disabled = record.disabled = !post.approval || Boolean(post.publication);
-    open.hidden = !post.approval || Boolean(post.publication);
-    save.disabled = Boolean(post.publication);
-    [text, account, visibility].forEach(input => { input.disabled = Boolean(post.publication); input.addEventListener('input', () => { controls.forEach(button => button.disabled = true); open.hidden = true; }); });
-    async function change(action, extra = {}) { draft = await request(endpoint(), { action, platform, revision: draft.revision, ...extra }); render(); }
-    save.onclick = () => run(() => change('save', { text: text.value, account: account.value, visibility: visibility.value }));
-    approve.onclick = () => run(() => change('approve'));
-    copy.onclick = () => run(() => navigator.clipboard.writeText(post.text));
-    record.onclick = () => run(() => change('record', { receipt: receipt.value }));
+    $('posts').append(renderPost(platform, post));
   }
 }
+function renderPost(platform, post) {
+  const section = el('section'); section.setAttribute('aria-label', names[platform]);
+  el('h2', names[platform], section);
+  if (platform === 'instagram') {
+    const guide = el('details', '', section);
+    el('summary', 'Feed-Beitrag → Story → Highlight „Konzerte“', guide);
+    el('p', 'Highlights enthalten Stories, keine Feed-Beiträge. Ein veröffentlichter Beitrag wird nicht automatisch als Story oder auf Threads geteilt.', guide);
+    const steps = el('ol', '', guide);
+    for (const step of [
+      'Veröffentlichten Beitrag öffnen. Fehlt im Web unter Teilen die Option „Zu deiner Story hinzufügen“, den Beitrag in der Instagram-App öffnen und dort über das Papierflieger-Symbol zur Story hinzufügen.',
+      'Story-Vorschau und Publikum prüfen und die konkrete Story separat freigeben, bevor sie veröffentlicht wird. Der Feed-Beitrag bleibt bestehen.',
+      'Die veröffentlichte Story in der App über „Highlight“ dem Highlight „Konzerte“ zuordnen. Alternativ im Web: Profil → Konzerte → Menü → Bearbeiten → Weiter → Stories; die verfügbare Story auswählen und die Änderung abschließen.',
+      'Bei späterer Zuordnung muss die Story im Story-Archiv verfügbar sein. Veröffentlichung der Story und Aufnahme ins Highlight getrennt prüfen; der gespeicherte Feed-Beleg bestätigt diese Schritte nicht.',
+    ]) el('li', step, steps);
+    el('p', 'WebUI bei @heikofanieng am 28.09.2026 geprüft: Highlight-Bearbeitung vorhanden, Beitrag-zu-Story im Teilen-Dialog nicht angeboten. Verfügbarkeit bei jeder Durchführung prüfen.', guide);
+  }
+  el('p', post.publication ? `Veröffentlicht · ${post.publication.receipt}` : post.approval ? 'Freigegeben · gespeicherter Stand' : 'Entwurf · Freigabe ausstehend', section).className = 'state';
+  const text = field('Beitrag inklusive Hashtags und Links', post.text, section, true);
+  const account = accountField(platform, post.account, section);
+  const visibility = field('Sichtbarkeit / Empfängerkreis (optional)', post.visibility, section);
+  visibility.placeholder = 'Leer lassen: bestehende Plattform-Einstellung verwenden';
+  const media = el('div', '', section); media.className = 'media';
+  post.media.forEach((file, index) => { const a = el('a', '', media); a.href = `/__social/media?file=${encodeURIComponent(file)}`; a.download = `${platform}-${index + 1}.jpg`; const img = el('img', '', a); img.src = a.href; img.alt = `${names[platform]} · Medium ${index + 1} herunterladen`; });
+  const actions = el('div', '', section); actions.className = 'actions';
+  const save = el('button', 'Änderungen speichern', actions);
+  const approve = el('button', 'Diesen Stand freigeben', actions);
+  const copy = el('button', 'Freigegebenen Text kopieren', actions);
+  const open = el('a', 'Plattform öffnen', actions); open.className = 'action'; open.href = platform === 'facebook' ? facebookAccounts.find(account => account.url === post.account)?.url ?? destinations.facebook : destinations[platform]; open.target = '_blank'; open.rel = 'noreferrer';
+  const receipt = field('Nach Veröffentlichung: Beitragslink oder Status-Bestätigung', '', section);
+  const record = el('button', 'Veröffentlichung dokumentieren', section);
+  const controls = [approve, copy, record];
+  approve.disabled = Boolean(post.publication || post.approval);
+  copy.disabled = record.disabled = !post.approval || Boolean(post.publication);
+  open.hidden = !post.approval || Boolean(post.publication);
+  save.disabled = Boolean(post.publication);
+  [text, account, visibility].forEach(input => { input.disabled = Boolean(post.publication); input.addEventListener('input', () => { controls.forEach(button => button.disabled = true); open.hidden = true; }); });
+  async function change(action, extra = {}) {
+    draft = await request(endpoint(), { action, platform, revision: draft.revision, ...extra });
+    section.replaceWith(renderPost(platform, draft.posts[platform]));
+  }
+  save.onclick = () => run(() => change('save', { text: text.value, account: account.value, visibility: visibility.value }));
+  approve.onclick = () => run(() => change('approve'));
+  copy.onclick = () => run(() => navigator.clipboard.writeText(post.text));
+  record.onclick = () => run(() => change('record', { receipt: receipt.value }));
+  return section;
+}
 async function load() {
-  selection = { date: $('event').value, phase: $('phase').value };
-  const info = await request(endpoint());
+  const requested = { date: $('event').value, phase: $('phase').value };
+  selection = null;
+  draft = null;
+  $('generator').hidden = true;
+  $('posts').replaceChildren();
+  const info = await request(endpoint(requested));
+  selection = requested;
   draft = info.draft;
   $('lead').value = info.lead;
   $('tags').value = info.hashtags.join(', ');

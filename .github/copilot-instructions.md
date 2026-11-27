@@ -101,7 +101,7 @@ This project follows a structured and modular development approach with a focus 
 - Frontend: **React / CSS**
 - Database: **PostgreSQL / MySQL**
 - CI/CD: **GitHub Actions**
-- Testing: **Playwright**
+- E2E mit **Playwright/WebKit (Desktop Safari)** sequenziell gegen den vom Benutzer gestarteten Mysteryland-Server ausführen. Für URL, sichtbare Prüfung und Übergabe im installierten Safari gelten die Browser-Vorgaben in [AGENTS.md](../AGENTS.md).
 - API Documentation: **Swagger / OpenAPI**
 
 ---

@@ -229,8 +229,8 @@ Das Skript:
 - verarbeitet alle Bilder aus `src/content/gallery/YYYY/MM/DD/`,
 - erzeugt pro Quellbild kanaloptimierte JPGs für Facebook, Instagram und WhatsApp Status,
 - speichert sie gebündelt unter `src/content/gallery/outbox/<kanal>/`,
-- löscht bei einem Komplettlauf die Outbox und baut die Kanalordner neu auf,
-- löscht bei einem Einzel-Event nur die Dateien dieses Datums in den Kanalordnern,
+- ersetzt bei einem Komplettlauf die Outbox, sobald alle Kanalordner erfolgreich gerendert sind,
+- aktualisiert bei einem Einzel-Event nur die Ausgabe dieses Datums und übernimmt die übrigen Events,
 - verwendet schwarze Balken statt Beschnitt, damit Ticket-Scans, Plakate und 4:3-Fotos vollständig bleiben.
 
 Ausgabeformate:
@@ -280,6 +280,13 @@ Die Einträge unter `images` sind eindeutige Bestandteile der Dateinamen im Gale
 - schreibt plattformspezifische Texte mit Lead, Hashtags und kanonischer Event-URL,
 - legt ein Manifest mit Quellen, Ausgabeformaten und Zielpfaden an,
 - ersetzt nur das Paket des ausgewählten Events unter `social-outbox/<YYYY-MM-DD>/`.
+
+Beide Exportbefehle rendern zuerst in einem Arbeitsverzeichnis neben dem Ziel.
+Ein fehlendes oder beschädigtes Quellbild lässt den bisherigen Export bestehen.
+Nach einem harten Prozessabbruch kann `.<Zielname>.exporting/` zurückbleiben.
+Vor einem erneuten Lauf prüfen, ob noch ein Export aktiv ist. Falls das Ziel fehlt
+und der Unterordner `previous/` existiert, diesen an den ursprünglichen Zielpfad
+zurückverschieben. Das verwaiste Arbeitsverzeichnis anschließend entfernen.
 
 `social-outbox/` ist in Git ignoriert. Die Inhalte sind lokale, reproduzierbare Upload-Artefakte und werden nicht mit der Website veröffentlicht.
 

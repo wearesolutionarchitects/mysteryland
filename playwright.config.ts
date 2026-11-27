@@ -15,6 +15,6 @@ export default defineConfig({
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
   },
-  projects: [{ name: 'chrome', use: { ...devices['Desktop Chrome'], channel: 'chrome' } }],
+  projects: [{ name: 'webkit', use: { ...devices['Desktop Safari'] } }],
   // The user owns the server lifecycle. Intentionally no webServer entry.
 });

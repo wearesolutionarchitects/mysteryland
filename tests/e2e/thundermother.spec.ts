@@ -34,7 +34,8 @@ test('Helles und dunkles Design sowie Tastaturfokus', async ({ page }) => {
   }
   const firstLink = page.getByRole('link', { name: 'Konzertinformationen und Tickets' });
   await firstLink.focus();
-  await page.keyboard.press('Tab');
+  // On macOS, Option-Tab includes links in Safari's keyboard navigation.
+  await page.keyboard.press(process.platform === 'darwin' ? 'Alt+Tab' : 'Tab');
   const secondLink = page.getByRole('link', { name: 'Thundermother in der Zeche Bochum' });
   await expect(secondLink).toBeFocused();
   await expect(secondLink).toHaveCSS('outline-style', 'solid');

@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { replaceExportDirectory } from '../lib/export-directory.mjs';
 import sharp from 'sharp';
 import { parse as parseYaml } from 'yaml';
 
@@ -132,30 +133,31 @@ export async function createSocialPack(eventDate, options = {}) {
   validateInstagramConfig(instagram);
 
   const targetRoot = path.join(options.outboxRoot ?? OUTBOX_ROOT, eventDate);
-  fs.rmSync(targetRoot, { recursive: true, force: true });
-  fs.mkdirSync(targetRoot, { recursive: true });
-  const outputs = [];
+  return replaceExportDirectory(targetRoot, async staged => {
+    const outputs = [];
 
-  for (const [platform, preset] of Object.entries(presets)) {
-    const directory = path.join(targetRoot, platform);
-    fs.mkdirSync(directory, { recursive: true });
-    const platformImages = platformSocial(data.social, platform).images;
-    for (const [index, imageId] of platformImages.entries()) {
-      const source = findSourceImage(eventDate, imageId, options.galleryRoot);
-      const target = path.join(directory, `${String(index + 1).padStart(2, '0')}.jpg`);
-      await renderImage(source, target, preset);
-      outputs.push({ platform, source, target, ...preset });
+    for (const [platform, preset] of Object.entries(presets)) {
+      const directory = path.join(staged, platform);
+      fs.mkdirSync(directory, { recursive: true });
+      const platformImages = platformSocial(data.social, platform).images;
+      for (const [index, imageId] of platformImages.entries()) {
+        const source = findSourceImage(eventDate, imageId, options.galleryRoot);
+        const filename = `${String(index + 1).padStart(2, '0')}.jpg`;
+        const target = path.join(targetRoot, platform, filename);
+        await renderImage(source, path.join(directory, filename), preset);
+        outputs.push({ platform, source, target, ...preset });
+      }
     }
-  }
 
-  const url = eventUrl(data);
-  const text = copyText(data, url, options.phase);
-  fs.writeFileSync(path.join(targetRoot, 'facebook', 'post.txt'), `${text.facebook}\n`);
-  fs.writeFileSync(path.join(targetRoot, 'instagram', 'caption.txt'), `${text.instagram}\n`);
-  fs.writeFileSync(path.join(targetRoot, 'whatsapp', 'status.txt'), `${text.whatsappStatus}\n`);
-  fs.writeFileSync(path.join(targetRoot, 'whatsapp', 'message.txt'), `${text.whatsappMessage}\n`);
-  fs.writeFileSync(path.join(targetRoot, 'manifest.json'), `${JSON.stringify({ eventDate, source: filePath, url, generatedAt: new Date().toISOString(), outputs }, null, 2)}\n`);
-  return { targetRoot, outputs, text, url };
+    const url = eventUrl(data);
+    const text = copyText(data, url, options.phase);
+    fs.writeFileSync(path.join(staged, 'facebook', 'post.txt'), `${text.facebook}\n`);
+    fs.writeFileSync(path.join(staged, 'instagram', 'caption.txt'), `${text.instagram}\n`);
+    fs.writeFileSync(path.join(staged, 'whatsapp', 'status.txt'), `${text.whatsappStatus}\n`);
+    fs.writeFileSync(path.join(staged, 'whatsapp', 'message.txt'), `${text.whatsappMessage}\n`);
+    fs.writeFileSync(path.join(staged, 'manifest.json'), `${JSON.stringify({ eventDate, source: filePath, url, generatedAt: new Date().toISOString(), outputs }, null, 2)}\n`);
+    return { targetRoot, outputs, text, url };
+  });
 }
 
 const isCli = process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1]);

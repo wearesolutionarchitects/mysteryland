@@ -3,6 +3,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { replaceExportDirectory } from '../lib/export-directory.mjs';
 import sharp from 'sharp';
 import { parse as parseYaml } from 'yaml';
 
@@ -74,10 +75,6 @@ function eventGalleryDir(eventDate) {
   return path.join(galleryRoot, year, month, day);
 }
 
-function presetOutboxDir(presetName) {
-  return path.join(outboxRoot, presetName);
-}
-
 function eventImages(eventDate) {
   const directory = eventGalleryDir(eventDate);
   if (!fs.existsSync(directory)) return [];
@@ -93,31 +90,19 @@ function outputName(eventDate, sourceImage) {
   return `${baseName.startsWith(eventDate) ? baseName : `${eventDate}_${baseName}`}.jpg`;
 }
 
-function ensureOutboxRoot() {
-  fs.mkdirSync(outboxRoot, { recursive: true });
-  fs.writeFileSync(path.join(outboxRoot, '.gitkeep'), '');
-}
-
-function cleanOutbox({ onlyDate }) {
-  if (!onlyDate) {
-    fs.rmSync(outboxRoot, { recursive: true, force: true });
-    ensureOutboxRoot();
-    return;
-  }
-
-  fs.rmSync(path.join(outboxRoot, onlyDate), { recursive: true, force: true });
-  ensureOutboxRoot();
-
-  for (const preset of presets) {
-    const directory = presetOutboxDir(preset.name);
-    if (!fs.existsSync(directory)) continue;
-
-    for (const fileName of fs.readdirSync(directory)) {
-      if (fileName.startsWith(`${onlyDate}_`) || fileName.startsWith(onlyDate)) {
-        fs.rmSync(path.join(directory, fileName), { force: true });
-      }
-    }
-  }
+function keepOtherDates(staged, onlyDate) {
+  if (!fs.existsSync(outboxRoot)) return;
+  fs.cpSync(outboxRoot, staged, {
+    recursive: true,
+    verbatimSymlinks: true,
+    mode: fs.constants.COPYFILE_FICLONE,
+    filter(source) {
+      const relative = path.relative(outboxRoot, source);
+      if (relative === onlyDate) return false;
+      const [channel, filename] = relative.split(path.sep);
+      return !(presets.some(preset => preset.name === channel) && filename?.startsWith(onlyDate));
+    },
+  });
 }
 
 async function renderSocialImage({ source, target, width, height }) {
@@ -172,46 +157,49 @@ export async function createEventOutboxImages({
     .filter((event) => onlyDate || isUpcomingEvent(event, today))
     .sort((a, b) => a.eventDate.localeCompare(b.eventDate));
 
-  const results = [];
-  const skipped = [];
+  return replaceExportDirectory(outboxRoot, async staged => {
+    const results = [];
+    const skipped = [];
 
-  cleanOutbox({ onlyDate });
+    if (onlyDate) keepOtherDates(staged, onlyDate);
+    fs.writeFileSync(path.join(staged, '.gitkeep'), '');
 
-  for (const event of events) {
-    const images = eventImages(event.eventDate);
-    if (!images.length) {
-      skipped.push({ eventDate: event.eventDate, reason: 'no gallery images' });
-      continue;
-    }
+    for (const event of events) {
+      const images = eventImages(event.eventDate);
+      if (!images.length) {
+        skipped.push({ eventDate: event.eventDate, reason: 'no gallery images' });
+        continue;
+      }
 
-    for (const source of images) {
-      for (const preset of presets) {
-        const presetDir = presetOutboxDir(preset.name);
-        fs.mkdirSync(presetDir, { recursive: true });
-        const target = path.join(presetDir, outputName(event.eventDate, source));
-        await renderSocialImage({
-          source,
-          target,
-          width: preset.width,
-          height: preset.height,
-        });
-        results.push({
-          eventDate: event.eventDate,
-          preset: preset.name,
-          source,
-          filePath: target,
-          width: preset.width,
-          height: preset.height,
-        });
+      for (const source of images) {
+        for (const preset of presets) {
+          const presetDir = path.join(staged, preset.name);
+          fs.mkdirSync(presetDir, { recursive: true });
+          const target = path.join(presetDir, outputName(event.eventDate, source));
+          await renderSocialImage({
+            source,
+            target,
+            width: preset.width,
+            height: preset.height,
+          });
+          results.push({
+            eventDate: event.eventDate,
+            preset: preset.name,
+            source,
+            filePath: path.join(outboxRoot, preset.name, path.basename(target)),
+            width: preset.width,
+            height: preset.height,
+          });
+        }
       }
     }
-  }
 
-  return {
-    events,
-    images: results,
-    skipped,
-  };
+    return {
+      events,
+      images: results,
+      skipped,
+    };
+  });
 }
 
 const isCli = process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1]);

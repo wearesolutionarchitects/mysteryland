@@ -4,7 +4,8 @@
 
 - Keinen eigenen Dev-Server starten. Der Benutzer startet Mysteryland selbst; seine angezeigte URL verwenden und keinen Server aus einem Schwester-Repo übernehmen.
 - E2E mit Playwright gegen `http://localhost:4322` ausführen; `PLAYWRIGHT_BASE_URL` kann eine ausdrücklich abweichende URL vorgeben. Die Konfiguration startet bewusst keinen Webserver.
-- Sichtbare Prüfung in Google Chrome: `npm run test:e2e:ui` oder `npm run test:e2e:debug`; Tests sequenziell ausführen. Zusätzlich die Website in einem separaten Chrome-Tab zur Übergabe geöffnet lassen. Der In-App-Browser ersetzt diese Prüfung nicht.
+- Playwright verwendet WebKit mit dem Geräteprofil Desktop Safari. Tests sequenziell ausführen. Für die sichtbare Testprüfung `npm run test:e2e:ui` oder `npm run test:e2e:debug` verwenden.
+- Die Website zusätzlich im installierten Safari prüfen und den Safari-Tab zur Übergabe geöffnet lassen.
 
 ## Terminal in VS Code mitlesen
 

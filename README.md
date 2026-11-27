@@ -49,7 +49,7 @@ Server übernehmen die neue Zuordnung erst nach einem Neustart durch den Benutze
 
 ## Lokaler Einstieg
 
-### Sichtbare Chrome-Prüfung mit Playwright
+### Browserprüfung mit WebKit und Safari
 
 Den Dev-Server startet der Benutzer mit `npm run dev`. Playwright startet keinen
 eigenen Server. Standardziel ist `http://localhost:4322`. Bei einer ausdrücklich abweichenden
@@ -67,10 +67,10 @@ $env:PLAYWRIGHT_BASE_URL = 'http://localhost:4322'
 npm run test:e2e:ui
 ```
 
-Google Chrome muss installiert sein. `test:e2e:ui` öffnet die Playwright-Oberfläche;
-`test:e2e:debug` führt die Tests mit sichtbarem Chrome und Inspector schrittweise
-aus. Zusätzlich die Eventseite im normalen Chrome geöffnet lassen, um die Website
-auch nach Testende nachvollziehen zu können. `test:e2e` ist der automatisierte Lauf.
+Die Testlaufzeit mit `npx playwright install webkit` installieren. Playwright nutzt
+das Profil Desktop Safari. `test:e2e:ui` öffnet die Testoberfläche, `test:e2e:debug`
+den Inspector und `test:e2e` startet den automatisierten Lauf. Auf dem Mac die
+Eventseite zusätzlich im installierten Safari prüfen und zur Übergabe geöffnet lassen.
 Die Tests laufen sequenziell; Fehlerartefakte liegen in `test-results/`, der Bericht
 in `playwright-report/`. Beide Verzeichnisse sind vom Commit ausgeschlossen.
 
@@ -140,7 +140,7 @@ Die folgende Übersicht umfasst alle Skripte aus [`package.json`](./package.json
 
 Die [lokale Social-Werkstatt](docs/01-scripts/social-workspace.md) unter
 `http://localhost:4322/__social/` unterstützt getrennte Ankündigungen und Rückblicke,
-Medienvorschau, Kuration, Freigabe und die Übergabe an Chrome. Sie ist ausschließlich
+Medienvorschau, Kuration, Freigabe und die Übergabe an Safari. Sie ist ausschließlich
 im Dev-Server verfügbar; ihre lokalen Daten werden nicht mit mysteryland.biz veröffentlicht.
 
 ### Betrieb und GitHub
