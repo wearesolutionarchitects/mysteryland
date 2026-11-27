@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { replaceExportDirectory } from '../lib/export-directory.ts';
 import sharp from 'sharp';
 import { readFrontmatter } from '../lib/frontmatter.ts';
+import { socialImageFormats } from './social-image-formats.ts';
 
 const SITE_URL = (process.env.SITE_URL || 'https://mysteryland.biz').replace(/\/$/, '');
 const EVENTS_ROOT = process.env.EVENTS_ROOT || './src/content/docs/events';
@@ -16,7 +17,7 @@ interface ChannelSettings {
   images?: string[];
 }
 
-type Platform = keyof typeof presets;
+type Platform = (typeof socialImageFormats)[number]['platform'];
 type SocialSettings = ChannelSettings & Partial<Record<Platform, ChannelSettings>> & { enabled?: boolean };
 interface SocialEvent {
   social?: SocialSettings;
@@ -37,12 +38,6 @@ interface PackOptions {
   social?: SocialSettings;
   phase?: string;
 }
-
-const presets = {
-  facebook: { width: 1200, height: 630 },
-  instagram: { width: 1080, height: 1350 },
-  whatsapp: { width: 1080, height: 1920 },
-};
 
 export function readEvent(eventDate: string, eventsRoot = EVENTS_ROOT) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(eventDate)) throw new Error('Invalid event date');
@@ -165,8 +160,7 @@ export async function createSocialPack(eventDate: string, options: PackOptions =
   return replaceExportDirectory(targetRoot, async staged => {
     const outputs = [];
 
-    for (const platform of Object.keys(presets) as Platform[]) {
-      const preset = presets[platform];
+    for (const { platform, width, height } of socialImageFormats) {
       const directory = path.join(staged, platform);
       fs.mkdirSync(directory, { recursive: true });
       const platformImages = platformSocial(social, platform).images;
@@ -174,8 +168,8 @@ export async function createSocialPack(eventDate: string, options: PackOptions =
         const source = findSourceImage(eventDate, imageId, options.galleryRoot);
         const filename = `${String(index + 1).padStart(2, '0')}.jpg`;
         const target = path.join(targetRoot, platform, filename);
-        await renderImage(source, path.join(directory, filename), preset);
-        outputs.push({ platform, source, target, ...preset });
+        await renderImage(source, path.join(directory, filename), { width, height });
+        outputs.push({ platform, source, target, width, height });
       }
     }
 

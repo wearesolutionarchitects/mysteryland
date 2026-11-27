@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { replaceExportDirectory } from '../lib/export-directory.ts';
 import sharp from 'sharp';
 import { parse as parseYaml } from 'yaml';
+import { socialImageFormats } from './social-image-formats.ts';
 
 const DEFAULT_EVENTS_ROOT = './src/content/docs/events';
 const DEFAULT_GALLERY_ROOT = './src/content/gallery';
@@ -14,24 +15,6 @@ const DEFAULT_OUTBOX_ROOT = './src/content/gallery/outbox';
 const eventsRoot = process.env.EVENTS_ROOT || DEFAULT_EVENTS_ROOT;
 const galleryRoot = process.env.GALLERY_ROOT || DEFAULT_GALLERY_ROOT;
 const outboxRoot = process.env.GALLERY_OUTBOX || DEFAULT_OUTBOX_ROOT;
-
-const presets = [
-  {
-    name: 'facebook',
-    width: 1200,
-    height: 630,
-  },
-  {
-    name: 'instagram',
-    width: 1080,
-    height: 1350,
-  },
-  {
-    name: 'whatsapp-status',
-    width: 1080,
-    height: 1920,
-  },
-];
 
 function walkMdxFiles(directory: string): string[] {
   if (!fs.existsSync(directory)) return [];
@@ -100,7 +83,7 @@ function keepOtherDates(staged: string, onlyDate: string) {
       const relative = path.relative(outboxRoot, source);
       if (relative === onlyDate) return false;
       const [channel, filename] = relative.split(path.sep);
-      return !(presets.some(preset => preset.name === channel) && filename?.startsWith(onlyDate));
+      return !(socialImageFormats.some(format => format.outboxName === channel) && filename?.startsWith(onlyDate));
     },
   });
 }
@@ -172,23 +155,18 @@ export async function createEventOutboxImages({
       }
 
       for (const source of images) {
-        for (const preset of presets) {
-          const presetDir = path.join(staged, preset.name);
+        for (const { outboxName, width, height } of socialImageFormats) {
+          const presetDir = path.join(staged, outboxName);
           fs.mkdirSync(presetDir, { recursive: true });
           const target = path.join(presetDir, outputName(event.eventDate, source));
-          await renderSocialImage({
-            source,
-            target,
-            width: preset.width,
-            height: preset.height,
-          });
+          await renderSocialImage({ source, target, width, height });
           results.push({
             eventDate: event.eventDate,
-            preset: preset.name,
+            preset: outboxName,
             source,
-            filePath: path.join(outboxRoot, preset.name, path.basename(target)),
-            width: preset.width,
-            height: preset.height,
+            filePath: path.join(outboxRoot, outboxName, path.basename(target)),
+            width,
+            height,
           });
         }
       }
