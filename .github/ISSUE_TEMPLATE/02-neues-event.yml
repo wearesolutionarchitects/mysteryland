@@ -5,15 +5,6 @@ labels:
   - "area: content"
   - "status: needs-triage"
 body:
-  - type: markdown
-    attributes:
-      value: |
-        ## Ein Issue entspricht genau einem Event
-
-        - **Titel** – Hauptact oder Eventname. Bei Festivals und Shows den Namen der Veranstaltung verwenden.
-        - **Fields** – Veranstaltungsdatum in `Start date`, Stadt in `City` und Spielstätte in `Venue` eintragen. Belegte `Veranstalter` und den `Preis` in EUR ergänzen, sobald sie bekannt sind. Bei belegtem Gratis-Eintritt `0` eintragen.
-        - **Labels** – Für die belegten Haupt-, Vor- und Gastacts sowie die dokumentierten Acts bei Festivals und Pop-Shows die blauen Künstlerlabels (`#0052cc`) anhand der Namen auswählen. Fehlende Künstlerlabels unter „Line-up – Ergänzungen“ vermerken.
-
   - type: dropdown
     id: category
     attributes:
