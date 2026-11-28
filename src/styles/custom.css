@@ -38,6 +38,10 @@
   color: inherit;
 }
 
+.sidebar-content a[aria-current='page'] {
+  color: var(--color-on-accent);
+}
+
 @layer starlight.components {
   .sl-markdown-content .card {
     border-color: var(--color-accent);

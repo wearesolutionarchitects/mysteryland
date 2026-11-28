@@ -4,14 +4,14 @@ Jedes neue Event beginnt mit genau einem strukturierten GitHub Issue. Das Issue 
 
 ## Event-Issue als Einstieg
 
-Das Formular `Neues Event` unter `.github/ISSUE_TEMPLATE/02-neues-event.yml` erfasst Datum, Eventname, Kategorie, Ort, Line-up, Tour, Status, Bearbeitungsphase und Quellen in getrennten Feldern. Dadurch können Menschen, Agents und spätere GitHub Actions dieselbe strukturierte Quelle verwenden.
+Das Formular `Neues Event` unter `.github/ISSUE_TEMPLATE/02-neues-event.yml` setzt den Issue-Typ `Event` vorausgefüllt. Der Titel nennt Hauptact oder Eventname. In der GitHub-Seitenleiste stehen `Start date` für das Veranstaltungsdatum, `City`, `Venue`, `Veranstalter` und `Preis` in EUR. Unter `Labels` werden die belegten Acts über die blauen Künstlerlabels zugeordnet. Der Issue-Text erfasst Kategorie, Quellen und die weiteren Angaben für die Event-MDX, etwa Rollen im Line-up und Running Order.
 
 Verbindliche Regeln:
 
 - Ein Issue beschreibt genau ein Event.
 - Ein weiteres Event erhält ein eigenes Issue.
 - Die Event-MDX wird aus den Issue-Daten erstellt oder vervollständigt.
-- Unbekannte Werte werden als `TBA` festgehalten und nicht geraten.
+- Unbekannte Issue-Field-Werte bleiben leer. Im MDX-Frontmatter kann `TBA` stehen, soweit das jeweilige Feld dies vorsieht.
 - Medien-, Setlist-, Album-, SEO- und Social-Schritte bleiben nachgelagerte, wiederholbare Aufgaben desselben Issues.
 
 ## Interaktiver Event-Assistent

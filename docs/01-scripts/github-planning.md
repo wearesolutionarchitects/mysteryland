@@ -11,7 +11,7 @@ Labels für die Arbeitssteuerung verwenden ein Präfix. Pro Dimension soll ein I
 - `stage:` beschreibt die Phase eines Events.
 - `automation:` markiert Vorgänge, die GitHub-Automatisierung betreffen.
 
-Künstler-Labels dienen als fachliche Filter. Stadt und Spielstätte werden in den GitHub Issue Fields `City` und `Venue` erfasst. Neue Automationen sollen sich für die Arbeitssteuerung nur auf die präfixierten Steuerungslabels verlassen.
+Künstler-Labels dienen als fachliche Filter. Sie tragen den Künstlernamen ohne Präfix und die Farbe `#0052cc`. Die Beschreibung enthält die offizielle Website oder, falls es keine gibt, das erste belegte offizielle Profil in der Reihenfolge Facebook, Instagram, YouTube. Fehlt ein Beleg, bleibt die Beschreibung leer. Auftrittsnamen derselben Band werden unter dem gemeinsamen Künstlerlabel erfasst. Stadt und Spielstätte werden in den GitHub Issue Fields `City` und `Venue` erfasst. Neue Automationen sollen sich für die Arbeitssteuerung nur auf die präfixierten Steuerungslabels verlassen.
 
 ## Empfohlenes Project-Setup
 
@@ -23,11 +23,11 @@ Empfohlene Workflows im Project:
 2. `status: needs-triage` in den Status `Triage` überführen.
 3. `status: ready` in den Status `Ready` überführen.
 4. Geschlossene Vorgänge auf `Done` setzen.
-5. Eventdatum und Eventphase zunächst als Project-Felder pflegen; eine spätere Action kann sie aus dem strukturierten Issue-Formular übernehmen.
+5. Das Veranstaltungsdatum aus dem Issue Field `Start date` im Project anzeigen. Die Bearbeitungsphase kann als separates Project-Feld gepflegt werden.
 
 ## Ein Issue pro Event
 
-Das Issue-Formular `Neues Event` ist der einzige Einstieg für neue Event-MDX-Dateien. Jedes Issue beschreibt genau ein Event und liefert maschinenlesbare Felder für Datum, Eventname, Kategorie, Ort, Line-up, Tour, Status, Phase und Quellen.
+Das Issue-Formular `Neues Event` setzt den Issue-Typ `Event`. Jedes Issue beschreibt genau ein Event. Veranstaltungsdatum, Stadt, Spielstätte, Veranstalter und Preis werden in den angepinnten Issue Fields gepflegt. Die belegten Acts erhalten Künstlerlabels. Der Issue-Text enthält Kategorie und Quellen sowie bei Bedarf Rollen, Running Order und weitere Angaben zur Event-Page.
 
 Damit bleiben die Verantwortlichkeiten klar:
 
