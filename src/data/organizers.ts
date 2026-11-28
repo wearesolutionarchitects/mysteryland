@@ -40,6 +40,7 @@ const organizerUrls = new Map([
   ['Concert Team Düsseldorf', 'https://www.concertteam.de/'],
   ['Concertteam NRW', 'https://www.concertteam.de/'],
   ['Kingstar GmbH', 'https://www.kingstar-music.com/'],
+  ['KKT', 'https://kkt.berlin/'],
 ].map(([name, url]) => [normalize(name), url]));
 
 function normalize(value: unknown) {

@@ -149,7 +149,6 @@ im Dev-Server verfügbar; ihre lokalen Daten werden nicht mit mysteryland.biz ve
 | Kommando | Zweck |
 | --- | --- |
 | `npm run deploy:ssh` | SSH-Release-Deployment mit konfiguriertem Ziel und Zugang ausführen |
-| `npm run script:github:create-labels` | Kanonische GitHub-Labels synchronisieren |
 
 Die granularen `event:*`-Kommandos bleiben bewusst erhalten. Sie können direkt, aus dem Assistenten oder später aus weiteren Automationen aufgerufen werden.
 

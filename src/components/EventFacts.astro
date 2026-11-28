@@ -20,7 +20,7 @@ interface Props {
 // With no explicit facts, use the same collection data as EventSeo.
 // Keep empty strings: an intentionally blank fact must retain its label.
 const data = Astro.locals.starlightRoute.entry.data;
-const facts: Fact[] = Astro.props.facts ?? [
+const suppliedFacts: Fact[] = Astro.props.facts ?? [
   { icon: 'lucide:globe', label: 'Land', value: data.country },
   { icon: 'lucide:map-pin', label: 'Stadt', value: data.city },
   { icon: 'lucide:landmark', label: 'Venue', value: data.venue },
@@ -45,6 +45,10 @@ const facts: Fact[] = Astro.props.facts ?? [
   },
   { icon: 'lucide:ticket-check', label: 'Kategorie', value: data.ticketCategory },
 ].filter((fact) => fact.value !== undefined);
+const organizer = Array.isArray(data.organizer) ? data.organizer.join(', ') : data.organizer;
+const facts = organizer && !suppliedFacts.some((fact) => fact.label === 'Veranstalter')
+  ? [...suppliedFacts, { icon: 'lucide:building-2', label: 'Veranstalter', value: organizer }]
+  : suppliedFacts;
 const factOrder = new Map([
   ['Land', 10],
   ['Stadt', 20],

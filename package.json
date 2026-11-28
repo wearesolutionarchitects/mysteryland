@@ -33,8 +33,7 @@
     "event:social": "node src/scripts/event/social.ts",
     "event:album": "node src/scripts/event/album.ts",
     "event:covers": "node src/scripts/event/localize-album-covers.ts",
-    "artist:sync": "node src/scripts/artist/sync.ts",
-    "script:github:create-labels": "node src/scripts/github/create-label.ts"
+    "artist:sync": "node src/scripts/artist/sync.ts"
   },
   "dependencies": {
     "@astrojs/preact": "^6.1.6",

@@ -11,19 +11,7 @@ Labels für die Arbeitssteuerung verwenden ein Präfix. Pro Dimension soll ein I
 - `stage:` beschreibt die Phase eines Events.
 - `automation:` markiert Vorgänge, die GitHub-Automatisierung betreffen.
 
-Die bestehenden Künstler-, Orts- und Venue-Labels bleiben als fachliche Filter erhalten. Neue Automationen sollen sich jedoch nur auf die präfixierten Steuerungslabels verlassen.
-
-## Labels synchronisieren
-
-`src/scripts/github/labels-data.json` ist die kanonische Quelle. Der Sync ist idempotent: bestehende Labels werden aktualisiert, fehlende angelegt.
-
-Lokal mit authentifizierter GitHub CLI:
-
-```bash
-npm run script:github:create-labels
-```
-
-Alternativ lässt sich die Action `Labels` manuell über `workflow_dispatch` starten. Sie benötigt nur das bereitgestellte `GITHUB_TOKEN` mit Schreibrecht für Issues.
+Künstler-Labels dienen als fachliche Filter. Stadt und Spielstätte werden in den GitHub Issue Fields `City` und `Venue` erfasst. Neue Automationen sollen sich für die Arbeitssteuerung nur auf die präfixierten Steuerungslabels verlassen.
 
 ## Empfohlenes Project-Setup
 

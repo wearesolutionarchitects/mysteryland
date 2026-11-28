@@ -440,12 +440,4 @@ npm exec astro check
 npm run build
 ```
 
-## Wartungsskripte
-
-Diese Skripte gehören nicht zum normalen Event-Workflow:
-
-```bash
-npm run script:github:create-labels
-```
-
-Die Label-Taxonomie, der idempotente Sync und das empfohlene GitHub-Projects-Setup sind in [GitHub-Planung und Automatisierung](./github-planning.md) beschrieben.
+Die Label-Taxonomie und das empfohlene GitHub-Projects-Setup sind in [GitHub-Planung und Automatisierung](./github-planning.md) beschrieben.
